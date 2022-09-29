@@ -25,6 +25,7 @@ void sd_test();
 int main(void)
 {
     printf("Hello World!\n");
+:w
     key_gpio_intr(PA8);
     LED_Init();
     OLED_SHOW();
