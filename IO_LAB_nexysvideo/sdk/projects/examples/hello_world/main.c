@@ -33,6 +33,7 @@ int main(void)
     {
         LED_ON();
         mdelay(500);
+		printf("Hello World!\n");
         LED_OFF();
         mdelay(500);
     }

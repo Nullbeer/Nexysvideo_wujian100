@@ -9,9 +9,10 @@ WorkspacePath          :=./
 ProjectPath            :=./
 IntermediateDirectory  :=Obj
 OutDir                 :=$(IntermediateDirectory)
-User                   :=hnaym
-Date                   :=03/12/2021
+User                   :=11056
+Date                   :=29/09/2022
 CDKPath                :=D:/C-Sky/CDK
+ToolchainPath          :=D:/C-Sky/CDKRepo/Toolchain/XTGccElfNewlib/V2.6.0/R/
 LinkerName             :=riscv64-unknown-elf-gcc
 LinkerNameoption       :=
 SIZE                   :=riscv64-unknown-elf-size
@@ -86,7 +87,7 @@ Objects=$(Objects0)
 all: $(IntermediateDirectory)/$(OutputFile)
 
 $(IntermediateDirectory)/$(OutputFile):  $(Objects) Always_Link 
-	$(LinkerName) $(OutputSwitch) $(IntermediateDirectory)/$(OutputFile)$(ExeSuffix) $(LinkerNameoption) $(LinkOtherFlagsOption)  @$(ObjectsFileList) $(LibraryPathSwitch)C:/Users/hnaym/Desktop/T_head_data/nexys_video/softmax_nexysvideo/sdk/libs  -Wl,--whole-archive $(LibrarySwitch)newlib_wrap   -Wl,--no-whole-archive  $(LinkOptions) $(LibPath) $(Libs)
+	$(LinkerName) $(OutputSwitch) $(IntermediateDirectory)/$(OutputFile)$(ExeSuffix) $(LinkerNameoption) $(LinkOtherFlagsOption)  @$(ObjectsFileList) $(LibraryPathSwitch)F:/Nexysvideo_wujian100/softmax_nexysvideo/sdk/libs  -Wl,--whole-archive $(LibrarySwitch)newlib_wrap   -Wl,--no-whole-archive  $(LinkOptions) $(LibPath) $(Libs)
 	$(OBJDUMP) $(ObjdumpSwitch) $(ProjectPath)/$(IntermediateDirectory)/$(OutputFile)$(ExeSuffix)  > $(ProjectPath)/Lst/$(OutputFile)$(DisassemSuffix) 
 	@echo size of target:
 	@$(SIZE) $(ProjectPath)$(IntermediateDirectory)/$(OutputFile)$(ExeSuffix) 

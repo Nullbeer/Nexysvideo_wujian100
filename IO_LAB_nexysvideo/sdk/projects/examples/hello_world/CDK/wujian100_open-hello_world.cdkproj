@@ -584,6 +584,9 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
+  <VendorInfo>
+    <VendorName>NULL</VendorName>
+  </VendorInfo>
   <DebugSessions>
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>

@@ -6,11 +6,11 @@ Project_Title:
 	@echo "----------Building project:[ wujian100_open-hello_world - BuildSet ]----------"
 
 Project_Build:
-	@make -r -f wujian100_open-hello_world.mk -j 16 -C  ./ 
+	@make -r -f wujian100_open-hello_world.mk -j 6 -C  ./ 
 
 Project_PostBuild:
 	@echo Executing Post Build commands ...
-	@export CDKPath="D:/C-Sky/CDK" CDK_VERSION="V2.10.3" ProjectPath="C:/Users/hnaym/Desktop/T_head_data/nexys_video/IO_LAB_nexysvideo/sdk/projects/examples/hello_world/CDK/" && "C:/Users/hnaym/Desktop/T_head_data/nexys_video/IO_LAB_nexysvideo/sdk/projects/examples/hello_world/CDK/../../../../utilities//aft_build.sh" 
+	@export CDKPath="D:/C-Sky/CDK" CDK_VERSION="V2.16.2" ProjectPath="F:/Nexysvideo_wujian100/IO_LAB_nexysvideo/sdk/projects/examples/hello_world/CDK/" && "F:/Nexysvideo_wujian100/IO_LAB_nexysvideo/sdk/projects/examples/hello_world/CDK/../../../../utilities//aft_build.sh" 
 	@echo Done
 
 

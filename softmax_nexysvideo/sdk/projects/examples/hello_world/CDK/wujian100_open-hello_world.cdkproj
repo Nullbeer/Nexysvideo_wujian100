@@ -504,8 +504,11 @@
     </BuildConfig>
   </BuildConfigs>
   <MonitorProgress>
-    <DebugLaunch>35</DebugLaunch>
+    <DebugLaunch>40</DebugLaunch>
   </MonitorProgress>
+  <VendorInfo>
+    <VendorName>NULL</VendorName>
+  </VendorInfo>
   <DebugSessions>
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>
