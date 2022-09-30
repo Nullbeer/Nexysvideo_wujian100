@@ -343,6 +343,14 @@
             <FileOption/>
           </File>
         </VirtualDirectory>
+        <VirtualDirectory Name="LED">
+          <File Name="../LED/led.c">
+            <FileOption/>
+          </File>
+          <File Name="../LED/led.h">
+            <FileOption/>
+          </File>
+        </VirtualDirectory>
       </VirtualDirectory>
     </VirtualDirectory>
   </VirtualDirectory>

@@ -29,12 +29,12 @@ Reset_Handler:
 
     la      sp, g_top_irqstack
       20:	20001117          	auipc	sp,0x20001
-      24:	4f410113          	addi	sp,sp,1268 # 20001514 <g_top_irqstack>
+      24:	50010113          	addi	sp,sp,1280 # 20001520 <g_top_irqstack>
 
     /* Load data section */
     la      a0, __erodata
       28:	00006517          	auipc	a0,0x6
-      2c:	f6850513          	addi	a0,a0,-152 # 5f90 <__ctor_end__>
+      2c:	27850513          	addi	a0,a0,632 # 62a0 <__ctor_end__>
     la      a1, __data_start__
       30:	b1818593          	addi	a1,gp,-1256 # 20000000 <__Vectors>
     la      a2, __data_end__
@@ -59,7 +59,7 @@ Reset_Handler:
       4c:	00818513          	addi	a0,gp,8 # 200004f0 <errno>
     la      a1, __bss_end__
       50:	20002597          	auipc	a1,0x20002
-      54:	ca458593          	addi	a1,a1,-860 # 20001cf4 <__bss_end__>
+      54:	da858593          	addi	a1,a1,-600 # 20001df8 <__bss_end__>
     bgeu    a0, a1, 2f
       58:	00b57763          	bgeu	a0,a1,66 <Reset_Handler+0x66>
 1:
@@ -73,7 +73,7 @@ Reset_Handler:
 
 #ifndef __NO_SYSTEM_INIT
     jal     SystemInit
-      66:	265030ef          	jal	ra,3aca <SystemInit>
+      66:	4a1030ef          	jal	ra,3d06 <SystemInit>
 #endif
 
 #ifndef __NO_BOARD_INIT
@@ -82,7 +82,7 @@ Reset_Handler:
 #endif
 
     jal     main
-      6e:	60b030ef          	jal	ra,3e78 <main>
+      6e:	04a040ef          	jal	ra,40b8 <main>
 
 00000072 <__exit>:
 
@@ -140,7 +140,7 @@ Default_IRQHandler:
 
     la      t0, g_irqvector
       ac:	20002297          	auipc	t0,0x20002
-      b0:	a4028293          	addi	t0,t0,-1472 # 20001aec <g_irqvector>
+      b0:	b4428293          	addi	t0,t0,-1212 # 20001bf0 <g_irqvector>
     add     t0, t0, t1
       b4:	929a                	add	t0,t0,t1
     lw      t2, (t0)
@@ -231,7 +231,7 @@ trap:
 
     la      t0, g_trap_sp
      11e:	20001297          	auipc	t0,0x20001
-     122:	5f628293          	addi	t0,t0,1526 # 20001714 <g_trap_sp>
+     122:	60228293          	addi	t0,t0,1538 # 20001720 <g_trap_sp>
     addi    t0, t0, -68
      126:	fbc28293          	addi	t0,t0,-68
     sw      x1, 0(t0)
@@ -281,7 +281,7 @@ trap:
      17a:	c816                	sw	t0,16(sp)
 
     jal     trap_c
-     17c:	1ad030ef          	jal	ra,3b28 <trap_c>
+     17c:	3e9030ef          	jal	ra,3d64 <trap_c>
 
 
 .Lirq:
@@ -327,7 +327,7 @@ Default_Handler:
      206:	8332                	mv	t1,a2
      208:	83aa                	mv	t2,a0
      20a:	00005697          	auipc	a3,0x5
-     20e:	ece68693          	addi	a3,a3,-306 # 50d8 <__clz_tab>
+     20e:	1de68693          	addi	a3,a3,478 # 53e8 <__clz_tab>
      212:	0cc7f263          	bgeu	a5,a2,2d6 <__min_heap_size+0xd6>
      216:	6741                	lui	a4,0x10
      218:	853e                	mv	a0,a5
@@ -433,7 +433,7 @@ Default_Handler:
      35e:	87ba                	mv	a5,a4
      360:	00c3fb63          	bgeu	t2,a2,376 <__min_heap_size+0x176>
      364:	939a                	add	t2,t2,t1
-     366:	fff70793          	addi	a5,a4,-1 # ffff <__ctor_end__+0xa06f>
+     366:	fff70793          	addi	a5,a4,-1 # ffff <__ctor_end__+0x9d5f>
      36a:	0063e663          	bltu	t2,t1,376 <__min_heap_size+0x176>
      36e:	00c3f463          	bgeu	t2,a2,376 <__min_heap_size+0x176>
      372:	ffe70793          	addi	a5,a4,-2
@@ -499,7 +499,7 @@ Default_Handler:
      42e:	070e                	slli	a4,a4,0x3
      430:	00e6d533          	srl	a0,a3,a4
      434:	00005597          	auipc	a1,0x5
-     438:	ca458593          	addi	a1,a1,-860 # 50d8 <__clz_tab>
+     438:	fb458593          	addi	a1,a1,-76 # 53e8 <__clz_tab>
      43c:	95aa                	add	a1,a1,a0
      43e:	0005c583          	lbu	a1,0(a1)
      442:	02000513          	li	a0,32
@@ -561,7 +561,7 @@ Default_Handler:
      4f8:	6441                	lui	s0,0x10
      4fa:	01071513          	slli	a0,a4,0x10
      4fe:	00756533          	or	a0,a0,t2
-     502:	fff40713          	addi	a4,s0,-1 # ffff <__ctor_end__+0xa06f>
+     502:	fff40713          	addi	a4,s0,-1 # ffff <__ctor_end__+0x9d5f>
      506:	00e573b3          	and	t2,a0,a4
      50a:	01055693          	srli	a3,a0,0x10
      50e:	8f71                	and	a4,a4,a2
@@ -604,7 +604,7 @@ Default_Handler:
      56e:	8336                	mv	t1,a3
      570:	8432                	mv	s0,a2
      572:	00005697          	auipc	a3,0x5
-     576:	b6668693          	addi	a3,a3,-1178 # 50d8 <__clz_tab>
+     576:	e7668693          	addi	a3,a3,-394 # 53e8 <__clz_tab>
      57a:	0ac5fa63          	bgeu	a1,a2,62e <__umoddi3+0xce>
      57e:	62c1                	lui	t0,0x10
      580:	0a567063          	bgeu	a2,t0,620 <__umoddi3+0xc0>
@@ -755,7 +755,7 @@ Default_Handler:
      750:	030e                	slli	t1,t1,0x3
      752:	0066d3b3          	srl	t2,a3,t1
      756:	00005297          	auipc	t0,0x5
-     75a:	98228293          	addi	t0,t0,-1662 # 50d8 <__clz_tab>
+     75a:	c9228293          	addi	t0,t0,-878 # 53e8 <__clz_tab>
      75e:	929e                	add	t0,t0,t2
      760:	0002c283          	lbu	t0,0(t0)
      764:	929a                	add	t0,t0,t1
@@ -823,7 +823,7 @@ Default_Handler:
      82c:	6441                	lui	s0,0x10
      82e:	8edd                	or	a3,a3,a5
      830:	40e58733          	sub	a4,a1,a4
-     834:	fff40593          	addi	a1,s0,-1 # ffff <__ctor_end__+0xa06f>
+     834:	fff40593          	addi	a1,s0,-1 # ffff <__ctor_end__+0x9d5f>
      838:	00b6f7b3          	and	a5,a3,a1
      83c:	01065493          	srli	s1,a2,0x10
      840:	82c1                	srli	a3,a3,0x10
@@ -946,7 +946,7 @@ Default_Handler:
      9a8:	8d59                	or	a0,a0,a4
      9aa:	8385                	srli	a5,a5,0x1
      9ac:	a205                	j	acc <__adddf3+0x218>
-     9ae:	fe058693          	addi	a3,a1,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+     9ae:	fe058693          	addi	a3,a1,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
      9b2:	02000293          	li	t0,32
      9b6:	00d756b3          	srl	a3,a4,a3
      9ba:	4301                	li	t1,0
@@ -1003,7 +1003,7 @@ Default_Handler:
      a5a:	97b2                	add	a5,a5,a2
      a5c:	849a                	mv	s1,t1
      a5e:	b70d                	j	980 <__adddf3+0xcc>
-     a60:	fe068593          	addi	a1,a3,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+     a60:	fe068593          	addi	a1,a3,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
      a64:	02000393          	li	t2,32
      a68:	00b7d5b3          	srl	a1,a5,a1
      a6c:	4281                	li	t0,0
@@ -1115,7 +1115,7 @@ Default_Handler:
      bb0:	8f4d                	or	a4,a4,a1
      bb2:	85b6                	mv	a1,a3
      bb4:	bf71                	j	b50 <__adddf3+0x29c>
-     bb6:	fe058693          	addi	a3,a1,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+     bb6:	fe058693          	addi	a3,a1,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
      bba:	02000293          	li	t0,32
      bbe:	00d756b3          	srl	a3,a4,a3
      bc2:	4301                	li	t1,0
@@ -1136,7 +1136,7 @@ Default_Handler:
      bf0:	e895                	bnez	s1,c24 <__adddf3+0x370>
      bf2:	00a7e6b3          	or	a3,a5,a0
      bf6:	28068863          	beqz	a3,e86 <__adddf3+0x5d2>
-     bfa:	fff28693          	addi	a3,t0,-1 # ffffff <__ctor_end__+0xffa06f>
+     bfa:	fff28693          	addi	a3,t0,-1 # ffffff <__ctor_end__+0xff9d5f>
      bfe:	ea91                	bnez	a3,c12 <__adddf3+0x35e>
      c00:	40a60533          	sub	a0,a2,a0
      c04:	40f707b3          	sub	a5,a4,a5
@@ -1175,7 +1175,7 @@ Default_Handler:
      c74:	849a                	mv	s1,t1
      c76:	842e                	mv	s0,a1
      c78:	bf29                	j	b92 <__adddf3+0x2de>
-     c7a:	fe068293          	addi	t0,a3,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+     c7a:	fe068293          	addi	t0,a3,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
      c7e:	02000413          	li	s0,32
      c82:	0057d2b3          	srl	t0,a5,t0
      c86:	4381                	li	t2,0
@@ -1425,7 +1425,7 @@ Default_Handler:
      f44:	45b9                	li	a1,14
      f46:	12c5ed63          	bltu	a1,a2,1080 <__divdf3+0x1d6>
      f4a:	00004597          	auipc	a1,0x4
-     f4e:	11658593          	addi	a1,a1,278 # 5060 <__srodata+0x10>
+     f4e:	42658593          	addi	a1,a1,1062 # 5370 <__srodata+0x10>
      f52:	060a                	slli	a2,a2,0x2
      f54:	962e                	add	a2,a2,a1
      f56:	4210                	lw	a2,0(a2)
@@ -1563,7 +1563,7 @@ Default_Handler:
     10cc:	869a                	mv	a3,t1
     10ce:	00e47c63          	bgeu	s0,a4,10e6 <__divdf3+0x23c>
     10d2:	9432                	add	s0,s0,a2
-    10d4:	fff30693          	addi	a3,t1,-1 # fffff <__ctor_end__+0xfa06f>
+    10d4:	fff30693          	addi	a3,t1,-1 # fffff <__ctor_end__+0xf9d5f>
     10d8:	00c46763          	bltu	s0,a2,10e6 <__divdf3+0x23c>
     10dc:	00e47563          	bgeu	s0,a4,10e6 <__divdf3+0x23c>
     10e0:	ffe30693          	addi	a3,t1,-2
@@ -1581,7 +1581,7 @@ Default_Handler:
     1102:	8fc1                	or	a5,a5,s0
     1104:	0067fc63          	bgeu	a5,t1,111c <__divdf3+0x272>
     1108:	97b2                	add	a5,a5,a2
-    110a:	fff28393          	addi	t2,t0,-1 # 7fffff <__ctor_end__+0x7fa06f>
+    110a:	fff28393          	addi	t2,t0,-1 # 7fffff <__ctor_end__+0x7f9d5f>
     110e:	00c7e763          	bltu	a5,a2,111c <__divdf3+0x272>
     1112:	0067f563          	bgeu	a5,t1,111c <__divdf3+0x272>
     1116:	ffe28393          	addi	t2,t0,-2
@@ -1589,7 +1589,7 @@ Default_Handler:
     111c:	06c2                	slli	a3,a3,0x10
     111e:	6441                	lui	s0,0x10
     1120:	0076e6b3          	or	a3,a3,t2
-    1124:	fff40713          	addi	a4,s0,-1 # ffff <__ctor_end__+0xa06f>
+    1124:	fff40713          	addi	a4,s0,-1 # ffff <__ctor_end__+0x9d5f>
     1128:	00e6f2b3          	and	t0,a3,a4
     112c:	406787b3          	sub	a5,a5,t1
     1130:	8f6d                	and	a4,a4,a1
@@ -1624,7 +1624,7 @@ Default_Handler:
     1184:	00b532b3          	sltu	t0,a0,a1
     1188:	92b2                	add	t0,t0,a2
     118a:	9796                	add	a5,a5,t0
-    118c:	fff68393          	addi	t2,a3,-1 # 7fffff <__ctor_end__+0x7fa06f>
+    118c:	fff68393          	addi	t2,a3,-1 # 7fffff <__ctor_end__+0x7f9d5f>
     1190:	00f66663          	bltu	a2,a5,119c <__divdf3+0x2f2>
     1194:	02f61163          	bne	a2,a5,11b6 <__divdf3+0x30c>
     1198:	00b56f63          	bltu	a0,a1,11b6 <__divdf3+0x30c>
@@ -1653,7 +1653,7 @@ Default_Handler:
     11e6:	86a2                	mv	a3,s0
     11e8:	00e7fc63          	bgeu	a5,a4,1200 <__divdf3+0x356>
     11ec:	97b2                	add	a5,a5,a2
-    11ee:	fff40693          	addi	a3,s0,-1 # ffff <__ctor_end__+0xa06f>
+    11ee:	fff40693          	addi	a3,s0,-1 # ffff <__ctor_end__+0x9d5f>
     11f2:	00c7e763          	bltu	a5,a2,1200 <__divdf3+0x356>
     11f6:	00e7f563          	bgeu	a5,a4,1200 <__divdf3+0x356>
     11fa:	ffe40693          	addi	a3,s0,-2
@@ -1723,7 +1723,7 @@ Default_Handler:
     12c0:	00b50463          	beq	a0,a1,12c8 <__divdf3+0x41e>
     12c4:	00176713          	ori	a4,a4,1
     12c8:	4792                	lw	a5,4(sp)
-    12ca:	3ff78793          	addi	a5,a5,1023 # 8003ff <__ctor_end__+0x7fa46f>
+    12ca:	3ff78793          	addi	a5,a5,1023 # 8003ff <__ctor_end__+0x7fa15f>
     12ce:	0af05e63          	blez	a5,138a <__divdf3+0x4e0>
     12d2:	00777693          	andi	a3,a4,7
     12d6:	ce81                	beqz	a3,12ee <__divdf3+0x444>
@@ -2084,7 +2084,7 @@ Default_Handler:
     16be:	4639                	li	a2,14
     16c0:	12d66963          	bltu	a2,a3,17f2 <__muldf3+0x1ce>
     16c4:	00004617          	auipc	a2,0x4
-    16c8:	9d860613          	addi	a2,a2,-1576 # 509c <__srodata+0x4c>
+    16c8:	ce860613          	addi	a2,a2,-792 # 53ac <__srodata+0x4c>
     16cc:	068a                	slli	a3,a3,0x2
     16ce:	96b2                	add	a3,a3,a2
     16d0:	4294                	lw	a3,0(a3)
@@ -2237,7 +2237,7 @@ Default_Handler:
     1864:	961e                	add	a2,a2,t2
     1866:	c632                	sw	a2,12(sp)
     1868:	6641                	lui	a2,0x10
-    186a:	fff60393          	addi	t2,a2,-1 # ffff <__ctor_end__+0xa06f>
+    186a:	fff60393          	addi	t2,a2,-1 # ffff <__ctor_end__+0x9d5f>
     186e:	0075f5b3          	and	a1,a1,t2
     1872:	0076f6b3          	and	a3,a3,t2
     1876:	05c2                	slli	a1,a1,0x10
@@ -2258,7 +2258,7 @@ Default_Handler:
     18a6:	0106d613          	srli	a2,a3,0x10
     18aa:	6741                	lui	a4,0x10
     18ac:	9622                	add	a2,a2,s0
-    18ae:	fff70413          	addi	s0,a4,-1 # ffff <__ctor_end__+0xa06f>
+    18ae:	fff70413          	addi	s0,a4,-1 # ffff <__ctor_end__+0x9d5f>
     18b2:	026784b3          	mul	s1,a5,t1
     18b6:	8ee1                	and	a3,a3,s0
     18b8:	06c2                	slli	a3,a3,0x10
@@ -2320,7 +2320,7 @@ Default_Handler:
     195a:	8f5d                	or	a4,a4,a5
     195c:	8005                	srli	s0,s0,0x1
     195e:	4792                	lw	a5,4(sp)
-    1960:	3ff78793          	addi	a5,a5,1023 # 10003ff <__ctor_end__+0xffa46f>
+    1960:	3ff78793          	addi	a5,a5,1023 # 10003ff <__ctor_end__+0xffa15f>
     1964:	08f05e63          	blez	a5,1a00 <__muldf3+0x3dc>
     1968:	00777693          	andi	a3,a4,7
     196c:	ce81                	beqz	a3,1984 <__muldf3+0x360>
@@ -2476,7 +2476,7 @@ Default_Handler:
     1b0a:	02031863          	bnez	t1,1b3a <__subdf3+0x8e>
     1b0e:	00c766b3          	or	a3,a4,a2
     1b12:	56068f63          	beqz	a3,2090 <__subdf3+0x5e4>
-    1b16:	fff28593          	addi	a1,t0,-1 # ffff <__ctor_end__+0xa06f>
+    1b16:	fff28593          	addi	a1,t0,-1 # ffff <__ctor_end__+0x9d5f>
     1b1a:	e989                	bnez	a1,1b2c <__subdf3+0x80>
     1b1c:	962a                	add	a2,a2,a0
     1b1e:	00a63533          	sltu	a0,a2,a0
@@ -2585,7 +2585,7 @@ Default_Handler:
     1c64:	97b2                	add	a5,a5,a2
     1c66:	849a                	mv	s1,t1
     1c68:	b705                	j	1b88 <__subdf3+0xdc>
-    1c6a:	fe068593          	addi	a1,a3,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+    1c6a:	fe068593          	addi	a1,a3,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
     1c6e:	02000393          	li	t2,32
     1c72:	00b7d5b3          	srl	a1,a5,a1
     1c76:	4281                	li	t0,0
@@ -2626,7 +2626,7 @@ Default_Handler:
     1cde:	00f57713          	andi	a4,a0,15
     1ce2:	4691                	li	a3,4
     1ce4:	34d70863          	beq	a4,a3,2034 <__subdf3+0x588>
-    1ce8:	00450713          	addi	a4,a0,4 # 10004 <__ctor_end__+0xa074>
+    1ce8:	00450713          	addi	a4,a0,4 # 10004 <__ctor_end__+0x9d64>
     1cec:	00a73533          	sltu	a0,a4,a0
     1cf0:	97aa                	add	a5,a5,a0
     1cf2:	853a                	mv	a0,a4
@@ -2697,7 +2697,7 @@ Default_Handler:
     1dbc:	8f55                	or	a4,a4,a3
     1dbe:	8596                	mv	a1,t0
     1dc0:	bf71                	j	1d5c <__subdf3+0x2b0>
-    1dc2:	fe058693          	addi	a3,a1,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+    1dc2:	fe058693          	addi	a3,a1,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
     1dc6:	02000293          	li	t0,32
     1dca:	00d756b3          	srl	a3,a4,a3
     1dce:	4301                	li	t1,0
@@ -2757,7 +2757,7 @@ Default_Handler:
     1e82:	849a                	mv	s1,t1
     1e84:	8436                	mv	s0,a3
     1e86:	bf21                	j	1d9e <__subdf3+0x2f2>
-    1e88:	fe058293          	addi	t0,a1,-32 # 7fffe0 <__ctor_end__+0x7fa050>
+    1e88:	fe058293          	addi	t0,a1,-32 # 7fffe0 <__ctor_end__+0x7f9d40>
     1e8c:	02000413          	li	s0,32
     1e90:	0057d2b3          	srl	t0,a5,t0
     1e94:	4381                	li	t2,0
@@ -2958,7 +2958,7 @@ Default_Handler:
 000020b8 <__fixdfsi>:
     20b8:	0145d713          	srli	a4,a1,0x14
     20bc:	001006b7          	lui	a3,0x100
-    20c0:	fff68793          	addi	a5,a3,-1 # fffff <__ctor_end__+0xfa06f>
+    20c0:	fff68793          	addi	a5,a3,-1 # fffff <__ctor_end__+0xf9d5f>
     20c4:	7ff77713          	andi	a4,a4,2047
     20c8:	3fe00613          	li	a2,1022
     20cc:	8fed                	and	a5,a5,a1
@@ -3043,7 +3043,7 @@ Default_Handler:
     2196:	8f1d                	sub	a4,a4,a5
     2198:	00f55533          	srl	a0,a0,a5
     219c:	00003797          	auipc	a5,0x3
-    21a0:	f3c78793          	addi	a5,a5,-196 # 50d8 <__clz_tab>
+    21a0:	24c78793          	addi	a5,a5,588 # 53e8 <__clz_tab>
     21a4:	953e                	add	a0,a0,a5
     21a6:	00054503          	lbu	a0,0(a0) # 80000000 <__heap_end+0x5ffd0000>
     21aa:	40a70533          	sub	a0,a4,a0
@@ -3098,7 +3098,7 @@ Default_Handler:
     2228:	4391                	li	t2,4
     222a:	e6bd                	bnez	a3,2298 <memcpy+0x88>
     222c:	ffc37393          	andi	t2,t1,-4
-    2230:	fe038313          	addi	t1,t2,-32 # ffe0 <__ctor_end__+0xa050>
+    2230:	fe038313          	addi	t1,t2,-32 # ffe0 <__ctor_end__+0x9d40>
     2234:	02a36a63          	bltu	t1,a0,2268 <memcpy+0x58>
     2238:	8a7d                	andi	a2,a2,31
     223a:	0001                	nop
@@ -3161,7 +3161,7 @@ Default_Handler:
     22ce:	fff7c683          	lbu	a3,-1(a5)
     22d2:	17fd                	addi	a5,a5,-1
     22d4:	177d                	addi	a4,a4,-1
-    22d6:	00d70023          	sb	a3,0(a4) # 1000000 <__ctor_end__+0xffa070>
+    22d6:	00d70023          	sb	a3,0(a4) # 1000000 <__ctor_end__+0xff9d60>
     22da:	fef59ae3          	bne	a1,a5,22ce <memmove+0x12>
     22de:	8082                	ret
     22e0:	47bd                	li	a5,15
@@ -3212,11 +3212,11 @@ Default_Handler:
     2362:	00072383          	lw	t2,0(a4)
     2366:	0711                	addi	a4,a4,4
     2368:	40e306b3          	sub	a3,t1,a4
-    236c:	0072a023          	sw	t2,0(t0) # 800000 <__ctor_end__+0x7fa070>
+    236c:	0072a023          	sw	t2,0(t0) # 800000 <__ctor_end__+0x7f9d60>
     2370:	96ae                	add	a3,a3,a1
     2372:	0291                	addi	t0,t0,4
     2374:	fed467e3          	bltu	s0,a3,2362 <memmove+0xa6>
-    2378:	ffc30713          	addi	a4,t1,-4 # ffffc <__ctor_end__+0xfa06c>
+    2378:	ffc30713          	addi	a4,t1,-4 # ffffc <__ctor_end__+0xf9d5c>
     237c:	9b71                	andi	a4,a4,-4
     237e:	8a0d                	andi	a2,a2,3
     2380:	0711                	addi	a4,a4,4
@@ -3431,7 +3431,7 @@ Default_Handler:
     25d0:	85b2                	mv	a1,a2
     25d2:	00f76d63          	bltu	a4,a5,25ec <_strerror_r+0x22>
     25d6:	00003617          	auipc	a2,0x3
-    25da:	c0260613          	addi	a2,a2,-1022 # 51d8 <__clz_tab+0x100>
+    25da:	f1260613          	addi	a2,a2,-238 # 54e8 <__clz_tab+0x100>
     25de:	00279313          	slli	t1,a5,0x2
     25e2:	9332                	add	t1,t1,a2
     25e4:	00032703          	lw	a4,0(t1)
@@ -3448,247 +3448,247 @@ Default_Handler:
     2600:	0131                	addi	sp,sp,12
     2602:	8082                	ret
     2604:	00004517          	auipc	a0,0x4
-    2608:	8f850513          	addi	a0,a0,-1800 # 5efc <pad_line+0x68c>
+    2608:	c0850513          	addi	a0,a0,-1016 # 620c <pad_line+0x68c>
     260c:	8082                	ret
     260e:	00004517          	auipc	a0,0x4
-    2612:	8d650513          	addi	a0,a0,-1834 # 5ee4 <pad_line+0x674>
+    2612:	be650513          	addi	a0,a0,-1050 # 61f4 <pad_line+0x674>
     2616:	8082                	ret
     2618:	00004517          	auipc	a0,0x4
-    261c:	88450513          	addi	a0,a0,-1916 # 5e9c <pad_line+0x62c>
+    261c:	b9450513          	addi	a0,a0,-1132 # 61ac <pad_line+0x62c>
     2620:	8082                	ret
     2622:	00004517          	auipc	a0,0x4
-    2626:	89250513          	addi	a0,a0,-1902 # 5eb4 <pad_line+0x644>
+    2626:	ba250513          	addi	a0,a0,-1118 # 61c4 <pad_line+0x644>
     262a:	8082                	ret
     262c:	00003517          	auipc	a0,0x3
-    2630:	47450513          	addi	a0,a0,1140 # 5aa0 <pad_line+0x230>
+    2630:	78450513          	addi	a0,a0,1924 # 5db0 <pad_line+0x230>
     2634:	8082                	ret
     2636:	00004517          	auipc	a0,0x4
-    263a:	82a50513          	addi	a0,a0,-2006 # 5e60 <pad_line+0x5f0>
+    263a:	b3a50513          	addi	a0,a0,-1222 # 6170 <pad_line+0x5f0>
     263e:	8082                	ret
-    2640:	00003517          	auipc	a0,0x3
-    2644:	69450513          	addi	a0,a0,1684 # 5cd4 <pad_line+0x464>
+    2640:	00004517          	auipc	a0,0x4
+    2644:	9a450513          	addi	a0,a0,-1628 # 5fe4 <pad_line+0x464>
     2648:	8082                	ret
     264a:	00004517          	auipc	a0,0x4
-    264e:	91250513          	addi	a0,a0,-1774 # 5f5c <pad_line+0x6ec>
+    264e:	c2250513          	addi	a0,a0,-990 # 626c <pad_line+0x6ec>
     2652:	8082                	ret
     2654:	00003517          	auipc	a0,0x3
-    2658:	31450513          	addi	a0,a0,788 # 5968 <pad_line+0xf8>
+    2658:	62450513          	addi	a0,a0,1572 # 5c78 <pad_line+0xf8>
     265c:	8082                	ret
     265e:	00003517          	auipc	a0,0x3
-    2662:	2d250513          	addi	a0,a0,722 # 5930 <pad_line+0xc0>
+    2662:	5e250513          	addi	a0,a0,1506 # 5c40 <pad_line+0xc0>
     2666:	8082                	ret
     2668:	00004517          	auipc	a0,0x4
-    266c:	86850513          	addi	a0,a0,-1944 # 5ed0 <pad_line+0x660>
+    266c:	b7850513          	addi	a0,a0,-1160 # 61e0 <pad_line+0x660>
     2670:	8082                	ret
     2672:	00004517          	auipc	a0,0x4
-    2676:	8c250513          	addi	a0,a0,-1854 # 5f34 <pad_line+0x6c4>
+    2676:	bd250513          	addi	a0,a0,-1070 # 6244 <pad_line+0x6c4>
     267a:	8082                	ret
-    267c:	00003517          	auipc	a0,0x3
-    2680:	5b050513          	addi	a0,a0,1456 # 5c2c <pad_line+0x3bc>
+    267c:	00004517          	auipc	a0,0x4
+    2680:	8c050513          	addi	a0,a0,-1856 # 5f3c <pad_line+0x3bc>
     2684:	8082                	ret
     2686:	00003517          	auipc	a0,0x3
-    268a:	4de50513          	addi	a0,a0,1246 # 5b64 <pad_line+0x2f4>
+    268a:	7ee50513          	addi	a0,a0,2030 # 5e74 <pad_line+0x2f4>
     268e:	8082                	ret
     2690:	00003517          	auipc	a0,0x3
-    2694:	3a850513          	addi	a0,a0,936 # 5a38 <pad_line+0x1c8>
+    2694:	6b850513          	addi	a0,a0,1720 # 5d48 <pad_line+0x1c8>
     2698:	8082                	ret
     269a:	00003517          	auipc	a0,0x3
-    269e:	49e50513          	addi	a0,a0,1182 # 5b38 <pad_line+0x2c8>
+    269e:	7ae50513          	addi	a0,a0,1966 # 5e48 <pad_line+0x2c8>
     26a2:	8082                	ret
     26a4:	00003517          	auipc	a0,0x3
-    26a8:	38450513          	addi	a0,a0,900 # 5a28 <pad_line+0x1b8>
+    26a8:	69450513          	addi	a0,a0,1684 # 5d38 <pad_line+0x1b8>
     26ac:	8082                	ret
     26ae:	00004517          	auipc	a0,0x4
-    26b2:	8c250513          	addi	a0,a0,-1854 # 5f70 <pad_line+0x700>
+    26b2:	bd250513          	addi	a0,a0,-1070 # 6280 <pad_line+0x700>
     26b6:	8082                	ret
     26b8:	00003517          	auipc	a0,0x3
-    26bc:	3c450513          	addi	a0,a0,964 # 5a7c <pad_line+0x20c>
+    26bc:	6d450513          	addi	a0,a0,1748 # 5d8c <pad_line+0x20c>
     26c0:	8082                	ret
-    26c2:	00003517          	auipc	a0,0x3
-    26c6:	58e50513          	addi	a0,a0,1422 # 5c50 <pad_line+0x3e0>
+    26c2:	00004517          	auipc	a0,0x4
+    26c6:	89e50513          	addi	a0,a0,-1890 # 5f60 <pad_line+0x3e0>
     26ca:	8082                	ret
-    26cc:	00003517          	auipc	a0,0x3
-    26d0:	7ac50513          	addi	a0,a0,1964 # 5e78 <pad_line+0x608>
+    26cc:	00004517          	auipc	a0,0x4
+    26d0:	abc50513          	addi	a0,a0,-1348 # 6188 <pad_line+0x608>
     26d4:	8082                	ret
-    26d6:	00003517          	auipc	a0,0x3
-    26da:	77250513          	addi	a0,a0,1906 # 5e48 <pad_line+0x5d8>
+    26d6:	00004517          	auipc	a0,0x4
+    26da:	a8250513          	addi	a0,a0,-1406 # 6158 <pad_line+0x5d8>
     26de:	8082                	ret
-    26e0:	00003517          	auipc	a0,0x3
-    26e4:	73850513          	addi	a0,a0,1848 # 5e18 <pad_line+0x5a8>
+    26e0:	00004517          	auipc	a0,0x4
+    26e4:	a4850513          	addi	a0,a0,-1464 # 6128 <pad_line+0x5a8>
     26e8:	8082                	ret
-    26ea:	00003517          	auipc	a0,0x3
-    26ee:	71650513          	addi	a0,a0,1814 # 5e00 <pad_line+0x590>
+    26ea:	00004517          	auipc	a0,0x4
+    26ee:	a2650513          	addi	a0,a0,-1498 # 6110 <pad_line+0x590>
     26f2:	8082                	ret
-    26f4:	00003517          	auipc	a0,0x3
-    26f8:	6ec50513          	addi	a0,a0,1772 # 5de0 <pad_line+0x570>
+    26f4:	00004517          	auipc	a0,0x4
+    26f8:	9fc50513          	addi	a0,a0,-1540 # 60f0 <pad_line+0x570>
     26fc:	8082                	ret
-    26fe:	00003517          	auipc	a0,0x3
-    2702:	6c250513          	addi	a0,a0,1730 # 5dc0 <pad_line+0x550>
+    26fe:	00004517          	auipc	a0,0x4
+    2702:	9d250513          	addi	a0,a0,-1582 # 60d0 <pad_line+0x550>
     2706:	8082                	ret
-    2708:	00003517          	auipc	a0,0x3
-    270c:	68850513          	addi	a0,a0,1672 # 5d90 <pad_line+0x520>
+    2708:	00004517          	auipc	a0,0x4
+    270c:	99850513          	addi	a0,a0,-1640 # 60a0 <pad_line+0x520>
     2710:	8082                	ret
-    2712:	00003517          	auipc	a0,0x3
-    2716:	65a50513          	addi	a0,a0,1626 # 5d6c <pad_line+0x4fc>
+    2712:	00004517          	auipc	a0,0x4
+    2716:	96a50513          	addi	a0,a0,-1686 # 607c <pad_line+0x4fc>
     271a:	8082                	ret
-    271c:	00003517          	auipc	a0,0x3
-    2720:	71050513          	addi	a0,a0,1808 # 5e2c <pad_line+0x5bc>
+    271c:	00004517          	auipc	a0,0x4
+    2720:	a2050513          	addi	a0,a0,-1504 # 613c <pad_line+0x5bc>
     2724:	8082                	ret
-    2726:	00003517          	auipc	a0,0x3
-    272a:	7ea50513          	addi	a0,a0,2026 # 5f10 <pad_line+0x6a0>
+    2726:	00004517          	auipc	a0,0x4
+    272a:	afa50513          	addi	a0,a0,-1286 # 6220 <pad_line+0x6a0>
     272e:	8082                	ret
-    2730:	00003517          	auipc	a0,0x3
-    2734:	62450513          	addi	a0,a0,1572 # 5d54 <pad_line+0x4e4>
+    2730:	00004517          	auipc	a0,0x4
+    2734:	93450513          	addi	a0,a0,-1740 # 6064 <pad_line+0x4e4>
     2738:	8082                	ret
-    273a:	00003517          	auipc	a0,0x3
-    273e:	5fe50513          	addi	a0,a0,1534 # 5d38 <pad_line+0x4c8>
+    273a:	00004517          	auipc	a0,0x4
+    273e:	90e50513          	addi	a0,a0,-1778 # 6048 <pad_line+0x4c8>
     2742:	8082                	ret
-    2744:	00003517          	auipc	a0,0x3
-    2748:	5e050513          	addi	a0,a0,1504 # 5d24 <pad_line+0x4b4>
+    2744:	00004517          	auipc	a0,0x4
+    2748:	8f050513          	addi	a0,a0,-1808 # 6034 <pad_line+0x4b4>
     274c:	8082                	ret
-    274e:	00003517          	auipc	a0,0x3
-    2752:	5ba50513          	addi	a0,a0,1466 # 5d08 <pad_line+0x498>
+    274e:	00004517          	auipc	a0,0x4
+    2752:	8ca50513          	addi	a0,a0,-1846 # 6018 <pad_line+0x498>
     2756:	8082                	ret
-    2758:	00003517          	auipc	a0,0x3
-    275c:	5a450513          	addi	a0,a0,1444 # 5cfc <pad_line+0x48c>
+    2758:	00004517          	auipc	a0,0x4
+    275c:	8b450513          	addi	a0,a0,-1868 # 600c <pad_line+0x48c>
     2760:	8082                	ret
-    2762:	00003517          	auipc	a0,0x3
-    2766:	58650513          	addi	a0,a0,1414 # 5ce8 <pad_line+0x478>
+    2762:	00004517          	auipc	a0,0x4
+    2766:	89650513          	addi	a0,a0,-1898 # 5ff8 <pad_line+0x478>
     276a:	8082                	ret
-    276c:	00003517          	auipc	a0,0x3
-    2770:	55850513          	addi	a0,a0,1368 # 5cc4 <pad_line+0x454>
+    276c:	00004517          	auipc	a0,0x4
+    2770:	86850513          	addi	a0,a0,-1944 # 5fd4 <pad_line+0x454>
     2774:	8082                	ret
-    2776:	00003517          	auipc	a0,0x3
-    277a:	53650513          	addi	a0,a0,1334 # 5cac <pad_line+0x43c>
+    2776:	00004517          	auipc	a0,0x4
+    277a:	84650513          	addi	a0,a0,-1978 # 5fbc <pad_line+0x43c>
     277e:	8082                	ret
-    2780:	00003517          	auipc	a0,0x3
-    2784:	51850513          	addi	a0,a0,1304 # 5c98 <pad_line+0x428>
+    2780:	00004517          	auipc	a0,0x4
+    2784:	82850513          	addi	a0,a0,-2008 # 5fa8 <pad_line+0x428>
     2788:	8082                	ret
-    278a:	00003517          	auipc	a0,0x3
-    278e:	4f650513          	addi	a0,a0,1270 # 5c80 <pad_line+0x410>
+    278a:	00004517          	auipc	a0,0x4
+    278e:	80650513          	addi	a0,a0,-2042 # 5f90 <pad_line+0x410>
     2792:	8082                	ret
-    2794:	00003517          	auipc	a0,0x3
-    2798:	5f450513          	addi	a0,a0,1524 # 5d88 <pad_line+0x518>
+    2794:	00004517          	auipc	a0,0x4
+    2798:	90450513          	addi	a0,a0,-1788 # 6098 <pad_line+0x518>
     279c:	8082                	ret
     279e:	00003517          	auipc	a0,0x3
-    27a2:	4d250513          	addi	a0,a0,1234 # 5c70 <pad_line+0x400>
+    27a2:	7e250513          	addi	a0,a0,2018 # 5f80 <pad_line+0x400>
     27a6:	8082                	ret
     27a8:	00003517          	auipc	a0,0x3
-    27ac:	4c050513          	addi	a0,a0,1216 # 5c68 <pad_line+0x3f8>
+    27ac:	7d050513          	addi	a0,a0,2000 # 5f78 <pad_line+0x3f8>
     27b0:	8082                	ret
     27b2:	00003517          	auipc	a0,0x3
-    27b6:	49250513          	addi	a0,a0,1170 # 5c44 <pad_line+0x3d4>
+    27b6:	7a250513          	addi	a0,a0,1954 # 5f54 <pad_line+0x3d4>
     27ba:	8082                	ret
     27bc:	00003517          	auipc	a0,0x3
-    27c0:	45c50513          	addi	a0,a0,1116 # 5c18 <pad_line+0x3a8>
+    27c0:	76c50513          	addi	a0,a0,1900 # 5f28 <pad_line+0x3a8>
     27c4:	8082                	ret
     27c6:	00003517          	auipc	a0,0x3
-    27ca:	43650513          	addi	a0,a0,1078 # 5bfc <pad_line+0x38c>
+    27ca:	74650513          	addi	a0,a0,1862 # 5f0c <pad_line+0x38c>
     27ce:	8082                	ret
     27d0:	00003517          	auipc	a0,0x3
-    27d4:	41850513          	addi	a0,a0,1048 # 5be8 <pad_line+0x378>
+    27d4:	72850513          	addi	a0,a0,1832 # 5ef8 <pad_line+0x378>
     27d8:	8082                	ret
     27da:	00003517          	auipc	a0,0x3
-    27de:	3de50513          	addi	a0,a0,990 # 5bb8 <pad_line+0x348>
+    27de:	6ee50513          	addi	a0,a0,1774 # 5ec8 <pad_line+0x348>
     27e2:	8082                	ret
     27e4:	00003517          	auipc	a0,0x3
-    27e8:	3c850513          	addi	a0,a0,968 # 5bac <pad_line+0x33c>
+    27e8:	6d850513          	addi	a0,a0,1752 # 5ebc <pad_line+0x33c>
     27ec:	8082                	ret
     27ee:	00003517          	auipc	a0,0x3
-    27f2:	3ae50513          	addi	a0,a0,942 # 5b9c <pad_line+0x32c>
+    27f2:	6be50513          	addi	a0,a0,1726 # 5eac <pad_line+0x32c>
     27f6:	8082                	ret
     27f8:	00003517          	auipc	a0,0x3
-    27fc:	38c50513          	addi	a0,a0,908 # 5b84 <pad_line+0x314>
+    27fc:	69c50513          	addi	a0,a0,1692 # 5e94 <pad_line+0x314>
     2800:	8082                	ret
     2802:	00003517          	auipc	a0,0x3
-    2806:	37250513          	addi	a0,a0,882 # 5b74 <pad_line+0x304>
+    2806:	68250513          	addi	a0,a0,1666 # 5e84 <pad_line+0x304>
     280a:	8082                	ret
     280c:	00003517          	auipc	a0,0x3
-    2810:	34050513          	addi	a0,a0,832 # 5b4c <pad_line+0x2dc>
+    2810:	65050513          	addi	a0,a0,1616 # 5e5c <pad_line+0x2dc>
     2814:	8082                	ret
     2816:	00003517          	auipc	a0,0x3
-    281a:	31250513          	addi	a0,a0,786 # 5b28 <pad_line+0x2b8>
+    281a:	62250513          	addi	a0,a0,1570 # 5e38 <pad_line+0x2b8>
     281e:	8082                	ret
     2820:	00003517          	auipc	a0,0x3
-    2824:	2f850513          	addi	a0,a0,760 # 5b18 <pad_line+0x2a8>
+    2824:	60850513          	addi	a0,a0,1544 # 5e28 <pad_line+0x2a8>
     2828:	8082                	ret
     282a:	00003517          	auipc	a0,0x3
-    282e:	2d650513          	addi	a0,a0,726 # 5b00 <pad_line+0x290>
+    282e:	5e650513          	addi	a0,a0,1510 # 5e10 <pad_line+0x290>
     2832:	8082                	ret
     2834:	00003517          	auipc	a0,0x3
-    2838:	2ac50513          	addi	a0,a0,684 # 5ae0 <pad_line+0x270>
+    2838:	5bc50513          	addi	a0,a0,1468 # 5df0 <pad_line+0x270>
     283c:	8082                	ret
     283e:	00003517          	auipc	a0,0x3
-    2842:	28250513          	addi	a0,a0,642 # 5ac0 <pad_line+0x250>
+    2842:	59250513          	addi	a0,a0,1426 # 5dd0 <pad_line+0x250>
     2846:	8082                	ret
     2848:	00003517          	auipc	a0,0x3
-    284c:	22050513          	addi	a0,a0,544 # 5a68 <pad_line+0x1f8>
+    284c:	53050513          	addi	a0,a0,1328 # 5d78 <pad_line+0x1f8>
     2850:	8082                	ret
     2852:	00003517          	auipc	a0,0x3
-    2856:	20650513          	addi	a0,a0,518 # 5a58 <pad_line+0x1e8>
+    2856:	51650513          	addi	a0,a0,1302 # 5d68 <pad_line+0x1e8>
     285a:	8082                	ret
     285c:	00003517          	auipc	a0,0x3
-    2860:	1bc50513          	addi	a0,a0,444 # 5a18 <pad_line+0x1a8>
+    2860:	4cc50513          	addi	a0,a0,1228 # 5d28 <pad_line+0x1a8>
     2864:	8082                	ret
     2866:	00003517          	auipc	a0,0x3
-    286a:	1a250513          	addi	a0,a0,418 # 5a08 <pad_line+0x198>
+    286a:	4b250513          	addi	a0,a0,1202 # 5d18 <pad_line+0x198>
     286e:	8082                	ret
     2870:	00003517          	auipc	a0,0x3
-    2874:	18450513          	addi	a0,a0,388 # 59f4 <pad_line+0x184>
+    2874:	49450513          	addi	a0,a0,1172 # 5d04 <pad_line+0x184>
     2878:	8082                	ret
     287a:	00003517          	auipc	a0,0x3
-    287e:	16e50513          	addi	a0,a0,366 # 59e8 <pad_line+0x178>
+    287e:	47e50513          	addi	a0,a0,1150 # 5cf8 <pad_line+0x178>
     2882:	8082                	ret
     2884:	00003517          	auipc	a0,0x3
-    2888:	14c50513          	addi	a0,a0,332 # 59d0 <pad_line+0x160>
+    2888:	45c50513          	addi	a0,a0,1116 # 5ce0 <pad_line+0x160>
     288c:	8082                	ret
     288e:	00003517          	auipc	a0,0x3
-    2892:	13650513          	addi	a0,a0,310 # 59c4 <pad_line+0x154>
+    2892:	44650513          	addi	a0,a0,1094 # 5cd4 <pad_line+0x154>
     2896:	8082                	ret
     2898:	00003517          	auipc	a0,0x3
-    289c:	11850513          	addi	a0,a0,280 # 59b0 <pad_line+0x140>
+    289c:	42850513          	addi	a0,a0,1064 # 5cc0 <pad_line+0x140>
     28a0:	8082                	ret
     28a2:	00003517          	auipc	a0,0x3
-    28a6:	0fa50513          	addi	a0,a0,250 # 599c <pad_line+0x12c>
+    28a6:	40a50513          	addi	a0,a0,1034 # 5cac <pad_line+0x12c>
     28aa:	8082                	ret
     28ac:	00003517          	auipc	a0,0x3
-    28b0:	0dc50513          	addi	a0,a0,220 # 5988 <pad_line+0x118>
+    28b0:	3ec50513          	addi	a0,a0,1004 # 5c98 <pad_line+0x118>
     28b4:	8082                	ret
     28b6:	00003517          	auipc	a0,0x3
-    28ba:	0a650513          	addi	a0,a0,166 # 595c <pad_line+0xec>
+    28ba:	3b650513          	addi	a0,a0,950 # 5c6c <pad_line+0xec>
     28be:	8082                	ret
     28c0:	00003517          	auipc	a0,0x3
-    28c4:	08c50513          	addi	a0,a0,140 # 594c <pad_line+0xdc>
+    28c4:	39c50513          	addi	a0,a0,924 # 5c5c <pad_line+0xdc>
     28c8:	8082                	ret
     28ca:	00003517          	auipc	a0,0x3
-    28ce:	05250513          	addi	a0,a0,82 # 591c <pad_line+0xac>
+    28ce:	36250513          	addi	a0,a0,866 # 5c2c <pad_line+0xac>
     28d2:	8082                	ret
     28d4:	00003517          	auipc	a0,0x3
-    28d8:	03450513          	addi	a0,a0,52 # 5908 <pad_line+0x98>
+    28d8:	34450513          	addi	a0,a0,836 # 5c18 <pad_line+0x98>
     28dc:	8082                	ret
     28de:	00003517          	auipc	a0,0x3
-    28e2:	00e50513          	addi	a0,a0,14 # 58ec <pad_line+0x7c>
+    28e2:	31e50513          	addi	a0,a0,798 # 5bfc <pad_line+0x7c>
     28e6:	8082                	ret
     28e8:	00003517          	auipc	a0,0x3
-    28ec:	ff850513          	addi	a0,a0,-8 # 58e0 <pad_line+0x70>
+    28ec:	30850513          	addi	a0,a0,776 # 5bf0 <pad_line+0x70>
     28f0:	8082                	ret
     28f2:	00003517          	auipc	a0,0x3
-    28f6:	fd650513          	addi	a0,a0,-42 # 58c8 <pad_line+0x58>
+    28f6:	2e650513          	addi	a0,a0,742 # 5bd8 <pad_line+0x58>
     28fa:	8082                	ret
     28fc:	00003517          	auipc	a0,0x3
-    2900:	fbc50513          	addi	a0,a0,-68 # 58b8 <pad_line+0x48>
+    2900:	2cc50513          	addi	a0,a0,716 # 5bc8 <pad_line+0x48>
     2904:	8082                	ret
     2906:	00003517          	auipc	a0,0x3
-    290a:	f9650513          	addi	a0,a0,-106 # 589c <pad_line+0x2c>
+    290a:	2a650513          	addi	a0,a0,678 # 5bac <pad_line+0x2c>
     290e:	8082                	ret
-    2910:	00003517          	auipc	a0,0x3
-    2914:	67850513          	addi	a0,a0,1656 # 5f88 <pad_line+0x718>
+    2910:	00004517          	auipc	a0,0x4
+    2914:	98850513          	addi	a0,a0,-1656 # 6298 <pad_line+0x718>
     2918:	8082                	ret
     291a:	00003517          	auipc	a0,0x3
-    291e:	f7650513          	addi	a0,a0,-138 # 5890 <pad_line+0x20>
+    291e:	28650513          	addi	a0,a0,646 # 5ba0 <pad_line+0x20>
     2922:	8082                	ret
     2924:	00003517          	auipc	a0,0x3
-    2928:	df050513          	addi	a0,a0,-528 # 5714 <sg_usi_config+0x13c>
+    2928:	10050513          	addi	a0,a0,256 # 5a24 <sg_usi_config+0x13c>
     292c:	b9c9                	j	25fe <_strerror_r+0x34>
     292e:	86aa                	mv	a3,a0
     2930:	b1d1                	j	25f4 <_strerror_r+0x2a>
@@ -3755,7 +3755,7 @@ Default_Handler:
     29bc:	c42e                	sw	a1,8(sp)
     29be:	c032                	sw	a2,0(sp)
     29c0:	00003517          	auipc	a0,0x3
-    29c4:	a5550513          	addi	a0,a0,-1451 # 5415 <_ctype_+0x1>
+    29c4:	d6550513          	addi	a0,a0,-667 # 5725 <_ctype_+0x1>
     29c8:	00074783          	lbu	a5,0(a4)
     29cc:	85ba                	mv	a1,a4
     29ce:	0705                	addi	a4,a4,1
@@ -3936,7 +3936,7 @@ Default_Handler:
     2b9a:	c032                	sw	a2,0(sp)
     2b9c:	872e                	mv	a4,a1
     2b9e:	00003317          	auipc	t1,0x3
-    2ba2:	87730313          	addi	t1,t1,-1929 # 5415 <_ctype_+0x1>
+    2ba2:	b8730313          	addi	t1,t1,-1145 # 5725 <_ctype_+0x1>
     2ba6:	00074783          	lbu	a5,0(a4)
     2baa:	853a                	mv	a0,a4
     2bac:	0705                	addi	a4,a4,1
@@ -3963,7 +3963,7 @@ Default_Handler:
     2bee:	4695                	li	a3,5
     2bf0:	1999a3b7          	lui	t2,0x1999a
     2bf4:	c236                	sw	a3,4(sp)
-    2bf6:	99938393          	addi	t2,t2,-1639 # 19999999 <__ctor_end__+0x19993a09>
+    2bf6:	99938393          	addi	t2,t2,-1639 # 19999999 <__ctor_end__+0x199936f9>
     2bfa:	44a9                	li	s1,10
     2bfc:	46a9                	li	a3,10
     2bfe:	4301                	li	t1,0
@@ -4102,9 +4102,9 @@ void board_init(void)
     int32_t ret = 0;
     /* init the console*/
     clock_timer_init();
-    2d3a:	67d000ef          	jal	ra,3bb6 <clock_timer_init>
+    2d3a:	0b8010ef          	jal	ra,3df2 <clock_timer_init>
     clock_timer_start();
-    2d3e:	6f3000ef          	jal	ra,3c30 <clock_timer_start>
+    2d3e:	12e010ef          	jal	ra,3e6c <clock_timer_start>
 
     console_handle = csi_usart_initialize(CONSOLE_IDX, NULL);
     2d42:	4581                	li	a1,0
@@ -4125,7 +4125,7 @@ void board_init(void)
     2d54:	4701                	li	a4,0
     2d56:	4681                	li	a3,0
     2d58:	4601                	li	a2,0
-    2d5a:	20058593          	addi	a1,a1,512 # 1c200 <__ctor_end__+0x16270>
+    2d5a:	20058593          	addi	a1,a1,512 # 1c200 <__ctor_end__+0x15f60>
 }
     2d5e:	0131                	addi	sp,sp,12
     ret = csi_usart_config(console_handle, 115200, USART_MODE_ASYNCHRONOUS, USART_PARITY_NONE, USART_STOP_BITS_1, USART_DATA_BITS_8);
@@ -4162,7 +4162,7 @@ void drv_irq_register(uint32_t irq_num, void *irq_handler)
     g_irqvector[irq_num] = irq_handler;
     2d80:	200027b7          	lui	a5,0x20002
     2d84:	050a                	slli	a0,a0,0x2
-    2d86:	aec78793          	addi	a5,a5,-1300 # 20001aec <g_irqvector>
+    2d86:	bf078793          	addi	a5,a5,-1040 # 20001bf0 <g_irqvector>
     2d8a:	97aa                	add	a5,a5,a0
     2d8c:	c38c                	sw	a1,0(a5)
 }
@@ -4191,7 +4191,7 @@ void wj_usi_set_rxfifo_th(wj_usi_reg_t *addr, uint32_t length)
         addr->USI_INTR_CTRL |= USI_INTR_CTRL_RXFIFO_TH_12 | USI_INTR_CTRL_TH_MODE;
     2da8:	457c                	lw	a5,76(a0)
     2daa:	6741                	lui	a4,0x10
-    2dac:	30070713          	addi	a4,a4,768 # 10300 <__ctor_end__+0xa370>
+    2dac:	30070713          	addi	a4,a4,768 # 10300 <__ctor_end__+0xa060>
     } else if (length >= USI_RX_MAX_FIFO - 4) {
         addr->USI_INTR_CTRL |= USI_INTR_CTRL_RXFIFO_TH_8 | USI_INTR_CTRL_TH_MODE;
     } else if (length >= 4) {
@@ -4209,7 +4209,7 @@ void wj_usi_set_rxfifo_th(wj_usi_reg_t *addr, uint32_t length)
         addr->USI_INTR_CTRL |= USI_INTR_CTRL_RXFIFO_TH_8 | USI_INTR_CTRL_TH_MODE;
     2dbc:	6741                	lui	a4,0x10
     2dbe:	457c                	lw	a5,76(a0)
-    2dc0:	20070713          	addi	a4,a4,512 # 10200 <__ctor_end__+0xa270>
+    2dc0:	20070713          	addi	a4,a4,512 # 10200 <__ctor_end__+0x9f60>
     2dc4:	b7f5                	j	2db0 <wj_usi_set_rxfifo_th+0x20>
     } else if (length >= 4) {
     2dc6:	478d                	li	a5,3
@@ -4217,7 +4217,7 @@ void wj_usi_set_rxfifo_th(wj_usi_reg_t *addr, uint32_t length)
         addr->USI_INTR_CTRL |= USI_INTR_CTRL_RXFIFO_TH_4 | USI_INTR_CTRL_TH_MODE;
     2dcc:	6741                	lui	a4,0x10
     2dce:	457c                	lw	a5,76(a0)
-    2dd0:	10070713          	addi	a4,a4,256 # 10100 <__ctor_end__+0xa170>
+    2dd0:	10070713          	addi	a4,a4,256 # 10100 <__ctor_end__+0x9e60>
     2dd4:	bff1                	j	2db0 <wj_usi_set_rxfifo_th+0x20>
         addr->USI_INTR_CTRL |= USI_INTR_CTRL_RXFIFO_TH_4;
     2dd6:	457c                	lw	a5,76(a0)
@@ -4233,7 +4233,7 @@ void wj_usi_irqhandler(int32_t idx)
     wj_usi_reg_t *addr = (wj_usi_reg_t *)(usi_priv->base);
     2dde:	200017b7          	lui	a5,0x20001
     2de2:	00351713          	slli	a4,a0,0x3
-    2de6:	71c78793          	addi	a5,a5,1820 # 2000171c <usi_instance>
+    2de6:	72878793          	addi	a5,a5,1832 # 20001728 <usi_instance>
     2dea:	97ba                	add	a5,a5,a4
     2dec:	439c                	lw	a5,0(a5)
 
@@ -4288,7 +4288,7 @@ int32_t drv_usi_initialize(int32_t idx)
     uint32_t irq = 0u;
     2e18:	c202                	sw	zero,4(sp)
     int32_t ret = target_usi_init(idx, &base, &irq);
-    2e1a:	19d000ef          	jal	ra,37b6 <target_usi_init>
+    2e1a:	1dd000ef          	jal	ra,37f6 <target_usi_init>
 
     if (ret < 0 || ret >= CONFIG_USI_NUM) {
     2e1e:	4789                	li	a5,2
@@ -4301,7 +4301,7 @@ int32_t drv_usi_initialize(int32_t idx)
     2e24:	4782                	lw	a5,0(sp)
     2e26:	20001537          	lui	a0,0x20001
     2e2a:	040e                	slli	s0,s0,0x3
-    2e2c:	71c50513          	addi	a0,a0,1820 # 2000171c <usi_instance>
+    2e2c:	72850513          	addi	a0,a0,1832 # 20001728 <usi_instance>
     2e30:	9522                	add	a0,a0,s0
     2e32:	c11c                	sw	a5,0(a0)
     usi_priv->irq  = irq;
@@ -4330,7 +4330,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     2e4c:	03000713          	li	a4,48
     2e50:	02e50733          	mul	a4,a0,a4
     2e54:	200017b7          	lui	a5,0x20001
-    2e58:	73478693          	addi	a3,a5,1844 # 20001734 <iic_instance>
+    2e58:	74078693          	addi	a3,a5,1856 # 20001740 <iic_instance>
 {
     2e5c:	1121                	addi	sp,sp,-24
     2e5e:	c822                	sw	s0,16(sp)
@@ -4344,7 +4344,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     2e64:	ca06                	sw	ra,20(sp)
     2e66:	84aa                	mv	s1,a0
     wj_usi_reg_t *addr = (wj_usi_reg_t *)(iic_priv->base);
-    2e68:	73478793          	addi	a5,a5,1844
+    2e68:	74078793          	addi	a5,a5,1856
     2e6c:	9736                	add	a4,a4,a3
     2e6e:	4300                	lw	s0,0(a4)
     uint32_t intr_state = addr->USI_INTR_STA & 0x3ffff;
@@ -4364,7 +4364,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     2e7e:	4691                	li	a3,4
     2e80:	d714                	sw	a3,40(a4)
         addr->USI_EN = 0;
-    2e82:	00042023          	sw	zero,0(s0) # 80000 <__ctor_end__+0x7a070>
+    2e82:	00042023          	sw	zero,0(s0) # 80000 <__ctor_end__+0x79d60>
         addr->USI_INTR_UNMASK = 0;
     2e86:	04042e23          	sw	zero,92(s0)
         addr->USI_INTR_EN = 0;
@@ -4491,7 +4491,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     2f5a:	4312                	lw	t1,4(sp)
     2f5c:	4682                	lw	a3,0(sp)
     2f5e:	200017b7          	lui	a5,0x20001
-    2f62:	73478793          	addi	a5,a5,1844 # 20001734 <iic_instance>
+    2f62:	74078793          	addi	a5,a5,1856 # 20001740 <iic_instance>
     iic_priv->tx_cnt += emptyfifo;
     2f66:	03000713          	li	a4,48
     2f6a:	02e48733          	mul	a4,s1,a4
@@ -4594,7 +4594,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     300e:	4582                	lw	a1,0(sp)
     3010:	200017b7          	lui	a5,0x20001
     3014:	4692                	lw	a3,4(sp)
-    3016:	73478793          	addi	a5,a5,1844 # 20001734 <iic_instance>
+    3016:	74078793          	addi	a5,a5,1856 # 20001740 <iic_instance>
     301a:	e589                	bnez	a1,3024 <wj_usi_i2c_irqhandler+0x1d8>
             addr->USI_INTR_EN |= USI_INT_I2C_STOP;
     301c:	4838                	lw	a4,80(s0)
@@ -4638,7 +4638,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     3068:	9702                	jalr	a4
     306a:	4682                	lw	a3,0(sp)
     306c:	200017b7          	lui	a5,0x20001
-    3070:	73478793          	addi	a5,a5,1844 # 20001734 <iic_instance>
+    3070:	74078793          	addi	a5,a5,1856 # 20001740 <iic_instance>
     if (intr_stat & USI_INT_I2C_STOP) {
     3074:	6705                	lui	a4,0x1
     3076:	8ef9                	and	a3,a3,a4
@@ -4677,7 +4677,7 @@ void wj_usi_i2c_irqhandler(int32_t idx)
     30a8:	0605                	addi	a2,a2,1
     30aa:	0ff67613          	andi	a2,a2,255
             *iic_priv->rx_buf = addr->USI_TX_RX_FIFO;
-    30ae:	00658023          	sb	t1,0(a1) # 6000 <__ctor_end__+0x70>
+    30ae:	00658023          	sb	t1,0(a1) # 6000 <pad_line+0x480>
             iic_priv->rx_buf++;
     30b2:	4b4c                	lw	a1,20(a4)
     30b4:	0585                	addi	a1,a1,1
@@ -4723,7 +4723,7 @@ static int32_t wj_spi_ss_control(wj_usi_spi_priv_t *spi_priv, spi_ss_stat_e stat
         } else if (stat == SPI_SS_ACTIVE) {
             csi_gpio_pin_write(pgpio_pin_handle, false);
     30e4:	00c1a503          	lw	a0,12(gp) # 200004f4 <pgpio_pin_handle>
-    30e8:	74e000ef          	jal	ra,3836 <csi_gpio_pin_write>
+    30e8:	12b000ef          	jal	ra,3a12 <csi_gpio_pin_write>
         } else {
             return -1;
         }
@@ -4763,12 +4763,12 @@ void wj_usi_spi_irqhandler(int32_t idx)
     310e:	cc22                	sw	s0,24(sp)
     wj_usi_spi_priv_t *spi_priv = &spi_instance[idx];
     3110:	20001437          	lui	s0,0x20001
-    3114:	7c440313          	addi	t1,s0,1988 # 200017c4 <spi_instance>
+    3114:	7d040313          	addi	t1,s0,2000 # 200017d0 <spi_instance>
 {
     3118:	ca26                	sw	s1,20(sp)
     311a:	ce06                	sw	ra,28(sp)
     311c:	872a                	mv	a4,a0
-    311e:	7c440413          	addi	s0,s0,1988
+    311e:	7d040413          	addi	s0,s0,2000
     wj_usi_spi_priv_t *spi_priv = &spi_instance[idx];
     3122:	933e                	add	t1,t1,a5
     wj_usi_reg_t *addr = (wj_usi_reg_t *)(spi_priv->base);
@@ -4819,7 +4819,7 @@ void wj_usi_spi_irqhandler(int32_t idx)
     3174:	c21a                	sw	t1,4(sp)
         spi_priv->status.busy = 0U;
     3176:	97a2                	add	a5,a5,s0
-    3178:	0387c583          	lbu	a1,56(a5) # 20038 <__ctor_end__+0x1a0a8>
+    3178:	0387c583          	lbu	a1,56(a5) # 20038 <__ctor_end__+0x19d98>
         spi_priv->recv_num = 0;
     317c:	c43e                	sw	a5,8(sp)
         spi_priv->status.busy = 0U;
@@ -4932,7 +4932,7 @@ void wj_usi_spi_irqhandler(int32_t idx)
         spi_priv->recv_buf = pbuffer;
     3240:	cfcc                	sw	a1,28(a5)
         spi_priv->recv_num = length;
-    3242:	0057aa23          	sw	t0,20(a5) # 20014 <__ctor_end__+0x1a084>
+    3242:	0057aa23          	sw	t0,20(a5) # 20014 <__ctor_end__+0x19d74>
     3246:	bf9d                	j	31bc <wj_usi_spi_irqhandler+0xb8>
             *spi_priv->recv_buf = addr->USI_TX_RX_FIFO;
     3248:	4608                	lw	a0,8(a2)
@@ -5147,7 +5147,7 @@ static void ck_usart_intr_recv_data(wj_usi_usart_priv_t *usart_priv)
 {
     3382:	84ae                	mv	s1,a1
     uint32_t divisor = ((drv_get_usi_freq(usart_priv->idx)  * 10) / baudrate) >> 4;
-    3384:	734000ef          	jal	ra,3ab8 <drv_get_usi_freq>
+    3384:	171000ef          	jal	ra,3cf4 <drv_get_usi_freq>
     3388:	4729                	li	a4,10
     338a:	02e50533          	mul	a0,a0,a4
     338e:	029555b3          	divu	a1,a0,s1
@@ -5386,11 +5386,11 @@ void wj_usi_usart_irqhandler(int idx)
     3512:	03800793          	li	a5,56
     3516:	02f507b3          	mul	a5,a0,a5
     351a:	200026b7          	lui	a3,0x20002
-    351e:	8a868713          	addi	a4,a3,-1880 # 200018a8 <usi_usart_instance>
+    351e:	8b468713          	addi	a4,a3,-1868 # 200018b4 <usi_usart_instance>
 {
     3522:	1101                	addi	sp,sp,-32
     3524:	ca26                	sw	s1,20(sp)
-    3526:	8a868693          	addi	a3,a3,-1880
+    3526:	8b468693          	addi	a3,a3,-1868
     352a:	cc22                	sw	s0,24(sp)
     352c:	ce06                	sw	ra,28(sp)
     352e:	c036                	sw	a3,0(sp)
@@ -5656,7 +5656,7 @@ usart_handle_t drv_usi_usart_initialize(int32_t idx, usart_event_cb_t cb_event)
     369e:	ca22                	sw	s0,20(sp)
     36a0:	84aa                	mv	s1,a0
     int32_t ret  = target_usi_usart_init(idx, &base, &irq, &handler);
-    36a2:	22a9                	jal	37ec <target_usi_usart_init>
+    36a2:	2269                	jal	382c <target_usi_usart_init>
 
     if (ret < 0 || ret >= CONFIG_USI_NUM) {
     36a4:	4709                	li	a4,2
@@ -5687,7 +5687,7 @@ usart_handle_t drv_usi_usart_initialize(int32_t idx, usart_event_cb_t cb_event)
     36ca:	47a2                	lw	a5,8(sp)
     wj_usi_usart_priv_t *usart_priv = &usi_usart_instance[idx];
     36cc:	20002437          	lui	s0,0x20002
-    36d0:	8a840413          	addi	s0,s0,-1880 # 200018a8 <usi_usart_instance>
+    36d0:	8b440413          	addi	s0,s0,-1868 # 200018b4 <usi_usart_instance>
     usart_priv->base = base;
     36d4:	4512                	lw	a0,4(sp)
     wj_usi_set_rxfifo_th(addr, USI_RX_MAX_FIFO);
@@ -5865,8 +5865,8 @@ int32_t target_get_timer(int32_t idx, uint32_t *base, uint32_t *irq, void **hand
         *base = sg_timer_config[idx].base;
     3776:	47b1                	li	a5,12
     3778:	02f50733          	mul	a4,a0,a5
-    377c:	6795                	lui	a5,0x5
-    377e:	51878793          	addi	a5,a5,1304 # 5518 <sg_timer_config>
+    377c:	6799                	lui	a5,0x6
+    377e:	82878793          	addi	a5,a5,-2008 # 5828 <sg_timer_config>
     3782:	97ba                	add	a5,a5,a4
     3784:	439c                	lw	a5,0(a5)
     3786:	c19c                	sw	a5,0(a1)
@@ -5877,8 +5877,8 @@ int32_t target_get_timer(int32_t idx, uint32_t *base, uint32_t *irq, void **hand
         *irq = sg_timer_config[idx].irq;
     378a:	47b1                	li	a5,12
     378c:	02f50733          	mul	a4,a0,a5
-    3790:	6795                	lui	a5,0x5
-    3792:	51878793          	addi	a5,a5,1304 # 5518 <sg_timer_config>
+    3790:	6799                	lui	a5,0x6
+    3792:	82878793          	addi	a5,a5,-2008 # 5828 <sg_timer_config>
     3796:	97ba                	add	a5,a5,a4
     3798:	43dc                	lw	a5,4(a5)
     379a:	c21c                	sw	a5,0(a2)
@@ -5889,8 +5889,8 @@ int32_t target_get_timer(int32_t idx, uint32_t *base, uint32_t *irq, void **hand
         *handler = sg_timer_config[idx].handler;
     379e:	47b1                	li	a5,12
     37a0:	02f50733          	mul	a4,a0,a5
-    37a4:	6795                	lui	a5,0x5
-    37a6:	51878793          	addi	a5,a5,1304 # 5518 <sg_timer_config>
+    37a4:	6799                	lui	a5,0x6
+    37a6:	82878793          	addi	a5,a5,-2008 # 5828 <sg_timer_config>
     37aa:	97ba                	add	a5,a5,a4
     37ac:	479c                	lw	a5,8(a5)
     37ae:	c29c                	sw	a5,0(a3)
@@ -5903,3477 +5903,4107 @@ int32_t target_get_timer(int32_t idx, uint32_t *base, uint32_t *irq, void **hand
 }
     37b4:	8082                	ret
 
-000037b6 <target_usi_init>:
+000037b6 <target_gpio_port_init>:
+    int32_t    gpio_pin;
+    uint32_t cfg_idx;
+} gpio_pin_map_t;
+
+int32_t target_gpio_port_init(port_name_e port, uint32_t *base, uint32_t *irq, void **handler, uint32_t *pin_num)
+{
+    37b6:	87aa                	mv	a5,a0
+    if (base == NULL || irq == NULL || handler == NULL || pin_num == NULL) {
+        return -1;
+    37b8:	557d                	li	a0,-1
+    if (base == NULL || irq == NULL || handler == NULL || pin_num == NULL) {
+    37ba:	c595                	beqz	a1,37e6 <target_gpio_port_init+0x30>
+    37bc:	02060563          	beqz	a2,37e6 <target_gpio_port_init+0x30>
+    37c0:	02068363          	beqz	a3,37e6 <target_gpio_port_init+0x30>
+    37c4:	02070163          	beqz	a4,37e6 <target_gpio_port_init+0x30>
+    }
+
+    if (sg_gpio_config[0].port == port) {
+    37c8:	00079f63          	bnez	a5,37e6 <target_gpio_port_init+0x30>
+        if (base != NULL) {
+            *base = sg_gpio_config[0].base;
+    37cc:	600187b7          	lui	a5,0x60018
+    37d0:	c19c                	sw	a5,0(a1)
+        }
+
+        if (irq != NULL) {
+            *irq = sg_gpio_config[0].irq;
+    37d2:	47c1                	li	a5,16
+    37d4:	c21c                	sw	a5,0(a2)
+        }
+
+        if (pin_num != NULL) {
+            *pin_num = sg_gpio_config[0].pin_num;
+    37d6:	47fd                	li	a5,31
+    37d8:	c31c                	sw	a5,0(a4)
+        }
+
+        if (handler != NULL) {
+            *handler = (void *)GPIO0_IRQHandler;
+    37da:	6791                	lui	a5,0x4
+    37dc:	c9478793          	addi	a5,a5,-876 # 3c94 <GPIO0_IRQHandler>
+    37e0:	c29c                	sw	a5,0(a3)
+        }
+
+        return 0;
+    37e2:	4501                	li	a0,0
+    37e4:	8082                	ret
+    }
+
+    return -1;
+}
+    37e6:	8082                	ret
+
+000037e8 <target_gpio_pin_init>:
+
+int32_t target_gpio_pin_init(int32_t gpio_pin, uint32_t *port_idx)
+{
+    *port_idx = 0;
+    37e8:	0005a023          	sw	zero,0(a1)
+
+    if (gpio_pin >= PA0 && gpio_pin <= PA31) {
+    37ec:	47fd                	li	a5,31
+    37ee:	00a7f363          	bgeu	a5,a0,37f4 <target_gpio_pin_init+0xc>
+        return gpio_pin;
+    }
+
+    return -1;
+    37f2:	557d                	li	a0,-1
+}
+    37f4:	8082                	ret
+
+000037f6 <target_usi_init>:
     {WJ_USI2_BASE, USI2_IRQn, USI2_IRQHandler},
 };
 
 int32_t target_usi_init(int32_t idx, uint32_t *base, uint32_t *irq)
 {
     if (idx >= CONFIG_USI_NUM) {
-    37b6:	4789                	li	a5,2
-    37b8:	02a7c863          	blt	a5,a0,37e8 <target_usi_init+0x32>
+    37f6:	4789                	li	a5,2
+    37f8:	02a7c863          	blt	a5,a0,3828 <target_usi_init+0x32>
         return -1;
     }
 
     if (base != NULL) {
-    37bc:	00058b63          	beqz	a1,37d2 <target_usi_init+0x1c>
+    37fc:	00058b63          	beqz	a1,3812 <target_usi_init+0x1c>
         *base = sg_usi_config[idx].base;
-    37c0:	47b1                	li	a5,12
-    37c2:	02f50733          	mul	a4,a0,a5
-    37c6:	6795                	lui	a5,0x5
-    37c8:	5d878793          	addi	a5,a5,1496 # 55d8 <sg_usi_config>
-    37cc:	97ba                	add	a5,a5,a4
-    37ce:	439c                	lw	a5,0(a5)
-    37d0:	c19c                	sw	a5,0(a1)
+    3800:	47b1                	li	a5,12
+    3802:	02f50733          	mul	a4,a0,a5
+    3806:	6799                	lui	a5,0x6
+    3808:	8e878793          	addi	a5,a5,-1816 # 58e8 <sg_usi_config>
+    380c:	97ba                	add	a5,a5,a4
+    380e:	439c                	lw	a5,0(a5)
+    3810:	c19c                	sw	a5,0(a1)
     }
 
     if (irq != NULL) {
-    37d2:	ce01                	beqz	a2,37ea <target_usi_init+0x34>
+    3812:	ce01                	beqz	a2,382a <target_usi_init+0x34>
         *irq = sg_usi_config[idx].irq;
-    37d4:	47b1                	li	a5,12
-    37d6:	02f50733          	mul	a4,a0,a5
-    37da:	6795                	lui	a5,0x5
-    37dc:	5d878793          	addi	a5,a5,1496 # 55d8 <sg_usi_config>
-    37e0:	97ba                	add	a5,a5,a4
-    37e2:	43dc                	lw	a5,4(a5)
-    37e4:	c21c                	sw	a5,0(a2)
-    37e6:	8082                	ret
+    3814:	47b1                	li	a5,12
+    3816:	02f50733          	mul	a4,a0,a5
+    381a:	6799                	lui	a5,0x6
+    381c:	8e878793          	addi	a5,a5,-1816 # 58e8 <sg_usi_config>
+    3820:	97ba                	add	a5,a5,a4
+    3822:	43dc                	lw	a5,4(a5)
+    3824:	c21c                	sw	a5,0(a2)
+    3826:	8082                	ret
         return -1;
-    37e8:	557d                	li	a0,-1
+    3828:	557d                	li	a0,-1
     }
 
     return idx;
 }
-    37ea:	8082                	ret
+    382a:	8082                	ret
 
-000037ec <target_usi_usart_init>:
+0000382c <target_usi_usart_init>:
 
 int32_t target_usi_usart_init(int32_t idx, uint32_t *base, uint32_t *irq, void **handler)
 {
     if (idx >= CONFIG_USI_SPI_NUM) {
-    37ec:	4789                	li	a5,2
-    37ee:	04a7c263          	blt	a5,a0,3832 <target_usi_usart_init+0x46>
+    382c:	4789                	li	a5,2
+    382e:	04a7c263          	blt	a5,a0,3872 <target_usi_usart_init+0x46>
         return -1;
     }
 
     if (base != NULL) {
-    37f2:	00058b63          	beqz	a1,3808 <target_usi_usart_init+0x1c>
+    3832:	00058b63          	beqz	a1,3848 <target_usi_usart_init+0x1c>
         *base = sg_usi_config[idx].base;
-    37f6:	47b1                	li	a5,12
-    37f8:	02f50733          	mul	a4,a0,a5
-    37fc:	6795                	lui	a5,0x5
-    37fe:	5d878793          	addi	a5,a5,1496 # 55d8 <sg_usi_config>
-    3802:	97ba                	add	a5,a5,a4
-    3804:	439c                	lw	a5,0(a5)
-    3806:	c19c                	sw	a5,0(a1)
+    3836:	47b1                	li	a5,12
+    3838:	02f50733          	mul	a4,a0,a5
+    383c:	6799                	lui	a5,0x6
+    383e:	8e878793          	addi	a5,a5,-1816 # 58e8 <sg_usi_config>
+    3842:	97ba                	add	a5,a5,a4
+    3844:	439c                	lw	a5,0(a5)
+    3846:	c19c                	sw	a5,0(a1)
     }
 
     if (irq != NULL) {
-    3808:	ca11                	beqz	a2,381c <target_usi_usart_init+0x30>
+    3848:	ca11                	beqz	a2,385c <target_usi_usart_init+0x30>
         *irq = sg_usi_config[idx].irq;
-    380a:	47b1                	li	a5,12
-    380c:	02f50733          	mul	a4,a0,a5
-    3810:	6795                	lui	a5,0x5
-    3812:	5d878793          	addi	a5,a5,1496 # 55d8 <sg_usi_config>
-    3816:	97ba                	add	a5,a5,a4
-    3818:	43dc                	lw	a5,4(a5)
-    381a:	c21c                	sw	a5,0(a2)
+    384a:	47b1                	li	a5,12
+    384c:	02f50733          	mul	a4,a0,a5
+    3850:	6799                	lui	a5,0x6
+    3852:	8e878793          	addi	a5,a5,-1816 # 58e8 <sg_usi_config>
+    3856:	97ba                	add	a5,a5,a4
+    3858:	43dc                	lw	a5,4(a5)
+    385a:	c21c                	sw	a5,0(a2)
     }
 
     if (handler != NULL) {
-    381c:	ce81                	beqz	a3,3834 <target_usi_usart_init+0x48>
+    385c:	ce81                	beqz	a3,3874 <target_usi_usart_init+0x48>
         *handler = sg_usi_config[idx].handler;
-    381e:	47b1                	li	a5,12
-    3820:	02f50733          	mul	a4,a0,a5
-    3824:	6795                	lui	a5,0x5
-    3826:	5d878793          	addi	a5,a5,1496 # 55d8 <sg_usi_config>
-    382a:	97ba                	add	a5,a5,a4
-    382c:	479c                	lw	a5,8(a5)
-    382e:	c29c                	sw	a5,0(a3)
-    3830:	8082                	ret
+    385e:	47b1                	li	a5,12
+    3860:	02f50733          	mul	a4,a0,a5
+    3864:	6799                	lui	a5,0x6
+    3866:	8e878793          	addi	a5,a5,-1816 # 58e8 <sg_usi_config>
+    386a:	97ba                	add	a5,a5,a4
+    386c:	479c                	lw	a5,8(a5)
+    386e:	c29c                	sw	a5,0(a3)
+    3870:	8082                	ret
         return -1;
-    3832:	557d                	li	a0,-1
+    3872:	557d                	li	a0,-1
     }
 
     return idx;
 }
-    3834:	8082                	ret
+    3874:	8082                	ret
 
-00003836 <csi_gpio_pin_write>:
+00003876 <gpio_set_direction>:
+    void *port,
+    gpio_direction_e direction
+)
+{
+    wj_oip_gpio_priv_t *gpio_priv = port;
+    wj_oip_gpio_reg_t *gpio_reg = (wj_oip_gpio_reg_t *)(gpio_priv->base);
+    3876:	4118                	lw	a4,0(a0)
+
+    if (direction == GPIO_DIRECTION_INPUT) {
+    3878:	e989                	bnez	a1,388a <gpio_set_direction+0x14>
+        gpio_reg->SWPORT_DDR &= (~gpio_priv->mask);
+    387a:	495c                	lw	a5,20(a0)
+    387c:	4354                	lw	a3,4(a4)
+    387e:	fff7c793          	not	a5,a5
+    3882:	8ff5                	and	a5,a5,a3
+    } else if (direction == GPIO_DIRECTION_OUTPUT) {
+        gpio_reg->SWPORT_DDR |= gpio_priv->mask;
+    3884:	c35c                	sw	a5,4(a4)
+    } else {
+        return ERR_GPIO(GPIO_ERROR_DIRECTION);
+    }
+
+    return 0;
+    3886:	4501                	li	a0,0
+    3888:	8082                	ret
+    } else if (direction == GPIO_DIRECTION_OUTPUT) {
+    388a:	4785                	li	a5,1
+    388c:	00f59663          	bne	a1,a5,3898 <gpio_set_direction+0x22>
+        gpio_reg->SWPORT_DDR |= gpio_priv->mask;
+    3890:	435c                	lw	a5,4(a4)
+    3892:	4954                	lw	a3,20(a0)
+    3894:	8fd5                	or	a5,a5,a3
+    3896:	b7fd                	j	3884 <gpio_set_direction+0xe>
+        return ERR_GPIO(GPIO_ERROR_DIRECTION);
+    3898:	81010537          	lui	a0,0x81010
+    389c:	08750513          	addi	a0,a0,135 # 81010087 <__heap_end+0x60fe0087>
+}
+    38a0:	8082                	ret
+
+000038a2 <wj_oip_gpio_irqhandler>:
+    gpio_control_reg->INTEN = val;
+}
+
+void wj_oip_gpio_irqhandler(int idx)
+{
+    if (idx >= CONFIG_GPIO_NUM) {
+    38a2:	06a04e63          	bgtz	a0,391e <wj_oip_gpio_irqhandler+0x7c>
+        return;
+    }
+
+    wj_oip_gpio_control_reg_t *gpio_control_reg = (wj_oip_gpio_control_reg_t *)(gpio_handle[idx].base + 0x30);
+    38a6:	46f1                	li	a3,28
+    38a8:	02d50533          	mul	a0,a0,a3
+    38ac:	20002737          	lui	a4,0x20002
+    38b0:	95c70793          	addi	a5,a4,-1700 # 2000195c <gpio_handle>
+{
+    38b4:	1141                	addi	sp,sp,-16
+    38b6:	c422                	sw	s0,8(sp)
+    38b8:	20002437          	lui	s0,0x20002
+    38bc:	c226                	sw	s1,4(sp)
+    38be:	c606                	sw	ra,12(sp)
+    38c0:	97840413          	addi	s0,s0,-1672 # 20001978 <gpio_pin_handle>
+
+    uint32_t value = gpio_control_reg->INTSTATUS;
+    38c4:	4481                	li	s1,0
+    wj_oip_gpio_control_reg_t *gpio_control_reg = (wj_oip_gpio_control_reg_t *)(gpio_handle[idx].base + 0x30);
+    38c6:	953e                	add	a0,a0,a5
+    38c8:	411c                	lw	a5,0(a0)
+    uint32_t value = gpio_control_reg->INTSTATUS;
+    38ca:	95c70713          	addi	a4,a4,-1700
+    38ce:	43b0                	lw	a2,64(a5)
+    uint8_t i;
+
+    /* find the interrput pin */
+    for (i = 0; i < 32; i++) {
+        if (value & (1U << i)) {
+    38d0:	4685                	li	a3,1
+    38d2:	009696b3          	sll	a3,a3,s1
+    38d6:	00c6f7b3          	and	a5,a3,a2
+    38da:	c79d                	beqz	a5,3908 <wj_oip_gpio_irqhandler+0x66>
+                for (j = 0; j < idx; j++) {
+                    pin_idx += gpio_handle[j].pin_num;
+                }
+            }
+
+            if (pin_idx >= CONFIG_GPIO_PIN_NUM) {
+    38dc:	47fd                	li	a5,31
+    38de:	02f48b63          	beq	s1,a5,3914 <wj_oip_gpio_irqhandler+0x72>
+    wj_oip_gpio_priv_t *port_handle = &gpio_handle[gpio_pin_priv->portidx];
+    38e2:	00044783          	lbu	a5,0(s0)
+    wj_oip_gpio_control_reg_t *gpio_control_reg = (wj_oip_gpio_control_reg_t *)(port_handle->base + 0x30);
+    38e6:	45f1                	li	a1,28
+    38e8:	02b787b3          	mul	a5,a5,a1
+    38ec:	97ba                	add	a5,a5,a4
+    38ee:	439c                	lw	a5,0(a5)
+    gpio_control_reg->PORTA_EOI = idx;
+    38f0:	c7f4                	sw	a3,76(a5)
+            wj_oip_gpio_pin_priv_t *gpio_pin_priv = (wj_oip_gpio_pin_priv_t *)&gpio_pin_handle[pin_idx];
+
+            gpio_irq_clear(gpio_pin_priv, (1 << i));  //clear the gpio interrupt
+
+            /* execute the callback function */
+            if ((gpio_event_cb_t)(gpio_pin_priv->cb)) {
+    38f2:	405c                	lw	a5,4(s0)
+    38f4:	cb91                	beqz	a5,3908 <wj_oip_gpio_irqhandler+0x66>
+                ((gpio_event_cb_t)(gpio_pin_priv->cb))(gpio_pin_priv->offset);
+    38f6:	00244503          	lbu	a0,2(s0)
+    38fa:	c032                	sw	a2,0(sp)
+    38fc:	9782                	jalr	a5
+    38fe:	4602                	lw	a2,0(sp)
+    3900:	200027b7          	lui	a5,0x20002
+    3904:	95c78713          	addi	a4,a5,-1700 # 2000195c <gpio_handle>
+    for (i = 0; i < 32; i++) {
+    3908:	0485                	addi	s1,s1,1
+    390a:	02000793          	li	a5,32
+    390e:	0421                	addi	s0,s0,8
+    3910:	fcf490e3          	bne	s1,a5,38d0 <wj_oip_gpio_irqhandler+0x2e>
+            }
+        }
+    }
+}
+    3914:	40b2                	lw	ra,12(sp)
+    3916:	4422                	lw	s0,8(sp)
+    3918:	4492                	lw	s1,4(sp)
+    391a:	0141                	addi	sp,sp,16
+    391c:	8082                	ret
+    391e:	8082                	ret
+
+00003920 <csi_gpio_port_initialize>:
+                3.get gpio_port_handle
+  \param[in]   port      port_name.
+  \return      gpio_port_handle
+*/
+gpio_port_handle_t csi_gpio_port_initialize(int32_t port)
+{
+    3920:	1111                	addi	sp,sp,-28
+    /* obtain the gpio port information */
+    uint32_t base = 0u;
+    uint32_t pin_num;
+    uint32_t irq;
+    void *handler;
+    int32_t idx = target_gpio_port_init(port, &base, &irq, &handler, &pin_num);
+    3922:	0058                	addi	a4,sp,4
+    3924:	0074                	addi	a3,sp,12
+    3926:	0030                	addi	a2,sp,8
+    3928:	858a                	mv	a1,sp
+{
+    392a:	cc06                	sw	ra,24(sp)
+    392c:	ca22                	sw	s0,20(sp)
+    392e:	c826                	sw	s1,16(sp)
+    uint32_t base = 0u;
+    3930:	c002                	sw	zero,0(sp)
+    int32_t idx = target_gpio_port_init(port, &base, &irq, &handler, &pin_num);
+    3932:	3551                	jal	37b6 <target_gpio_port_init>
+
+    if (idx < 0 || idx >= CONFIG_GPIO_NUM) {
+    3934:	e905                	bnez	a0,3964 <csi_gpio_port_initialize+0x44>
+        return NULL;
+    }
+
+    gpio_priv = &gpio_handle[idx];
+
+    gpio_priv->base = base;
+    3936:	4782                	lw	a5,0(sp)
+    3938:	20002437          	lui	s0,0x20002
+    393c:	95c40493          	addi	s1,s0,-1700 # 2000195c <gpio_handle>
+    gpio_priv->irq  = irq;
+    3940:	4522                	lw	a0,8(sp)
+
+#ifdef CONFIG_LPM
+    csi_gpio_power_control(gpio_priv, DRV_POWER_FULL);
+#endif
+
+    drv_irq_register(gpio_priv->irq, handler);
+    3942:	45b2                	lw	a1,12(sp)
+    gpio_priv->base = base;
+    3944:	c09c                	sw	a5,0(s1)
+    gpio_priv->pin_num  = pin_num;
+    3946:	4792                	lw	a5,4(sp)
+    gpio_priv->irq  = irq;
+    3948:	c0c8                	sw	a0,4(s1)
+    gpio_priv->pin_num  = pin_num;
+    394a:	c49c                	sw	a5,8(s1)
+    drv_irq_register(gpio_priv->irq, handler);
+    394c:	c34ff0ef          	jal	ra,2d80 <drv_irq_register>
+    drv_irq_enable(gpio_priv->irq);
+    3950:	40c8                	lw	a0,4(s1)
+    3952:	c12ff0ef          	jal	ra,2d64 <drv_irq_enable>
+
+    return (gpio_port_handle_t)gpio_priv;
+    3956:	95c40513          	addi	a0,s0,-1700
+}
+    395a:	40e2                	lw	ra,24(sp)
+    395c:	4452                	lw	s0,20(sp)
+    395e:	44c2                	lw	s1,16(sp)
+    3960:	0171                	addi	sp,sp,28
+    3962:	8082                	ret
+        return NULL;
+    3964:	4501                	li	a0,0
+    3966:	bfd5                	j	395a <csi_gpio_port_initialize+0x3a>
+
+00003968 <csi_gpio_pin_initialize>:
+  \return      gpio_pin_handle
+*/
+gpio_pin_handle_t csi_gpio_pin_initialize(int32_t gpio_pin, gpio_event_cb_t cb_event)
+{
+
+    if (gpio_pin < 0 || gpio_pin >= CONFIG_GPIO_PIN_NUM) {
+    3968:	47f9                	li	a5,30
+    396a:	00a7f463          	bgeu	a5,a0,3972 <csi_gpio_pin_initialize+0xa>
+        return NULL;
+    396e:	4501                	li	a0,0
+    gpio_pin_priv->idx = pin_idx;
+    gpio_pin_priv->cb = cb_event;
+    gpio_pin_priv->offset = gpio_pin;
+
+    return (gpio_pin_handle_t)gpio_pin_priv;
+}
+    3970:	8082                	ret
+{
+    3972:	1141                	addi	sp,sp,-16
+    3974:	c422                	sw	s0,8(sp)
+    3976:	842a                	mv	s0,a0
+        csi_gpio_port_initialize(i);
+    3978:	4501                	li	a0,0
+{
+    397a:	c606                	sw	ra,12(sp)
+    397c:	c226                	sw	s1,4(sp)
+    397e:	84ae                	mv	s1,a1
+        csi_gpio_port_initialize(i);
+    3980:	3745                	jal	3920 <csi_gpio_port_initialize>
+    int32_t pin_idx = target_gpio_pin_init(gpio_pin, &port_idx);
+    3982:	858a                	mv	a1,sp
+    3984:	8522                	mv	a0,s0
+    3986:	358d                	jal	37e8 <target_gpio_pin_init>
+    3988:	872a                	mv	a4,a0
+        return NULL;
+    398a:	4501                	li	a0,0
+    if (pin_idx < 0) {
+    398c:	02074963          	bltz	a4,39be <csi_gpio_pin_initialize+0x56>
+    for (i = 0; i < port_idx; i++) {
+    3990:	4602                	lw	a2,0(sp)
+    3992:	87ba                	mv	a5,a4
+    3994:	c611                	beqz	a2,39a0 <csi_gpio_pin_initialize+0x38>
+        idx += (gpio_handle[i].pin_num);
+    3996:	200027b7          	lui	a5,0x20002
+    399a:	9647a783          	lw	a5,-1692(a5) # 20001964 <gpio_handle+0x8>
+    399e:	97ba                	add	a5,a5,a4
+    wj_oip_gpio_pin_priv_t *gpio_pin_priv = &(gpio_pin_handle[idx]);
+    39a0:	00379693          	slli	a3,a5,0x3
+    39a4:	200027b7          	lui	a5,0x20002
+    39a8:	97878793          	addi	a5,a5,-1672 # 20001978 <gpio_pin_handle>
+    39ac:	00d78533          	add	a0,a5,a3
+    gpio_pin_priv->portidx = port_idx;
+    39b0:	00c50023          	sb	a2,0(a0)
+    gpio_pin_priv->idx = pin_idx;
+    39b4:	00e500a3          	sb	a4,1(a0)
+    gpio_pin_priv->cb = cb_event;
+    39b8:	c144                	sw	s1,4(a0)
+    gpio_pin_priv->offset = gpio_pin;
+    39ba:	00850123          	sb	s0,2(a0)
+}
+    39be:	40b2                	lw	ra,12(sp)
+    39c0:	4422                	lw	s0,8(sp)
+    39c2:	4492                	lw	s1,4(sp)
+    39c4:	0141                	addi	sp,sp,16
+    39c6:	8082                	ret
+
+000039c8 <csi_gpio_pin_config_mode>:
+  \param[in]   mode      \ref gpio_mode_e
+  \return      error code
+*/
+int32_t csi_gpio_pin_config_mode(gpio_pin_handle_t handle,
+                                 gpio_mode_e mode)
+{
+    39c8:	862e                	mv	a2,a1
+    GPIO_NULL_PARAM_CHK(handle);
+    39ca:	c511                	beqz	a0,39d6 <csi_gpio_pin_config_mode+0xe>
+    /* config the gpio pin mode direction mask bits */
+    wj_oip_gpio_pin_priv_t *gpio_pin_priv = handle;
+
+    uint8_t offset = gpio_pin_priv->idx;
+
+    int32_t ret = drv_pin_config_mode(gpio_pin_priv->portidx, offset, mode);
+    39cc:	00154583          	lbu	a1,1(a0)
+    39d0:	00054503          	lbu	a0,0(a0)
+    39d4:	ae31                	j	3cf0 <drv_pin_config_mode>
+
+    return ret;
+}
+    39d6:	81010537          	lui	a0,0x81010
+    39da:	08450513          	addi	a0,a0,132 # 81010084 <__heap_end+0x60fe0084>
+    39de:	8082                	ret
+
+000039e0 <csi_gpio_pin_config_direction>:
+  \param[in]   dir       \ref gpio_direction_e
+  \return      error code
+*/
+int32_t csi_gpio_pin_config_direction(gpio_pin_handle_t handle,
+                                      gpio_direction_e dir)
+{
+    39e0:	872a                	mv	a4,a0
+    GPIO_NULL_PARAM_CHK(handle);
+    39e2:	c11d                	beqz	a0,3a08 <csi_gpio_pin_config_direction+0x28>
+
+    /* config the gpio pin mode direction mask bits */
+    wj_oip_gpio_pin_priv_t *gpio_pin_priv = handle;
+
+    /* convert portidx to port handle */
+    wj_oip_gpio_priv_t *gpio_priv = &gpio_handle[gpio_pin_priv->portidx];
+    39e4:	00054503          	lbu	a0,0(a0)
+
+    gpio_priv->dir = dir;
+    39e8:	47f1                	li	a5,28
+    39ea:	02f50533          	mul	a0,a0,a5
+    39ee:	200027b7          	lui	a5,0x20002
+    39f2:	95c78793          	addi	a5,a5,-1700 # 2000195c <gpio_handle>
+    39f6:	953e                	add	a0,a0,a5
+    39f8:	c90c                	sw	a1,16(a0)
+    gpio_priv->mask = 1 << gpio_pin_priv->idx;
+    39fa:	00174703          	lbu	a4,1(a4)
+    39fe:	4785                	li	a5,1
+    3a00:	00e797b3          	sll	a5,a5,a4
+    3a04:	c95c                	sw	a5,20(a0)
+
+    uint32_t ret = gpio_set_direction(gpio_priv, dir);
+    3a06:	bd85                	j	3876 <gpio_set_direction>
+    if (ret) {
+        return ret;
+    }
+
+    return 0;
+}
+    3a08:	81010537          	lui	a0,0x81010
+    3a0c:	08450513          	addi	a0,a0,132 # 81010084 <__heap_end+0x60fe0084>
+    3a10:	8082                	ret
+
+00003a12 <csi_gpio_pin_write>:
   \param[in]   value     the value to be set
   \return      error code
 */
 int32_t csi_gpio_pin_write(gpio_pin_handle_t handle, bool value)
 {
     GPIO_NULL_PARAM_CHK(handle);
-    3836:	cd05                	beqz	a0,386e <csi_gpio_pin_write+0x38>
+    3a12:	cd05                	beqz	a0,3a4a <csi_gpio_pin_write+0x38>
 
     wj_oip_gpio_pin_priv_t *gpio_pin_priv = handle;
 
     /* convert portidx to port handle */
     wj_oip_gpio_priv_t *port_handle = &gpio_handle[gpio_pin_priv->portidx];
-    3838:	00054703          	lbu	a4,0(a0)
+    3a14:	00054703          	lbu	a4,0(a0)
 
     uint8_t offset = gpio_pin_priv->idx;
     uint32_t port_value = value << offset;
 
     port_handle->value = port_value;
-    383c:	46f1                	li	a3,28
+    3a18:	46f1                	li	a3,28
     uint32_t port_value = value << offset;
-    383e:	00154603          	lbu	a2,1(a0)
+    3a1a:	00154603          	lbu	a2,1(a0)
     port_handle->value = port_value;
-    3842:	02d706b3          	mul	a3,a4,a3
-    3846:	20002737          	lui	a4,0x20002
-    384a:	95070713          	addi	a4,a4,-1712 # 20001950 <gpio_handle>
+    3a1e:	02d706b3          	mul	a3,a4,a3
+    3a22:	20002737          	lui	a4,0x20002
+    3a26:	95c70713          	addi	a4,a4,-1700 # 2000195c <gpio_handle>
     uint32_t port_value = value << offset;
-    384e:	00c595b3          	sll	a1,a1,a2
+    3a2a:	00c595b3          	sll	a1,a1,a2
     gpio_write(port_handle, (1 << offset));
-    3852:	4785                	li	a5,1
-    3854:	00c797b3          	sll	a5,a5,a2
+    3a2e:	4785                	li	a5,1
+    3a30:	00c797b3          	sll	a5,a5,a2
     value &= ~(mask);
-    3858:	fff7c793          	not	a5,a5
+    3a34:	fff7c793          	not	a5,a5
 
     return 0;
-    385c:	4501                	li	a0,0
+    3a38:	4501                	li	a0,0
     port_handle->value = port_value;
-    385e:	9736                	add	a4,a4,a3
-    3860:	cf0c                	sw	a1,24(a4)
+    3a3a:	9736                	add	a4,a4,a3
+    3a3c:	cf0c                	sw	a1,24(a4)
     wj_oip_gpio_reg_t *gpio_reg = (wj_oip_gpio_reg_t *)(gpio_priv->base);
-    3862:	4318                	lw	a4,0(a4)
+    3a3e:	4318                	lw	a4,0(a4)
     uint32_t value = gpio_reg->SWPORT_DR;
-    3864:	4314                	lw	a3,0(a4)
+    3a40:	4314                	lw	a3,0(a4)
     value &= ~(mask);
-    3866:	8ff5                	and	a5,a5,a3
+    3a42:	8ff5                	and	a5,a5,a3
     value |= gpio_priv->value;
-    3868:	8ddd                	or	a1,a1,a5
+    3a44:	8ddd                	or	a1,a1,a5
     gpio_reg->SWPORT_DR = value;
-    386a:	c30c                	sw	a1,0(a4)
+    3a46:	c30c                	sw	a1,0(a4)
     return 0;
-    386c:	8082                	ret
+    3a48:	8082                	ret
     GPIO_NULL_PARAM_CHK(handle);
-    386e:	81010537          	lui	a0,0x81010
-    3872:	08450513          	addi	a0,a0,132 # 81010084 <__heap_end+0x60fe0084>
+    3a4a:	81010537          	lui	a0,0x81010
+    3a4e:	08450513          	addi	a0,a0,132 # 81010084 <__heap_end+0x60fe0084>
 
 }
-    3876:	8082                	ret
+    3a52:	8082                	ret
 
-00003878 <wj_oip_timer_irqhandler>:
+00003a54 <wj_oip_timer_irqhandler>:
 }
 
 void wj_oip_timer_irqhandler(int idx)
 {
     wj_oip_timer_priv_t *timer_priv = &timer_instance[idx];
     timer_priv->timeout_flag = 1;
-    3878:	47e1                	li	a5,24
-    387a:	02f50733          	mul	a4,a0,a5
-    387e:	200027b7          	lui	a5,0x20002
-    3882:	96c78793          	addi	a5,a5,-1684 # 2000196c <timer_instance>
-    3886:	97ba                	add	a5,a5,a4
-    3888:	4705                	li	a4,1
-    388a:	cbd8                	sw	a4,20(a5)
+    3a54:	47e1                	li	a5,24
+    3a56:	02f50733          	mul	a4,a0,a5
+    3a5a:	200027b7          	lui	a5,0x20002
+    3a5e:	a7078793          	addi	a5,a5,-1424 # 20001a70 <timer_instance>
+    3a62:	97ba                	add	a5,a5,a4
+    3a64:	4705                	li	a4,1
+    3a66:	cbd8                	sw	a4,20(a5)
 
     wj_oip_timer_reg_t *addr = (wj_oip_timer_reg_t *)(timer_priv->base);
-    388c:	43d8                	lw	a4,4(a5)
+    3a68:	43d8                	lw	a4,4(a5)
 
     addr->TxEOI;
 
     if (timer_priv->cb_event) {
-    388e:	47dc                	lw	a5,12(a5)
+    3a6a:	47dc                	lw	a5,12(a5)
     addr->TxEOI;
-    3890:	4758                	lw	a4,12(a4)
+    3a6c:	4758                	lw	a4,12(a4)
     if (timer_priv->cb_event) {
-    3892:	c399                	beqz	a5,3898 <wj_oip_timer_irqhandler+0x20>
+    3a6e:	c399                	beqz	a5,3a74 <wj_oip_timer_irqhandler+0x20>
         return timer_priv->cb_event(idx, TIMER_EVENT_TIMEOUT);
-    3894:	4581                	li	a1,0
-    3896:	8782                	jr	a5
+    3a70:	4581                	li	a1,0
+    3a72:	8782                	jr	a5
     }
 
 }
-    3898:	8082                	ret
+    3a74:	8082                	ret
 
-0000389a <csi_timer_initialize>:
+00003a76 <csi_timer_initialize>:
   \param[in]   idx  instance timer index
   \param[in]   cb_event  Pointer to \ref timer_event_cb_t
   \return      pointer to timer instance
 */
 timer_handle_t csi_timer_initialize(int32_t idx, timer_event_cb_t cb_event)
 {
-    389a:	1111                	addi	sp,sp,-28
-    389c:	cc06                	sw	ra,24(sp)
-    389e:	ca22                	sw	s0,20(sp)
-    38a0:	c826                	sw	s1,16(sp)
+    3a76:	1111                	addi	sp,sp,-28
+    3a78:	cc06                	sw	ra,24(sp)
+    3a7a:	ca22                	sw	s0,20(sp)
+    3a7c:	c826                	sw	s1,16(sp)
     if (idx < 0 || idx >= CONFIG_TIMER_NUM) {
-    38a2:	47bd                	li	a5,15
-    38a4:	00a7f963          	bgeu	a5,a0,38b6 <csi_timer_initialize+0x1c>
+    3a7e:	47bd                	li	a5,15
+    3a80:	00a7f963          	bgeu	a5,a0,3a92 <csi_timer_initialize+0x1c>
         return NULL;
-    38a8:	4401                	li	s0,0
+    3a84:	4401                	li	s0,0
         drv_irq_register(timer_priv->irq, handler);
         drv_irq_enable(timer_priv->irq);
     }
 
     return (timer_handle_t)timer_priv;
 }
-    38aa:	40e2                	lw	ra,24(sp)
-    38ac:	8522                	mv	a0,s0
-    38ae:	4452                	lw	s0,20(sp)
-    38b0:	44c2                	lw	s1,16(sp)
-    38b2:	0171                	addi	sp,sp,28
-    38b4:	8082                	ret
-    38b6:	84ae                	mv	s1,a1
+    3a86:	40e2                	lw	ra,24(sp)
+    3a88:	8522                	mv	a0,s0
+    3a8a:	4452                	lw	s0,20(sp)
+    3a8c:	44c2                	lw	s1,16(sp)
+    3a8e:	0171                	addi	sp,sp,28
+    3a90:	8082                	ret
+    3a92:	84ae                	mv	s1,a1
     int32_t real_idx = target_get_timer(idx, &base, &irq, &handler);
-    38b8:	0074                	addi	a3,sp,12
-    38ba:	0030                	addi	a2,sp,8
-    38bc:	004c                	addi	a1,sp,4
-    38be:	c02a                	sw	a0,0(sp)
+    3a94:	0074                	addi	a3,sp,12
+    3a96:	0030                	addi	a2,sp,8
+    3a98:	004c                	addi	a1,sp,4
+    3a9a:	c02a                	sw	a0,0(sp)
     uint32_t base = 0u;
-    38c0:	c202                	sw	zero,4(sp)
+    3a9c:	c202                	sw	zero,4(sp)
     uint32_t irq = 0u;
-    38c2:	c402                	sw	zero,8(sp)
+    3a9e:	c402                	sw	zero,8(sp)
     int32_t real_idx = target_get_timer(idx, &base, &irq, &handler);
-    38c4:	3565                	jal	376c <target_get_timer>
+    3aa0:	31f1                	jal	376c <target_get_timer>
     if (real_idx != idx) {
-    38c6:	4702                	lw	a4,0(sp)
-    38c8:	fea710e3          	bne	a4,a0,38a8 <csi_timer_initialize+0xe>
+    3aa2:	4702                	lw	a4,0(sp)
+    3aa4:	fea710e3          	bne	a4,a0,3a84 <csi_timer_initialize+0xe>
     wj_oip_timer_priv_t *timer_priv = &timer_instance[idx];
-    38cc:	4461                	li	s0,24
-    38ce:	028707b3          	mul	a5,a4,s0
-    38d2:	20002437          	lui	s0,0x20002
-    38d6:	96c40413          	addi	s0,s0,-1684 # 2000196c <timer_instance>
+    3aa8:	4461                	li	s0,24
+    3aaa:	028707b3          	mul	a5,a4,s0
+    3aae:	20002437          	lui	s0,0x20002
+    3ab2:	a7040413          	addi	s0,s0,-1424 # 20001a70 <timer_instance>
     timer_priv->irq  = irq;
-    38da:	46a2                	lw	a3,8(sp)
+    3ab6:	46a2                	lw	a3,8(sp)
     timer_priv->timeout = WJ_OIP_TIMER_INIT_DEFAULT_VALUE;
-    38dc:	4501                	li	a0,0
+    3ab8:	4501                	li	a0,0
     wj_oip_timer_priv_t *timer_priv = &timer_instance[idx];
-    38de:	943e                	add	s0,s0,a5
+    3aba:	943e                	add	s0,s0,a5
     timer_priv->base = base;
-    38e0:	4792                	lw	a5,4(sp)
+    3abc:	4792                	lw	a5,4(sp)
     timer_priv->irq  = irq;
-    38e2:	c414                	sw	a3,8(s0)
+    3abe:	c414                	sw	a3,8(s0)
     timer_priv->idx = idx;
-    38e4:	00e40023          	sb	a4,0(s0)
+    3ac0:	00e40023          	sb	a4,0(s0)
     timer_priv->base = base;
-    38e8:	c05c                	sw	a5,4(s0)
-    38ea:	c03e                	sw	a5,0(sp)
+    3ac4:	c05c                	sw	a5,4(s0)
+    3ac6:	c03e                	sw	a5,0(sp)
     timer_priv->timeout = WJ_OIP_TIMER_INIT_DEFAULT_VALUE;
-    38ec:	2ae1                	jal	3ac4 <drv_get_timer_freq>
-    38ee:	577d                	li	a4,-1
-    38f0:	02a75733          	divu	a4,a4,a0
-    38f4:	000f4537          	lui	a0,0xf4
-    38f8:	24050513          	addi	a0,a0,576 # f4240 <__ctor_end__+0xee2b0>
+    3ac8:	2c25                	jal	3d00 <drv_get_timer_freq>
+    3aca:	577d                	li	a4,-1
+    3acc:	02a75733          	divu	a4,a4,a0
+    3ad0:	000f4537          	lui	a0,0xf4
+    3ad4:	24050513          	addi	a0,a0,576 # f4240 <__ctor_end__+0xedfa0>
     addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_ENABLE;
-    38fc:	4782                	lw	a5,0(sp)
+    3ad8:	4782                	lw	a5,0(sp)
     timer_priv->timeout = WJ_OIP_TIMER_INIT_DEFAULT_VALUE;
-    38fe:	02a70733          	mul	a4,a4,a0
-    3902:	c818                	sw	a4,16(s0)
+    3ada:	02a70733          	mul	a4,a4,a0
+    3ade:	c818                	sw	a4,16(s0)
     addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_ENABLE;
-    3904:	4798                	lw	a4,8(a5)
-    3906:	01e77693          	andi	a3,a4,30
-    390a:	0087c703          	lbu	a4,8(a5)
-    390e:	9b01                	andi	a4,a4,-32
-    3910:	8f55                	or	a4,a4,a3
-    3912:	00e78423          	sb	a4,8(a5)
+    3ae0:	4798                	lw	a4,8(a5)
+    3ae2:	01e77693          	andi	a3,a4,30
+    3ae6:	0087c703          	lbu	a4,8(a5)
+    3aea:	9b01                	andi	a4,a4,-32
+    3aec:	8f55                	or	a4,a4,a3
+    3aee:	00e78423          	sb	a4,8(a5)
     addr->TxControl |= WJ_OIP_TIMER_TXCONTROL_INTMASK;
-    3916:	4798                	lw	a4,8(a5)
-    3918:	8b7d                	andi	a4,a4,31
-    391a:	00476693          	ori	a3,a4,4
-    391e:	0087c703          	lbu	a4,8(a5)
-    3922:	9b01                	andi	a4,a4,-32
-    3924:	8f55                	or	a4,a4,a3
-    3926:	00e78423          	sb	a4,8(a5)
+    3af2:	4798                	lw	a4,8(a5)
+    3af4:	8b7d                	andi	a4,a4,31
+    3af6:	00476693          	ori	a3,a4,4
+    3afa:	0087c703          	lbu	a4,8(a5)
+    3afe:	9b01                	andi	a4,a4,-32
+    3b00:	8f55                	or	a4,a4,a3
+    3b02:	00e78423          	sb	a4,8(a5)
     timer_priv->cb_event = cb_event;
-    392a:	c444                	sw	s1,12(s0)
+    3b06:	c444                	sw	s1,12(s0)
     if (cb_event != NULL) {
-    392c:	dcbd                	beqz	s1,38aa <csi_timer_initialize+0x10>
+    3b08:	dcbd                	beqz	s1,3a86 <csi_timer_initialize+0x10>
         drv_irq_register(timer_priv->irq, handler);
-    392e:	4408                	lw	a0,8(s0)
-    3930:	45b2                	lw	a1,12(sp)
-    3932:	c4eff0ef          	jal	ra,2d80 <drv_irq_register>
+    3b0a:	4408                	lw	a0,8(s0)
+    3b0c:	45b2                	lw	a1,12(sp)
+    3b0e:	a72ff0ef          	jal	ra,2d80 <drv_irq_register>
         drv_irq_enable(timer_priv->irq);
-    3936:	4408                	lw	a0,8(s0)
-    3938:	c2cff0ef          	jal	ra,2d64 <drv_irq_enable>
-    393c:	b7bd                	j	38aa <csi_timer_initialize+0x10>
+    3b12:	4408                	lw	a0,8(s0)
+    3b14:	a50ff0ef          	jal	ra,2d64 <drv_irq_enable>
+    3b18:	b7bd                	j	3a86 <csi_timer_initialize+0x10>
 
-0000393e <csi_timer_config>:
+00003b1a <csi_timer_config>:
   \param[in]   mode      \ref timer_mode_e
   \return      error code
 */
 int32_t csi_timer_config(timer_handle_t handle, timer_mode_e mode)
 {
     TIMER_NULL_PARAM_CHK(handle);
-    393e:	c511                	beqz	a0,394a <csi_timer_config+0xc>
+    3b1a:	c511                	beqz	a0,3b26 <csi_timer_config+0xc>
 
     wj_oip_timer_priv_t *timer_priv = handle;
     wj_oip_timer_reg_t *addr = (wj_oip_timer_reg_t *)(timer_priv->base);
-    3940:	415c                	lw	a5,4(a0)
+    3b1c:	415c                	lw	a5,4(a0)
 
     switch (mode) {
-    3942:	c989                	beqz	a1,3954 <csi_timer_config+0x16>
-    3944:	4705                	li	a4,1
-    3946:	02e58c63          	beq	a1,a4,397e <csi_timer_config+0x40>
+    3b1e:	c989                	beqz	a1,3b30 <csi_timer_config+0x16>
+    3b20:	4705                	li	a4,1
+    3b22:	02e58c63          	beq	a1,a4,3b5a <csi_timer_config+0x40>
     TIMER_NULL_PARAM_CHK(handle);
-    394a:	81070537          	lui	a0,0x81070
-    394e:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
+    3b26:	81070537          	lui	a0,0x81070
+    3b2a:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
     }
 
     addr->TxControl |= (WJ_OIP_TIMER_TXCONTROL_TRIGGER);
 
     return 0;
 }
-    3952:	8082                	ret
+    3b2e:	8082                	ret
             addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_MODE;
-    3954:	4798                	lw	a4,8(a5)
-    3956:	01d77693          	andi	a3,a4,29
+    3b30:	4798                	lw	a4,8(a5)
+    3b32:	01d77693          	andi	a3,a4,29
             addr->TxControl |= WJ_OIP_TIMER_TXCONTROL_MODE;
-    395a:	0087c703          	lbu	a4,8(a5)
+    3b36:	0087c703          	lbu	a4,8(a5)
     return 0;
-    395e:	4501                	li	a0,0
+    3b3a:	4501                	li	a0,0
             addr->TxControl |= WJ_OIP_TIMER_TXCONTROL_MODE;
-    3960:	9b01                	andi	a4,a4,-32
-    3962:	8f55                	or	a4,a4,a3
-    3964:	00e78423          	sb	a4,8(a5)
+    3b3c:	9b01                	andi	a4,a4,-32
+    3b3e:	8f55                	or	a4,a4,a3
+    3b40:	00e78423          	sb	a4,8(a5)
     addr->TxControl |= (WJ_OIP_TIMER_TXCONTROL_TRIGGER);
-    3968:	4798                	lw	a4,8(a5)
-    396a:	8b7d                	andi	a4,a4,31
-    396c:	01076693          	ori	a3,a4,16
-    3970:	0087c703          	lbu	a4,8(a5)
-    3974:	9b01                	andi	a4,a4,-32
-    3976:	8f55                	or	a4,a4,a3
-    3978:	00e78423          	sb	a4,8(a5)
+    3b44:	4798                	lw	a4,8(a5)
+    3b46:	8b7d                	andi	a4,a4,31
+    3b48:	01076693          	ori	a3,a4,16
+    3b4c:	0087c703          	lbu	a4,8(a5)
+    3b50:	9b01                	andi	a4,a4,-32
+    3b52:	8f55                	or	a4,a4,a3
+    3b54:	00e78423          	sb	a4,8(a5)
     return 0;
-    397c:	8082                	ret
+    3b58:	8082                	ret
             addr->TxControl |= WJ_OIP_TIMER_TXCONTROL_MODE;
-    397e:	4798                	lw	a4,8(a5)
-    3980:	8b7d                	andi	a4,a4,31
-    3982:	00276693          	ori	a3,a4,2
-    3986:	bfd1                	j	395a <csi_timer_config+0x1c>
+    3b5a:	4798                	lw	a4,8(a5)
+    3b5c:	8b7d                	andi	a4,a4,31
+    3b5e:	00276693          	ori	a3,a4,2
+    3b62:	bfd1                	j	3b36 <csi_timer_config+0x1c>
 
-00003988 <csi_timer_set_timeout>:
+00003b64 <csi_timer_set_timeout>:
   \param[in]   timeout the timeout value in microseconds(us).
   \return      error code
 */
 int32_t csi_timer_set_timeout(timer_handle_t handle, uint32_t timeout)
 {
     TIMER_NULL_PARAM_CHK(handle);
-    3988:	c501                	beqz	a0,3990 <csi_timer_set_timeout+0x8>
+    3b64:	c501                	beqz	a0,3b6c <csi_timer_set_timeout+0x8>
 
     wj_oip_timer_priv_t *timer_priv = handle;
     timer_priv->timeout = timeout;
-    398a:	c90c                	sw	a1,16(a0)
+    3b66:	c90c                	sw	a1,16(a0)
     return 0;
-    398c:	4501                	li	a0,0
-    398e:	8082                	ret
+    3b68:	4501                	li	a0,0
+    3b6a:	8082                	ret
     TIMER_NULL_PARAM_CHK(handle);
-    3990:	81070537          	lui	a0,0x81070
-    3994:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
+    3b6c:	81070537          	lui	a0,0x81070
+    3b70:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
 }
-    3998:	8082                	ret
+    3b74:	8082                	ret
 
-0000399a <csi_timer_start>:
+00003b76 <csi_timer_start>:
   \return      error code
 */
 
 int32_t csi_timer_start(timer_handle_t handle)
 {
     TIMER_NULL_PARAM_CHK(handle);
-    399a:	c545                	beqz	a0,3a42 <csi_timer_start+0xa8>
+    3b76:	c545                	beqz	a0,3c1e <csi_timer_start+0xa8>
 {
-    399c:	1141                	addi	sp,sp,-16
-    399e:	c606                	sw	ra,12(sp)
-    39a0:	c422                	sw	s0,8(sp)
-    39a2:	c226                	sw	s1,4(sp)
-    39a4:	842a                	mv	s0,a0
+    3b78:	1141                	addi	sp,sp,-16
+    3b7a:	c606                	sw	ra,12(sp)
+    3b7c:	c422                	sw	s0,8(sp)
+    3b7e:	c226                	sw	s1,4(sp)
+    3b80:	842a                	mv	s0,a0
 
     wj_oip_timer_priv_t *timer_priv = handle;
 
     timer_priv->timeout_flag = 0;
-    39a6:	00052a23          	sw	zero,20(a0)
+    3b82:	00052a23          	sw	zero,20(a0)
 
     uint32_t min_us = drv_get_timer_freq(timer_priv->idx) / 1000000;
-    39aa:	00054503          	lbu	a0,0(a0)
-    39ae:	000f44b7          	lui	s1,0xf4
-    39b2:	24048493          	addi	s1,s1,576 # f4240 <__ctor_end__+0xee2b0>
-    39b6:	2239                	jal	3ac4 <drv_get_timer_freq>
-    39b8:	029544b3          	div	s1,a0,s1
+    3b86:	00054503          	lbu	a0,0(a0)
+    3b8a:	000f44b7          	lui	s1,0xf4
+    3b8e:	24048493          	addi	s1,s1,576 # f4240 <__ctor_end__+0xedfa0>
+    3b92:	22bd                	jal	3d00 <drv_get_timer_freq>
+    3b94:	029544b3          	div	s1,a0,s1
     uint32_t load;
 
     if (((timer_priv->timeout * drv_get_timer_freq(timer_priv->idx)) / 1000000) > 0xffffffff) {
-    39bc:	00044503          	lbu	a0,0(s0)
-    39c0:	2211                	jal	3ac4 <drv_get_timer_freq>
+    3b98:	00044503          	lbu	a0,0(s0)
+    3b9c:	2295                	jal	3d00 <drv_get_timer_freq>
         return ERR_TIMER(DRV_ERROR_PARAMETER);
     }
 
     if (min_us) {
-    39c2:	481c                	lw	a5,16(s0)
+    3b9e:	481c                	lw	a5,16(s0)
         load = (uint32_t)(timer_priv->timeout * min_us);
-    39c4:	02f48533          	mul	a0,s1,a5
+    3ba0:	02f48533          	mul	a0,s1,a5
     if (min_us) {
-    39c8:	e08d                	bnez	s1,39ea <csi_timer_start+0x50>
+    3ba4:	e08d                	bnez	s1,3bc6 <csi_timer_start+0x50>
     } else {
         load = (uint32_t)(((uint64_t)(timer_priv->timeout) * drv_get_timer_freq(timer_priv->idx)) / 1000000);
-    39ca:	00044503          	lbu	a0,0(s0)
-    39ce:	c03e                	sw	a5,0(sp)
-    39d0:	28d5                	jal	3ac4 <drv_get_timer_freq>
-    39d2:	4782                	lw	a5,0(sp)
-    39d4:	000f4637          	lui	a2,0xf4
-    39d8:	24060613          	addi	a2,a2,576 # f4240 <__ctor_end__+0xee2b0>
-    39dc:	4681                	li	a3,0
-    39de:	02f525b3          	mulhsu	a1,a0,a5
-    39e2:	02a78533          	mul	a0,a5,a0
-    39e6:	811fc0ef          	jal	ra,1f6 <__udivdi3>
+    3ba6:	00044503          	lbu	a0,0(s0)
+    3baa:	c03e                	sw	a5,0(sp)
+    3bac:	2a91                	jal	3d00 <drv_get_timer_freq>
+    3bae:	4782                	lw	a5,0(sp)
+    3bb0:	000f4637          	lui	a2,0xf4
+    3bb4:	24060613          	addi	a2,a2,576 # f4240 <__ctor_end__+0xedfa0>
+    3bb8:	4681                	li	a3,0
+    3bba:	02f525b3          	mulhsu	a1,a0,a5
+    3bbe:	02a78533          	mul	a0,a5,a0
+    3bc2:	e34fc0ef          	jal	ra,1f6 <__udivdi3>
     }
 
     wj_oip_timer_reg_t *addr = (wj_oip_timer_reg_t *)(timer_priv->base);
 
     if (timer_priv->timeout == 0) {
-    39ea:	4818                	lw	a4,16(s0)
+    3bc6:	4818                	lw	a4,16(s0)
     wj_oip_timer_reg_t *addr = (wj_oip_timer_reg_t *)(timer_priv->base);
-    39ec:	405c                	lw	a5,4(s0)
+    3bc8:	405c                	lw	a5,4(s0)
     if (timer_priv->timeout == 0) {
-    39ee:	e729                	bnez	a4,3a38 <csi_timer_start+0x9e>
+    3bca:	e729                	bnez	a4,3c14 <csi_timer_start+0x9e>
         addr->TxLoadCount = 0xffffffff;                           /* load time(us) */
     } else {
         if ((addr->TxControl | 0x2) == 0x2) {
             addr->TxLoadCount = 0xffffffff;                           /* load time(us) */
-    39f0:	577d                	li	a4,-1
-    39f2:	c398                	sw	a4,0(a5)
+    3bcc:	577d                	li	a4,-1
+    3bce:	c398                	sw	a4,0(a5)
         } else {
             addr->TxLoadCount = load;                           /* load time(us) */
         }
     }
 
     addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_ENABLE;      /* disable the timer */
-    39f4:	4798                	lw	a4,8(a5)
+    3bd0:	4798                	lw	a4,8(a5)
     }
 
 #endif
 
     return 0;
 }
-    39f6:	40b2                	lw	ra,12(sp)
-    39f8:	4422                	lw	s0,8(sp)
+    3bd2:	40b2                	lw	ra,12(sp)
+    3bd4:	4422                	lw	s0,8(sp)
     addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_ENABLE;      /* disable the timer */
-    39fa:	01e77693          	andi	a3,a4,30
-    39fe:	0087c703          	lbu	a4,8(a5)
+    3bd6:	01e77693          	andi	a3,a4,30
+    3bda:	0087c703          	lbu	a4,8(a5)
 }
-    3a02:	4492                	lw	s1,4(sp)
+    3bde:	4492                	lw	s1,4(sp)
     return 0;
-    3a04:	4501                	li	a0,0
+    3be0:	4501                	li	a0,0
     addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_ENABLE;      /* disable the timer */
-    3a06:	9b01                	andi	a4,a4,-32
-    3a08:	8f55                	or	a4,a4,a3
-    3a0a:	00e78423          	sb	a4,8(a5)
+    3be2:	9b01                	andi	a4,a4,-32
+    3be4:	8f55                	or	a4,a4,a3
+    3be6:	00e78423          	sb	a4,8(a5)
     addr->TxControl |= WJ_OIP_TIMER_TXCONTROL_ENABLE;       /* enable the corresponding timer */
-    3a0e:	4798                	lw	a4,8(a5)
-    3a10:	8b7d                	andi	a4,a4,31
-    3a12:	00176693          	ori	a3,a4,1
-    3a16:	0087c703          	lbu	a4,8(a5)
-    3a1a:	9b01                	andi	a4,a4,-32
-    3a1c:	8f55                	or	a4,a4,a3
-    3a1e:	00e78423          	sb	a4,8(a5)
+    3bea:	4798                	lw	a4,8(a5)
+    3bec:	8b7d                	andi	a4,a4,31
+    3bee:	00176693          	ori	a3,a4,1
+    3bf2:	0087c703          	lbu	a4,8(a5)
+    3bf6:	9b01                	andi	a4,a4,-32
+    3bf8:	8f55                	or	a4,a4,a3
+    3bfa:	00e78423          	sb	a4,8(a5)
     addr->TxControl &= ~WJ_OIP_TIMER_TXCONTROL_INTMASK;     /* enable interrupt */
-    3a22:	4798                	lw	a4,8(a5)
-    3a24:	01b77693          	andi	a3,a4,27
-    3a28:	0087c703          	lbu	a4,8(a5)
-    3a2c:	9b01                	andi	a4,a4,-32
-    3a2e:	8f55                	or	a4,a4,a3
-    3a30:	00e78423          	sb	a4,8(a5)
+    3bfe:	4798                	lw	a4,8(a5)
+    3c00:	01b77693          	andi	a3,a4,27
+    3c04:	0087c703          	lbu	a4,8(a5)
+    3c08:	9b01                	andi	a4,a4,-32
+    3c0a:	8f55                	or	a4,a4,a3
+    3c0c:	00e78423          	sb	a4,8(a5)
 }
-    3a34:	0141                	addi	sp,sp,16
-    3a36:	8082                	ret
+    3c10:	0141                	addi	sp,sp,16
+    3c12:	8082                	ret
         if ((addr->TxControl | 0x2) == 0x2) {
-    3a38:	4798                	lw	a4,8(a5)
-    3a3a:	8b75                	andi	a4,a4,29
-    3a3c:	db55                	beqz	a4,39f0 <csi_timer_start+0x56>
+    3c14:	4798                	lw	a4,8(a5)
+    3c16:	8b75                	andi	a4,a4,29
+    3c18:	db55                	beqz	a4,3bcc <csi_timer_start+0x56>
             addr->TxLoadCount = load;                           /* load time(us) */
-    3a3e:	c388                	sw	a0,0(a5)
-    3a40:	bf55                	j	39f4 <csi_timer_start+0x5a>
+    3c1a:	c388                	sw	a0,0(a5)
+    3c1c:	bf55                	j	3bd0 <csi_timer_start+0x5a>
     TIMER_NULL_PARAM_CHK(handle);
-    3a42:	81070537          	lui	a0,0x81070
-    3a46:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
+    3c1e:	81070537          	lui	a0,0x81070
+    3c22:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
 }
-    3a4a:	8082                	ret
+    3c26:	8082                	ret
 
-00003a4c <csi_timer_get_current_value>:
+00003c28 <csi_timer_get_current_value>:
   \param[out]   value     timer current value
   \return      error code
 */
 int32_t csi_timer_get_current_value(timer_handle_t handle, uint32_t *value)
 {
     TIMER_NULL_PARAM_CHK(handle);
-    3a4c:	c901                	beqz	a0,3a5c <csi_timer_get_current_value+0x10>
+    3c28:	c901                	beqz	a0,3c38 <csi_timer_get_current_value+0x10>
     TIMER_NULL_PARAM_CHK(value);
-    3a4e:	00058763          	beqz	a1,3a5c <csi_timer_get_current_value+0x10>
+    3c2a:	00058763          	beqz	a1,3c38 <csi_timer_get_current_value+0x10>
 
     wj_oip_timer_priv_t *timer_priv = handle;
     wj_oip_timer_reg_t *addr = (wj_oip_timer_reg_t *)(timer_priv->base);
-    3a52:	415c                	lw	a5,4(a0)
+    3c2e:	415c                	lw	a5,4(a0)
 
     *value = addr->TxCurrentValue;
     return 0;
-    3a54:	4501                	li	a0,0
+    3c30:	4501                	li	a0,0
     *value = addr->TxCurrentValue;
-    3a56:	43dc                	lw	a5,4(a5)
-    3a58:	c19c                	sw	a5,0(a1)
+    3c32:	43dc                	lw	a5,4(a5)
+    3c34:	c19c                	sw	a5,0(a1)
     return 0;
-    3a5a:	8082                	ret
+    3c36:	8082                	ret
     TIMER_NULL_PARAM_CHK(handle);
-    3a5c:	81070537          	lui	a0,0x81070
-    3a60:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
+    3c38:	81070537          	lui	a0,0x81070
+    3c3c:	08450513          	addi	a0,a0,132 # 81070084 <__heap_end+0x61040084>
 }
-    3a64:	8082                	ret
+    3c40:	8082                	ret
 
-00003a66 <TIM0_IRQHandler>:
+00003c42 <TIM0_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM0_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(0);
-    3a66:	4501                	li	a0,0
-    3a68:	bd01                	j	3878 <wj_oip_timer_irqhandler>
+    3c42:	4501                	li	a0,0
+    3c44:	bd01                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a6a <TIM1_IRQHandler>:
+00003c46 <TIM1_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM1_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(1);
-    3a6a:	4505                	li	a0,1
-    3a6c:	b531                	j	3878 <wj_oip_timer_irqhandler>
+    3c46:	4505                	li	a0,1
+    3c48:	b531                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a6e <TIM2_IRQHandler>:
+00003c4a <TIM2_IRQHandler>:
     CSI_INTRPT_EXIT();
 }
 ATTRIBUTE_ISR void TIM2_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(2);
-    3a6e:	4509                	li	a0,2
-    3a70:	b521                	j	3878 <wj_oip_timer_irqhandler>
+    3c4a:	4509                	li	a0,2
+    3c4c:	b521                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a72 <TIM3_IRQHandler>:
+00003c4e <TIM3_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM3_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(3);
-    3a72:	450d                	li	a0,3
-    3a74:	b511                	j	3878 <wj_oip_timer_irqhandler>
+    3c4e:	450d                	li	a0,3
+    3c50:	b511                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a76 <TIM4_IRQHandler>:
+00003c52 <TIM4_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM4_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(4);
-    3a76:	4511                	li	a0,4
-    3a78:	b501                	j	3878 <wj_oip_timer_irqhandler>
+    3c52:	4511                	li	a0,4
+    3c54:	b501                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a7a <TIM5_IRQHandler>:
+00003c56 <TIM5_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM5_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(5);
-    3a7a:	4515                	li	a0,5
-    3a7c:	bbf5                	j	3878 <wj_oip_timer_irqhandler>
+    3c56:	4515                	li	a0,5
+    3c58:	bbf5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a7e <TIM6_IRQHandler>:
+00003c5a <TIM6_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM6_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(6);
-    3a7e:	4519                	li	a0,6
-    3a80:	bbe5                	j	3878 <wj_oip_timer_irqhandler>
+    3c5a:	4519                	li	a0,6
+    3c5c:	bbe5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a82 <TIM7_IRQHandler>:
+00003c5e <TIM7_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM7_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(7);
-    3a82:	451d                	li	a0,7
-    3a84:	bbd5                	j	3878 <wj_oip_timer_irqhandler>
+    3c5e:	451d                	li	a0,7
+    3c60:	bbd5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a86 <TIM8_IRQHandler>:
+00003c62 <TIM8_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM8_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(8);
-    3a86:	4521                	li	a0,8
-    3a88:	bbc5                	j	3878 <wj_oip_timer_irqhandler>
+    3c62:	4521                	li	a0,8
+    3c64:	bbc5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a8a <TIM9_IRQHandler>:
+00003c66 <TIM9_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM9_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(9);
-    3a8a:	4525                	li	a0,9
-    3a8c:	b3f5                	j	3878 <wj_oip_timer_irqhandler>
+    3c66:	4525                	li	a0,9
+    3c68:	b3f5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a8e <TIM10_IRQHandler>:
+00003c6a <TIM10_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM10_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(10);
-    3a8e:	4529                	li	a0,10
-    3a90:	b3e5                	j	3878 <wj_oip_timer_irqhandler>
+    3c6a:	4529                	li	a0,10
+    3c6c:	b3e5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a92 <TIM11_IRQHandler>:
+00003c6e <TIM11_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM11_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(11);
-    3a92:	452d                	li	a0,11
-    3a94:	b3d5                	j	3878 <wj_oip_timer_irqhandler>
+    3c6e:	452d                	li	a0,11
+    3c70:	b3d5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a96 <TIM12_IRQHandler>:
+00003c72 <TIM12_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM12_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(12);
-    3a96:	4531                	li	a0,12
-    3a98:	b3c5                	j	3878 <wj_oip_timer_irqhandler>
+    3c72:	4531                	li	a0,12
+    3c74:	b3c5                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a9a <TIM13_IRQHandler>:
+00003c76 <TIM13_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM13_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(13);
-    3a9a:	4535                	li	a0,13
-    3a9c:	bbf1                	j	3878 <wj_oip_timer_irqhandler>
+    3c76:	4535                	li	a0,13
+    3c78:	bbf1                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003a9e <TIM14_IRQHandler>:
+00003c7a <TIM14_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM14_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(14);
-    3a9e:	4539                	li	a0,14
-    3aa0:	bbe1                	j	3878 <wj_oip_timer_irqhandler>
+    3c7a:	4539                	li	a0,14
+    3c7c:	bbe1                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003aa2 <TIM15_IRQHandler>:
+00003c7e <TIM15_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void TIM15_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_oip_timer_irqhandler(15);
-    3aa2:	453d                	li	a0,15
-    3aa4:	bbd1                	j	3878 <wj_oip_timer_irqhandler>
+    3c7e:	453d                	li	a0,15
+    3c80:	bbd1                	j	3a54 <wj_oip_timer_irqhandler>
 
-00003aa6 <USI0_IRQHandler>:
+00003c82 <USI0_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void USI0_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_usi_irqhandler(0);
-    3aa6:	4501                	li	a0,0
-    3aa8:	b36ff06f          	j	2dde <wj_usi_irqhandler>
+    3c82:	4501                	li	a0,0
+    3c84:	95aff06f          	j	2dde <wj_usi_irqhandler>
 
-00003aac <USI1_IRQHandler>:
+00003c88 <USI1_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void USI1_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_usi_irqhandler(1);
-    3aac:	4505                	li	a0,1
-    3aae:	b30ff06f          	j	2dde <wj_usi_irqhandler>
+    3c88:	4505                	li	a0,1
+    3c8a:	954ff06f          	j	2dde <wj_usi_irqhandler>
 
-00003ab2 <USI2_IRQHandler>:
+00003c8e <USI2_IRQHandler>:
 }
 
 ATTRIBUTE_ISR void USI2_IRQHandler(void)
 {
     CSI_INTRPT_ENTER();
     wj_usi_irqhandler(2);
-    3ab2:	4509                	li	a0,2
-    3ab4:	b2aff06f          	j	2dde <wj_usi_irqhandler>
+    3c8e:	4509                	li	a0,2
+    3c90:	94eff06f          	j	2dde <wj_usi_irqhandler>
 
-00003ab8 <drv_get_usi_freq>:
-    3ab8:	0041a503          	lw	a0,4(gp) # 200004ec <g_system_clock>
-    3abc:	8082                	ret
+00003c94 <GPIO0_IRQHandler>:
+}
 
-00003abe <drv_get_sys_freq>:
+ATTRIBUTE_ISR void GPIO0_IRQHandler(void)
+{
+    CSI_INTRPT_ENTER();
+    wj_oip_gpio_irqhandler(0);
+    3c94:	4501                	li	a0,0
+    3c96:	b131                	j	38a2 <wj_oip_gpio_irqhandler>
+
+00003c98 <mdelay>:
+    }
+}
+
+void mdelay(uint32_t ms)
+{
+    if (ms == 0) {
+    3c98:	04050b63          	beqz	a0,3cee <mdelay+0x56>
+{
+    3c9c:	1141                	addi	sp,sp,-16
+    3c9e:	c422                	sw	s0,8(sp)
+    3ca0:	c606                	sw	ra,12(sp)
+    3ca2:	c226                	sw	s1,4(sp)
+    3ca4:	fff50413          	addi	s0,a0,-1
+  \brief   get CORE timer reload value
+  \return          CORE timer counter value.
+ */
+__STATIC_INLINE uint32_t csi_coret_get_load(void)
+{
+    return CORET->LOAD;
+    3ca8:	e000e6b7          	lui	a3,0xe000e
+    3cac:	4ac4                	lw	s1,20(a3)
+  \brief   get CORE timer counter value
+  \return          CORE timer counter value.
+ */
+__STATIC_INLINE uint32_t csi_coret_get_value(void)
+{
+    return CORET->VAL;
+    3cae:	4e98                	lw	a4,24(a3)
+    3cb0:	c03a                	sw	a4,0(sp)
+    uint32_t cnt = (drv_get_sys_freq() / 1000);
+    3cb2:	20a1                	jal	3cfa <drv_get_sys_freq>
+    3cb4:	3e800793          	li	a5,1000
+    3cb8:	02f54533          	div	a0,a0,a5
+            if (load - cur + start > cnt) {
+    3cbc:	4702                	lw	a4,0(sp)
+    3cbe:	e000e6b7          	lui	a3,0xe000e
+    3cc2:	94ba                	add	s1,s1,a4
+    3cc4:	4e9c                	lw	a5,24(a3)
+        if (start > cur) {
+    3cc6:	00e7ff63          	bgeu	a5,a4,3ce4 <mdelay+0x4c>
+            if (start - cur >= cnt) {
+    3cca:	40f707b3          	sub	a5,a4,a5
+    3cce:	fea7ebe3          	bltu	a5,a0,3cc4 <mdelay+0x2c>
+    3cd2:	147d                	addi	s0,s0,-1
+        return;
+    }
+
+    while (ms--) {
+    3cd4:	57fd                	li	a5,-1
+    3cd6:	fcf41be3          	bne	s0,a5,3cac <mdelay+0x14>
+        _mdelay();
+    }
+}
+    3cda:	40b2                	lw	ra,12(sp)
+    3cdc:	4422                	lw	s0,8(sp)
+    3cde:	4492                	lw	s1,4(sp)
+    3ce0:	0141                	addi	sp,sp,16
+    3ce2:	8082                	ret
+            if (load - cur + start > cnt) {
+    3ce4:	40f487b3          	sub	a5,s1,a5
+    3ce8:	fcf57ee3          	bgeu	a0,a5,3cc4 <mdelay+0x2c>
+    3cec:	b7dd                	j	3cd2 <mdelay+0x3a>
+    3cee:	8082                	ret
+
+00003cf0 <drv_pin_config_mode>:
+}
+
+int32_t drv_pin_config_mode(port_name_e port, uint8_t offset, gpio_mode_e pin_mode)
+{
+    return 0;
+}
+    3cf0:	4501                	li	a0,0
+    3cf2:	8082                	ret
+
+00003cf4 <drv_get_usi_freq>:
+    3cf4:	0041a503          	lw	a0,4(gp) # 200004ec <g_system_clock>
+    3cf8:	8082                	ret
+
+00003cfa <drv_get_sys_freq>:
 }
 
 int32_t drv_get_sys_freq(void)
 {
     return g_system_clock;
 }
-    3abe:	0041a503          	lw	a0,4(gp) # 200004ec <g_system_clock>
-    3ac2:	8082                	ret
+    3cfa:	0041a503          	lw	a0,4(gp) # 200004ec <g_system_clock>
+    3cfe:	8082                	ret
 
-00003ac4 <drv_get_timer_freq>:
-    3ac4:	0041a503          	lw	a0,4(gp) # 200004ec <g_system_clock>
-    3ac8:	8082                	ret
+00003d00 <drv_get_timer_freq>:
+    3d00:	0041a503          	lw	a0,4(gp) # 200004ec <g_system_clock>
+    3d04:	8082                	ret
 
-00003aca <SystemInit>:
+00003d06 <SystemInit>:
   */
 void SystemInit(void)
 {
     int i;
 
     CLIC->CLICCFG = 0x4UL;
-    3aca:	e000e737          	lui	a4,0xe000e
+    3d06:	e000e737          	lui	a4,0xe000e
 {
-    3ace:	1151                	addi	sp,sp,-12
+    3d0a:	1151                	addi	sp,sp,-12
     CLIC->CLICCFG = 0x4UL;
-    3ad0:	10070713          	addi	a4,a4,256 # e000e100 <__heap_end+0xbffde100>
+    3d0c:	10070713          	addi	a4,a4,256 # e000e100 <__heap_end+0xbffde100>
 {
-    3ad4:	c222                	sw	s0,4(sp)
+    3d10:	c222                	sw	s0,4(sp)
     CLIC->CLICCFG = 0x4UL;
-    3ad6:	7ff70793          	addi	a5,a4,2047
-    3ada:	4691                	li	a3,4
+    3d12:	7ff70793          	addi	a5,a4,2047
+    3d16:	4691                	li	a3,4
 {
-    3adc:	c406                	sw	ra,8(sp)
+    3d18:	c406                	sw	ra,8(sp)
     CLIC->CLICCFG = 0x4UL;
-    3ade:	30d780a3          	sb	a3,769(a5)
+    3d1a:	30d780a3          	sb	a3,769(a5)
 
     for (i = 0; i < 12; i++) {
         CLIC->INTIP[i] = 0;
-    3ae2:	e000e437          	lui	s0,0xe000e
+    3d1e:	e000e437          	lui	s0,0xe000e
     for (i = 0; i < 12; i++) {
-    3ae6:	4781                	li	a5,0
-    3ae8:	46b1                	li	a3,12
+    3d22:	4781                	li	a5,0
+    3d24:	46b1                	li	a3,12
         CLIC->INTIP[i] = 0;
-    3aea:	00f70633          	add	a2,a4,a5
-    3aee:	00060023          	sb	zero,0(a2)
+    3d26:	00f70633          	add	a2,a4,a5
+    3d2a:	00060023          	sb	zero,0(a2)
     for (i = 0; i < 12; i++) {
-    3af2:	0785                	addi	a5,a5,1
-    3af4:	fed79be3          	bne	a5,a3,3aea <SystemInit+0x20>
+    3d2e:	0785                	addi	a5,a5,1
+    3d30:	fed79be3          	bne	a5,a3,3d26 <SystemInit+0x20>
     }
 
     drv_irq_enable(Machine_Software_IRQn);
-    3af8:	450d                	li	a0,3
-    3afa:	a6aff0ef          	jal	ra,2d64 <drv_irq_enable>
+    3d34:	450d                	li	a0,3
+    3d36:	82eff0ef          	jal	ra,2d64 <drv_irq_enable>
   \details Enables IRQ interrupts by setting the IE-bit in the PSR.
            Can only be executed in Privileged modes.
  */
 __ALWAYS_STATIC_INLINE void __enable_irq(void)
 {
     __ASM volatile("csrs mstatus, 8");
-    3afe:	30046073          	csrsi	mstatus,8
+    3d3a:	30046073          	csrsi	mstatus,8
     csi_coret_config(drv_get_sys_freq() / CONFIG_SYSTICK_HZ, CORET_IRQn);    //10ms
-    3b02:	3f75                	jal	3abe <drv_get_sys_freq>
-    3b04:	06400793          	li	a5,100
-    3b08:	02f54533          	div	a0,a0,a5
-           function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
-           must contain a vendor-specific implementation of this function.
- */
-__STATIC_INLINE uint32_t csi_coret_config(uint32_t ticks, int32_t IRQn)
-{
+    3d3e:	3f75                	jal	3cfa <drv_get_sys_freq>
+    3d40:	06400793          	li	a5,100
+    3d44:	02f54533          	div	a0,a0,a5
     if ((ticks - 1UL) > CORET_LOAD_RELOAD_Msk) {
-    3b0c:	010007b7          	lui	a5,0x1000
-    3b10:	157d                	addi	a0,a0,-1
-    3b12:	00f57763          	bgeu	a0,a5,3b20 <SystemInit+0x56>
-        return (1UL);                                                   /* Reload value impossible */
-    }
-
+    3d48:	010007b7          	lui	a5,0x1000
+    3d4c:	157d                	addi	a0,a0,-1
+    3d4e:	00f57763          	bgeu	a0,a5,3d5c <SystemInit+0x56>
     CORET->LOAD = (uint32_t)(ticks - 1UL);                              /* set reload register */
-    3b16:	c848                	sw	a0,20(s0)
+    3d52:	c848                	sw	a0,20(s0)
     CORET->VAL  = 0UL;                                                  /* Load the CORET Counter Value */
-    3b18:	00042c23          	sw	zero,24(s0) # e000e018 <__heap_end+0xbffde018>
+    3d54:	00042c23          	sw	zero,24(s0) # e000e018 <__heap_end+0xbffde018>
     CORET->CTRL = CORET_CTRL_CLKSOURCE_Msk |
-    3b1c:	479d                	li	a5,7
-    3b1e:	c81c                	sw	a5,16(s0)
+    3d58:	479d                	li	a5,7
+    3d5a:	c81c                	sw	a5,16(s0)
 #ifdef CONFIG_KERNEL_NONE
     _system_init_for_baremetal();
 #else
     _system_init_for_kernel();
 #endif
 }
-    3b20:	4412                	lw	s0,4(sp)
-    3b22:	40a2                	lw	ra,8(sp)
-    3b24:	0131                	addi	sp,sp,12
+    3d5c:	4412                	lw	s0,4(sp)
+    3d5e:	40a2                	lw	ra,8(sp)
+    3d60:	0131                	addi	sp,sp,12
     mm_heap_initialize();
-    3b26:	a459                	j	3dac <mm_heap_initialize>
+    3d62:	a469                	j	3fec <mm_heap_initialize>
 
-00003b28 <trap_c>:
+00003d64 <trap_c>:
 #include <csi_core.h>
 
 void (*trap_c_callback)(void);
 
 void trap_c(uint32_t *regs)
 {
-    3b28:	1131                	addi	sp,sp,-20
-    3b2a:	c622                	sw	s0,12(sp)
-    3b2c:	c806                	sw	ra,16(sp)
-    3b2e:	c426                	sw	s1,8(sp)
-    3b30:	842a                	mv	s0,a0
+    3d64:	1131                	addi	sp,sp,-20
+    3d66:	c622                	sw	s0,12(sp)
+    3d68:	c806                	sw	ra,16(sp)
+    3d6a:	c426                	sw	s1,8(sp)
+    3d6c:	842a                	mv	s0,a0
  */
 __ALWAYS_STATIC_INLINE uint32_t __get_MCAUSE(void)
 {
     uint32_t result;
 
     __ASM volatile("csrr %0, mcause" : "=r"(result));
-    3b32:	342025f3          	csrr	a1,mcause
+    3d6e:	342025f3          	csrr	a1,mcause
     int i;
     uint32_t vec = 0;
 
     vec = __get_MCAUSE() & 0x3FF;
 
     printf("CPU Exception: NO.%d", vec);
-    3b36:	6515                	lui	a0,0x5
-    3b38:	3ff5f593          	andi	a1,a1,1023
-    3b3c:	5fc50513          	addi	a0,a0,1532 # 55fc <sg_usi_config+0x24>
-    3b40:	36f000ef          	jal	ra,46ae <printf>
+    3d72:	6519                	lui	a0,0x6
+    3d74:	3ff5f593          	andi	a1,a1,1023
+    3d78:	90c50513          	addi	a0,a0,-1780 # 590c <sg_usi_config+0x24>
+    3d7c:	43f000ef          	jal	ra,49ba <printf>
     printf("\n");
-    3b44:	4529                	li	a0,10
-    3b46:	47f000ef          	jal	ra,47c4 <putchar>
+    3d80:	4529                	li	a0,10
+    3d82:	54f000ef          	jal	ra,4ad0 <putchar>
 
     for (i = 0; i < 15; i++) {
-    3b4a:	87a2                	mv	a5,s0
-    3b4c:	4481                	li	s1,0
+    3d86:	87a2                	mv	a5,s0
+    3d88:	4481                	li	s1,0
         printf("x%d: %08x\t", i + 1, regs[i]);
-    3b4e:	4390                	lw	a2,0(a5)
-    3b50:	c226                	sw	s1,4(sp)
-    3b52:	c03e                	sw	a5,0(sp)
-    3b54:	0485                	addi	s1,s1,1
-    3b56:	6795                	lui	a5,0x5
-    3b58:	61478513          	addi	a0,a5,1556 # 5614 <sg_usi_config+0x3c>
-    3b5c:	85a6                	mv	a1,s1
-    3b5e:	351000ef          	jal	ra,46ae <printf>
+    3d8a:	4390                	lw	a2,0(a5)
+    3d8c:	c226                	sw	s1,4(sp)
+    3d8e:	c03e                	sw	a5,0(sp)
+    3d90:	0485                	addi	s1,s1,1
+    3d92:	6799                	lui	a5,0x6
+    3d94:	92478513          	addi	a0,a5,-1756 # 5924 <sg_usi_config+0x3c>
+    3d98:	85a6                	mv	a1,s1
+    3d9a:	421000ef          	jal	ra,49ba <printf>
 
         if ((i % 4) == 3) {
-    3b62:	4712                	lw	a4,4(sp)
-    3b64:	468d                	li	a3,3
-    3b66:	4782                	lw	a5,0(sp)
-    3b68:	8b0d                	andi	a4,a4,3
-    3b6a:	00d71663          	bne	a4,a3,3b76 <trap_c+0x4e>
+    3d9e:	4712                	lw	a4,4(sp)
+    3da0:	468d                	li	a3,3
+    3da2:	4782                	lw	a5,0(sp)
+    3da4:	8b0d                	andi	a4,a4,3
+    3da6:	00d71663          	bne	a4,a3,3db2 <trap_c+0x4e>
             printf("\n");
-    3b6e:	4529                	li	a0,10
-    3b70:	455000ef          	jal	ra,47c4 <putchar>
-    3b74:	4782                	lw	a5,0(sp)
+    3daa:	4529                	li	a0,10
+    3dac:	525000ef          	jal	ra,4ad0 <putchar>
+    3db0:	4782                	lw	a5,0(sp)
     for (i = 0; i < 15; i++) {
-    3b76:	473d                	li	a4,15
-    3b78:	0791                	addi	a5,a5,4
-    3b7a:	fce49ae3          	bne	s1,a4,3b4e <trap_c+0x26>
+    3db2:	473d                	li	a4,15
+    3db4:	0791                	addi	a5,a5,4
+    3db6:	fce49ae3          	bne	s1,a4,3d8a <trap_c+0x26>
         }
     }
 
     printf("\n");
-    3b7e:	4529                	li	a0,10
-    3b80:	445000ef          	jal	ra,47c4 <putchar>
+    3dba:	4529                	li	a0,10
+    3dbc:	515000ef          	jal	ra,4ad0 <putchar>
     printf("mepc   : %08x\n", regs[15]);
-    3b84:	5c4c                	lw	a1,60(s0)
-    3b86:	6515                	lui	a0,0x5
-    3b88:	62050513          	addi	a0,a0,1568 # 5620 <sg_usi_config+0x48>
-    3b8c:	323000ef          	jal	ra,46ae <printf>
+    3dc0:	5c4c                	lw	a1,60(s0)
+    3dc2:	6519                	lui	a0,0x6
+    3dc4:	93050513          	addi	a0,a0,-1744 # 5930 <sg_usi_config+0x48>
+    3dc8:	3f3000ef          	jal	ra,49ba <printf>
     printf("mstatus: %08x\n", regs[16]);
-    3b90:	402c                	lw	a1,64(s0)
-    3b92:	6515                	lui	a0,0x5
-    3b94:	63050513          	addi	a0,a0,1584 # 5630 <sg_usi_config+0x58>
-    3b98:	317000ef          	jal	ra,46ae <printf>
+    3dcc:	402c                	lw	a1,64(s0)
+    3dce:	6519                	lui	a0,0x6
+    3dd0:	94050513          	addi	a0,a0,-1728 # 5940 <sg_usi_config+0x58>
+    3dd4:	3e7000ef          	jal	ra,49ba <printf>
 
     if (trap_c_callback) {
-    3b9c:	0101a783          	lw	a5,16(gp) # 200004f8 <trap_c_callback>
-    3ba0:	c391                	beqz	a5,3ba4 <trap_c+0x7c>
+    3dd8:	0101a783          	lw	a5,16(gp) # 200004f8 <trap_c_callback>
+    3ddc:	c391                	beqz	a5,3de0 <trap_c+0x7c>
         trap_c_callback();
-    3ba2:	9782                	jalr	a5
+    3dde:	9782                	jalr	a5
     }
 
     while (1);
-    3ba4:	a001                	j	3ba4 <trap_c+0x7c>
+    3de0:	a001                	j	3de0 <trap_c+0x7c>
 
-00003ba6 <timer_cb_fun>:
+00003de2 <timer_cb_fun>:
 static unsigned int Timer_LoopCount;    /* Count unit is 10 seconds */
 static uint8_t timer_count_rise = 0;    /*1: timer cont increasing, 0: timer cont diminishing*/
 
 static void timer_cb_fun(int32_t idx, timer_event_e event)
 {
     if (TIMER_EVENT_TIMEOUT == event) {
-    3ba6:	00059763          	bnez	a1,3bb4 <timer_cb_fun+0xe>
+    3de2:	00059763          	bnez	a1,3df0 <timer_cb_fun+0xe>
         Timer_LoopCount++;
-    3baa:	01c18793          	addi	a5,gp,28 # 20000504 <Timer_LoopCount>
-    3bae:	4398                	lw	a4,0(a5)
-    3bb0:	0705                	addi	a4,a4,1
-    3bb2:	c398                	sw	a4,0(a5)
+    3de6:	01c18793          	addi	a5,gp,28 # 20000504 <Timer_LoopCount>
+    3dea:	4398                	lw	a4,0(a5)
+    3dec:	0705                	addi	a4,a4,1
+    3dee:	c398                	sw	a4,0(a5)
     }
 }
-    3bb4:	8082                	ret
+    3df0:	8082                	ret
 
-00003bb6 <clock_timer_init>:
+00003df2 <clock_timer_init>:
 
     return (unsigned long long)(Timer_LoopCount + 1) * (TIMER_LOADCOUNT + 1) - cv - 1;
 }
 
 int clock_timer_init(void)
 {
-    3bb6:	1131                	addi	sp,sp,-20
+    3df2:	1131                	addi	sp,sp,-20
     if (CLOCK_GETTIME_USE_TIMER_ID > CONFIG_TIMER_NUM) {
         return EPERM;
     }
 
     uint32_t timer_loadtimer;
     timer_handle = csi_timer_initialize(CLOCK_GETTIME_USE_TIMER_ID, timer_cb_fun);
-    3bb8:	6591                	lui	a1,0x4
+    3df4:	6591                	lui	a1,0x4
 {
-    3bba:	c622                	sw	s0,12(sp)
+    3df6:	c622                	sw	s0,12(sp)
     timer_handle = csi_timer_initialize(CLOCK_GETTIME_USE_TIMER_ID, timer_cb_fun);
-    3bbc:	ba658593          	addi	a1,a1,-1114 # 3ba6 <timer_cb_fun>
-    3bc0:	4501                	li	a0,0
+    3df8:	de258593          	addi	a1,a1,-542 # 3de2 <timer_cb_fun>
+    3dfc:	4501                	li	a0,0
 {
-    3bc2:	c806                	sw	ra,16(sp)
-    3bc4:	c426                	sw	s1,8(sp)
+    3dfe:	c806                	sw	ra,16(sp)
+    3e00:	c426                	sw	s1,8(sp)
     timer_handle = csi_timer_initialize(CLOCK_GETTIME_USE_TIMER_ID, timer_cb_fun);
-    3bc6:	02418413          	addi	s0,gp,36 # 2000050c <timer_handle>
-    3bca:	39c1                	jal	389a <csi_timer_initialize>
-    3bcc:	c008                	sw	a0,0(s0)
+    3e02:	02418413          	addi	s0,gp,36 # 2000050c <timer_handle>
+    3e06:	3985                	jal	3a76 <csi_timer_initialize>
+    3e08:	c008                	sw	a0,0(s0)
 
     if (timer_handle == NULL) {
-    3bce:	e901                	bnez	a0,3bde <clock_timer_init+0x28>
+    3e0a:	e901                	bnez	a0,3e1a <clock_timer_init+0x28>
         return -1;
-    3bd0:	54fd                	li	s1,-1
+    3e0c:	54fd                	li	s1,-1
     if (cv2 > cv1) {
         timer_count_rise = 1;
     }
 
     return 0;
 }
-    3bd2:	40c2                	lw	ra,16(sp)
-    3bd4:	4432                	lw	s0,12(sp)
-    3bd6:	8526                	mv	a0,s1
-    3bd8:	44a2                	lw	s1,8(sp)
-    3bda:	0151                	addi	sp,sp,20
-    3bdc:	8082                	ret
+    3e0e:	40c2                	lw	ra,16(sp)
+    3e10:	4432                	lw	s0,12(sp)
+    3e12:	8526                	mv	a0,s1
+    3e14:	44a2                	lw	s1,8(sp)
+    3e16:	0151                	addi	sp,sp,20
+    3e18:	8082                	ret
     APB_FREQ = drv_get_timer_freq(CLOCK_GETTIME_USE_TIMER_ID);
-    3bde:	4501                	li	a0,0
-    3be0:	35d5                	jal	3ac4 <drv_get_timer_freq>
-    3be2:	00a1aa23          	sw	a0,20(gp) # 200004fc <APB_FREQ>
+    3e1a:	4501                	li	a0,0
+    3e1c:	35d5                	jal	3d00 <drv_get_timer_freq>
+    3e1e:	00a1aa23          	sw	a0,20(gp) # 200004fc <APB_FREQ>
     TIMER_LOADCOUNT = timer_loadtimer * (APB_FREQ / MILLION);
-    3be6:	000f47b7          	lui	a5,0xf4
-    3bea:	24078793          	addi	a5,a5,576 # f4240 <__ctor_end__+0xee2b0>
-    3bee:	02f55533          	divu	a0,a0,a5
-    3bf2:	009894b7          	lui	s1,0x989
-    3bf6:	68048493          	addi	s1,s1,1664 # 989680 <__ctor_end__+0x9836f0>
+    3e22:	000f47b7          	lui	a5,0xf4
+    3e26:	24078793          	addi	a5,a5,576 # f4240 <__ctor_end__+0xedfa0>
+    3e2a:	02f55533          	divu	a0,a0,a5
+    3e2e:	009894b7          	lui	s1,0x989
+    3e32:	68048493          	addi	s1,s1,1664 # 989680 <__ctor_end__+0x9833e0>
     int ret = csi_timer_config(timer_handle, TIMER_MODE_RELOAD);
-    3bfa:	4585                	li	a1,1
+    3e36:	4585                	li	a1,1
     TIMER_LOADCOUNT = timer_loadtimer * (APB_FREQ / MILLION);
-    3bfc:	02950533          	mul	a0,a0,s1
-    3c00:	00a1ac23          	sw	a0,24(gp) # 20000500 <TIMER_LOADCOUNT>
+    3e38:	02950533          	mul	a0,a0,s1
+    3e3c:	00a1ac23          	sw	a0,24(gp) # 20000500 <TIMER_LOADCOUNT>
     int ret = csi_timer_config(timer_handle, TIMER_MODE_RELOAD);
-    3c04:	4008                	lw	a0,0(s0)
-    3c06:	3b25                	jal	393e <csi_timer_config>
+    3e40:	4008                	lw	a0,0(s0)
+    3e42:	39e1                	jal	3b1a <csi_timer_config>
     if (ret != 0) {
-    3c08:	f561                	bnez	a0,3bd0 <clock_timer_init+0x1a>
+    3e44:	f561                	bnez	a0,3e0c <clock_timer_init+0x1a>
     ret = csi_timer_set_timeout(timer_handle, timer_loadtimer);
-    3c0a:	4008                	lw	a0,0(s0)
-    3c0c:	85a6                	mv	a1,s1
-    3c0e:	3bad                	jal	3988 <csi_timer_set_timeout>
-    3c10:	84aa                	mv	s1,a0
+    3e46:	4008                	lw	a0,0(s0)
+    3e48:	85a6                	mv	a1,s1
+    3e4a:	3b29                	jal	3b64 <csi_timer_set_timeout>
+    3e4c:	84aa                	mv	s1,a0
     if (ret != 0) {
-    3c12:	fd5d                	bnez	a0,3bd0 <clock_timer_init+0x1a>
+    3e4e:	fd5d                	bnez	a0,3e0c <clock_timer_init+0x1a>
     csi_timer_get_current_value(timer_handle, &cv1);
-    3c14:	4008                	lw	a0,0(s0)
-    3c16:	858a                	mv	a1,sp
-    3c18:	3d15                	jal	3a4c <csi_timer_get_current_value>
+    3e50:	4008                	lw	a0,0(s0)
+    3e52:	858a                	mv	a1,sp
+    3e54:	3bd1                	jal	3c28 <csi_timer_get_current_value>
     csi_timer_get_current_value(timer_handle, &cv2);
-    3c1a:	4008                	lw	a0,0(s0)
-    3c1c:	004c                	addi	a1,sp,4
-    3c1e:	353d                	jal	3a4c <csi_timer_get_current_value>
+    3e56:	4008                	lw	a0,0(s0)
+    3e58:	004c                	addi	a1,sp,4
+    3e5a:	33f9                	jal	3c28 <csi_timer_get_current_value>
     if (cv2 > cv1) {
-    3c20:	4712                	lw	a4,4(sp)
-    3c22:	4782                	lw	a5,0(sp)
-    3c24:	fae7f7e3          	bgeu	a5,a4,3bd2 <clock_timer_init+0x1c>
+    3e5c:	4712                	lw	a4,4(sp)
+    3e5e:	4782                	lw	a5,0(sp)
+    3e60:	fae7f7e3          	bgeu	a5,a4,3e0e <clock_timer_init+0x1c>
         timer_count_rise = 1;
-    3c28:	4705                	li	a4,1
-    3c2a:	02e18023          	sb	a4,32(gp) # 20000508 <timer_count_rise>
-    3c2e:	b755                	j	3bd2 <clock_timer_init+0x1c>
+    3e64:	4705                	li	a4,1
+    3e66:	02e18023          	sb	a4,32(gp) # 20000508 <timer_count_rise>
+    3e6a:	b755                	j	3e0e <clock_timer_init+0x1c>
 
-00003c30 <clock_timer_start>:
+00003e6c <clock_timer_start>:
 }
 
 int clock_timer_start(void)
 {
     int ret = -1;
     Timer_LoopCount = 0;
-    3c30:	0001ae23          	sw	zero,28(gp) # 20000504 <Timer_LoopCount>
+    3e6c:	0001ae23          	sw	zero,28(gp) # 20000504 <Timer_LoopCount>
 
     ret = csi_timer_start(timer_handle);
-    3c34:	0241a503          	lw	a0,36(gp) # 2000050c <timer_handle>
+    3e70:	0241a503          	lw	a0,36(gp) # 2000050c <timer_handle>
 {
-    3c38:	1151                	addi	sp,sp,-12
-    3c3a:	c406                	sw	ra,8(sp)
+    3e74:	1151                	addi	sp,sp,-12
+    3e76:	c406                	sw	ra,8(sp)
     ret = csi_timer_start(timer_handle);
-    3c3c:	3bb9                	jal	399a <csi_timer_start>
+    3e78:	39fd                	jal	3b76 <csi_timer_start>
         (ts_begin.tv_sec * 1000000000 + ts_begin.tv_nsec);
     printf("clock_gettime() timing deviation is +%llu ns\n", error_margin_ns);
 #endif
 
     return 0;
 }
-    3c3e:	40a2                	lw	ra,8(sp)
+    3e7a:	40a2                	lw	ra,8(sp)
     if (ret != 0) {
-    3c40:	00a03533          	snez	a0,a0
+    3e7c:	00a03533          	snez	a0,a0
 }
-    3c44:	40a00533          	neg	a0,a0
-    3c48:	0131                	addi	sp,sp,12
-    3c4a:	8082                	ret
+    3e80:	40a00533          	neg	a0,a0
+    3e84:	0131                	addi	sp,sp,12
+    3e86:	8082                	ret
 
-00003c4c <_init>:
+00003e88 <_init>:
 extern int __ctor_start__;
 
 typedef void (*func_ptr) (void);
 
 CPP_WEAK void _init(void)
 {
-    3c4c:	1151                	addi	sp,sp,-12
-    3c4e:	c222                	sw	s0,4(sp)
-    3c50:	c026                	sw	s1,0(sp)
-    3c52:	6419                	lui	s0,0x6
+    3e88:	1151                	addi	sp,sp,-12
+    3e8a:	c222                	sw	s0,4(sp)
+    3e8c:	c026                	sw	s1,0(sp)
+    3e8e:	6419                	lui	s0,0x6
     func_ptr *p;
     for (p = (func_ptr *)&__ctor_end__ - 1; p >= (func_ptr *)&__ctor_start__; p--) {
-    3c54:	6499                	lui	s1,0x6
+    3e90:	6499                	lui	s1,0x6
 {
-    3c56:	c406                	sw	ra,8(sp)
-    3c58:	f9040413          	addi	s0,s0,-112 # 5f90 <__ctor_end__>
+    3e92:	c406                	sw	ra,8(sp)
+    3e94:	2a040413          	addi	s0,s0,672 # 62a0 <__ctor_end__>
     for (p = (func_ptr *)&__ctor_end__ - 1; p >= (func_ptr *)&__ctor_start__; p--) {
-    3c5c:	f9048493          	addi	s1,s1,-112 # 5f90 <__ctor_end__>
-    3c60:	1471                	addi	s0,s0,-4
-    3c62:	00947763          	bgeu	s0,s1,3c70 <_init+0x24>
+    3e98:	2a048493          	addi	s1,s1,672 # 62a0 <__ctor_end__>
+    3e9c:	1471                	addi	s0,s0,-4
+    3e9e:	00947763          	bgeu	s0,s1,3eac <_init+0x24>
         (*p) ();
     }
 }
-    3c66:	40a2                	lw	ra,8(sp)
-    3c68:	4412                	lw	s0,4(sp)
-    3c6a:	4482                	lw	s1,0(sp)
-    3c6c:	0131                	addi	sp,sp,12
-    3c6e:	8082                	ret
+    3ea2:	40a2                	lw	ra,8(sp)
+    3ea4:	4412                	lw	s0,4(sp)
+    3ea6:	4482                	lw	s1,0(sp)
+    3ea8:	0131                	addi	sp,sp,12
+    3eaa:	8082                	ret
         (*p) ();
-    3c70:	401c                	lw	a5,0(s0)
-    3c72:	9782                	jalr	a5
+    3eac:	401c                	lw	a5,0(s0)
+    3eae:	9782                	jalr	a5
     for (p = (func_ptr *)&__ctor_end__ - 1; p >= (func_ptr *)&__ctor_start__; p--) {
-    3c74:	b7f5                	j	3c60 <_init+0x14>
+    3eb0:	b7f5                	j	3e9c <_init+0x14>
 
-00003c76 <_fini>:
+00003eb2 <_fini>:
 
 CPP_WEAK void _fini(void)
 {
-    3c76:	1151                	addi	sp,sp,-12
-    3c78:	c222                	sw	s0,4(sp)
-    3c7a:	c026                	sw	s1,0(sp)
+    3eb2:	1151                	addi	sp,sp,-12
+    3eb4:	c222                	sw	s0,4(sp)
+    3eb6:	c026                	sw	s1,0(sp)
     func_ptr *p;
     for (p = (func_ptr *)&__ctor_end__; p <= (func_ptr *)&__dtor_end__ - 1; p++) {
-    3c7c:	6419                	lui	s0,0x6
-    3c7e:	6499                	lui	s1,0x6
+    3eb8:	6419                	lui	s0,0x6
+    3eba:	6499                	lui	s1,0x6
 {
-    3c80:	c406                	sw	ra,8(sp)
+    3ebc:	c406                	sw	ra,8(sp)
     for (p = (func_ptr *)&__ctor_end__; p <= (func_ptr *)&__dtor_end__ - 1; p++) {
-    3c82:	f9040413          	addi	s0,s0,-112 # 5f90 <__ctor_end__>
-    3c86:	f8c48493          	addi	s1,s1,-116 # 5f8c <pad_line+0x71c>
-    3c8a:	0084f763          	bgeu	s1,s0,3c98 <_fini+0x22>
+    3ebe:	2a040413          	addi	s0,s0,672 # 62a0 <__ctor_end__>
+    3ec2:	29c48493          	addi	s1,s1,668 # 629c <pad_line+0x71c>
+    3ec6:	0084f763          	bgeu	s1,s0,3ed4 <_fini+0x22>
         (*p) ();
     }
 }
-    3c8e:	40a2                	lw	ra,8(sp)
-    3c90:	4412                	lw	s0,4(sp)
-    3c92:	4482                	lw	s1,0(sp)
-    3c94:	0131                	addi	sp,sp,12
-    3c96:	8082                	ret
+    3eca:	40a2                	lw	ra,8(sp)
+    3ecc:	4412                	lw	s0,4(sp)
+    3ece:	4482                	lw	s1,0(sp)
+    3ed0:	0131                	addi	sp,sp,12
+    3ed2:	8082                	ret
         (*p) ();
-    3c98:	401c                	lw	a5,0(s0)
+    3ed4:	401c                	lw	a5,0(s0)
     for (p = (func_ptr *)&__ctor_end__; p <= (func_ptr *)&__dtor_end__ - 1; p++) {
-    3c9a:	0411                	addi	s0,s0,4
+    3ed6:	0411                	addi	s0,s0,4
         (*p) ();
-    3c9c:	9782                	jalr	a5
+    3ed8:	9782                	jalr	a5
     for (p = (func_ptr *)&__ctor_end__; p <= (func_ptr *)&__dtor_end__ - 1; p++) {
-    3c9e:	b7f5                	j	3c8a <_fini+0x14>
+    3eda:	b7f5                	j	3ec6 <_fini+0x14>
 
-00003ca0 <fputc>:
+00003edc <fputc>:
 {
     return 0;
 }
 
 int fputc(int ch, FILE *stream)
 {
-    3ca0:	1151                	addi	sp,sp,-12
-    3ca2:	c026                	sw	s1,0(sp)
-    3ca4:	84aa                	mv	s1,a0
+    3edc:	1151                	addi	sp,sp,-12
+    3ede:	c026                	sw	s1,0(sp)
+    3ee0:	84aa                	mv	s1,a0
     (void)stream;
 
     if (console_handle == NULL) {
-    3ca6:	0281a503          	lw	a0,40(gp) # 20000510 <console_handle>
+    3ee2:	0281a503          	lw	a0,40(gp) # 20000510 <console_handle>
 {
-    3caa:	c406                	sw	ra,8(sp)
-    3cac:	c222                	sw	s0,4(sp)
+    3ee6:	c406                	sw	ra,8(sp)
+    3ee8:	c222                	sw	s0,4(sp)
     if (console_handle == NULL) {
-    3cae:	c115                	beqz	a0,3cd2 <fputc+0x32>
-    3cb0:	02818413          	addi	s0,gp,40 # 20000510 <console_handle>
+    3eea:	c505                	beqz	a0,3f12 <fputc+0x36>
+    3eec:	02818413          	addi	s0,gp,40 # 20000510 <console_handle>
         return -1;
     }
 
     if (ch == '\n') {
-    3cb4:	47a9                	li	a5,10
-    3cb6:	00f49463          	bne	s1,a5,3cbe <fputc+0x1e>
+    3ef0:	47a9                	li	a5,10
+    3ef2:	00f49563          	bne	s1,a5,3efc <fputc+0x20>
         csi_usart_putchar(console_handle, '\r');
-    3cba:	45b5                	li	a1,13
-    3cbc:	346d                	jal	3766 <csi_usart_putchar>
+    3ef6:	45b5                	li	a1,13
+    3ef8:	86fff0ef          	jal	ra,3766 <csi_usart_putchar>
     }
 
     csi_usart_putchar(console_handle, ch);
-    3cbe:	4008                	lw	a0,0(s0)
-    3cc0:	0ff4f593          	andi	a1,s1,255
-    3cc4:	344d                	jal	3766 <csi_usart_putchar>
+    3efc:	4008                	lw	a0,0(s0)
+    3efe:	0ff4f593          	andi	a1,s1,255
+    3f02:	865ff0ef          	jal	ra,3766 <csi_usart_putchar>
 
     return 0;
-    3cc6:	4501                	li	a0,0
+    3f06:	4501                	li	a0,0
 }
-    3cc8:	40a2                	lw	ra,8(sp)
-    3cca:	4412                	lw	s0,4(sp)
-    3ccc:	4482                	lw	s1,0(sp)
-    3cce:	0131                	addi	sp,sp,12
-    3cd0:	8082                	ret
+    3f08:	40a2                	lw	ra,8(sp)
+    3f0a:	4412                	lw	s0,4(sp)
+    3f0c:	4482                	lw	s1,0(sp)
+    3f0e:	0131                	addi	sp,sp,12
+    3f10:	8082                	ret
         return -1;
-    3cd2:	557d                	li	a0,-1
-    3cd4:	bfd5                	j	3cc8 <fputc+0x28>
+    3f12:	557d                	li	a0,-1
+    3f14:	bfd5                	j	3f08 <fputc+0x2c>
 
-00003cd6 <os_critical_enter>:
+00003f16 <os_critical_enter>:
 #ifndef CONFIG_KERNEL_NONE
     csi_kernel_sched_suspend();
 #endif
 
     return 0;
 }
-    3cd6:	4501                	li	a0,0
-    3cd8:	8082                	ret
+    3f16:	4501                	li	a0,0
+    3f18:	8082                	ret
 
-00003cda <os_critical_exit>:
-    3cda:	4501                	li	a0,0
-    3cdc:	8082                	ret
+00003f1a <os_critical_exit>:
+    3f1a:	4501                	li	a0,0
+    3f1c:	8082                	ret
 
-00003cde <mm_addfreechunk>:
+00003f1e <mm_addfreechunk>:
  *   the mm semaphore
  *
  ****************************************************************************/
 
 void mm_addfreechunk(struct mm_heap_s *heap, struct mm_freenode_s *node)
 {
-    3cde:	1151                	addi	sp,sp,-12
-    3ce0:	c026                	sw	s1,0(sp)
-    3ce2:	84aa                	mv	s1,a0
+    3f1e:	1151                	addi	sp,sp,-12
+    3f20:	c026                	sw	s1,0(sp)
+    3f22:	84aa                	mv	s1,a0
   struct mm_freenode_s *next;
   struct mm_freenode_s *prev;
 
   /* Convert the size to a nodelist index */
 
   int ndx = mm_size2ndx(node->size);
-    3ce4:	4188                	lw	a0,0(a1)
+    3f24:	4188                	lw	a0,0(a1)
 {
-    3ce6:	c222                	sw	s0,4(sp)
-    3ce8:	c406                	sw	ra,8(sp)
-    3cea:	842e                	mv	s0,a1
+    3f26:	c222                	sw	s0,4(sp)
+    3f28:	c406                	sw	ra,8(sp)
+    3f2a:	842e                	mv	s0,a1
   int ndx = mm_size2ndx(node->size);
-    3cec:	20cd                	jal	3dce <mm_size2ndx>
+    3f2c:	20cd                	jal	400e <mm_size2ndx>
 
   /* Now put the new node int the next */
 
   for (prev = &heap->mm_nodelist[ndx], next = heap->mm_nodelist[ndx].flink;
-    3cee:	0505                	addi	a0,a0,1
-    3cf0:	0512                	slli	a0,a0,0x4
-    3cf2:	00850713          	addi	a4,a0,8
-    3cf6:	9726                	add	a4,a4,s1
-    3cf8:	94aa                	add	s1,s1,a0
-    3cfa:	489c                	lw	a5,16(s1)
-    3cfc:	c791                	beqz	a5,3d08 <mm_addfreechunk+0x2a>
+    3f2e:	0505                	addi	a0,a0,1
+    3f30:	0512                	slli	a0,a0,0x4
+    3f32:	00850713          	addi	a4,a0,8
+    3f36:	9726                	add	a4,a4,s1
+    3f38:	94aa                	add	s1,s1,a0
+    3f3a:	489c                	lw	a5,16(s1)
+    3f3c:	c791                	beqz	a5,3f48 <mm_addfreechunk+0x2a>
        next && next->size && next->size < node->size;
-    3cfe:	4394                	lw	a3,0(a5)
-    3d00:	c681                	beqz	a3,3d08 <mm_addfreechunk+0x2a>
-    3d02:	4010                	lw	a2,0(s0)
-    3d04:	00c6ec63          	bltu	a3,a2,3d1c <mm_addfreechunk+0x3e>
+    3f3e:	4394                	lw	a3,0(a5)
+    3f40:	c681                	beqz	a3,3f48 <mm_addfreechunk+0x2a>
+    3f42:	4010                	lw	a2,0(s0)
+    3f44:	00c6ec63          	bltu	a3,a2,3f5c <mm_addfreechunk+0x3e>
        prev = next, next = next->flink);
 
   /* Does it go in mid next or at the end? */
 
   prev->flink = node;
-    3d08:	c700                	sw	s0,8(a4)
+    3f48:	c700                	sw	s0,8(a4)
   node->blink = prev;
-    3d0a:	c458                	sw	a4,12(s0)
+    3f4a:	c458                	sw	a4,12(s0)
   node->flink = next;
-    3d0c:	c41c                	sw	a5,8(s0)
+    3f4c:	c41c                	sw	a5,8(s0)
 
   if (next)
-    3d0e:	c391                	beqz	a5,3d12 <mm_addfreechunk+0x34>
+    3f4e:	c391                	beqz	a5,3f52 <mm_addfreechunk+0x34>
     {
       /* The new node goes between prev and next */
 
       next->blink = node;
-    3d10:	c7c0                	sw	s0,12(a5)
+    3f50:	c7c0                	sw	s0,12(a5)
     }
 }
-    3d12:	40a2                	lw	ra,8(sp)
-    3d14:	4412                	lw	s0,4(sp)
-    3d16:	4482                	lw	s1,0(sp)
-    3d18:	0131                	addi	sp,sp,12
-    3d1a:	8082                	ret
+    3f52:	40a2                	lw	ra,8(sp)
+    3f54:	4412                	lw	s0,4(sp)
+    3f56:	4482                	lw	s1,0(sp)
+    3f58:	0131                	addi	sp,sp,12
+    3f5a:	8082                	ret
        prev = next, next = next->flink);
-    3d1c:	873e                	mv	a4,a5
-    3d1e:	479c                	lw	a5,8(a5)
-    3d20:	bff1                	j	3cfc <mm_addfreechunk+0x1e>
+    3f5c:	873e                	mv	a4,a5
+    3f5e:	479c                	lw	a5,8(a5)
+    3f60:	bff1                	j	3f3c <mm_addfreechunk+0x1e>
 
-00003d22 <mm_addregion>:
+00003f62 <mm_addregion>:
 
   /* Adjust the provide heap start and size so that they are both aligned
    * with the MM_MIN_CHUNK size.
    */
 
   heapbase = MM_ALIGN_UP((uintptr_t)heapstart);
-    3d22:	00f58713          	addi	a4,a1,15
+    3f62:	00f58713          	addi	a4,a1,15
   heapend  = MM_ALIGN_DOWN((uintptr_t)heapstart + (uintptr_t)heapsize);
-    3d26:	962e                	add	a2,a2,a1
+    3f66:	962e                	add	a2,a2,a1
 
   //mlldbg("Region %d: base=%p size=%u\n", IDX+1, heapstart, heapsize);
 
   /* Add the size of this region to the total size of the heap */
 
   heap->mm_heapsize += heapsize;
-    3d28:	454c                	lw	a1,12(a0)
+    3f68:	454c                	lw	a1,12(a0)
   heapbase = MM_ALIGN_UP((uintptr_t)heapstart);
-    3d2a:	9b41                	andi	a4,a4,-16
+    3f6a:	9b41                	andi	a4,a4,-16
   heapend  = MM_ALIGN_DOWN((uintptr_t)heapstart + (uintptr_t)heapsize);
-    3d2c:	9a41                	andi	a2,a2,-16
+    3f6c:	9a41                	andi	a2,a2,-16
   heapsize = heapend - heapbase;
-    3d2e:	40e607b3          	sub	a5,a2,a4
+    3f6e:	40e607b3          	sub	a5,a2,a4
   heap->mm_heapsize += heapsize;
-    3d32:	95be                	add	a1,a1,a5
-    3d34:	c54c                	sw	a1,12(a0)
+    3f72:	95be                	add	a1,a1,a5
+    3f74:	c54c                	sw	a1,12(a0)
    *
    * And create one free node between the guard nodes that contains
    * all available memory.
    */
 
   heap->mm_heapstart[IDX]            = (struct mm_allocnode_s *)heapbase;
-    3d36:	c918                	sw	a4,16(a0)
+    3f76:	c918                	sw	a4,16(a0)
   heap->mm_heapstart[IDX]->size      = SIZEOF_MM_ALLOCNODE;
-    3d38:	4321                	li	t1,8
+    3f78:	4321                	li	t1,8
   heap->mm_heapstart[IDX]->preceding = MM_ALLOC_BIT;
-    3d3a:	800002b7          	lui	t0,0x80000
+    3f7a:	800002b7          	lui	t0,0x80000
 
   node                        = (struct mm_freenode_s *)(heapbase + SIZEOF_MM_ALLOCNODE);
   node->size                  = heapsize - 2*SIZEOF_MM_ALLOCNODE;
-    3d3e:	17c1                	addi	a5,a5,-16
+    3f7e:	17c1                	addi	a5,a5,-16
   heap->mm_heapstart[IDX]->preceding = MM_ALLOC_BIT;
-    3d40:	00572223          	sw	t0,4(a4)
+    3f80:	00572223          	sw	t0,4(a4)
   node->size                  = heapsize - 2*SIZEOF_MM_ALLOCNODE;
-    3d44:	c71c                	sw	a5,8(a4)
+    3f84:	c71c                	sw	a5,8(a4)
   heap->mm_heapstart[IDX]->size      = SIZEOF_MM_ALLOCNODE;
-    3d46:	00672023          	sw	t1,0(a4)
+    3f86:	00672023          	sw	t1,0(a4)
   node->preceding             = SIZEOF_MM_ALLOCNODE;
-    3d4a:	00672623          	sw	t1,12(a4)
+    3f8a:	00672623          	sw	t1,12(a4)
   node                        = (struct mm_freenode_s *)(heapbase + SIZEOF_MM_ALLOCNODE);
-    3d4e:	00870593          	addi	a1,a4,8
+    3f8e:	00870593          	addi	a1,a4,8
 
   heap->mm_heapend[IDX]              = (struct mm_allocnode_s *)(heapend - SIZEOF_MM_ALLOCNODE);
-    3d52:	ff860713          	addi	a4,a2,-8
-    3d56:	c958                	sw	a4,20(a0)
+    3f92:	ff860713          	addi	a4,a2,-8
+    3f96:	c958                	sw	a4,20(a0)
   heap->mm_heapend[IDX]->size        = SIZEOF_MM_ALLOCNODE;
-    3d58:	fe662c23          	sw	t1,-8(a2)
+    3f98:	fe662c23          	sw	t1,-8(a2)
   heap->mm_heapend[IDX]->preceding   = node->size | MM_ALLOC_BIT;
-    3d5c:	0057e7b3          	or	a5,a5,t0
-    3d60:	c35c                	sw	a5,4(a4)
+    3f9c:	0057e7b3          	or	a5,a5,t0
+    3fa0:	c35c                	sw	a5,4(a4)
   heap->mm_nregions++;
 #endif
 
   /* Add the single, large free node to the nodelist */
 
   mm_addfreechunk(heap, node);
-    3d62:	bfb5                	j	3cde <mm_addfreechunk>
+    3fa2:	bfb5                	j	3f1e <mm_addfreechunk>
 
-00003d64 <mm_initialize>:
+00003fa4 <mm_initialize>:
  *
  ****************************************************************************/
 
 void mm_initialize(struct mm_heap_s *heap, void *heapstart,
                    size_t heapsize)
 {
-    3d64:	1141                	addi	sp,sp,-16
-    3d66:	c422                	sw	s0,8(sp)
-    3d68:	c226                	sw	s1,4(sp)
-    3d6a:	c606                	sw	ra,12(sp)
-    3d6c:	842a                	mv	s0,a0
-    3d6e:	c032                	sw	a2,0(sp)
+    3fa4:	1141                	addi	sp,sp,-16
+    3fa6:	c422                	sw	s0,8(sp)
+    3fa8:	c226                	sw	s1,4(sp)
+    3faa:	c606                	sw	ra,12(sp)
+    3fac:	842a                	mv	s0,a0
+    3fae:	c032                	sw	a2,0(sp)
   //CHECK_FREENODE_SIZE;
 #endif
 
   /* Set up global variables */
 
   heap->mm_heapsize = 0;
-    3d70:	00052623          	sw	zero,12(a0)
+    3fb0:	00052623          	sw	zero,12(a0)
 {
-    3d74:	84ae                	mv	s1,a1
+    3fb4:	84ae                	mv	s1,a1
   heap->mm_nregions = 0;
 #endif
 
   /* Initialize the node array */
 
   memset(heap->mm_nodelist, 0, sizeof(struct mm_freenode_s) * MM_NNODES);
-    3d76:	13000613          	li	a2,304
-    3d7a:	4581                	li	a1,0
-    3d7c:	0561                	addi	a0,a0,24
-    3d7e:	e2efe0ef          	jal	ra,23ac <memset>
+    3fb6:	13000613          	li	a2,304
+    3fba:	4581                	li	a1,0
+    3fbc:	0561                	addi	a0,a0,24
+    3fbe:	beefe0ef          	jal	ra,23ac <memset>
   for (i = 1; i < MM_NNODES; i++)
-    3d82:	4702                	lw	a4,0(sp)
-    3d84:	02840793          	addi	a5,s0,40
-    3d88:	14840693          	addi	a3,s0,328
+    3fc2:	4702                	lw	a4,0(sp)
+    3fc4:	02840793          	addi	a5,s0,40
+    3fc8:	14840693          	addi	a3,s0,328
     {
       heap->mm_nodelist[i-1].flink = &heap->mm_nodelist[i];
       heap->mm_nodelist[i].blink   = &heap->mm_nodelist[i-1];
-    3d8c:	ff078613          	addi	a2,a5,-16
+    3fcc:	ff078613          	addi	a2,a5,-16
       heap->mm_nodelist[i-1].flink = &heap->mm_nodelist[i];
-    3d90:	fef7ac23          	sw	a5,-8(a5)
+    3fd0:	fef7ac23          	sw	a5,-8(a5)
       heap->mm_nodelist[i].blink   = &heap->mm_nodelist[i-1];
-    3d94:	c7d0                	sw	a2,12(a5)
+    3fd4:	c7d0                	sw	a2,12(a5)
   for (i = 1; i < MM_NNODES; i++)
-    3d96:	07c1                	addi	a5,a5,16
-    3d98:	fed79ae3          	bne	a5,a3,3d8c <mm_initialize+0x28>
+    3fd6:	07c1                	addi	a5,a5,16
+    3fd8:	fed79ae3          	bne	a5,a3,3fcc <mm_initialize+0x28>
 
   mm_seminitialize(heap);
 
   /* Add the initial region of memory to the heap */
 
   mm_addregion(heap, heapstart, heapsize);
-    3d9c:	8522                	mv	a0,s0
+    3fdc:	8522                	mv	a0,s0
 }
-    3d9e:	4422                	lw	s0,8(sp)
-    3da0:	40b2                	lw	ra,12(sp)
+    3fde:	4422                	lw	s0,8(sp)
+    3fe0:	40b2                	lw	ra,12(sp)
   mm_addregion(heap, heapstart, heapsize);
-    3da2:	85a6                	mv	a1,s1
+    3fe2:	85a6                	mv	a1,s1
 }
-    3da4:	4492                	lw	s1,4(sp)
+    3fe4:	4492                	lw	s1,4(sp)
   mm_addregion(heap, heapstart, heapsize);
-    3da6:	863a                	mv	a2,a4
+    3fe6:	863a                	mv	a2,a4
 }
-    3da8:	0141                	addi	sp,sp,16
+    3fe8:	0141                	addi	sp,sp,16
   mm_addregion(heap, heapstart, heapsize);
-    3daa:	bfa5                	j	3d22 <mm_addregion>
+    3fea:	bfa5                	j	3f62 <mm_addregion>
 
-00003dac <mm_heap_initialize>:
+00003fec <mm_heap_initialize>:
 
 void mm_heap_initialize(void)
 {
     mm_initialize(&g_mmheap, &__heap_start, (uint32_t)(&__heap_end) - (uint32_t)(&__heap_start));
-    3dac:	200025b7          	lui	a1,0x20002
-    3db0:	200307b7          	lui	a5,0x20030
-    3db4:	cf458613          	addi	a2,a1,-780 # 20001cf4 <__bss_end__>
-    3db8:	00078793          	mv	a5,a5
-    3dbc:	20002537          	lui	a0,0x20002
-    3dc0:	40c78633          	sub	a2,a5,a2
-    3dc4:	cf458593          	addi	a1,a1,-780
-    3dc8:	bac50513          	addi	a0,a0,-1108 # 20001bac <g_mmheap>
-    3dcc:	bf61                	j	3d64 <mm_initialize>
+    3fec:	200025b7          	lui	a1,0x20002
+    3ff0:	200307b7          	lui	a5,0x20030
+    3ff4:	df858613          	addi	a2,a1,-520 # 20001df8 <__bss_end__>
+    3ff8:	00078793          	mv	a5,a5
+    3ffc:	20002537          	lui	a0,0x20002
+    4000:	40c78633          	sub	a2,a5,a2
+    4004:	df858593          	addi	a1,a1,-520
+    4008:	cb050513          	addi	a0,a0,-848 # 20001cb0 <g_mmheap>
+    400c:	bf61                	j	3fa4 <mm_initialize>
 
-00003dce <mm_size2ndx>:
+0000400e <mm_size2ndx>:
 
 int mm_size2ndx(size_t size)
 {
   int ndx = 0;
 
   if (size >= MM_MAX_CHUNK)
-    3dce:	004007b7          	lui	a5,0x400
-    3dd2:	00f57c63          	bgeu	a0,a5,3dea <mm_size2ndx+0x1c>
+    400e:	004007b7          	lui	a5,0x400
+    4012:	00f57c63          	bgeu	a0,a5,402a <mm_size2ndx+0x1c>
     {
        return MM_NNODES-1;
     }
 
   size >>= MM_MIN_SHIFT;
-    3dd6:	00455793          	srli	a5,a0,0x4
+    4016:	00455793          	srli	a5,a0,0x4
   while (size > 1)
-    3dda:	4705                	li	a4,1
+    401a:	4705                	li	a4,1
   int ndx = 0;
-    3ddc:	4501                	li	a0,0
+    401c:	4501                	li	a0,0
   while (size > 1)
-    3dde:	00f76363          	bltu	a4,a5,3de4 <mm_size2ndx+0x16>
-    3de2:	8082                	ret
+    401e:	00f76363          	bltu	a4,a5,4024 <mm_size2ndx+0x16>
+    4022:	8082                	ret
     {
       ndx++;
-    3de4:	0505                	addi	a0,a0,1
+    4024:	0505                	addi	a0,a0,1
       size >>= 1;
-    3de6:	8385                	srli	a5,a5,0x1
-    3de8:	bfdd                	j	3dde <mm_size2ndx+0x10>
+    4026:	8385                	srli	a5,a5,0x1
+    4028:	bfdd                	j	401e <mm_size2ndx+0x10>
        return MM_NNODES-1;
-    3dea:	4549                	li	a0,18
+    402a:	4549                	li	a0,18
     }
 
   return ndx;
 }
-    3dec:	8082                	ret
+    402c:	8082                	ret
 
-00003dee <test_encrypt_cbc.isra.0>:
+0000402e <test_encrypt_cbc.isra.0>:
         printf("FAILURE!\n");
 	return(1);
     }
 }
 
 static int test_encrypt_cbc(void)
-    3dee:	e9410113          	addi	sp,sp,-364
+    402e:	e9410113          	addi	sp,sp,-364
 //    uint8_t out[] = { 0x4f, 0x02, 0x1d, 0xb2, 0x43, 0xbc, 0x63, 0x3d, 0x71, 0x78, 0x18, 0x3a, 0x9f, 0xa0, 0x71, 0xe8,
 //                      0xb4, 0xd9, 0xad, 0xa9, 0xad, 0x7d, 0xed, 0xf4, 0xe5, 0xe7, 0x38, 0x76, 0x3f, 0x69, 0x14, 0x5a,
 //                      0x57, 0x1b, 0x24, 0x20, 0x12, 0xfb, 0x7a, 0xe0, 0x7f, 0xa9, 0xba, 0xac, 0x3d, 0xf1, 0x02, 0xe0,
 //                      0x08, 0xb0, 0xe2, 0x79, 0x88, 0x59, 0x88, 0x81, 0xd9, 0x20, 0xa9, 0xe6, 0x4f, 0x56, 0x15, 0xcd };
 //#elif defined(AES128)
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
-    3df2:	6595                	lui	a1,0x5
-    3df4:	4641                	li	a2,16
-    3df6:	66858593          	addi	a1,a1,1640 # 5668 <sg_usi_config+0x90>
-    3dfa:	850a                	mv	a0,sp
+    4032:	6599                	lui	a1,0x6
+    4034:	4641                	li	a2,16
+    4036:	97858593          	addi	a1,a1,-1672 # 5978 <sg_usi_config+0x90>
+    403a:	850a                	mv	a0,sp
 static int test_encrypt_cbc(void)
-    3dfc:	16112423          	sw	ra,360(sp)
+    403c:	16112423          	sw	ra,360(sp)
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
-    3e00:	c10fe0ef          	jal	ra,2210 <memcpy>
+    4040:	9d0fe0ef          	jal	ra,2210 <memcpy>
     uint8_t out[] = { 0x76, 0x49, 0xab, 0xac, 0x81, 0x19, 0xb2, 0x46, 0xce, 0xe9, 0x8e, 0x9b, 0x12, 0xe9, 0x19, 0x7d,
-    3e04:	6595                	lui	a1,0x5
-    3e06:	04000613          	li	a2,64
-    3e0a:	67c58593          	addi	a1,a1,1660 # 567c <sg_usi_config+0xa4>
-    3e0e:	1008                	addi	a0,sp,32
-    3e10:	c00fe0ef          	jal	ra,2210 <memcpy>
+    4044:	6599                	lui	a1,0x6
+    4046:	04000613          	li	a2,64
+    404a:	98c58593          	addi	a1,a1,-1652 # 598c <sg_usi_config+0xa4>
+    404e:	1008                	addi	a0,sp,32
+    4050:	9c0fe0ef          	jal	ra,2210 <memcpy>
                       0x50, 0x86, 0xcb, 0x9b, 0x50, 0x72, 0x19, 0xee, 0x95, 0xdb, 0x11, 0x3a, 0x91, 0x76, 0x78, 0xb2,
                       0x73, 0xbe, 0xd6, 0xb8, 0xe3, 0xc1, 0x74, 0x3b, 0x71, 0x16, 0xe6, 0x9e, 0x22, 0x22, 0x95, 0x16,
                       0x3f, 0xf1, 0xca, 0xa1, 0x68, 0x1f, 0xac, 0x09, 0x12, 0x0e, 0xca, 0x30, 0x75, 0x86, 0xe1, 0xa7 };
 //#endif
     uint8_t iv[]  = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
-    3e14:	6595                	lui	a1,0x5
-    3e16:	4641                	li	a2,16
-    3e18:	05058593          	addi	a1,a1,80 # 5050 <__srodata>
-    3e1c:	0808                	addi	a0,sp,16
-    3e1e:	bf2fe0ef          	jal	ra,2210 <memcpy>
+    4054:	6595                	lui	a1,0x5
+    4056:	4641                	li	a2,16
+    4058:	36058593          	addi	a1,a1,864 # 5360 <__srodata>
+    405c:	0808                	addi	a0,sp,16
+    405e:	9b2fe0ef          	jal	ra,2210 <memcpy>
     uint8_t in[]  = { 0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,
-    3e22:	6595                	lui	a1,0x5
-    3e24:	04000613          	li	a2,64
-    3e28:	6c058593          	addi	a1,a1,1728 # 56c0 <sg_usi_config+0xe8>
-    3e2c:	1088                	addi	a0,sp,96
-    3e2e:	be2fe0ef          	jal	ra,2210 <memcpy>
+    4062:	6599                	lui	a1,0x6
+    4064:	04000613          	li	a2,64
+    4068:	9d058593          	addi	a1,a1,-1584 # 59d0 <sg_usi_config+0xe8>
+    406c:	1088                	addi	a0,sp,96
+    406e:	9a2fe0ef          	jal	ra,2210 <memcpy>
                       0xae, 0x2d, 0x8a, 0x57, 0x1e, 0x03, 0xac, 0x9c, 0x9e, 0xb7, 0x6f, 0xac, 0x45, 0xaf, 0x8e, 0x51,
                       0x30, 0xc8, 0x1c, 0x46, 0xa3, 0x5c, 0xe4, 0x11, 0xe5, 0xfb, 0xc1, 0x19, 0x1a, 0x0a, 0x52, 0xef,
                       0xf6, 0x9f, 0x24, 0x45, 0xdf, 0x4f, 0x9b, 0x17, 0xad, 0x2b, 0x41, 0x7b, 0xe6, 0x6c, 0x37, 0x10 };
     struct AES_ctx ctx;
 
     AES_init_ctx_iv(&ctx, key, iv);
-    3e32:	0810                	addi	a2,sp,16
-    3e34:	858a                	mv	a1,sp
-    3e36:	1108                	addi	a0,sp,160
-    3e38:	24e1                	jal	4100 <AES_init_ctx_iv>
+    4072:	0810                	addi	a2,sp,16
+    4074:	858a                	mv	a1,sp
+    4076:	1108                	addi	a0,sp,160
+    4078:	2ce9                	jal	4352 <AES_init_ctx_iv>
     AES_CBC_encrypt_buffer(&ctx, in, 64);
-    3e3a:	04000613          	li	a2,64
-    3e3e:	108c                	addi	a1,sp,96
-    3e40:	1108                	addi	a0,sp,160
-    3e42:	24c5                	jal	4122 <AES_CBC_encrypt_buffer>
+    407a:	04000613          	li	a2,64
+    407e:	108c                	addi	a1,sp,96
+    4080:	1108                	addi	a0,sp,160
+    4082:	2ccd                	jal	4374 <AES_CBC_encrypt_buffer>
 
     printf("CBC encrypt: ");
-    3e44:	6515                	lui	a0,0x5
-    3e46:	64050513          	addi	a0,a0,1600 # 5640 <sg_usi_config+0x68>
-    3e4a:	065000ef          	jal	ra,46ae <printf>
+    4084:	6519                	lui	a0,0x6
+    4086:	95050513          	addi	a0,a0,-1712 # 5950 <sg_usi_config+0x68>
+    408a:	131000ef          	jal	ra,49ba <printf>
 
     if (0 == memcmp((char*) out, (char*) in, 64)) {
-    3e4e:	04000613          	li	a2,64
-    3e52:	108c                	addi	a1,sp,96
-    3e54:	1008                	addi	a0,sp,32
-    3e56:	b68fe0ef          	jal	ra,21be <memcmp>
-    3e5a:	e919                	bnez	a0,3e70 <test_encrypt_cbc.isra.0+0x82>
+    408e:	04000613          	li	a2,64
+    4092:	108c                	addi	a1,sp,96
+    4094:	1008                	addi	a0,sp,32
+    4096:	928fe0ef          	jal	ra,21be <memcmp>
+    409a:	e919                	bnez	a0,40b0 <test_encrypt_cbc.isra.0+0x82>
         printf("SUCCESS!\n");
-    3e5c:	6515                	lui	a0,0x5
-    3e5e:	65050513          	addi	a0,a0,1616 # 5650 <sg_usi_config+0x78>
+    409c:	6519                	lui	a0,0x6
+    409e:	96050513          	addi	a0,a0,-1696 # 5960 <sg_usi_config+0x78>
 	return(0);
     } else {
         printf("FAILURE!\n");
-    3e62:	177000ef          	jal	ra,47d8 <puts>
+    40a2:	243000ef          	jal	ra,4ae4 <puts>
 	return(1);
     }
 }
-    3e66:	16812083          	lw	ra,360(sp)
-    3e6a:	16c10113          	addi	sp,sp,364
-    3e6e:	8082                	ret
+    40a6:	16812083          	lw	ra,360(sp)
+    40aa:	16c10113          	addi	sp,sp,364
+    40ae:	8082                	ret
         printf("FAILURE!\n");
-    3e70:	6515                	lui	a0,0x5
-    3e72:	65c50513          	addi	a0,a0,1628 # 565c <sg_usi_config+0x84>
-    3e76:	b7f5                	j	3e62 <test_encrypt_cbc.isra.0+0x74>
+    40b0:	6519                	lui	a0,0x6
+    40b2:	96c50513          	addi	a0,a0,-1684 # 596c <sg_usi_config+0x84>
+    40b6:	b7f5                	j	40a2 <test_encrypt_cbc.isra.0+0x74>
 
-00003e78 <main>:
-    printf("\nTesting AES128\n\n");
-    3e78:	6515                	lui	a0,0x5
+000040b8 <main>:
 {
-    3e7a:	1151                	addi	sp,sp,-12
+    40b8:	1151                	addi	sp,sp,-12
+    40ba:	c406                	sw	ra,8(sp)
+	LED_Init();
+    40bc:	260d                	jal	43de <LED_Init>
     printf("\nTesting AES128\n\n");
-    3e7c:	70450513          	addi	a0,a0,1796 # 5704 <sg_usi_config+0x12c>
-{
-    3e80:	c406                	sw	ra,8(sp)
-    printf("\nTesting AES128\n\n");
-    3e82:	157000ef          	jal	ra,47d8 <puts>
+    40be:	6519                	lui	a0,0x6
+    40c0:	a1450513          	addi	a0,a0,-1516 # 5a14 <sg_usi_config+0x12c>
+    40c4:	221000ef          	jal	ra,4ae4 <puts>
+	LED_ON();
+    40c8:	2649                	jal	444a <LED_ON>
+	mdelay(100);
+    40ca:	06400513          	li	a0,100
+    40ce:	36e9                	jal	3c98 <mdelay>
 	test_encrypt_cbc() ;
-    3e86:	37a5                	jal	3dee <test_encrypt_cbc.isra.0>
+    40d0:	3fb9                	jal	402e <test_encrypt_cbc.isra.0>
+	LED_OFF();
+    40d2:	2e79                	jal	4470 <LED_OFF>
+	mdelay(100);
+    40d4:	06400513          	li	a0,100
+    40d8:	36c1                	jal	3c98 <mdelay>
 while(1)
-    3e88:	bffd                	j	3e86 <main+0xe>
+    40da:	b7fd                	j	40c8 <main+0x10>
 
-00003e8a <KeyExpansion>:
+000040dc <KeyExpansion>:
 */
 #define getSBoxValue(num) (sbox[(num)])
 
 // This function produces Nb(Nr+1) round keys. The round keys are used in each round to decrypt the states. 
 static void KeyExpansion(uint8_t* RoundKey, const uint8_t* Key)
 {
-    3e8a:	1171                	addi	sp,sp,-4
-    3e8c:	c022                	sw	s0,0(sp)
-    3e8e:	01058713          	addi	a4,a1,16
-    3e92:	87aa                	mv	a5,a0
+    40dc:	1171                	addi	sp,sp,-4
+    40de:	c022                	sw	s0,0(sp)
+    40e0:	01058713          	addi	a4,a1,16
+    40e4:	87aa                	mv	a5,a0
   uint8_t tempa[4]; // Used for the column/row operations
   
   // The first round key is the key itself.
   for (i = 0; i < Nk; ++i)
   {
     RoundKey[(i * 4) + 0] = Key[(i * 4) + 0];
-    3e94:	0005c683          	lbu	a3,0(a1)
+    40e6:	0005c683          	lbu	a3,0(a1)
   for (i = 0; i < Nk; ++i)
-    3e98:	0591                	addi	a1,a1,4
-    3e9a:	0791                	addi	a5,a5,4
+    40ea:	0591                	addi	a1,a1,4
+    40ec:	0791                	addi	a5,a5,4
     RoundKey[(i * 4) + 0] = Key[(i * 4) + 0];
-    3e9c:	fed78e23          	sb	a3,-4(a5) # 3ffffc <__ctor_end__+0x3fa06c>
+    40ee:	fed78e23          	sb	a3,-4(a5) # 3ffffc <__ctor_end__+0x3f9d5c>
     RoundKey[(i * 4) + 1] = Key[(i * 4) + 1];
-    3ea0:	ffd5c683          	lbu	a3,-3(a1)
-    3ea4:	fed78ea3          	sb	a3,-3(a5)
+    40f2:	ffd5c683          	lbu	a3,-3(a1)
+    40f6:	fed78ea3          	sb	a3,-3(a5)
     RoundKey[(i * 4) + 2] = Key[(i * 4) + 2];
-    3ea8:	ffe5c683          	lbu	a3,-2(a1)
-    3eac:	fed78f23          	sb	a3,-2(a5)
+    40fa:	ffe5c683          	lbu	a3,-2(a1)
+    40fe:	fed78f23          	sb	a3,-2(a5)
     RoundKey[(i * 4) + 3] = Key[(i * 4) + 3];
-    3eb0:	fff5c683          	lbu	a3,-1(a1)
-    3eb4:	fed78fa3          	sb	a3,-1(a5)
+    4102:	fff5c683          	lbu	a3,-1(a1)
+    4106:	fed78fa3          	sb	a3,-1(a5)
   for (i = 0; i < Nk; ++i)
-    3eb8:	fce59ee3          	bne	a1,a4,3e94 <KeyExpansion+0xa>
+    410a:	fce59ee3          	bne	a1,a4,40e6 <KeyExpansion+0xa>
       // SubWord() is a function that takes a four-byte input word and 
       // applies the S-box to each of the four bytes to produce an output word.
 
       // Function Subword()
       {
         tempa[0] = getSBoxValue(tempa[0]);
-    3ebc:	6595                	lui	a1,0x5
+    410e:	6599                	lui	a1,0x6
         tempa[1] = getSBoxValue(tempa[1]);
         tempa[2] = getSBoxValue(tempa[2]);
         tempa[3] = getSBoxValue(tempa[3]);
       }
 
       tempa[0] = tempa[0] ^ Rcon[i/Nk];
-    3ebe:	6295                	lui	t0,0x5
+    4110:	6299                	lui	t0,0x6
   for (i = Nk; i < Nb * (Nr + 1); ++i)
-    3ec0:	4311                	li	t1,4
+    4112:	4311                	li	t1,4
         tempa[0] = getSBoxValue(tempa[0]);
-    3ec2:	72458593          	addi	a1,a1,1828 # 5724 <sbox>
+    4114:	a3458593          	addi	a1,a1,-1484 # 5a34 <sbox>
       tempa[0] = tempa[0] ^ Rcon[i/Nk];
-    3ec6:	71828293          	addi	t0,t0,1816 # 5718 <Rcon>
+    4118:	a2828293          	addi	t0,t0,-1496 # 5a28 <Rcon>
   for (i = Nk; i < Nb * (Nr + 1); ++i)
-    3eca:	02c00393          	li	t2,44
+    411c:	02c00393          	li	t2,44
     if (i % Nk == 0)
-    3ece:	00337413          	andi	s0,t1,3
+    4120:	00337413          	andi	s0,t1,3
       tempa[0]=RoundKey[k + 0];
-    3ed2:	00c54783          	lbu	a5,12(a0)
+    4124:	00c54783          	lbu	a5,12(a0)
       tempa[1]=RoundKey[k + 1];
-    3ed6:	00d54683          	lbu	a3,13(a0)
+    4128:	00d54683          	lbu	a3,13(a0)
       tempa[2]=RoundKey[k + 2];
-    3eda:	00e54703          	lbu	a4,14(a0)
+    412c:	00e54703          	lbu	a4,14(a0)
       tempa[3]=RoundKey[k + 3];
-    3ede:	00f54603          	lbu	a2,15(a0)
+    4130:	00f54603          	lbu	a2,15(a0)
     if (i % Nk == 0)
-    3ee2:	e01d                	bnez	s0,3f08 <KeyExpansion+0x7e>
+    4134:	e01d                	bnez	s0,415a <KeyExpansion+0x7e>
         tempa[0] = getSBoxValue(tempa[0]);
-    3ee4:	96ae                	add	a3,a3,a1
+    4136:	96ae                	add	a3,a3,a1
         tempa[1] = getSBoxValue(tempa[1]);
-    3ee6:	972e                	add	a4,a4,a1
+    4138:	972e                	add	a4,a4,a1
         tempa[2] = getSBoxValue(tempa[2]);
-    3ee8:	962e                	add	a2,a2,a1
+    413a:	962e                	add	a2,a2,a1
         tempa[3] = getSBoxValue(tempa[3]);
-    3eea:	97ae                	add	a5,a5,a1
+    413c:	97ae                	add	a5,a5,a1
         tempa[0] = getSBoxValue(tempa[0]);
-    3eec:	0006c403          	lbu	s0,0(a3)
+    413e:	0006c403          	lbu	s0,0(a3) # e000e000 <__heap_end+0xbffde000>
         tempa[1] = getSBoxValue(tempa[1]);
-    3ef0:	00074683          	lbu	a3,0(a4)
+    4142:	00074683          	lbu	a3,0(a4)
         tempa[2] = getSBoxValue(tempa[2]);
-    3ef4:	00064703          	lbu	a4,0(a2)
+    4146:	00064703          	lbu	a4,0(a2)
         tempa[3] = getSBoxValue(tempa[3]);
-    3ef8:	0007c603          	lbu	a2,0(a5)
+    414a:	0007c603          	lbu	a2,0(a5)
       tempa[0] = tempa[0] ^ Rcon[i/Nk];
-    3efc:	00235793          	srli	a5,t1,0x2
-    3f00:	9796                	add	a5,a5,t0
-    3f02:	0007c783          	lbu	a5,0(a5)
-    3f06:	8fa1                	xor	a5,a5,s0
+    414e:	00235793          	srli	a5,t1,0x2
+    4152:	9796                	add	a5,a5,t0
+    4154:	0007c783          	lbu	a5,0(a5)
+    4158:	8fa1                	xor	a5,a5,s0
         tempa[3] = getSBoxValue(tempa[3]);
       }
     }
 #endif
     j = i * 4; k=(i - Nk) * 4;
     RoundKey[j + 0] = RoundKey[k + 0] ^ tempa[0];
-    3f08:	00054403          	lbu	s0,0(a0)
+    415a:	00054403          	lbu	s0,0(a0)
   for (i = Nk; i < Nb * (Nr + 1); ++i)
-    3f0c:	0305                	addi	t1,t1,1
-    3f0e:	0511                	addi	a0,a0,4
+    415e:	0305                	addi	t1,t1,1
+    4160:	0511                	addi	a0,a0,4
     RoundKey[j + 0] = RoundKey[k + 0] ^ tempa[0];
-    3f10:	8fa1                	xor	a5,a5,s0
-    3f12:	00f50623          	sb	a5,12(a0)
+    4162:	8fa1                	xor	a5,a5,s0
+    4164:	00f50623          	sb	a5,12(a0)
     RoundKey[j + 1] = RoundKey[k + 1] ^ tempa[1];
-    3f16:	ffd54783          	lbu	a5,-3(a0)
-    3f1a:	8ebd                	xor	a3,a3,a5
+    4168:	ffd54783          	lbu	a5,-3(a0)
+    416c:	8ebd                	xor	a3,a3,a5
     RoundKey[j + 2] = RoundKey[k + 2] ^ tempa[2];
-    3f1c:	ffe54783          	lbu	a5,-2(a0)
+    416e:	ffe54783          	lbu	a5,-2(a0)
     RoundKey[j + 1] = RoundKey[k + 1] ^ tempa[1];
-    3f20:	00d506a3          	sb	a3,13(a0)
+    4172:	00d506a3          	sb	a3,13(a0)
     RoundKey[j + 2] = RoundKey[k + 2] ^ tempa[2];
-    3f24:	8f3d                	xor	a4,a4,a5
+    4176:	8f3d                	xor	a4,a4,a5
     RoundKey[j + 3] = RoundKey[k + 3] ^ tempa[3];
-    3f26:	fff54783          	lbu	a5,-1(a0)
+    4178:	fff54783          	lbu	a5,-1(a0)
     RoundKey[j + 2] = RoundKey[k + 2] ^ tempa[2];
-    3f2a:	00e50723          	sb	a4,14(a0)
+    417c:	00e50723          	sb	a4,14(a0)
     RoundKey[j + 3] = RoundKey[k + 3] ^ tempa[3];
-    3f2e:	8fb1                	xor	a5,a5,a2
-    3f30:	00f507a3          	sb	a5,15(a0)
+    4180:	8fb1                	xor	a5,a5,a2
+    4182:	00f507a3          	sb	a5,15(a0)
   for (i = Nk; i < Nb * (Nr + 1); ++i)
-    3f34:	f8731de3          	bne	t1,t2,3ece <KeyExpansion+0x44>
+    4186:	f8731de3          	bne	t1,t2,4120 <KeyExpansion+0x44>
   }
 }
-    3f38:	4402                	lw	s0,0(sp)
-    3f3a:	0111                	addi	sp,sp,4
-    3f3c:	8082                	ret
+    418a:	4402                	lw	s0,0(sp)
+    418c:	0111                	addi	sp,sp,4
+    418e:	8082                	ret
 
-00003f3e <AddRoundKey>:
+00004190 <AddRoundKey>:
 #endif
 
 // This function adds the round key to state.
 // The round key is added to the state by an XOR function.
 static void AddRoundKey(uint8_t round, state_t* state, const uint8_t* RoundKey)
 {
-    3f3e:	1171                	addi	sp,sp,-4
-    3f40:	c022                	sw	s0,0(sp)
-    3f42:	0512                	slli	a0,a0,0x4
-    3f44:	01058293          	addi	t0,a1,16
+    4190:	1171                	addi	sp,sp,-4
+    4192:	c022                	sw	s0,0(sp)
+    4194:	0512                	slli	a0,a0,0x4
+    4196:	01058293          	addi	t0,a1,16
   uint8_t i,j;
   for (i = 0; i < 4; ++i)
   {
     for (j = 0; j < 4; ++j)
-    3f48:	4391                	li	t2,4
+    419a:	4391                	li	t2,4
 {
-    3f4a:	872e                	mv	a4,a1
-    3f4c:	4781                	li	a5,0
+    419c:	872e                	mv	a4,a1
+    419e:	4781                	li	a5,0
     {
       (*state)[i][j] ^= RoundKey[(round * Nb * 4) + (i * Nb) + j];
-    3f4e:	00a60333          	add	t1,a2,a0
-    3f52:	00f306b3          	add	a3,t1,a5
-    3f56:	00074403          	lbu	s0,0(a4)
-    3f5a:	0006c683          	lbu	a3,0(a3)
+    41a0:	00a60333          	add	t1,a2,a0
+    41a4:	00f306b3          	add	a3,t1,a5
+    41a8:	00074403          	lbu	s0,0(a4)
+    41ac:	0006c683          	lbu	a3,0(a3)
     for (j = 0; j < 4; ++j)
-    3f5e:	0785                	addi	a5,a5,1
-    3f60:	0705                	addi	a4,a4,1
+    41b0:	0785                	addi	a5,a5,1
+    41b2:	0705                	addi	a4,a4,1
       (*state)[i][j] ^= RoundKey[(round * Nb * 4) + (i * Nb) + j];
-    3f62:	8ea1                	xor	a3,a3,s0
-    3f64:	fed70fa3          	sb	a3,-1(a4)
+    41b4:	8ea1                	xor	a3,a3,s0
+    41b6:	fed70fa3          	sb	a3,-1(a4)
     for (j = 0; j < 4; ++j)
-    3f68:	fe7795e3          	bne	a5,t2,3f52 <AddRoundKey+0x14>
+    41ba:	fe7795e3          	bne	a5,t2,41a4 <AddRoundKey+0x14>
   for (i = 0; i < 4; ++i)
-    3f6c:	0591                	addi	a1,a1,4
-    3f6e:	0511                	addi	a0,a0,4
-    3f70:	fc559de3          	bne	a1,t0,3f4a <AddRoundKey+0xc>
+    41be:	0591                	addi	a1,a1,4
+    41c0:	0511                	addi	a0,a0,4
+    41c2:	fc559de3          	bne	a1,t0,419c <AddRoundKey+0xc>
     }
   }
 }
-    3f74:	4402                	lw	s0,0(sp)
-    3f76:	0111                	addi	sp,sp,4
-    3f78:	8082                	ret
+    41c6:	4402                	lw	s0,0(sp)
+    41c8:	0111                	addi	sp,sp,4
+    41ca:	8082                	ret
 
-00003f7a <xtime>:
+000041cc <xtime>:
   (*state)[1][3] = temp;
 }
 
 static uint8_t xtime(uint8_t x)
 {
   return ((x<<1) ^ (((x>>7) & 1) * 0x1b));
-    3f7a:	00755793          	srli	a5,a0,0x7
-    3f7e:	476d                	li	a4,27
-    3f80:	02e787b3          	mul	a5,a5,a4
-    3f84:	0506                	slli	a0,a0,0x1
-    3f86:	8d3d                	xor	a0,a0,a5
+    41cc:	00755793          	srli	a5,a0,0x7
+    41d0:	476d                	li	a4,27
+    41d2:	02e787b3          	mul	a5,a5,a4
+    41d6:	0506                	slli	a0,a0,0x1
+    41d8:	8d3d                	xor	a0,a0,a5
 }
-    3f88:	0ff57513          	andi	a0,a0,255
-    3f8c:	8082                	ret
+    41da:	0ff57513          	andi	a0,a0,255
+    41de:	8082                	ret
 
-00003f8e <Cipher>:
+000041e0 <Cipher>:
 }
 #endif // #if (defined(CBC) && CBC == 1) || (defined(ECB) && ECB == 1)
 
 // Cipher is the main function that encrypts the PlainText.
 static void Cipher(state_t* state, const uint8_t* RoundKey)
 {
-    3f8e:	fc810113          	addi	sp,sp,-56
-    3f92:	862e                	mv	a2,a1
-    3f94:	d822                	sw	s0,48(sp)
+    41e0:	fc810113          	addi	sp,sp,-56
+    41e4:	862e                	mv	a2,a1
+    41e6:	d822                	sw	s0,48(sp)
   uint8_t round = 0;
 
   // Add the First round key to the state before starting the rounds.
   AddRoundKey(0, state, RoundKey);
-    3f96:	c02e                	sw	a1,0(sp)
+    41e8:	c02e                	sw	a1,0(sp)
 {
-    3f98:	842a                	mv	s0,a0
+    41ea:	842a                	mv	s0,a0
   AddRoundKey(0, state, RoundKey);
-    3f9a:	85aa                	mv	a1,a0
-    3f9c:	4501                	li	a0,0
+    41ec:	85aa                	mv	a1,a0
+    41ee:	4501                	li	a0,0
 {
-    3f9e:	da06                	sw	ra,52(sp)
-    3fa0:	d626                	sw	s1,44(sp)
+    41f0:	da06                	sw	ra,52(sp)
+    41f2:	d626                	sw	s1,44(sp)
   AddRoundKey(0, state, RoundKey);
-    3fa2:	3f71                	jal	3f3e <AddRoundKey>
+    41f4:	3f71                	jal	4190 <AddRoundKey>
       (*state)[j][i] = getSBoxValue((*state)[j][i]);
-    3fa4:	6795                	lui	a5,0x5
-    3fa6:	4602                	lw	a2,0(sp)
-    3fa8:	72478793          	addi	a5,a5,1828 # 5724 <sbox>
+    41f6:	6799                	lui	a5,0x6
+    41f8:	4602                	lw	a2,0(sp)
+    41fa:	a3478793          	addi	a5,a5,-1484 # 5a34 <sbox>
 
   // There will be Nr rounds.
   // The first Nr-1 rounds are identical.
   // These Nr rounds are executed in the loop below.
   // Last one without MixColumns()
   for (round = 1; ; ++round)
-    3fac:	4305                	li	t1,1
+    41fe:	4305                	li	t1,1
       (*state)[j][i] = getSBoxValue((*state)[j][i]);
-    3fae:	c43e                	sw	a5,8(sp)
+    4200:	c43e                	sw	a5,8(sp)
   for (i = 0; i < 4; ++i)
-    3fb0:	84a2                	mv	s1,s0
-    3fb2:	00440293          	addi	t0,s0,4
+    4202:	84a2                	mv	s1,s0
+    4204:	00440293          	addi	t0,s0,4
     for (j = 0; j < 4; ++j)
-    3fb6:	85a2                	mv	a1,s0
-    3fb8:	4391                	li	t2,4
+    4208:	85a2                	mv	a1,s0
+    420a:	4391                	li	t2,4
   for (round = 1; ; ++round)
-    3fba:	86ae                	mv	a3,a1
+    420c:	86ae                	mv	a3,a1
     for (j = 0; j < 4; ++j)
-    3fbc:	4701                	li	a4,0
+    420e:	4701                	li	a4,0
       (*state)[j][i] = getSBoxValue((*state)[j][i]);
-    3fbe:	0006c503          	lbu	a0,0(a3)
-    3fc2:	47a2                	lw	a5,8(sp)
+    4210:	0006c503          	lbu	a0,0(a3)
+    4214:	47a2                	lw	a5,8(sp)
     for (j = 0; j < 4; ++j)
-    3fc4:	0705                	addi	a4,a4,1
-    3fc6:	0ff77713          	andi	a4,a4,255
+    4216:	0705                	addi	a4,a4,1
+    4218:	0ff77713          	andi	a4,a4,255
       (*state)[j][i] = getSBoxValue((*state)[j][i]);
-    3fca:	953e                	add	a0,a0,a5
-    3fcc:	00054503          	lbu	a0,0(a0)
+    421c:	953e                	add	a0,a0,a5
+    421e:	00054503          	lbu	a0,0(a0)
     for (j = 0; j < 4; ++j)
-    3fd0:	0691                	addi	a3,a3,4
+    4222:	0691                	addi	a3,a3,4
       (*state)[j][i] = getSBoxValue((*state)[j][i]);
-    3fd2:	fea68e23          	sb	a0,-4(a3)
+    4224:	fea68e23          	sb	a0,-4(a3)
     for (j = 0; j < 4; ++j)
-    3fd6:	fe7714e3          	bne	a4,t2,3fbe <Cipher+0x30>
+    4228:	fe7714e3          	bne	a4,t2,4210 <Cipher+0x30>
   for (i = 0; i < 4; ++i)
-    3fda:	0585                	addi	a1,a1,1
-    3fdc:	fcb29fe3          	bne	t0,a1,3fba <Cipher+0x2c>
+    422c:	0585                	addi	a1,a1,1
+    422e:	fcb29fe3          	bne	t0,a1,420c <Cipher+0x2c>
   (*state)[0][1] = (*state)[1][1];
-    3fe0:	00544683          	lbu	a3,5(s0)
+    4232:	00544683          	lbu	a3,5(s0)
   temp           = (*state)[0][1];
-    3fe4:	00144703          	lbu	a4,1(s0)
+    4236:	00144703          	lbu	a4,1(s0)
   (*state)[0][1] = (*state)[1][1];
-    3fe8:	00d400a3          	sb	a3,1(s0)
+    423a:	00d400a3          	sb	a3,1(s0)
   (*state)[1][1] = (*state)[2][1];
-    3fec:	00944683          	lbu	a3,9(s0)
-    3ff0:	00d402a3          	sb	a3,5(s0)
+    423e:	00944683          	lbu	a3,9(s0)
+    4242:	00d402a3          	sb	a3,5(s0)
   (*state)[2][1] = (*state)[3][1];
-    3ff4:	00d44683          	lbu	a3,13(s0)
+    4246:	00d44683          	lbu	a3,13(s0)
   (*state)[3][1] = temp;
-    3ff8:	00e406a3          	sb	a4,13(s0)
+    424a:	00e406a3          	sb	a4,13(s0)
   temp           = (*state)[0][2];
-    3ffc:	00244703          	lbu	a4,2(s0)
+    424e:	00244703          	lbu	a4,2(s0)
   (*state)[2][1] = (*state)[3][1];
-    4000:	00d404a3          	sb	a3,9(s0)
+    4252:	00d404a3          	sb	a3,9(s0)
   (*state)[0][2] = (*state)[2][2];
-    4004:	00a44683          	lbu	a3,10(s0)
+    4256:	00a44683          	lbu	a3,10(s0)
   (*state)[2][2] = temp;
-    4008:	00e40523          	sb	a4,10(s0)
+    425a:	00e40523          	sb	a4,10(s0)
   temp           = (*state)[1][2];
-    400c:	00644703          	lbu	a4,6(s0)
+    425e:	00644703          	lbu	a4,6(s0)
   (*state)[0][2] = (*state)[2][2];
-    4010:	00d40123          	sb	a3,2(s0)
+    4262:	00d40123          	sb	a3,2(s0)
   (*state)[1][2] = (*state)[3][2];
-    4014:	00e44683          	lbu	a3,14(s0)
+    4266:	00e44683          	lbu	a3,14(s0)
   (*state)[3][2] = temp;
-    4018:	00e40723          	sb	a4,14(s0)
+    426a:	00e40723          	sb	a4,14(s0)
   temp           = (*state)[0][3];
-    401c:	00344703          	lbu	a4,3(s0)
+    426e:	00344703          	lbu	a4,3(s0)
   (*state)[1][2] = (*state)[3][2];
-    4020:	00d40323          	sb	a3,6(s0)
+    4272:	00d40323          	sb	a3,6(s0)
   (*state)[0][3] = (*state)[3][3];
-    4024:	00f44683          	lbu	a3,15(s0)
-    4028:	00d401a3          	sb	a3,3(s0)
+    4276:	00f44683          	lbu	a3,15(s0)
+    427a:	00d401a3          	sb	a3,3(s0)
   (*state)[3][3] = (*state)[2][3];
-    402c:	00b44683          	lbu	a3,11(s0)
-    4030:	00d407a3          	sb	a3,15(s0)
+    427e:	00b44683          	lbu	a3,11(s0)
+    4282:	00d407a3          	sb	a3,15(s0)
   (*state)[2][3] = (*state)[1][3];
-    4034:	00744683          	lbu	a3,7(s0)
+    4286:	00744683          	lbu	a3,7(s0)
   (*state)[1][3] = temp;
-    4038:	00e403a3          	sb	a4,7(s0)
+    428a:	00e403a3          	sb	a4,7(s0)
   {
     SubBytes(state);
     ShiftRows(state);
     if (round == Nr) {
-    403c:	4729                	li	a4,10
+    428e:	4729                	li	a4,10
   (*state)[2][3] = (*state)[1][3];
-    403e:	00d405a3          	sb	a3,11(s0)
+    4290:	00d405a3          	sb	a3,11(s0)
     if (round == Nr) {
-    4042:	0ae30763          	beq	t1,a4,40f0 <Cipher+0x162>
-    4046:	01040793          	addi	a5,s0,16
-    404a:	c23e                	sw	a5,4(sp)
+    4294:	0ae30763          	beq	t1,a4,4342 <Cipher+0x162>
+    4298:	01040793          	addi	a5,s0,16
+    429c:	c23e                	sw	a5,4(sp)
     Tmp = (*state)[i][0] ^ (*state)[i][1] ^ (*state)[i][2] ^ (*state)[i][3] ;
-    404c:	0034c583          	lbu	a1,3(s1)
+    429e:	0034c583          	lbu	a1,3(s1)
     t   = (*state)[i][0];
-    4050:	0004c283          	lbu	t0,0(s1)
+    42a2:	0004c283          	lbu	t0,0(s1)
     Tmp = (*state)[i][0] ^ (*state)[i][1] ^ (*state)[i][2] ^ (*state)[i][3] ;
-    4054:	0014c683          	lbu	a3,1(s1)
-    4058:	0024c703          	lbu	a4,2(s1)
-    405c:	d432                	sw	a2,40(sp)
-    405e:	00d2c533          	xor	a0,t0,a3
-    4062:	00b743b3          	xor	t2,a4,a1
-    4066:	007547b3          	xor	a5,a0,t2
-    406a:	d21a                	sw	t1,36(sp)
-    406c:	ce2e                	sw	a1,28(sp)
-    406e:	cc1e                	sw	t2,24(sp)
-    4070:	d036                	sw	a3,32(sp)
-    4072:	c816                	sw	t0,16(sp)
-    4074:	c63a                	sw	a4,12(sp)
-    4076:	c03e                	sw	a5,0(sp)
+    42a6:	0014c683          	lbu	a3,1(s1)
+    42aa:	0024c703          	lbu	a4,2(s1)
+    42ae:	d432                	sw	a2,40(sp)
+    42b0:	00d2c533          	xor	a0,t0,a3
+    42b4:	00b743b3          	xor	t2,a4,a1
+    42b8:	007547b3          	xor	a5,a0,t2
+    42bc:	d21a                	sw	t1,36(sp)
+    42be:	ce2e                	sw	a1,28(sp)
+    42c0:	cc1e                	sw	t2,24(sp)
+    42c2:	d036                	sw	a3,32(sp)
+    42c4:	c816                	sw	t0,16(sp)
+    42c6:	c63a                	sw	a4,12(sp)
+    42c8:	c03e                	sw	a5,0(sp)
     Tm  = (*state)[i][0] ^ (*state)[i][1] ; Tm = xtime(Tm);  (*state)[i][0] ^= Tm ^ Tmp ;
-    4078:	3709                	jal	3f7a <xtime>
-    407a:	42c2                	lw	t0,16(sp)
-    407c:	4782                	lw	a5,0(sp)
+    42ca:	3709                	jal	41cc <xtime>
+    42cc:	42c2                	lw	t0,16(sp)
+    42ce:	4782                	lw	a5,0(sp)
     Tm  = (*state)[i][1] ^ (*state)[i][2] ; Tm = xtime(Tm);  (*state)[i][1] ^= Tm ^ Tmp ;
-    407e:	4732                	lw	a4,12(sp)
-    4080:	5682                	lw	a3,32(sp)
+    42d0:	4732                	lw	a4,12(sp)
+    42d2:	5682                	lw	a3,32(sp)
     Tm  = (*state)[i][0] ^ (*state)[i][1] ; Tm = xtime(Tm);  (*state)[i][0] ^= Tm ^ Tmp ;
-    4082:	00a2c533          	xor	a0,t0,a0
-    4086:	8d3d                	xor	a0,a0,a5
-    4088:	00a48023          	sb	a0,0(s1)
+    42d4:	00a2c533          	xor	a0,t0,a0
+    42d8:	8d3d                	xor	a0,a0,a5
+    42da:	00a48023          	sb	a0,0(s1)
     Tm  = (*state)[i][1] ^ (*state)[i][2] ; Tm = xtime(Tm);  (*state)[i][1] ^= Tm ^ Tmp ;
-    408c:	00e6c533          	xor	a0,a3,a4
+    42de:	00e6c533          	xor	a0,a3,a4
     Tm  = (*state)[i][0] ^ (*state)[i][1] ; Tm = xtime(Tm);  (*state)[i][0] ^= Tm ^ Tmp ;
-    4090:	ca16                	sw	t0,20(sp)
+    42e2:	ca16                	sw	t0,20(sp)
     Tm  = (*state)[i][1] ^ (*state)[i][2] ; Tm = xtime(Tm);  (*state)[i][1] ^= Tm ^ Tmp ;
-    4092:	c83a                	sw	a4,16(sp)
-    4094:	c636                	sw	a3,12(sp)
-    4096:	35d5                	jal	3f7a <xtime>
-    4098:	46b2                	lw	a3,12(sp)
-    409a:	4782                	lw	a5,0(sp)
+    42e4:	c83a                	sw	a4,16(sp)
+    42e6:	c636                	sw	a3,12(sp)
+    42e8:	35d5                	jal	41cc <xtime>
+    42ea:	46b2                	lw	a3,12(sp)
+    42ec:	4782                	lw	a5,0(sp)
     Tm  = (*state)[i][2] ^ (*state)[i][3] ; Tm = xtime(Tm);  (*state)[i][2] ^= Tm ^ Tmp ;
-    409c:	43e2                	lw	t2,24(sp)
+    42ee:	43e2                	lw	t2,24(sp)
     Tm  = (*state)[i][1] ^ (*state)[i][2] ; Tm = xtime(Tm);  (*state)[i][1] ^= Tm ^ Tmp ;
-    409e:	8ea9                	xor	a3,a3,a0
-    40a0:	8ebd                	xor	a3,a3,a5
-    40a2:	00d480a3          	sb	a3,1(s1)
+    42f0:	8ea9                	xor	a3,a3,a0
+    42f2:	8ebd                	xor	a3,a3,a5
+    42f4:	00d480a3          	sb	a3,1(s1)
     Tm  = (*state)[i][2] ^ (*state)[i][3] ; Tm = xtime(Tm);  (*state)[i][2] ^= Tm ^ Tmp ;
-    40a6:	851e                	mv	a0,t2
-    40a8:	3dc9                	jal	3f7a <xtime>
-    40aa:	4742                	lw	a4,16(sp)
-    40ac:	4782                	lw	a5,0(sp)
+    42f8:	851e                	mv	a0,t2
+    42fa:	3dc9                	jal	41cc <xtime>
+    42fc:	4742                	lw	a4,16(sp)
+    42fe:	4782                	lw	a5,0(sp)
     Tm  = (*state)[i][3] ^ t ;              Tm = xtime(Tm);  (*state)[i][3] ^= Tm ^ Tmp ;
-    40ae:	45f2                	lw	a1,28(sp)
-    40b0:	42d2                	lw	t0,20(sp)
+    4300:	45f2                	lw	a1,28(sp)
+    4302:	42d2                	lw	t0,20(sp)
     Tm  = (*state)[i][2] ^ (*state)[i][3] ; Tm = xtime(Tm);  (*state)[i][2] ^= Tm ^ Tmp ;
-    40b2:	8f29                	xor	a4,a4,a0
-    40b4:	8f3d                	xor	a4,a4,a5
-    40b6:	00e48123          	sb	a4,2(s1)
+    4304:	8f29                	xor	a4,a4,a0
+    4306:	8f3d                	xor	a4,a4,a5
+    4308:	00e48123          	sb	a4,2(s1)
     Tm  = (*state)[i][3] ^ t ;              Tm = xtime(Tm);  (*state)[i][3] ^= Tm ^ Tmp ;
-    40ba:	00b2c533          	xor	a0,t0,a1
-    40be:	c62e                	sw	a1,12(sp)
-    40c0:	3d6d                	jal	3f7a <xtime>
-    40c2:	45b2                	lw	a1,12(sp)
-    40c4:	4782                	lw	a5,0(sp)
+    430c:	00b2c533          	xor	a0,t0,a1
+    4310:	c62e                	sw	a1,12(sp)
+    4312:	3d6d                	jal	41cc <xtime>
+    4314:	45b2                	lw	a1,12(sp)
+    4316:	4782                	lw	a5,0(sp)
   for (i = 0; i < 4; ++i)
-    40c6:	0491                	addi	s1,s1,4
+    4318:	0491                	addi	s1,s1,4
     Tm  = (*state)[i][3] ^ t ;              Tm = xtime(Tm);  (*state)[i][3] ^= Tm ^ Tmp ;
-    40c8:	8da9                	xor	a1,a1,a0
-    40ca:	8fad                	xor	a5,a5,a1
-    40cc:	fef48fa3          	sb	a5,-1(s1)
+    431a:	8da9                	xor	a1,a1,a0
+    431c:	8fad                	xor	a5,a5,a1
+    431e:	fef48fa3          	sb	a5,-1(s1)
   for (i = 0; i < 4; ++i)
-    40d0:	4792                	lw	a5,4(sp)
-    40d2:	5312                	lw	t1,36(sp)
-    40d4:	5622                	lw	a2,40(sp)
-    40d6:	f6979be3          	bne	a5,s1,404c <Cipher+0xbe>
+    4322:	4792                	lw	a5,4(sp)
+    4324:	5312                	lw	t1,36(sp)
+    4326:	5622                	lw	a2,40(sp)
+    4328:	f6979be3          	bne	a5,s1,429e <Cipher+0xbe>
       break;
     }
     MixColumns(state);
     AddRoundKey(round, state, RoundKey);
-    40da:	851a                	mv	a0,t1
-    40dc:	85a2                	mv	a1,s0
-    40de:	c232                	sw	a2,4(sp)
-    40e0:	c01a                	sw	t1,0(sp)
-    40e2:	3db1                	jal	3f3e <AddRoundKey>
+    432c:	851a                	mv	a0,t1
+    432e:	85a2                	mv	a1,s0
+    4330:	c232                	sw	a2,4(sp)
+    4332:	c01a                	sw	t1,0(sp)
+    4334:	3db1                	jal	4190 <AddRoundKey>
   for (round = 1; ; ++round)
-    40e4:	4302                	lw	t1,0(sp)
+    4336:	4302                	lw	t1,0(sp)
     SubBytes(state);
-    40e6:	4612                	lw	a2,4(sp)
+    4338:	4612                	lw	a2,4(sp)
   for (round = 1; ; ++round)
-    40e8:	0305                	addi	t1,t1,1
-    40ea:	0ff37313          	andi	t1,t1,255
+    433a:	0305                	addi	t1,t1,1
+    433c:	0ff37313          	andi	t1,t1,255
     SubBytes(state);
-    40ee:	b5c9                	j	3fb0 <Cipher+0x22>
+    4340:	b5c9                	j	4202 <Cipher+0x22>
   }
   // Add round key to last round
   AddRoundKey(Nr, state, RoundKey);
-    40f0:	85a2                	mv	a1,s0
+    4342:	85a2                	mv	a1,s0
 }
-    40f2:	5442                	lw	s0,48(sp)
-    40f4:	50d2                	lw	ra,52(sp)
-    40f6:	54b2                	lw	s1,44(sp)
+    4344:	5442                	lw	s0,48(sp)
+    4346:	50d2                	lw	ra,52(sp)
+    4348:	54b2                	lw	s1,44(sp)
   AddRoundKey(Nr, state, RoundKey);
-    40f8:	4529                	li	a0,10
+    434a:	4529                	li	a0,10
 }
-    40fa:	03810113          	addi	sp,sp,56
+    434c:	03810113          	addi	sp,sp,56
   AddRoundKey(Nr, state, RoundKey);
-    40fe:	b581                	j	3f3e <AddRoundKey>
+    4350:	b581                	j	4190 <AddRoundKey>
 
-00004100 <AES_init_ctx_iv>:
+00004352 <AES_init_ctx_iv>:
 {
-    4100:	1151                	addi	sp,sp,-12
-    4102:	c222                	sw	s0,4(sp)
-    4104:	c026                	sw	s1,0(sp)
-    4106:	c406                	sw	ra,8(sp)
-    4108:	84b2                	mv	s1,a2
-    410a:	842a                	mv	s0,a0
+    4352:	1151                	addi	sp,sp,-12
+    4354:	c222                	sw	s0,4(sp)
+    4356:	c026                	sw	s1,0(sp)
+    4358:	c406                	sw	ra,8(sp)
+    435a:	84b2                	mv	s1,a2
+    435c:	842a                	mv	s0,a0
   KeyExpansion(ctx->RoundKey, key);
-    410c:	3bbd                	jal	3e8a <KeyExpansion>
+    435e:	3bbd                	jal	40dc <KeyExpansion>
   memcpy (ctx->Iv, iv, AES_BLOCKLEN);
-    410e:	0b040513          	addi	a0,s0,176
+    4360:	0b040513          	addi	a0,s0,176
 }
-    4112:	4412                	lw	s0,4(sp)
-    4114:	40a2                	lw	ra,8(sp)
+    4364:	4412                	lw	s0,4(sp)
+    4366:	40a2                	lw	ra,8(sp)
   memcpy (ctx->Iv, iv, AES_BLOCKLEN);
-    4116:	85a6                	mv	a1,s1
+    4368:	85a6                	mv	a1,s1
 }
-    4118:	4482                	lw	s1,0(sp)
+    436a:	4482                	lw	s1,0(sp)
   memcpy (ctx->Iv, iv, AES_BLOCKLEN);
-    411a:	4641                	li	a2,16
+    436c:	4641                	li	a2,16
 }
-    411c:	0131                	addi	sp,sp,12
+    436e:	0131                	addi	sp,sp,12
   memcpy (ctx->Iv, iv, AES_BLOCKLEN);
-    411e:	8f2fe06f          	j	2210 <memcpy>
+    4370:	ea1fd06f          	j	2210 <memcpy>
 
-00004122 <AES_CBC_encrypt_buffer>:
+00004374 <AES_CBC_encrypt_buffer>:
     buf[i] ^= Iv[i];
   }
 }
 
 void AES_CBC_encrypt_buffer(struct AES_ctx *ctx, uint8_t* buf, size_t length)
 {
-    4122:	1111                	addi	sp,sp,-28
+    4374:	1111                	addi	sp,sp,-28
   size_t i;
   uint8_t *Iv = ctx->Iv;
-    4124:	0b050693          	addi	a3,a0,176
+    4376:	0b050693          	addi	a3,a0,176
 {
-    4128:	ca22                	sw	s0,20(sp)
-    412a:	c826                	sw	s1,16(sp)
-    412c:	872e                	mv	a4,a1
-    412e:	cc06                	sw	ra,24(sp)
-    4130:	84aa                	mv	s1,a0
+    437a:	ca22                	sw	s0,20(sp)
+    437c:	c826                	sw	s1,16(sp)
+    437e:	872e                	mv	a4,a1
+    4380:	cc06                	sw	ra,24(sp)
+    4382:	84aa                	mv	s1,a0
   uint8_t *Iv = ctx->Iv;
-    4132:	85b6                	mv	a1,a3
+    4384:	85b6                	mv	a1,a3
   for (i = 0; i < length; i += AES_BLOCKLEN)
-    4134:	4401                	li	s0,0
-    4136:	00870533          	add	a0,a4,s0
-    413a:	00c46a63          	bltu	s0,a2,414e <AES_CBC_encrypt_buffer+0x2c>
+    4386:	4401                	li	s0,0
+    4388:	00870533          	add	a0,a4,s0
+    438c:	00c46a63          	bltu	s0,a2,43a0 <AES_CBC_encrypt_buffer+0x2c>
     Iv = buf;
     buf += AES_BLOCKLEN;
   }
   /* store Iv in ctx for next call */
   memcpy(ctx->Iv, Iv, AES_BLOCKLEN);
 }
-    413e:	4452                	lw	s0,20(sp)
-    4140:	40e2                	lw	ra,24(sp)
-    4142:	44c2                	lw	s1,16(sp)
+    4390:	4452                	lw	s0,20(sp)
+    4392:	40e2                	lw	ra,24(sp)
+    4394:	44c2                	lw	s1,16(sp)
   memcpy(ctx->Iv, Iv, AES_BLOCKLEN);
-    4144:	4641                	li	a2,16
-    4146:	8536                	mv	a0,a3
+    4396:	4641                	li	a2,16
+    4398:	8536                	mv	a0,a3
 }
-    4148:	0171                	addi	sp,sp,28
+    439a:	0171                	addi	sp,sp,28
   memcpy(ctx->Iv, Iv, AES_BLOCKLEN);
-    414a:	8c6fe06f          	j	2210 <memcpy>
-    414e:	4781                	li	a5,0
+    439c:	e75fd06f          	j	2210 <memcpy>
+    43a0:	4781                	li	a5,0
   for (i = 0; i < AES_BLOCKLEN; ++i) // The block in AES is always 128bit no matter the key size
-    4150:	43c1                	li	t2,16
+    43a2:	43c1                	li	t2,16
     buf[i] ^= Iv[i];
-    4152:	00f502b3          	add	t0,a0,a5
-    4156:	00f58333          	add	t1,a1,a5
-    415a:	00034303          	lbu	t1,0(t1)
-    415e:	0002c083          	lbu	ra,0(t0)
+    43a4:	00f502b3          	add	t0,a0,a5
+    43a8:	00f58333          	add	t1,a1,a5
+    43ac:	00034303          	lbu	t1,0(t1)
+    43b0:	0002c083          	lbu	ra,0(t0)
   for (i = 0; i < AES_BLOCKLEN; ++i) // The block in AES is always 128bit no matter the key size
-    4162:	0785                	addi	a5,a5,1
+    43b4:	0785                	addi	a5,a5,1
     buf[i] ^= Iv[i];
-    4164:	00134333          	xor	t1,t1,ra
-    4168:	00628023          	sb	t1,0(t0)
+    43b6:	00134333          	xor	t1,t1,ra
+    43ba:	00628023          	sb	t1,0(t0)
   for (i = 0; i < AES_BLOCKLEN; ++i) // The block in AES is always 128bit no matter the key size
-    416c:	fe7793e3          	bne	a5,t2,4152 <AES_CBC_encrypt_buffer+0x30>
+    43be:	fe7793e3          	bne	a5,t2,43a4 <AES_CBC_encrypt_buffer+0x30>
     Cipher((state_t*)buf, ctx->RoundKey);
-    4170:	85a6                	mv	a1,s1
-    4172:	c632                	sw	a2,12(sp)
-    4174:	c43a                	sw	a4,8(sp)
-    4176:	c236                	sw	a3,4(sp)
-    4178:	c02a                	sw	a0,0(sp)
-    417a:	3d11                	jal	3f8e <Cipher>
+    43c2:	85a6                	mv	a1,s1
+    43c4:	c632                	sw	a2,12(sp)
+    43c6:	c43a                	sw	a4,8(sp)
+    43c8:	c236                	sw	a3,4(sp)
+    43ca:	c02a                	sw	a0,0(sp)
+    43cc:	3d11                	jal	41e0 <Cipher>
     Iv = buf;
-    417c:	4502                	lw	a0,0(sp)
-    417e:	4632                	lw	a2,12(sp)
-    4180:	4722                	lw	a4,8(sp)
-    4182:	4692                	lw	a3,4(sp)
+    43ce:	4502                	lw	a0,0(sp)
+    43d0:	4632                	lw	a2,12(sp)
+    43d2:	4722                	lw	a4,8(sp)
+    43d4:	4692                	lw	a3,4(sp)
   for (i = 0; i < length; i += AES_BLOCKLEN)
-    4184:	0441                	addi	s0,s0,16
+    43d6:	0441                	addi	s0,s0,16
     Iv = buf;
-    4186:	85aa                	mv	a1,a0
-    4188:	b77d                	j	4136 <AES_CBC_encrypt_buffer+0x14>
+    43d8:	85aa                	mv	a1,a0
+    43da:	b77d                	j	4388 <AES_CBC_encrypt_buffer+0x14>
 
-0000418a <copystring>:
-    418a:	4781                	li	a5,0
-    418c:	470d                	li	a4,3
-    418e:	00b7c463          	blt	a5,a1,4196 <copystring+0xc>
-    4192:	853e                	mv	a0,a5
-    4194:	8082                	ret
-    4196:	00f606b3          	add	a3,a2,a5
-    419a:	0006c303          	lbu	t1,0(a3)
-    419e:	00f506b3          	add	a3,a0,a5
-    41a2:	0785                	addi	a5,a5,1
-    41a4:	00668023          	sb	t1,0(a3)
-    41a8:	fee793e3          	bne	a5,a4,418e <copystring+0x4>
-    41ac:	feb7d3e3          	bge	a5,a1,4192 <copystring+0x8>
-    41b0:	000501a3          	sb	zero,3(a0)
-    41b4:	4791                	li	a5,4
-    41b6:	bff1                	j	4192 <copystring+0x8>
+000043dc <gpio_interrupt_handler>:
+extern void mdelay(uint32_t ms);
 
-000041b8 <__dtostr>:
-    41b8:	fa810113          	addi	sp,sp,-88
-    41bc:	c8a2                	sw	s0,80(sp)
-    41be:	ca86                	sw	ra,84(sp)
-    41c0:	c6a6                	sw	s1,76(sp)
-    41c2:	d02a                	sw	a0,32(sp)
-    41c4:	c42e                	sw	a1,8(sp)
-    41c6:	c032                	sw	a2,0(sp)
-    41c8:	8436                	mv	s0,a3
-    41ca:	d43a                	sw	a4,40(sp)
-    41cc:	c23e                	sw	a5,4(sp)
-    41ce:	2ed5                	jal	45c2 <__isinf>
-    41d0:	cd01                	beqz	a0,41e8 <__dtostr+0x30>
-    41d2:	6619                	lui	a2,0x6
-    41d4:	86060613          	addi	a2,a2,-1952 # 5860 <sbox+0x13c>
-    41d8:	85a2                	mv	a1,s0
-    41da:	4446                	lw	s0,80(sp)
-    41dc:	4502                	lw	a0,0(sp)
-    41de:	40d6                	lw	ra,84(sp)
-    41e0:	44b6                	lw	s1,76(sp)
-    41e2:	05810113          	addi	sp,sp,88
-    41e6:	b755                	j	418a <copystring>
-    41e8:	5702                	lw	a4,32(sp)
-    41ea:	47a2                	lw	a5,8(sp)
-    41ec:	853a                	mv	a0,a4
-    41ee:	85be                	mv	a1,a5
-    41f0:	2b15                	jal	4724 <__isnan>
-    41f2:	d22a                	sw	a0,36(sp)
-    41f4:	c509                	beqz	a0,41fe <__dtostr+0x46>
-    41f6:	6619                	lui	a2,0x6
-    41f8:	86460613          	addi	a2,a2,-1948 # 5864 <sbox+0x140>
-    41fc:	bff1                	j	41d8 <__dtostr+0x20>
-    41fe:	5702                	lw	a4,32(sp)
-    4200:	47a2                	lw	a5,8(sp)
-    4202:	4601                	li	a2,0
-    4204:	4681                	li	a3,0
-    4206:	853a                	mv	a0,a4
-    4208:	85be                	mv	a1,a5
-    420a:	a32fd0ef          	jal	ra,143c <__eqdf2>
-    420e:	e925                	bnez	a0,427e <__dtostr+0xc6>
-    4210:	4792                	lw	a5,4(sp)
-    4212:	3a078363          	beqz	a5,45b8 <__dtostr+0x400>
-    4216:	0789                	addi	a5,a5,2
-    4218:	02f46163          	bltu	s0,a5,423a <__dtostr+0x82>
-    421c:	cb85                	beqz	a5,424c <__dtostr+0x94>
-    421e:	4722                	lw	a4,8(sp)
-    4220:	04075c63          	bgez	a4,4278 <__dtostr+0xc0>
-    4224:	4682                	lw	a3,0(sp)
-    4226:	02d00713          	li	a4,45
-    422a:	00e68023          	sb	a4,0(a3)
-    422e:	00178713          	addi	a4,a5,1
-    4232:	4785                	li	a5,1
-    4234:	03000693          	li	a3,48
-    4238:	a801                	j	4248 <__dtostr+0x90>
-    423a:	47a1                	li	a5,8
-    423c:	b7cd                	j	421e <__dtostr+0x66>
-    423e:	4602                	lw	a2,0(sp)
-    4240:	963e                	add	a2,a2,a5
-    4242:	00d60023          	sb	a3,0(a2)
-    4246:	0785                	addi	a5,a5,1
-    4248:	fee7ebe3          	bltu	a5,a4,423e <__dtostr+0x86>
-    424c:	4702                	lw	a4,0(sp)
-    424e:	03000693          	li	a3,48
-    4252:	00074603          	lbu	a2,0(a4)
-    4256:	4705                	li	a4,1
-    4258:	00d60363          	beq	a2,a3,425e <__dtostr+0xa6>
-    425c:	4709                	li	a4,2
-    425e:	4682                	lw	a3,0(sp)
-    4260:	9736                	add	a4,a4,a3
-    4262:	02e00693          	li	a3,46
-    4266:	00d70023          	sb	a3,0(a4)
-    426a:	4702                	lw	a4,0(sp)
-    426c:	00f704b3          	add	s1,a4,a5
-    4270:	00048023          	sb	zero,0(s1)
-    4274:	d23e                	sw	a5,36(sp)
-    4276:	a459                	j	44fc <__dtostr+0x344>
-    4278:	873e                	mv	a4,a5
-    427a:	4781                	li	a5,0
-    427c:	bf65                	j	4234 <__dtostr+0x7c>
-    427e:	5702                	lw	a4,32(sp)
-    4280:	47a2                	lw	a5,8(sp)
-    4282:	4601                	li	a2,0
-    4284:	4681                	li	a3,0
-    4286:	853a                	mv	a0,a4
-    4288:	85be                	mv	a1,a5
-    428a:	ae4fd0ef          	jal	ra,156e <__ledf2>
-    428e:	16055f63          	bgez	a0,440c <__dtostr+0x254>
-    4292:	47a2                	lw	a5,8(sp)
-    4294:	4702                	lw	a4,0(sp)
-    4296:	800002b7          	lui	t0,0x80000
-    429a:	00f2c2b3          	xor	t0,t0,a5
-    429e:	02d00793          	li	a5,45
-    42a2:	00f70023          	sb	a5,0(a4)
-    42a6:	147d                	addi	s0,s0,-1
-    42a8:	00170493          	addi	s1,a4,1
-    42ac:	6799                	lui	a5,0x6
-    42ae:	8287a503          	lw	a0,-2008(a5) # 5828 <sbox+0x104>
-    42b2:	82c7a583          	lw	a1,-2004(a5)
-    42b6:	6799                	lui	a5,0x6
-    42b8:	8387a703          	lw	a4,-1992(a5) # 5838 <sbox+0x114>
-    42bc:	83c7a783          	lw	a5,-1988(a5)
-    42c0:	4381                	li	t2,0
-    42c2:	4692                	lw	a3,4(sp)
-    42c4:	14d39763          	bne	t2,a3,4412 <__dtostr+0x25a>
-    42c8:	5702                	lw	a4,32(sp)
-    42ca:	862a                	mv	a2,a0
-    42cc:	86ae                	mv	a3,a1
-    42ce:	853a                	mv	a0,a4
-    42d0:	8596                	mv	a1,t0
-    42d2:	de2fc0ef          	jal	ra,8b4 <__adddf3>
-    42d6:	6799                	lui	a5,0x6
-    42d8:	8407a603          	lw	a2,-1984(a5) # 5840 <sbox+0x11c>
-    42dc:	8447a683          	lw	a3,-1980(a5)
-    42e0:	c82a                	sw	a0,16(sp)
-    42e2:	ca2e                	sw	a1,20(sp)
-    42e4:	a8afd0ef          	jal	ra,156e <__ledf2>
-    42e8:	00055863          	bgez	a0,42f8 <__dtostr+0x140>
-    42ec:	03000793          	li	a5,48
-    42f0:	00f48023          	sb	a5,0(s1)
-    42f4:	147d                	addi	s0,s0,-1
-    42f6:	0485                	addi	s1,s1,1
-    42f8:	47a2                	lw	a5,8(sp)
-    42fa:	0147d513          	srli	a0,a5,0x14
-    42fe:	7ff57513          	andi	a0,a0,2047
-    4302:	c0150513          	addi	a0,a0,-1023
-    4306:	e17fd0ef          	jal	ra,211c <__floatsidf>
-    430a:	6799                	lui	a5,0x6
-    430c:	8487a603          	lw	a2,-1976(a5) # 5848 <sbox+0x124>
-    4310:	84c7a683          	lw	a3,-1972(a5)
-    4314:	b10fd0ef          	jal	ra,1624 <__muldf3>
-    4318:	da1fd0ef          	jal	ra,20b8 <__fixdfsi>
-    431c:	00150793          	addi	a5,a0,1
-    4320:	cc3e                	sw	a5,24(sp)
-    4322:	22f05763          	blez	a5,4550 <__dtostr+0x398>
-    4326:	6699                	lui	a3,0x6
-    4328:	8506a603          	lw	a2,-1968(a3) # 5850 <sbox+0x12c>
-    432c:	82be                	mv	t0,a5
-    432e:	8546a683          	lw	a3,-1964(a3)
-    4332:	6799                	lui	a5,0x6
-    4334:	8307a703          	lw	a4,-2000(a5) # 5830 <sbox+0x10c>
-    4338:	8347a783          	lw	a5,-1996(a5)
-    433c:	43a9                	li	t2,10
-    433e:	d632                	sw	a2,44(sp)
-    4340:	d836                	sw	a3,48(sp)
-    4342:	0e53e663          	bltu	t2,t0,442e <__dtostr+0x276>
-    4346:	6699                	lui	a3,0x6
-    4348:	8306a603          	lw	a2,-2000(a3) # 5830 <sbox+0x10c>
-    434c:	8346a683          	lw	a3,-1996(a3)
-    4350:	4385                	li	t2,1
-    4352:	d632                	sw	a2,44(sp)
-    4354:	d836                	sw	a3,48(sp)
-    4356:	0e729963          	bne	t0,t2,4448 <__dtostr+0x290>
-    435a:	4685                	li	a3,1
-    435c:	d636                	sw	a3,44(sp)
-    435e:	6699                	lui	a3,0x6
-    4360:	8586a603          	lw	a2,-1960(a3) # 5858 <sbox+0x134>
-    4364:	85c6a683          	lw	a3,-1956(a3)
-    4368:	da32                	sw	a2,52(sp)
-    436a:	dc36                	sw	a3,56(sp)
-    436c:	6699                	lui	a3,0x6
-    436e:	8306a603          	lw	a2,-2000(a3) # 5830 <sbox+0x10c>
-    4372:	8346a683          	lw	a3,-1996(a3)
-    4376:	de32                	sw	a2,60(sp)
-    4378:	c0b6                	sw	a3,64(sp)
-    437a:	5652                	lw	a2,52(sp)
-    437c:	56e2                	lw	a3,56(sp)
-    437e:	853a                	mv	a0,a4
-    4380:	85be                	mv	a1,a5
-    4382:	c2ba                	sw	a4,68(sp)
-    4384:	c4be                	sw	a5,72(sp)
-    4386:	932fd0ef          	jal	ra,14b8 <__gedf2>
-    438a:	4716                	lw	a4,68(sp)
-    438c:	47a6                	lw	a5,72(sp)
-    438e:	0ca04a63          	bgtz	a0,4462 <__dtostr+0x2aa>
-    4392:	4682                	lw	a3,0(sp)
-    4394:	00d49a63          	bne	s1,a3,43a8 <__dtostr+0x1f0>
-    4398:	16040263          	beqz	s0,44fc <__dtostr+0x344>
-    439c:	03000693          	li	a3,48
-    43a0:	00d48023          	sb	a3,0(s1)
-    43a4:	147d                	addi	s0,s0,-1
-    43a6:	0485                	addi	s1,s1,1
-    43a8:	4692                	lw	a3,4(sp)
-    43aa:	ea81                	bnez	a3,43ba <__dtostr+0x202>
-    43ac:	4682                	lw	a3,0(sp)
-    43ae:	5622                	lw	a2,40(sp)
-    43b0:	40d486b3          	sub	a3,s1,a3
-    43b4:	0685                	addi	a3,a3,1
-    43b6:	04c6f563          	bgeu	a3,a2,4400 <__dtostr+0x248>
-    43ba:	14040163          	beqz	s0,44fc <__dtostr+0x344>
-    43be:	02e00693          	li	a3,46
-    43c2:	00d48023          	sb	a3,0(s1)
-    43c6:	4692                	lw	a3,4(sp)
-    43c8:	147d                	addi	s0,s0,-1
-    43ca:	00148293          	addi	t0,s1,1
-    43ce:	ea81                	bnez	a3,43de <__dtostr+0x226>
-    43d0:	56a2                	lw	a3,40(sp)
-    43d2:	4602                	lw	a2,0(sp)
-    43d4:	0685                	addi	a3,a3,1
-    43d6:	40c28633          	sub	a2,t0,a2
-    43da:	8e91                	sub	a3,a3,a2
-    43dc:	c236                	sw	a3,4(sp)
-    43de:	4692                	lw	a3,4(sp)
-    43e0:	10d46e63          	bltu	s0,a3,44fc <__dtostr+0x344>
-    43e4:	8426                	mv	s0,s1
-    43e6:	94b6                	add	s1,s1,a3
-    43e8:	6699                	lui	a3,0x6
-    43ea:	8306a603          	lw	a2,-2000(a3) # 5830 <sbox+0x10c>
-    43ee:	8346a683          	lw	a3,-1996(a3)
-    43f2:	c432                	sw	a2,8(sp)
-    43f4:	c636                	sw	a3,12(sp)
-    43f6:	16941363          	bne	s0,s1,455c <__dtostr+0x3a4>
-    43fa:	4792                	lw	a5,4(sp)
-    43fc:	00f284b3          	add	s1,t0,a5
-    4400:	4782                	lw	a5,0(sp)
-    4402:	00048023          	sb	zero,0(s1)
-    4406:	40f487b3          	sub	a5,s1,a5
-    440a:	b5ad                	j	4274 <__dtostr+0xbc>
-    440c:	4482                	lw	s1,0(sp)
-    440e:	42a2                	lw	t0,8(sp)
-    4410:	bd71                	j	42ac <__dtostr+0xf4>
-    4412:	863a                	mv	a2,a4
-    4414:	86be                	mv	a3,a5
-    4416:	d616                	sw	t0,44(sp)
-    4418:	cc1e                	sw	t2,24(sp)
-    441a:	c83a                	sw	a4,16(sp)
-    441c:	ca3e                	sw	a5,20(sp)
-    441e:	a06fd0ef          	jal	ra,1624 <__muldf3>
-    4422:	43e2                	lw	t2,24(sp)
-    4424:	52b2                	lw	t0,44(sp)
-    4426:	4742                	lw	a4,16(sp)
-    4428:	0385                	addi	t2,t2,1
-    442a:	47d2                	lw	a5,20(sp)
-    442c:	bd59                	j	42c2 <__dtostr+0x10a>
-    442e:	5632                	lw	a2,44(sp)
-    4430:	56c2                	lw	a3,48(sp)
-    4432:	853a                	mv	a0,a4
-    4434:	85be                	mv	a1,a5
-    4436:	da16                	sw	t0,52(sp)
-    4438:	9ecfd0ef          	jal	ra,1624 <__muldf3>
-    443c:	52d2                	lw	t0,52(sp)
-    443e:	872a                	mv	a4,a0
-    4440:	87ae                	mv	a5,a1
-    4442:	12d9                	addi	t0,t0,-10
-    4444:	43a9                	li	t2,10
-    4446:	bdf5                	j	4342 <__dtostr+0x18a>
-    4448:	5632                	lw	a2,44(sp)
-    444a:	56c2                	lw	a3,48(sp)
-    444c:	853a                	mv	a0,a4
-    444e:	85be                	mv	a1,a5
-    4450:	da16                	sw	t0,52(sp)
-    4452:	9d2fd0ef          	jal	ra,1624 <__muldf3>
-    4456:	52d2                	lw	t0,52(sp)
-    4458:	872a                	mv	a4,a0
-    445a:	87ae                	mv	a5,a1
-    445c:	12fd                	addi	t0,t0,-1
-    445e:	4385                	li	t2,1
-    4460:	bddd                	j	4356 <__dtostr+0x19e>
-    4462:	4542                	lw	a0,16(sp)
-    4464:	45d2                	lw	a1,20(sp)
-    4466:	863a                	mv	a2,a4
-    4468:	86be                	mv	a3,a5
-    446a:	c2ba                	sw	a4,68(sp)
-    446c:	c4be                	sw	a5,72(sp)
-    446e:	a3dfc0ef          	jal	ra,eaa <__divdf3>
-    4472:	c47fd0ef          	jal	ra,20b8 <__fixdfsi>
-    4476:	5632                	lw	a2,44(sp)
-    4478:	0ff57693          	andi	a3,a0,255
-    447c:	4716                	lw	a4,68(sp)
-    447e:	47a6                	lw	a5,72(sp)
-    4480:	c211                	beqz	a2,4484 <__dtostr+0x2cc>
-    4482:	ced5                	beqz	a3,453e <__dtostr+0x386>
-    4484:	03068693          	addi	a3,a3,48
-    4488:	00d48023          	sb	a3,0(s1)
-    448c:	0485                	addi	s1,s1,1
-    448e:	ec35                	bnez	s0,450a <__dtostr+0x352>
-    4490:	863a                	mv	a2,a4
-    4492:	86be                	mv	a3,a5
-    4494:	5702                	lw	a4,32(sp)
-    4496:	47a2                	lw	a5,8(sp)
-    4498:	853a                	mv	a0,a4
-    449a:	85be                	mv	a1,a5
-    449c:	a0ffc0ef          	jal	ra,eaa <__divdf3>
-    44a0:	4792                	lw	a5,4(sp)
-    44a2:	5722                	lw	a4,40(sp)
-    44a4:	4602                	lw	a2,0(sp)
-    44a6:	4681                	li	a3,0
-    44a8:	3b01                	jal	41b8 <__dtostr>
-    44aa:	c929                	beqz	a0,44fc <__dtostr+0x344>
-    44ac:	00a48333          	add	t1,s1,a0
-    44b0:	06500793          	li	a5,101
-    44b4:	00f30023          	sb	a5,0(t1)
-    44b8:	00130493          	addi	s1,t1,1
-    44bc:	fff54513          	not	a0,a0
-    44c0:	4711                	li	a4,4
-    44c2:	4685                	li	a3,1
-    44c4:	3e800793          	li	a5,1000
-    44c8:	4629                	li	a2,10
-    44ca:	45e2                	lw	a1,24(sp)
-    44cc:	00f5d363          	bge	a1,a5,44d2 <__dtostr+0x31a>
-    44d0:	e285                	bnez	a3,44f0 <__dtostr+0x338>
-    44d2:	c909                	beqz	a0,44e4 <__dtostr+0x32c>
-    44d4:	46e2                	lw	a3,24(sp)
-    44d6:	0485                	addi	s1,s1,1
-    44d8:	02f6c6b3          	div	a3,a3,a5
-    44dc:	03068693          	addi	a3,a3,48
-    44e0:	fed48fa3          	sb	a3,-1(s1)
-    44e4:	46e2                	lw	a3,24(sp)
-    44e6:	157d                	addi	a0,a0,-1
-    44e8:	02f6e6b3          	rem	a3,a3,a5
-    44ec:	cc36                	sw	a3,24(sp)
-    44ee:	4681                	li	a3,0
-    44f0:	177d                	addi	a4,a4,-1
-    44f2:	02c7c7b3          	div	a5,a5,a2
-    44f6:	fb71                	bnez	a4,44ca <__dtostr+0x312>
-    44f8:	f00514e3          	bnez	a0,4400 <__dtostr+0x248>
-    44fc:	40d6                	lw	ra,84(sp)
-    44fe:	4446                	lw	s0,80(sp)
-    4500:	5512                	lw	a0,36(sp)
-    4502:	44b6                	lw	s1,76(sp)
-    4504:	05810113          	addi	sp,sp,88
-    4508:	8082                	ret
-    450a:	0ff57513          	andi	a0,a0,255
-    450e:	d63a                	sw	a4,44(sp)
-    4510:	d83e                	sw	a5,48(sp)
-    4512:	c0bfd0ef          	jal	ra,211c <__floatsidf>
-    4516:	5732                	lw	a4,44(sp)
-    4518:	57c2                	lw	a5,48(sp)
-    451a:	147d                	addi	s0,s0,-1
-    451c:	863a                	mv	a2,a4
-    451e:	86be                	mv	a3,a5
-    4520:	c2ba                	sw	a4,68(sp)
-    4522:	c4be                	sw	a5,72(sp)
-    4524:	900fd0ef          	jal	ra,1624 <__muldf3>
-    4528:	862a                	mv	a2,a0
-    452a:	86ae                	mv	a3,a1
-    452c:	4542                	lw	a0,16(sp)
-    452e:	45d2                	lw	a1,20(sp)
-    4530:	d7cfd0ef          	jal	ra,1aac <__subdf3>
-    4534:	4716                	lw	a4,68(sp)
-    4536:	47a6                	lw	a5,72(sp)
-    4538:	c82a                	sw	a0,16(sp)
-    453a:	ca2e                	sw	a1,20(sp)
-    453c:	d602                	sw	zero,44(sp)
-    453e:	5672                	lw	a2,60(sp)
-    4540:	4686                	lw	a3,64(sp)
-    4542:	853a                	mv	a0,a4
-    4544:	85be                	mv	a1,a5
-    4546:	965fc0ef          	jal	ra,eaa <__divdf3>
-    454a:	872a                	mv	a4,a0
-    454c:	87ae                	mv	a5,a1
-    454e:	b535                	j	437a <__dtostr+0x1c2>
-    4550:	6799                	lui	a5,0x6
-    4552:	8387a703          	lw	a4,-1992(a5) # 5838 <sbox+0x114>
-    4556:	83c7a783          	lw	a5,-1988(a5)
-    455a:	bd25                	j	4392 <__dtostr+0x1da>
-    455c:	4542                	lw	a0,16(sp)
-    455e:	45d2                	lw	a1,20(sp)
-    4560:	863a                	mv	a2,a4
-    4562:	86be                	mv	a3,a5
-    4564:	d016                	sw	t0,32(sp)
-    4566:	cc3a                	sw	a4,24(sp)
-    4568:	ce3e                	sw	a5,28(sp)
-    456a:	941fc0ef          	jal	ra,eaa <__divdf3>
-    456e:	b4bfd0ef          	jal	ra,20b8 <__fixdfsi>
-    4572:	03050693          	addi	a3,a0,48
-    4576:	00d400a3          	sb	a3,1(s0)
-    457a:	0ff57513          	andi	a0,a0,255
-    457e:	b9ffd0ef          	jal	ra,211c <__floatsidf>
-    4582:	4762                	lw	a4,24(sp)
-    4584:	47f2                	lw	a5,28(sp)
-    4586:	0405                	addi	s0,s0,1
-    4588:	863a                	mv	a2,a4
-    458a:	86be                	mv	a3,a5
-    458c:	898fd0ef          	jal	ra,1624 <__muldf3>
-    4590:	862a                	mv	a2,a0
-    4592:	86ae                	mv	a3,a1
-    4594:	4542                	lw	a0,16(sp)
-    4596:	45d2                	lw	a1,20(sp)
-    4598:	d14fd0ef          	jal	ra,1aac <__subdf3>
-    459c:	4762                	lw	a4,24(sp)
-    459e:	47f2                	lw	a5,28(sp)
-    45a0:	4622                	lw	a2,8(sp)
-    45a2:	46b2                	lw	a3,12(sp)
-    45a4:	c82a                	sw	a0,16(sp)
-    45a6:	ca2e                	sw	a1,20(sp)
-    45a8:	853a                	mv	a0,a4
-    45aa:	85be                	mv	a1,a5
-    45ac:	8fffc0ef          	jal	ra,eaa <__divdf3>
-    45b0:	872a                	mv	a4,a0
-    45b2:	87ae                	mv	a5,a1
-    45b4:	5282                	lw	t0,32(sp)
-    45b6:	b581                	j	43f6 <__dtostr+0x23e>
-    45b8:	47a1                	li	a5,8
-    45ba:	c60402e3          	beqz	s0,421e <__dtostr+0x66>
-    45be:	4785                	li	a5,1
-    45c0:	b9b9                	j	421e <__dtostr+0x66>
+static void gpio_interrupt_handler(int32_t idx)
+{
 
-000045c2 <__isinf>:
-    45c2:	e509                	bnez	a0,45cc <__isinf+0xa>
-    45c4:	7ff007b7          	lui	a5,0x7ff00
-    45c8:	00f58b63          	beq	a1,a5,45de <__isinf+0x1c>
-    45cc:	fff007b7          	lui	a5,0xfff00
-    45d0:	8fad                	xor	a5,a5,a1
-    45d2:	8d5d                	or	a0,a0,a5
-    45d4:	00153513          	seqz	a0,a0
-    45d8:	40a00533          	neg	a0,a0
-    45dc:	8082                	ret
-    45de:	4505                	li	a0,1
-    45e0:	8082                	ret
+}
+    43dc:	8082                	ret
 
-000045e2 <__lltostr>:
-    45e2:	fdc10113          	addi	sp,sp,-36
-    45e6:	15fd                	addi	a1,a1,-1
-    45e8:	ce22                	sw	s0,28(sp)
-    45ea:	d006                	sw	ra,32(sp)
-    45ec:	cc26                	sw	s1,24(sp)
-    45ee:	95aa                	add	a1,a1,a0
-    45f0:	00058023          	sb	zero,0(a1)
-    45f4:	842a                	mv	s0,a0
-    45f6:	82b2                	mv	t0,a2
-    45f8:	8336                	mv	t1,a3
-    45fa:	c709                	beqz	a4,4604 <__lltostr+0x22>
-    45fc:	02400693          	li	a3,36
-    4600:	00e6d363          	bge	a3,a4,4606 <__lltostr+0x24>
-    4604:	4729                	li	a4,10
-    4606:	0062e6b3          	or	a3,t0,t1
-    460a:	4601                	li	a2,0
-    460c:	e699                	bnez	a3,461a <__lltostr+0x38>
-    460e:	03000693          	li	a3,48
-    4612:	fed58fa3          	sb	a3,-1(a1)
-    4616:	4605                	li	a2,1
-    4618:	15fd                	addi	a1,a1,-1
-    461a:	02700693          	li	a3,39
-    461e:	c391                	beqz	a5,4622 <__lltostr+0x40>
-    4620:	469d                	li	a3,7
-    4622:	0ff6f793          	andi	a5,a3,255
-    4626:	c23e                	sw	a5,4(sp)
-    4628:	00c587b3          	add	a5,a1,a2
-    462c:	c43e                	sw	a5,8(sp)
-    462e:	41f75793          	srai	a5,a4,0x1f
-    4632:	84ae                	mv	s1,a1
-    4634:	c03e                	sw	a5,0(sp)
-    4636:	47a2                	lw	a5,8(sp)
-    4638:	409786b3          	sub	a3,a5,s1
-    463c:	00947563          	bgeu	s0,s1,4646 <__lltostr+0x64>
-    4640:	0062e633          	or	a2,t0,t1
-    4644:	e205                	bnez	a2,4664 <__lltostr+0x82>
-    4646:	00168613          	addi	a2,a3,1
-    464a:	85a6                	mv	a1,s1
-    464c:	8522                	mv	a0,s0
-    464e:	c036                	sw	a3,0(sp)
-    4650:	c6dfd0ef          	jal	ra,22bc <memmove>
-    4654:	4682                	lw	a3,0(sp)
-    4656:	5082                	lw	ra,32(sp)
-    4658:	4472                	lw	s0,28(sp)
-    465a:	44e2                	lw	s1,24(sp)
-    465c:	8536                	mv	a0,a3
-    465e:	02410113          	addi	sp,sp,36
-    4662:	8082                	ret
-    4664:	4682                	lw	a3,0(sp)
-    4666:	863a                	mv	a2,a4
-    4668:	8516                	mv	a0,t0
-    466a:	859a                	mv	a1,t1
-    466c:	ca3a                	sw	a4,20(sp)
-    466e:	c816                	sw	t0,16(sp)
-    4670:	c61a                	sw	t1,12(sp)
-    4672:	eeffb0ef          	jal	ra,560 <__umoddi3>
-    4676:	03050513          	addi	a0,a0,48
-    467a:	0ff57513          	andi	a0,a0,255
-    467e:	03900793          	li	a5,57
-    4682:	14fd                	addi	s1,s1,-1
-    4684:	4332                	lw	t1,12(sp)
-    4686:	42c2                	lw	t0,16(sp)
-    4688:	4752                	lw	a4,20(sp)
-    468a:	00a7ef63          	bltu	a5,a0,46a8 <__lltostr+0xc6>
-    468e:	4682                	lw	a3,0(sp)
-    4690:	00a48023          	sb	a0,0(s1)
-    4694:	863a                	mv	a2,a4
-    4696:	8516                	mv	a0,t0
-    4698:	859a                	mv	a1,t1
-    469a:	c63a                	sw	a4,12(sp)
-    469c:	b5bfb0ef          	jal	ra,1f6 <__udivdi3>
-    46a0:	82aa                	mv	t0,a0
-    46a2:	832e                	mv	t1,a1
-    46a4:	4732                	lw	a4,12(sp)
-    46a6:	bf41                	j	4636 <__lltostr+0x54>
-    46a8:	4792                	lw	a5,4(sp)
-    46aa:	953e                	add	a0,a0,a5
-    46ac:	b7cd                	j	468e <__lltostr+0xac>
+000043de <LED_Init>:
 
-000046ae <printf>:
-    46ae:	fdc10113          	addi	sp,sp,-36
-    46b2:	c82e                	sw	a1,16(sp)
-    46b4:	080c                	addi	a1,sp,16
-    46b6:	c606                	sw	ra,12(sp)
-    46b8:	ca32                	sw	a2,20(sp)
-    46ba:	cc36                	sw	a3,24(sp)
-    46bc:	ce3a                	sw	a4,28(sp)
-    46be:	d03e                	sw	a5,32(sp)
-    46c0:	c02e                	sw	a1,0(sp)
-    46c2:	2099                	jal	4708 <vprintf>
-    46c4:	40b2                	lw	ra,12(sp)
-    46c6:	02410113          	addi	sp,sp,36
-    46ca:	8082                	ret
+void LED_Init()
+{	
+    43de:	1151                	addi	sp,sp,-12
+    43e0:	c026                	sw	s1,0(sp)
+	int32_t ret;		
+																					
+    led1_pin_handle_t = csi_gpio_pin_initialize(PA0, gpio_interrupt_handler);       
+    43e2:	6491                	lui	s1,0x4
+    43e4:	3dc48593          	addi	a1,s1,988 # 43dc <gpio_interrupt_handler>
+    43e8:	4501                	li	a0,0
+{	
+    43ea:	c406                	sw	ra,8(sp)
+    43ec:	c222                	sw	s0,4(sp)
+    led1_pin_handle_t = csi_gpio_pin_initialize(PA0, gpio_interrupt_handler);       
+    43ee:	d7aff0ef          	jal	ra,3968 <csi_gpio_pin_initialize>
+    43f2:	02c18413          	addi	s0,gp,44 # 20000514 <led1_pin_handle_t>
+    csi_gpio_pin_config_mode(led1_pin_handle_t, GPIO_MODE_PULLNONE);
+    43f6:	4581                	li	a1,0
+    led1_pin_handle_t = csi_gpio_pin_initialize(PA0, gpio_interrupt_handler);       
+    43f8:	c008                	sw	a0,0(s0)
+    csi_gpio_pin_config_mode(led1_pin_handle_t, GPIO_MODE_PULLNONE);
+    43fa:	dceff0ef          	jal	ra,39c8 <csi_gpio_pin_config_mode>
+    csi_gpio_pin_config_direction(led1_pin_handle_t, GPIO_DIRECTION_OUTPUT);
+    43fe:	4008                	lw	a0,0(s0)
+    4400:	4585                	li	a1,1
+    4402:	ddeff0ef          	jal	ra,39e0 <csi_gpio_pin_config_direction>
 
-000046cc <putc>:
-    46cc:	dd4ff06f          	j	3ca0 <fputc>
+    led2_pin_handle_t = csi_gpio_pin_initialize(PA1, gpio_interrupt_handler);       
+    4406:	3dc48593          	addi	a1,s1,988
+    440a:	4505                	li	a0,1
+    440c:	d5cff0ef          	jal	ra,3968 <csi_gpio_pin_initialize>
+    4410:	03018413          	addi	s0,gp,48 # 20000518 <led2_pin_handle_t>
+    csi_gpio_pin_config_mode(led2_pin_handle_t, GPIO_MODE_PULLNONE);
+    4414:	4581                	li	a1,0
+    led2_pin_handle_t = csi_gpio_pin_initialize(PA1, gpio_interrupt_handler);       
+    4416:	c008                	sw	a0,0(s0)
+    csi_gpio_pin_config_mode(led2_pin_handle_t, GPIO_MODE_PULLNONE);
+    4418:	db0ff0ef          	jal	ra,39c8 <csi_gpio_pin_config_mode>
+    csi_gpio_pin_config_direction(led2_pin_handle_t, GPIO_DIRECTION_OUTPUT);
+    441c:	4008                	lw	a0,0(s0)
+    441e:	4585                	li	a1,1
+    4420:	dc0ff0ef          	jal	ra,39e0 <csi_gpio_pin_config_direction>
 
-000046d0 <__stdio_outs>:
-    46d0:	1151                	addi	sp,sp,-12
-    46d2:	c222                	sw	s0,4(sp)
-    46d4:	c026                	sw	s1,0(sp)
-    46d6:	842a                	mv	s0,a0
-    46d8:	84ae                	mv	s1,a1
-    46da:	c406                	sw	ra,8(sp)
-    46dc:	94a2                	add	s1,s1,s0
-    46de:	df8ff0ef          	jal	ra,3cd6 <os_critical_enter>
-    46e2:	00941a63          	bne	s0,s1,46f6 <__stdio_outs+0x26>
-    46e6:	df4ff0ef          	jal	ra,3cda <os_critical_exit>
-    46ea:	40a2                	lw	ra,8(sp)
-    46ec:	4412                	lw	s0,4(sp)
-    46ee:	4482                	lw	s1,0(sp)
-    46f0:	4505                	li	a0,1
-    46f2:	0131                	addi	sp,sp,12
-    46f4:	8082                	ret
-    46f6:	0001a703          	lw	a4,0(gp) # 200004e8 <_impure_ptr>
-    46fa:	00044503          	lbu	a0,0(s0)
-    46fe:	0405                	addi	s0,s0,1
-    4700:	470c                	lw	a1,8(a4)
-    4702:	d9eff0ef          	jal	ra,3ca0 <fputc>
-    4706:	bff1                	j	46e2 <__stdio_outs+0x12>
+    led3_pin_handle_t = csi_gpio_pin_initialize(PA2, gpio_interrupt_handler);       
+    4424:	3dc48593          	addi	a1,s1,988
+    4428:	4509                	li	a0,2
+    442a:	d3eff0ef          	jal	ra,3968 <csi_gpio_pin_initialize>
+    442e:	03418413          	addi	s0,gp,52 # 2000051c <led3_pin_handle_t>
+    csi_gpio_pin_config_mode(led3_pin_handle_t, GPIO_MODE_PULLNONE);
+    4432:	4581                	li	a1,0
+    led3_pin_handle_t = csi_gpio_pin_initialize(PA2, gpio_interrupt_handler);       
+    4434:	c008                	sw	a0,0(s0)
+    csi_gpio_pin_config_mode(led3_pin_handle_t, GPIO_MODE_PULLNONE);
+    4436:	d92ff0ef          	jal	ra,39c8 <csi_gpio_pin_config_mode>
+    csi_gpio_pin_config_direction(led3_pin_handle_t, GPIO_DIRECTION_OUTPUT);
+    443a:	4008                	lw	a0,0(s0)
+}
+    443c:	4412                	lw	s0,4(sp)
+    443e:	40a2                	lw	ra,8(sp)
+    4440:	4482                	lw	s1,0(sp)
+    csi_gpio_pin_config_direction(led3_pin_handle_t, GPIO_DIRECTION_OUTPUT);
+    4442:	4585                	li	a1,1
+}
+    4444:	0131                	addi	sp,sp,12
+    csi_gpio_pin_config_direction(led3_pin_handle_t, GPIO_DIRECTION_OUTPUT);
+    4446:	d9aff06f          	j	39e0 <csi_gpio_pin_config_direction>
 
-00004708 <vprintf>:
-    4708:	1131                	addi	sp,sp,-20
-    470a:	6791                	lui	a5,0x4
-    470c:	6d078793          	addi	a5,a5,1744 # 46d0 <__stdio_outs>
-    4710:	862e                	mv	a2,a1
-    4712:	85aa                	mv	a1,a0
-    4714:	850a                	mv	a0,sp
-    4716:	c806                	sw	ra,16(sp)
-    4718:	c002                	sw	zero,0(sp)
-    471a:	c23e                	sw	a5,4(sp)
-    471c:	2291                	jal	4860 <__v_printf>
-    471e:	40c2                	lw	ra,16(sp)
-    4720:	0151                	addi	sp,sp,20
-    4722:	8082                	ret
+0000444a <LED_ON>:
 
-00004724 <__isnan>:
-    4724:	fff80737          	lui	a4,0xfff80
-    4728:	177d                	addi	a4,a4,-1
-    472a:	8f6d                	and	a4,a4,a1
-    472c:	e509                	bnez	a0,4736 <__isnan+0x12>
-    472e:	7ff007b7          	lui	a5,0x7ff00
-    4732:	00f70963          	beq	a4,a5,4744 <__isnan+0x20>
-    4736:	fff807b7          	lui	a5,0xfff80
-    473a:	8fad                	xor	a5,a5,a1
-    473c:	8fc9                	or	a5,a5,a0
-    473e:	0017b513          	seqz	a0,a5
-    4742:	8082                	ret
-    4744:	4505                	li	a0,1
-    4746:	8082                	ret
+void LED_ON()
+{
+    csi_gpio_pin_write(led1_pin_handle_t,1);	
+    444a:	02c1a503          	lw	a0,44(gp) # 20000514 <led1_pin_handle_t>
+{
+    444e:	1151                	addi	sp,sp,-12
+    csi_gpio_pin_write(led1_pin_handle_t,1);	
+    4450:	4585                	li	a1,1
+{
+    4452:	c406                	sw	ra,8(sp)
+    csi_gpio_pin_write(led1_pin_handle_t,1);	
+    4454:	dbeff0ef          	jal	ra,3a12 <csi_gpio_pin_write>
+    csi_gpio_pin_write(led2_pin_handle_t,1);	
+    4458:	0301a503          	lw	a0,48(gp) # 20000518 <led2_pin_handle_t>
+    445c:	4585                	li	a1,1
+    445e:	db4ff0ef          	jal	ra,3a12 <csi_gpio_pin_write>
+    csi_gpio_pin_write(led3_pin_handle_t,1);	
+}
+    4462:	40a2                	lw	ra,8(sp)
+    csi_gpio_pin_write(led3_pin_handle_t,1);	
+    4464:	0341a503          	lw	a0,52(gp) # 2000051c <led3_pin_handle_t>
+    4468:	4585                	li	a1,1
+}
+    446a:	0131                	addi	sp,sp,12
+    csi_gpio_pin_write(led3_pin_handle_t,1);	
+    446c:	da6ff06f          	j	3a12 <csi_gpio_pin_write>
 
-00004748 <__ltostr>:
-    4748:	1151                	addi	sp,sp,-12
-    474a:	15fd                	addi	a1,a1,-1
-    474c:	c406                	sw	ra,8(sp)
-    474e:	c222                	sw	s0,4(sp)
-    4750:	95aa                	add	a1,a1,a0
-    4752:	00058023          	sb	zero,0(a1)
-    4756:	fff68313          	addi	t1,a3,-1
-    475a:	02300793          	li	a5,35
-    475e:	0067f363          	bgeu	a5,t1,4764 <__ltostr+0x1c>
-    4762:	46a9                	li	a3,10
-    4764:	4781                	li	a5,0
-    4766:	e619                	bnez	a2,4774 <__ltostr+0x2c>
-    4768:	03000793          	li	a5,48
-    476c:	fef58fa3          	sb	a5,-1(a1)
-    4770:	15fd                	addi	a1,a1,-1
-    4772:	4785                	li	a5,1
-    4774:	02700313          	li	t1,39
-    4778:	c311                	beqz	a4,477c <__ltostr+0x34>
-    477a:	431d                	li	t1,7
-    477c:	0ff37713          	andi	a4,t1,255
-    4780:	03900293          	li	t0,57
-    4784:	00f58333          	add	t1,a1,a5
-    4788:	40b30433          	sub	s0,t1,a1
-    478c:	00b57363          	bgeu	a0,a1,4792 <__ltostr+0x4a>
-    4790:	ea11                	bnez	a2,47a4 <__ltostr+0x5c>
-    4792:	00140613          	addi	a2,s0,1
-    4796:	b27fd0ef          	jal	ra,22bc <memmove>
-    479a:	8522                	mv	a0,s0
-    479c:	40a2                	lw	ra,8(sp)
-    479e:	4412                	lw	s0,4(sp)
-    47a0:	0131                	addi	sp,sp,12
-    47a2:	8082                	ret
-    47a4:	02d677b3          	remu	a5,a2,a3
-    47a8:	15fd                	addi	a1,a1,-1
-    47aa:	03078793          	addi	a5,a5,48 # fff80030 <__heap_end+0xdff50030>
-    47ae:	0ff7f793          	andi	a5,a5,255
-    47b2:	00f2e763          	bltu	t0,a5,47c0 <__ltostr+0x78>
-    47b6:	00f58023          	sb	a5,0(a1)
-    47ba:	02d65633          	divu	a2,a2,a3
-    47be:	b7e9                	j	4788 <__ltostr+0x40>
-    47c0:	97ba                	add	a5,a5,a4
-    47c2:	bfd5                	j	47b6 <__ltostr+0x6e>
+00004470 <LED_OFF>:
 
-000047c4 <putchar>:
-    47c4:	0001a783          	lw	a5,0(gp) # 200004e8 <_impure_ptr>
-    47c8:	1151                	addi	sp,sp,-12
-    47ca:	c406                	sw	ra,8(sp)
-    47cc:	478c                	lw	a1,8(a5)
-    47ce:	3dfd                	jal	46cc <putc>
-    47d0:	40a2                	lw	ra,8(sp)
-    47d2:	4501                	li	a0,0
-    47d4:	0131                	addi	sp,sp,12
-    47d6:	8082                	ret
+void LED_OFF()
+{
+    csi_gpio_pin_write(led1_pin_handle_t,0);	
+    4470:	02c1a503          	lw	a0,44(gp) # 20000514 <led1_pin_handle_t>
+{
+    4474:	1151                	addi	sp,sp,-12
+    csi_gpio_pin_write(led1_pin_handle_t,0);	
+    4476:	4581                	li	a1,0
+{
+    4478:	c406                	sw	ra,8(sp)
+    csi_gpio_pin_write(led1_pin_handle_t,0);	
+    447a:	d98ff0ef          	jal	ra,3a12 <csi_gpio_pin_write>
+    csi_gpio_pin_write(led2_pin_handle_t,0);	
+    447e:	0301a503          	lw	a0,48(gp) # 20000518 <led2_pin_handle_t>
+    4482:	4581                	li	a1,0
+    4484:	d8eff0ef          	jal	ra,3a12 <csi_gpio_pin_write>
+    csi_gpio_pin_write(led3_pin_handle_t,0);	
+    4488:	40a2                	lw	ra,8(sp)
+    csi_gpio_pin_write(led3_pin_handle_t,0);	
+    448a:	0341a503          	lw	a0,52(gp) # 2000051c <led3_pin_handle_t>
+    448e:	4581                	li	a1,0
+    4490:	0131                	addi	sp,sp,12
+    csi_gpio_pin_write(led3_pin_handle_t,0);	
+    4492:	d80ff06f          	j	3a12 <csi_gpio_pin_write>
 
-000047d8 <puts>:
-    47d8:	1151                	addi	sp,sp,-12
-    47da:	c222                	sw	s0,4(sp)
-    47dc:	c406                	sw	ra,8(sp)
-    47de:	842a                	mv	s0,a0
-    47e0:	00044503          	lbu	a0,0(s0)
-    47e4:	55fd                	li	a1,-1
-    47e6:	e909                	bnez	a0,47f8 <puts+0x20>
-    47e8:	4529                	li	a0,10
-    47ea:	cb6ff0ef          	jal	ra,3ca0 <fputc>
-    47ee:	40a2                	lw	ra,8(sp)
-    47f0:	4412                	lw	s0,4(sp)
-    47f2:	4501                	li	a0,0
-    47f4:	0131                	addi	sp,sp,12
-    47f6:	8082                	ret
-    47f8:	ca8ff0ef          	jal	ra,3ca0 <fputc>
-    47fc:	0405                	addi	s0,s0,1
-    47fe:	b7cd                	j	47e0 <puts+0x8>
+00004496 <copystring>:
+    4496:	4781                	li	a5,0
+    4498:	470d                	li	a4,3
+    449a:	00b7c463          	blt	a5,a1,44a2 <copystring+0xc>
+    449e:	853e                	mv	a0,a5
+    44a0:	8082                	ret
+    44a2:	00f606b3          	add	a3,a2,a5
+    44a6:	0006c303          	lbu	t1,0(a3)
+    44aa:	00f506b3          	add	a3,a0,a5
+    44ae:	0785                	addi	a5,a5,1
+    44b0:	00668023          	sb	t1,0(a3)
+    44b4:	fee793e3          	bne	a5,a4,449a <copystring+0x4>
+    44b8:	feb7d3e3          	bge	a5,a1,449e <copystring+0x8>
+    44bc:	000501a3          	sb	zero,3(a0)
+    44c0:	4791                	li	a5,4
+    44c2:	bff1                	j	449e <copystring+0x8>
 
-00004800 <write_pad>:
-    4800:	1131                	addi	sp,sp,-20
-    4802:	fd060613          	addi	a2,a2,-48
-    4806:	c426                	sw	s1,8(sp)
-    4808:	00163613          	seqz	a2,a2
-    480c:	6499                	lui	s1,0x6
-    480e:	0612                	slli	a2,a2,0x4
-    4810:	87048493          	addi	s1,s1,-1936 # 5870 <pad_line>
-    4814:	c622                	sw	s0,12(sp)
-    4816:	c806                	sw	ra,16(sp)
-    4818:	87aa                	mv	a5,a0
-    481a:	872e                	mv	a4,a1
-    481c:	94b2                	add	s1,s1,a2
-    481e:	842e                	mv	s0,a1
-    4820:	463d                	li	a2,15
-    4822:	408706b3          	sub	a3,a4,s0
-    4826:	02864263          	blt	a2,s0,484a <write_pad+0x4a>
-    482a:	00805a63          	blez	s0,483e <write_pad+0x3e>
-    482e:	43d8                	lw	a4,4(a5)
-    4830:	4390                	lw	a2,0(a5)
-    4832:	85a2                	mv	a1,s0
-    4834:	8526                	mv	a0,s1
-    4836:	c036                	sw	a3,0(sp)
-    4838:	9702                	jalr	a4
-    483a:	4682                	lw	a3,0(sp)
-    483c:	96a2                	add	a3,a3,s0
-    483e:	40c2                	lw	ra,16(sp)
-    4840:	4432                	lw	s0,12(sp)
-    4842:	44a2                	lw	s1,8(sp)
-    4844:	8536                	mv	a0,a3
-    4846:	0151                	addi	sp,sp,20
-    4848:	8082                	ret
-    484a:	43d4                	lw	a3,4(a5)
-    484c:	4390                	lw	a2,0(a5)
-    484e:	45c1                	li	a1,16
-    4850:	8526                	mv	a0,s1
-    4852:	c23a                	sw	a4,4(sp)
-    4854:	c03e                	sw	a5,0(sp)
-    4856:	9682                	jalr	a3
-    4858:	1441                	addi	s0,s0,-16
-    485a:	4712                	lw	a4,4(sp)
-    485c:	4782                	lw	a5,0(sp)
-    485e:	b7c9                	j	4820 <write_pad+0x20>
+000044c4 <__dtostr>:
+    44c4:	fa810113          	addi	sp,sp,-88
+    44c8:	c8a2                	sw	s0,80(sp)
+    44ca:	ca86                	sw	ra,84(sp)
+    44cc:	c6a6                	sw	s1,76(sp)
+    44ce:	d02a                	sw	a0,32(sp)
+    44d0:	c42e                	sw	a1,8(sp)
+    44d2:	c032                	sw	a2,0(sp)
+    44d4:	8436                	mv	s0,a3
+    44d6:	d43a                	sw	a4,40(sp)
+    44d8:	c23e                	sw	a5,4(sp)
+    44da:	2ed5                	jal	48ce <__isinf>
+    44dc:	cd01                	beqz	a0,44f4 <__dtostr+0x30>
+    44de:	6619                	lui	a2,0x6
+    44e0:	b7060613          	addi	a2,a2,-1168 # 5b70 <sbox+0x13c>
+    44e4:	85a2                	mv	a1,s0
+    44e6:	4446                	lw	s0,80(sp)
+    44e8:	4502                	lw	a0,0(sp)
+    44ea:	40d6                	lw	ra,84(sp)
+    44ec:	44b6                	lw	s1,76(sp)
+    44ee:	05810113          	addi	sp,sp,88
+    44f2:	b755                	j	4496 <copystring>
+    44f4:	5702                	lw	a4,32(sp)
+    44f6:	47a2                	lw	a5,8(sp)
+    44f8:	853a                	mv	a0,a4
+    44fa:	85be                	mv	a1,a5
+    44fc:	2b15                	jal	4a30 <__isnan>
+    44fe:	d22a                	sw	a0,36(sp)
+    4500:	c509                	beqz	a0,450a <__dtostr+0x46>
+    4502:	6619                	lui	a2,0x6
+    4504:	b7460613          	addi	a2,a2,-1164 # 5b74 <sbox+0x140>
+    4508:	bff1                	j	44e4 <__dtostr+0x20>
+    450a:	5702                	lw	a4,32(sp)
+    450c:	47a2                	lw	a5,8(sp)
+    450e:	4601                	li	a2,0
+    4510:	4681                	li	a3,0
+    4512:	853a                	mv	a0,a4
+    4514:	85be                	mv	a1,a5
+    4516:	f27fc0ef          	jal	ra,143c <__eqdf2>
+    451a:	e925                	bnez	a0,458a <__dtostr+0xc6>
+    451c:	4792                	lw	a5,4(sp)
+    451e:	3a078363          	beqz	a5,48c4 <__dtostr+0x400>
+    4522:	0789                	addi	a5,a5,2
+    4524:	02f46163          	bltu	s0,a5,4546 <__dtostr+0x82>
+    4528:	cb85                	beqz	a5,4558 <__dtostr+0x94>
+    452a:	4722                	lw	a4,8(sp)
+    452c:	04075c63          	bgez	a4,4584 <__dtostr+0xc0>
+    4530:	4682                	lw	a3,0(sp)
+    4532:	02d00713          	li	a4,45
+    4536:	00e68023          	sb	a4,0(a3)
+    453a:	00178713          	addi	a4,a5,1
+    453e:	4785                	li	a5,1
+    4540:	03000693          	li	a3,48
+    4544:	a801                	j	4554 <__dtostr+0x90>
+    4546:	47a1                	li	a5,8
+    4548:	b7cd                	j	452a <__dtostr+0x66>
+    454a:	4602                	lw	a2,0(sp)
+    454c:	963e                	add	a2,a2,a5
+    454e:	00d60023          	sb	a3,0(a2)
+    4552:	0785                	addi	a5,a5,1
+    4554:	fee7ebe3          	bltu	a5,a4,454a <__dtostr+0x86>
+    4558:	4702                	lw	a4,0(sp)
+    455a:	03000693          	li	a3,48
+    455e:	00074603          	lbu	a2,0(a4)
+    4562:	4705                	li	a4,1
+    4564:	00d60363          	beq	a2,a3,456a <__dtostr+0xa6>
+    4568:	4709                	li	a4,2
+    456a:	4682                	lw	a3,0(sp)
+    456c:	9736                	add	a4,a4,a3
+    456e:	02e00693          	li	a3,46
+    4572:	00d70023          	sb	a3,0(a4)
+    4576:	4702                	lw	a4,0(sp)
+    4578:	00f704b3          	add	s1,a4,a5
+    457c:	00048023          	sb	zero,0(s1)
+    4580:	d23e                	sw	a5,36(sp)
+    4582:	a459                	j	4808 <__dtostr+0x344>
+    4584:	873e                	mv	a4,a5
+    4586:	4781                	li	a5,0
+    4588:	bf65                	j	4540 <__dtostr+0x7c>
+    458a:	5702                	lw	a4,32(sp)
+    458c:	47a2                	lw	a5,8(sp)
+    458e:	4601                	li	a2,0
+    4590:	4681                	li	a3,0
+    4592:	853a                	mv	a0,a4
+    4594:	85be                	mv	a1,a5
+    4596:	fd9fc0ef          	jal	ra,156e <__ledf2>
+    459a:	16055f63          	bgez	a0,4718 <__dtostr+0x254>
+    459e:	47a2                	lw	a5,8(sp)
+    45a0:	4702                	lw	a4,0(sp)
+    45a2:	800002b7          	lui	t0,0x80000
+    45a6:	00f2c2b3          	xor	t0,t0,a5
+    45aa:	02d00793          	li	a5,45
+    45ae:	00f70023          	sb	a5,0(a4)
+    45b2:	147d                	addi	s0,s0,-1
+    45b4:	00170493          	addi	s1,a4,1
+    45b8:	6799                	lui	a5,0x6
+    45ba:	b387a503          	lw	a0,-1224(a5) # 5b38 <sbox+0x104>
+    45be:	b3c7a583          	lw	a1,-1220(a5)
+    45c2:	6799                	lui	a5,0x6
+    45c4:	b487a703          	lw	a4,-1208(a5) # 5b48 <sbox+0x114>
+    45c8:	b4c7a783          	lw	a5,-1204(a5)
+    45cc:	4381                	li	t2,0
+    45ce:	4692                	lw	a3,4(sp)
+    45d0:	14d39763          	bne	t2,a3,471e <__dtostr+0x25a>
+    45d4:	5702                	lw	a4,32(sp)
+    45d6:	862a                	mv	a2,a0
+    45d8:	86ae                	mv	a3,a1
+    45da:	853a                	mv	a0,a4
+    45dc:	8596                	mv	a1,t0
+    45de:	ad6fc0ef          	jal	ra,8b4 <__adddf3>
+    45e2:	6799                	lui	a5,0x6
+    45e4:	b507a603          	lw	a2,-1200(a5) # 5b50 <sbox+0x11c>
+    45e8:	b547a683          	lw	a3,-1196(a5)
+    45ec:	c82a                	sw	a0,16(sp)
+    45ee:	ca2e                	sw	a1,20(sp)
+    45f0:	f7ffc0ef          	jal	ra,156e <__ledf2>
+    45f4:	00055863          	bgez	a0,4604 <__dtostr+0x140>
+    45f8:	03000793          	li	a5,48
+    45fc:	00f48023          	sb	a5,0(s1)
+    4600:	147d                	addi	s0,s0,-1
+    4602:	0485                	addi	s1,s1,1
+    4604:	47a2                	lw	a5,8(sp)
+    4606:	0147d513          	srli	a0,a5,0x14
+    460a:	7ff57513          	andi	a0,a0,2047
+    460e:	c0150513          	addi	a0,a0,-1023
+    4612:	b0bfd0ef          	jal	ra,211c <__floatsidf>
+    4616:	6799                	lui	a5,0x6
+    4618:	b587a603          	lw	a2,-1192(a5) # 5b58 <sbox+0x124>
+    461c:	b5c7a683          	lw	a3,-1188(a5)
+    4620:	804fd0ef          	jal	ra,1624 <__muldf3>
+    4624:	a95fd0ef          	jal	ra,20b8 <__fixdfsi>
+    4628:	00150793          	addi	a5,a0,1
+    462c:	cc3e                	sw	a5,24(sp)
+    462e:	22f05763          	blez	a5,485c <__dtostr+0x398>
+    4632:	6699                	lui	a3,0x6
+    4634:	b606a603          	lw	a2,-1184(a3) # 5b60 <sbox+0x12c>
+    4638:	82be                	mv	t0,a5
+    463a:	b646a683          	lw	a3,-1180(a3)
+    463e:	6799                	lui	a5,0x6
+    4640:	b407a703          	lw	a4,-1216(a5) # 5b40 <sbox+0x10c>
+    4644:	b447a783          	lw	a5,-1212(a5)
+    4648:	43a9                	li	t2,10
+    464a:	d632                	sw	a2,44(sp)
+    464c:	d836                	sw	a3,48(sp)
+    464e:	0e53e663          	bltu	t2,t0,473a <__dtostr+0x276>
+    4652:	6699                	lui	a3,0x6
+    4654:	b406a603          	lw	a2,-1216(a3) # 5b40 <sbox+0x10c>
+    4658:	b446a683          	lw	a3,-1212(a3)
+    465c:	4385                	li	t2,1
+    465e:	d632                	sw	a2,44(sp)
+    4660:	d836                	sw	a3,48(sp)
+    4662:	0e729963          	bne	t0,t2,4754 <__dtostr+0x290>
+    4666:	4685                	li	a3,1
+    4668:	d636                	sw	a3,44(sp)
+    466a:	6699                	lui	a3,0x6
+    466c:	b686a603          	lw	a2,-1176(a3) # 5b68 <sbox+0x134>
+    4670:	b6c6a683          	lw	a3,-1172(a3)
+    4674:	da32                	sw	a2,52(sp)
+    4676:	dc36                	sw	a3,56(sp)
+    4678:	6699                	lui	a3,0x6
+    467a:	b406a603          	lw	a2,-1216(a3) # 5b40 <sbox+0x10c>
+    467e:	b446a683          	lw	a3,-1212(a3)
+    4682:	de32                	sw	a2,60(sp)
+    4684:	c0b6                	sw	a3,64(sp)
+    4686:	5652                	lw	a2,52(sp)
+    4688:	56e2                	lw	a3,56(sp)
+    468a:	853a                	mv	a0,a4
+    468c:	85be                	mv	a1,a5
+    468e:	c2ba                	sw	a4,68(sp)
+    4690:	c4be                	sw	a5,72(sp)
+    4692:	e27fc0ef          	jal	ra,14b8 <__gedf2>
+    4696:	4716                	lw	a4,68(sp)
+    4698:	47a6                	lw	a5,72(sp)
+    469a:	0ca04a63          	bgtz	a0,476e <__dtostr+0x2aa>
+    469e:	4682                	lw	a3,0(sp)
+    46a0:	00d49a63          	bne	s1,a3,46b4 <__dtostr+0x1f0>
+    46a4:	16040263          	beqz	s0,4808 <__dtostr+0x344>
+    46a8:	03000693          	li	a3,48
+    46ac:	00d48023          	sb	a3,0(s1)
+    46b0:	147d                	addi	s0,s0,-1
+    46b2:	0485                	addi	s1,s1,1
+    46b4:	4692                	lw	a3,4(sp)
+    46b6:	ea81                	bnez	a3,46c6 <__dtostr+0x202>
+    46b8:	4682                	lw	a3,0(sp)
+    46ba:	5622                	lw	a2,40(sp)
+    46bc:	40d486b3          	sub	a3,s1,a3
+    46c0:	0685                	addi	a3,a3,1
+    46c2:	04c6f563          	bgeu	a3,a2,470c <__dtostr+0x248>
+    46c6:	14040163          	beqz	s0,4808 <__dtostr+0x344>
+    46ca:	02e00693          	li	a3,46
+    46ce:	00d48023          	sb	a3,0(s1)
+    46d2:	4692                	lw	a3,4(sp)
+    46d4:	147d                	addi	s0,s0,-1
+    46d6:	00148293          	addi	t0,s1,1
+    46da:	ea81                	bnez	a3,46ea <__dtostr+0x226>
+    46dc:	56a2                	lw	a3,40(sp)
+    46de:	4602                	lw	a2,0(sp)
+    46e0:	0685                	addi	a3,a3,1
+    46e2:	40c28633          	sub	a2,t0,a2
+    46e6:	8e91                	sub	a3,a3,a2
+    46e8:	c236                	sw	a3,4(sp)
+    46ea:	4692                	lw	a3,4(sp)
+    46ec:	10d46e63          	bltu	s0,a3,4808 <__dtostr+0x344>
+    46f0:	8426                	mv	s0,s1
+    46f2:	94b6                	add	s1,s1,a3
+    46f4:	6699                	lui	a3,0x6
+    46f6:	b406a603          	lw	a2,-1216(a3) # 5b40 <sbox+0x10c>
+    46fa:	b446a683          	lw	a3,-1212(a3)
+    46fe:	c432                	sw	a2,8(sp)
+    4700:	c636                	sw	a3,12(sp)
+    4702:	16941363          	bne	s0,s1,4868 <__dtostr+0x3a4>
+    4706:	4792                	lw	a5,4(sp)
+    4708:	00f284b3          	add	s1,t0,a5
+    470c:	4782                	lw	a5,0(sp)
+    470e:	00048023          	sb	zero,0(s1)
+    4712:	40f487b3          	sub	a5,s1,a5
+    4716:	b5ad                	j	4580 <__dtostr+0xbc>
+    4718:	4482                	lw	s1,0(sp)
+    471a:	42a2                	lw	t0,8(sp)
+    471c:	bd71                	j	45b8 <__dtostr+0xf4>
+    471e:	863a                	mv	a2,a4
+    4720:	86be                	mv	a3,a5
+    4722:	d616                	sw	t0,44(sp)
+    4724:	cc1e                	sw	t2,24(sp)
+    4726:	c83a                	sw	a4,16(sp)
+    4728:	ca3e                	sw	a5,20(sp)
+    472a:	efbfc0ef          	jal	ra,1624 <__muldf3>
+    472e:	43e2                	lw	t2,24(sp)
+    4730:	52b2                	lw	t0,44(sp)
+    4732:	4742                	lw	a4,16(sp)
+    4734:	0385                	addi	t2,t2,1
+    4736:	47d2                	lw	a5,20(sp)
+    4738:	bd59                	j	45ce <__dtostr+0x10a>
+    473a:	5632                	lw	a2,44(sp)
+    473c:	56c2                	lw	a3,48(sp)
+    473e:	853a                	mv	a0,a4
+    4740:	85be                	mv	a1,a5
+    4742:	da16                	sw	t0,52(sp)
+    4744:	ee1fc0ef          	jal	ra,1624 <__muldf3>
+    4748:	52d2                	lw	t0,52(sp)
+    474a:	872a                	mv	a4,a0
+    474c:	87ae                	mv	a5,a1
+    474e:	12d9                	addi	t0,t0,-10
+    4750:	43a9                	li	t2,10
+    4752:	bdf5                	j	464e <__dtostr+0x18a>
+    4754:	5632                	lw	a2,44(sp)
+    4756:	56c2                	lw	a3,48(sp)
+    4758:	853a                	mv	a0,a4
+    475a:	85be                	mv	a1,a5
+    475c:	da16                	sw	t0,52(sp)
+    475e:	ec7fc0ef          	jal	ra,1624 <__muldf3>
+    4762:	52d2                	lw	t0,52(sp)
+    4764:	872a                	mv	a4,a0
+    4766:	87ae                	mv	a5,a1
+    4768:	12fd                	addi	t0,t0,-1
+    476a:	4385                	li	t2,1
+    476c:	bddd                	j	4662 <__dtostr+0x19e>
+    476e:	4542                	lw	a0,16(sp)
+    4770:	45d2                	lw	a1,20(sp)
+    4772:	863a                	mv	a2,a4
+    4774:	86be                	mv	a3,a5
+    4776:	c2ba                	sw	a4,68(sp)
+    4778:	c4be                	sw	a5,72(sp)
+    477a:	f30fc0ef          	jal	ra,eaa <__divdf3>
+    477e:	93bfd0ef          	jal	ra,20b8 <__fixdfsi>
+    4782:	5632                	lw	a2,44(sp)
+    4784:	0ff57693          	andi	a3,a0,255
+    4788:	4716                	lw	a4,68(sp)
+    478a:	47a6                	lw	a5,72(sp)
+    478c:	c211                	beqz	a2,4790 <__dtostr+0x2cc>
+    478e:	ced5                	beqz	a3,484a <__dtostr+0x386>
+    4790:	03068693          	addi	a3,a3,48
+    4794:	00d48023          	sb	a3,0(s1)
+    4798:	0485                	addi	s1,s1,1
+    479a:	ec35                	bnez	s0,4816 <__dtostr+0x352>
+    479c:	863a                	mv	a2,a4
+    479e:	86be                	mv	a3,a5
+    47a0:	5702                	lw	a4,32(sp)
+    47a2:	47a2                	lw	a5,8(sp)
+    47a4:	853a                	mv	a0,a4
+    47a6:	85be                	mv	a1,a5
+    47a8:	f02fc0ef          	jal	ra,eaa <__divdf3>
+    47ac:	4792                	lw	a5,4(sp)
+    47ae:	5722                	lw	a4,40(sp)
+    47b0:	4602                	lw	a2,0(sp)
+    47b2:	4681                	li	a3,0
+    47b4:	3b01                	jal	44c4 <__dtostr>
+    47b6:	c929                	beqz	a0,4808 <__dtostr+0x344>
+    47b8:	00a48333          	add	t1,s1,a0
+    47bc:	06500793          	li	a5,101
+    47c0:	00f30023          	sb	a5,0(t1)
+    47c4:	00130493          	addi	s1,t1,1
+    47c8:	fff54513          	not	a0,a0
+    47cc:	4711                	li	a4,4
+    47ce:	4685                	li	a3,1
+    47d0:	3e800793          	li	a5,1000
+    47d4:	4629                	li	a2,10
+    47d6:	45e2                	lw	a1,24(sp)
+    47d8:	00f5d363          	bge	a1,a5,47de <__dtostr+0x31a>
+    47dc:	e285                	bnez	a3,47fc <__dtostr+0x338>
+    47de:	c909                	beqz	a0,47f0 <__dtostr+0x32c>
+    47e0:	46e2                	lw	a3,24(sp)
+    47e2:	0485                	addi	s1,s1,1
+    47e4:	02f6c6b3          	div	a3,a3,a5
+    47e8:	03068693          	addi	a3,a3,48
+    47ec:	fed48fa3          	sb	a3,-1(s1)
+    47f0:	46e2                	lw	a3,24(sp)
+    47f2:	157d                	addi	a0,a0,-1
+    47f4:	02f6e6b3          	rem	a3,a3,a5
+    47f8:	cc36                	sw	a3,24(sp)
+    47fa:	4681                	li	a3,0
+    47fc:	177d                	addi	a4,a4,-1
+    47fe:	02c7c7b3          	div	a5,a5,a2
+    4802:	fb71                	bnez	a4,47d6 <__dtostr+0x312>
+    4804:	f00514e3          	bnez	a0,470c <__dtostr+0x248>
+    4808:	40d6                	lw	ra,84(sp)
+    480a:	4446                	lw	s0,80(sp)
+    480c:	5512                	lw	a0,36(sp)
+    480e:	44b6                	lw	s1,76(sp)
+    4810:	05810113          	addi	sp,sp,88
+    4814:	8082                	ret
+    4816:	0ff57513          	andi	a0,a0,255
+    481a:	d63a                	sw	a4,44(sp)
+    481c:	d83e                	sw	a5,48(sp)
+    481e:	8fffd0ef          	jal	ra,211c <__floatsidf>
+    4822:	5732                	lw	a4,44(sp)
+    4824:	57c2                	lw	a5,48(sp)
+    4826:	147d                	addi	s0,s0,-1
+    4828:	863a                	mv	a2,a4
+    482a:	86be                	mv	a3,a5
+    482c:	c2ba                	sw	a4,68(sp)
+    482e:	c4be                	sw	a5,72(sp)
+    4830:	df5fc0ef          	jal	ra,1624 <__muldf3>
+    4834:	862a                	mv	a2,a0
+    4836:	86ae                	mv	a3,a1
+    4838:	4542                	lw	a0,16(sp)
+    483a:	45d2                	lw	a1,20(sp)
+    483c:	a70fd0ef          	jal	ra,1aac <__subdf3>
+    4840:	4716                	lw	a4,68(sp)
+    4842:	47a6                	lw	a5,72(sp)
+    4844:	c82a                	sw	a0,16(sp)
+    4846:	ca2e                	sw	a1,20(sp)
+    4848:	d602                	sw	zero,44(sp)
+    484a:	5672                	lw	a2,60(sp)
+    484c:	4686                	lw	a3,64(sp)
+    484e:	853a                	mv	a0,a4
+    4850:	85be                	mv	a1,a5
+    4852:	e58fc0ef          	jal	ra,eaa <__divdf3>
+    4856:	872a                	mv	a4,a0
+    4858:	87ae                	mv	a5,a1
+    485a:	b535                	j	4686 <__dtostr+0x1c2>
+    485c:	6799                	lui	a5,0x6
+    485e:	b487a703          	lw	a4,-1208(a5) # 5b48 <sbox+0x114>
+    4862:	b4c7a783          	lw	a5,-1204(a5)
+    4866:	bd25                	j	469e <__dtostr+0x1da>
+    4868:	4542                	lw	a0,16(sp)
+    486a:	45d2                	lw	a1,20(sp)
+    486c:	863a                	mv	a2,a4
+    486e:	86be                	mv	a3,a5
+    4870:	d016                	sw	t0,32(sp)
+    4872:	cc3a                	sw	a4,24(sp)
+    4874:	ce3e                	sw	a5,28(sp)
+    4876:	e34fc0ef          	jal	ra,eaa <__divdf3>
+    487a:	83ffd0ef          	jal	ra,20b8 <__fixdfsi>
+    487e:	03050693          	addi	a3,a0,48
+    4882:	00d400a3          	sb	a3,1(s0)
+    4886:	0ff57513          	andi	a0,a0,255
+    488a:	893fd0ef          	jal	ra,211c <__floatsidf>
+    488e:	4762                	lw	a4,24(sp)
+    4890:	47f2                	lw	a5,28(sp)
+    4892:	0405                	addi	s0,s0,1
+    4894:	863a                	mv	a2,a4
+    4896:	86be                	mv	a3,a5
+    4898:	d8dfc0ef          	jal	ra,1624 <__muldf3>
+    489c:	862a                	mv	a2,a0
+    489e:	86ae                	mv	a3,a1
+    48a0:	4542                	lw	a0,16(sp)
+    48a2:	45d2                	lw	a1,20(sp)
+    48a4:	a08fd0ef          	jal	ra,1aac <__subdf3>
+    48a8:	4762                	lw	a4,24(sp)
+    48aa:	47f2                	lw	a5,28(sp)
+    48ac:	4622                	lw	a2,8(sp)
+    48ae:	46b2                	lw	a3,12(sp)
+    48b0:	c82a                	sw	a0,16(sp)
+    48b2:	ca2e                	sw	a1,20(sp)
+    48b4:	853a                	mv	a0,a4
+    48b6:	85be                	mv	a1,a5
+    48b8:	df2fc0ef          	jal	ra,eaa <__divdf3>
+    48bc:	872a                	mv	a4,a0
+    48be:	87ae                	mv	a5,a1
+    48c0:	5282                	lw	t0,32(sp)
+    48c2:	b581                	j	4702 <__dtostr+0x23e>
+    48c4:	47a1                	li	a5,8
+    48c6:	c60402e3          	beqz	s0,452a <__dtostr+0x66>
+    48ca:	4785                	li	a5,1
+    48cc:	b9b9                	j	452a <__dtostr+0x66>
 
-00004860 <__v_printf>:
-    4860:	0081a783          	lw	a5,8(gp) # 200004f0 <errno>
-    4864:	f2810113          	addi	sp,sp,-216
-    4868:	c9a2                	sw	s0,208(sp)
-    486a:	c7a6                	sw	s1,204(sp)
-    486c:	cb86                	sw	ra,212(sp)
-    486e:	84aa                	mv	s1,a0
-    4870:	c82e                	sw	a1,16(sp)
-    4872:	8432                	mv	s0,a2
-    4874:	d83e                	sw	a5,48(sp)
-    4876:	c202                	sw	zero,4(sp)
-    4878:	47c2                	lw	a5,16(sp)
-    487a:	0007c783          	lbu	a5,0(a5)
-    487e:	66078e63          	beqz	a5,4efa <__v_printf+0x69a>
-    4882:	4701                	li	a4,0
-    4884:	02500613          	li	a2,37
-    4888:	a011                	j	488c <__v_printf+0x2c>
-    488a:	0705                	addi	a4,a4,1
-    488c:	47c2                	lw	a5,16(sp)
-    488e:	97ba                	add	a5,a5,a4
-    4890:	0007c683          	lbu	a3,0(a5)
-    4894:	74068663          	beqz	a3,4fe0 <__v_printf+0x780>
-    4898:	fec699e3          	bne	a3,a2,488a <__v_printf+0x2a>
-    489c:	e319                	bnez	a4,48a2 <__v_printf+0x42>
-    489e:	47c2                	lw	a5,16(sp)
-    48a0:	a01d                	j	48c6 <__v_printf+0x66>
-    48a2:	40d4                	lw	a3,4(s1)
-    48a4:	4090                	lw	a2,0(s1)
-    48a6:	4542                	lw	a0,16(sp)
-    48a8:	85ba                	mv	a1,a4
-    48aa:	c43e                	sw	a5,8(sp)
-    48ac:	c03a                	sw	a4,0(sp)
-    48ae:	9682                	jalr	a3
-    48b0:	4792                	lw	a5,4(sp)
-    48b2:	4702                	lw	a4,0(sp)
-    48b4:	97ba                	add	a5,a5,a4
-    48b6:	c23e                	sw	a5,4(sp)
-    48b8:	47a2                	lw	a5,8(sp)
-    48ba:	02500713          	li	a4,37
-    48be:	0007c683          	lbu	a3,0(a5)
-    48c2:	72e69263          	bne	a3,a4,4fe6 <__v_printf+0x786>
-    48c6:	00178513          	addi	a0,a5,1
-    48ca:	02000793          	li	a5,32
-    48ce:	c002                	sw	zero,0(sp)
-    48d0:	c602                	sw	zero,12(sp)
-    48d2:	4701                	li	a4,0
-    48d4:	ca02                	sw	zero,20(sp)
-    48d6:	ce02                	sw	zero,28(sp)
-    48d8:	d602                	sw	zero,44(sp)
-    48da:	d002                	sw	zero,32(sp)
-    48dc:	c402                	sw	zero,8(sp)
-    48de:	cc3e                	sw	a5,24(sp)
-    48e0:	00054303          	lbu	t1,0(a0)
-    48e4:	00150793          	addi	a5,a0,1
-    48e8:	c83e                	sw	a5,16(sp)
-    48ea:	046103a3          	sb	t1,71(sp)
-    48ee:	06300793          	li	a5,99
-    48f2:	1cf30963          	beq	t1,a5,4ac4 <__v_printf+0x264>
-    48f6:	0c67e863          	bltu	a5,t1,49c6 <__v_printf+0x166>
-    48fa:	02d00793          	li	a5,45
-    48fe:	02f30363          	beq	t1,a5,4924 <__v_printf+0xc4>
-    4902:	0667e263          	bltu	a5,t1,4966 <__v_printf+0x106>
-    4906:	02300793          	li	a5,35
-    490a:	02f30163          	beq	t1,a5,492c <__v_printf+0xcc>
-    490e:	0267e663          	bltu	a5,t1,493a <__v_printf+0xda>
-    4912:	5e030263          	beqz	t1,4ef6 <__v_printf+0x696>
-    4916:	02000793          	li	a5,32
-    491a:	f4f31fe3          	bne	t1,a5,4878 <__v_printf+0x18>
-    491e:	4785                	li	a5,1
-    4920:	d63e                	sw	a5,44(sp)
-    4922:	a019                	j	4928 <__v_printf+0xc8>
-    4924:	4785                	li	a5,1
-    4926:	d03e                	sw	a5,32(sp)
-    4928:	4542                	lw	a0,16(sp)
-    492a:	bf5d                	j	48e0 <__v_printf+0x80>
-    492c:	0ff00793          	li	a5,255
-    4930:	c43e                	sw	a5,8(sp)
-    4932:	bfdd                	j	4928 <__v_printf+0xc8>
-    4934:	4785                	li	a5,1
-    4936:	ce3e                	sw	a5,28(sp)
-    4938:	bfc5                	j	4928 <__v_printf+0xc8>
-    493a:	02a00793          	li	a5,42
-    493e:	16f30163          	beq	t1,a5,4aa0 <__v_printf+0x240>
-    4942:	02b00793          	li	a5,43
-    4946:	fef307e3          	beq	t1,a5,4934 <__v_printf+0xd4>
-    494a:	02500793          	li	a5,37
-    494e:	f2f315e3          	bne	t1,a5,4878 <__v_printf+0x18>
-    4952:	40dc                	lw	a5,4(s1)
-    4954:	4090                	lw	a2,0(s1)
-    4956:	4585                	li	a1,1
-    4958:	04710513          	addi	a0,sp,71
-    495c:	9782                	jalr	a5
-    495e:	4792                	lw	a5,4(sp)
-    4960:	0785                	addi	a5,a5,1
-    4962:	c23e                	sw	a5,4(sp)
-    4964:	bf11                	j	4878 <__v_printf+0x18>
-    4966:	03900793          	li	a5,57
-    496a:	0267ee63          	bltu	a5,t1,49a6 <__v_printf+0x146>
-    496e:	03000793          	li	a5,48
-    4972:	0ef37f63          	bgeu	t1,a5,4a70 <__v_printf+0x210>
-    4976:	02e00793          	li	a5,46
-    497a:	eef31fe3          	bne	t1,a5,4878 <__v_printf+0x18>
-    497e:	00154683          	lbu	a3,1(a0)
-    4982:	02a00793          	li	a5,42
-    4986:	12f69163          	bne	a3,a5,4aa8 <__v_printf+0x248>
-    498a:	4014                	lw	a3,0(s0)
-    498c:	00440793          	addi	a5,s0,4
-    4990:	c036                	sw	a3,0(sp)
-    4992:	0006d363          	bgez	a3,4998 <__v_printf+0x138>
-    4996:	c002                	sw	zero,0(sp)
-    4998:	00250693          	addi	a3,a0,2
-    499c:	c836                	sw	a3,16(sp)
-    499e:	843e                	mv	s0,a5
-    49a0:	4785                	li	a5,1
-    49a2:	ca3e                	sw	a5,20(sp)
-    49a4:	b751                	j	4928 <__v_printf+0xc8>
-    49a6:	05800793          	li	a5,88
-    49aa:	2af30063          	beq	t1,a5,4c4a <__v_printf+0x3ea>
-    49ae:	06200793          	li	a5,98
-    49b2:	36f30163          	beq	t1,a5,4d14 <__v_printf+0x4b4>
-    49b6:	04c00793          	li	a5,76
-    49ba:	eaf31fe3          	bne	t1,a5,4878 <__v_printf+0x18>
-    49be:	0705                	addi	a4,a4,1
-    49c0:	0762                	slli	a4,a4,0x18
-    49c2:	8761                	srai	a4,a4,0x18
-    49c4:	a091                	j	4a08 <__v_printf+0x1a8>
-    49c6:	06d00793          	li	a5,109
-    49ca:	10f30263          	beq	t1,a5,4ace <__v_printf+0x26e>
-    49ce:	0267ef63          	bltu	a5,t1,4a0c <__v_printf+0x1ac>
-    49d2:	06700793          	li	a5,103
-    49d6:	0067ef63          	bltu	a5,t1,49f4 <__v_printf+0x194>
-    49da:	06600793          	li	a5,102
-    49de:	3ef37063          	bgeu	t1,a5,4dbe <__v_printf+0x55e>
-    49e2:	06400793          	li	a5,100
-    49e6:	e8f319e3          	bne	t1,a5,4878 <__v_printf+0x18>
-    49ea:	4529                	li	a0,10
-    49ec:	4781                	li	a5,0
-    49ee:	4285                	li	t0,1
-    49f0:	4301                	li	t1,0
-    49f2:	a479                	j	4c80 <__v_printf+0x420>
-    49f4:	06900793          	li	a5,105
-    49f8:	fef309e3          	beq	t1,a5,49ea <__v_printf+0x18a>
-    49fc:	06f36663          	bltu	t1,a5,4a68 <__v_printf+0x208>
-    4a00:	06c00793          	li	a5,108
-    4a04:	e6f31ae3          	bne	t1,a5,4878 <__v_printf+0x18>
-    4a08:	0705                	addi	a4,a4,1
-    4a0a:	a085                	j	4a6a <__v_printf+0x20a>
-    4a0c:	07300793          	li	a5,115
-    4a10:	0ef30163          	beq	t1,a5,4af2 <__v_printf+0x292>
-    4a14:	0267ec63          	bltu	a5,t1,4a4c <__v_printf+0x1ec>
-    4a18:	07000793          	li	a5,112
-    4a1c:	22f30063          	beq	t1,a5,4c3c <__v_printf+0x3dc>
-    4a20:	07100793          	li	a5,113
-    4a24:	f8f30de3          	beq	t1,a5,49be <__v_printf+0x15e>
-    4a28:	06f00793          	li	a5,111
-    4a2c:	e4f316e3          	bne	t1,a5,4878 <__v_printf+0x18>
-    4a30:	47a2                	lw	a5,8(sp)
-    4a32:	2e078563          	beqz	a5,4d1c <__v_printf+0x4bc>
-    4a36:	03000793          	li	a5,48
-    4a3a:	04f106a3          	sb	a5,77(sp)
-    4a3e:	4785                	li	a5,1
-    4a40:	c43e                	sw	a5,8(sp)
-    4a42:	4521                	li	a0,8
-    4a44:	4781                	li	a5,0
-    4a46:	4281                	li	t0,0
-    4a48:	4305                	li	t1,1
-    4a4a:	ac1d                	j	4c80 <__v_printf+0x420>
-    4a4c:	07800793          	li	a5,120
-    4a50:	2cf30063          	beq	t1,a5,4d10 <__v_printf+0x4b0>
-    4a54:	07a00793          	li	a5,122
-    4a58:	ecf308e3          	beq	t1,a5,4928 <__v_printf+0xc8>
-    4a5c:	07500793          	li	a5,117
-    4a60:	e0f31ce3          	bne	t1,a5,4878 <__v_printf+0x18>
-    4a64:	4529                	li	a0,10
-    4a66:	ac45                	j	4d16 <__v_printf+0x4b6>
-    4a68:	177d                	addi	a4,a4,-1
-    4a6a:	0762                	slli	a4,a4,0x18
-    4a6c:	8761                	srai	a4,a4,0x18
-    4a6e:	bd6d                	j	4928 <__v_printf+0xc8>
-    4a70:	47d2                	lw	a5,20(sp)
-    4a72:	c83a                	sw	a4,16(sp)
-    4a74:	48079163          	bnez	a5,4ef6 <__v_printf+0x696>
-    4a78:	4629                	li	a2,10
-    4a7a:	00ac                	addi	a1,sp,72
-    4a7c:	aa2fe0ef          	jal	ra,2d1e <strtoul>
-    4a80:	04714683          	lbu	a3,71(sp)
-    4a84:	c62a                	sw	a0,12(sp)
-    4a86:	03000793          	li	a5,48
-    4a8a:	4742                	lw	a4,16(sp)
-    4a8c:	00f69763          	bne	a3,a5,4a9a <__v_printf+0x23a>
-    4a90:	5782                	lw	a5,32(sp)
-    4a92:	e781                	bnez	a5,4a9a <__v_printf+0x23a>
-    4a94:	03000793          	li	a5,48
-    4a98:	cc3e                	sw	a5,24(sp)
-    4a9a:	47a6                	lw	a5,72(sp)
-    4a9c:	c83e                	sw	a5,16(sp)
-    4a9e:	b569                	j	4928 <__v_printf+0xc8>
-    4aa0:	401c                	lw	a5,0(s0)
-    4aa2:	0411                	addi	s0,s0,4
-    4aa4:	c63e                	sw	a5,12(sp)
-    4aa6:	b549                	j	4928 <__v_printf+0xc8>
-    4aa8:	4542                	lw	a0,16(sp)
-    4aaa:	4629                	li	a2,10
-    4aac:	00ac                	addi	a1,sp,72
-    4aae:	ca3a                	sw	a4,20(sp)
-    4ab0:	8b4fe0ef          	jal	ra,2b64 <strtol>
-    4ab4:	c02a                	sw	a0,0(sp)
-    4ab6:	4752                	lw	a4,20(sp)
-    4ab8:	00055363          	bgez	a0,4abe <__v_printf+0x25e>
-    4abc:	c002                	sw	zero,0(sp)
-    4abe:	47a6                	lw	a5,72(sp)
-    4ac0:	c83e                	sw	a5,16(sp)
-    4ac2:	bdf9                	j	49a0 <__v_printf+0x140>
-    4ac4:	401c                	lw	a5,0(s0)
-    4ac6:	0411                	addi	s0,s0,4
-    4ac8:	04f103a3          	sb	a5,71(sp)
-    4acc:	b559                	j	4952 <__v_printf+0xf2>
-    4ace:	5542                	lw	a0,48(sp)
-    4ad0:	e63fd0ef          	jal	ra,2932 <strerror>
-    4ad4:	c4aa                	sw	a0,72(sp)
-    4ad6:	c42a                	sw	a0,8(sp)
-    4ad8:	e75fd0ef          	jal	ra,294c <strlen>
-    4adc:	4722                	lw	a4,8(sp)
-    4ade:	40d4                	lw	a3,4(s1)
-    4ae0:	4090                	lw	a2,0(s1)
-    4ae2:	85aa                	mv	a1,a0
-    4ae4:	c02a                	sw	a0,0(sp)
-    4ae6:	853a                	mv	a0,a4
-    4ae8:	9682                	jalr	a3
-    4aea:	4712                	lw	a4,4(sp)
-    4aec:	4782                	lw	a5,0(sp)
-    4aee:	97ba                	add	a5,a5,a4
-    4af0:	bd8d                	j	4962 <__v_printf+0x102>
-    4af2:	4018                	lw	a4,0(s0)
-    4af4:	00440793          	addi	a5,s0,4
-    4af8:	c721                	beqz	a4,4b40 <__v_printf+0x2e0>
-    4afa:	c4ba                	sw	a4,72(sp)
-    4afc:	4526                	lw	a0,72(sp)
-    4afe:	cc3e                	sw	a5,24(sp)
-    4b00:	e4dfd0ef          	jal	ra,294c <strlen>
-    4b04:	4752                	lw	a4,20(sp)
-    4b06:	832a                	mv	t1,a0
-    4b08:	47e2                	lw	a5,24(sp)
-    4b0a:	cf1d                	beqz	a4,4b48 <__v_printf+0x2e8>
-    4b0c:	4702                	lw	a4,0(sp)
-    4b0e:	00a77363          	bgeu	a4,a0,4b14 <__v_printf+0x2b4>
-    4b12:	833a                	mv	t1,a4
-    4b14:	843e                	mv	s0,a5
-    4b16:	c002                	sw	zero,0(sp)
-    4b18:	ca02                	sw	zero,20(sp)
-    4b1a:	4281                	li	t0,0
-    4b1c:	02000793          	li	a5,32
-    4b20:	cc3e                	sw	a5,24(sp)
-    4b22:	47b2                	lw	a5,12(sp)
-    4b24:	4702                	lw	a4,0(sp)
-    4b26:	46a6                	lw	a3,72(sp)
-    4b28:	8fd9                	or	a5,a5,a4
-    4b2a:	e39d                	bnez	a5,4b50 <__v_printf+0x2f0>
-    4b2c:	40dc                	lw	a5,4(s1)
-    4b2e:	4090                	lw	a2,0(s1)
-    4b30:	859a                	mv	a1,t1
-    4b32:	8536                	mv	a0,a3
-    4b34:	c01a                	sw	t1,0(sp)
-    4b36:	9782                	jalr	a5
-    4b38:	4792                	lw	a5,4(sp)
-    4b3a:	4302                	lw	t1,0(sp)
-    4b3c:	979a                	add	a5,a5,t1
-    4b3e:	b515                	j	4962 <__v_printf+0x102>
-    4b40:	6719                	lui	a4,0x6
-    4b42:	86870713          	addi	a4,a4,-1944 # 5868 <sbox+0x144>
-    4b46:	bf55                	j	4afa <__v_printf+0x29a>
-    4b48:	843e                	mv	s0,a5
-    4b4a:	4281                	li	t0,0
-    4b4c:	c002                	sw	zero,0(sp)
-    4b4e:	b7f9                	j	4b1c <__v_printf+0x2bc>
-    4b50:	42029f63          	bnez	t0,4f8e <__v_printf+0x72e>
-    4b54:	47a2                	lw	a5,8(sp)
-    4b56:	3a078963          	beqz	a5,4f08 <__v_printf+0x6a8>
-    4b5a:	47a2                	lw	a5,8(sp)
-    4b5c:	00f68733          	add	a4,a3,a5
-    4b60:	c4ba                	sw	a4,72(sp)
-    4b62:	4732                	lw	a4,12(sp)
-    4b64:	40f30333          	sub	t1,t1,a5
-    4b68:	8f1d                	sub	a4,a4,a5
-    4b6a:	c63a                	sw	a4,12(sp)
-    4b6c:	5702                	lw	a4,32(sp)
-    4b6e:	3a070163          	beqz	a4,4f10 <__v_printf+0x6b0>
-    4b72:	40d8                	lw	a4,4(s1)
-    4b74:	4090                	lw	a2,0(s1)
-    4b76:	85be                	mv	a1,a5
-    4b78:	8536                	mv	a0,a3
-    4b7a:	ca1a                	sw	t1,20(sp)
-    4b7c:	c43e                	sw	a5,8(sp)
-    4b7e:	9702                	jalr	a4
-    4b80:	4712                	lw	a4,4(sp)
-    4b82:	47a2                	lw	a5,8(sp)
-    4b84:	4352                	lw	t1,20(sp)
-    4b86:	97ba                	add	a5,a5,a4
-    4b88:	c23e                	sw	a5,4(sp)
-    4b8a:	4782                	lw	a5,0(sp)
-    4b8c:	03000613          	li	a2,48
-    4b90:	8526                	mv	a0,s1
-    4b92:	406785b3          	sub	a1,a5,t1
-    4b96:	ca1a                	sw	t1,20(sp)
-    4b98:	31a5                	jal	4800 <write_pad>
-    4b9a:	4792                	lw	a5,4(sp)
-    4b9c:	4352                	lw	t1,20(sp)
-    4b9e:	40d8                	lw	a4,4(s1)
-    4ba0:	97aa                	add	a5,a5,a0
-    4ba2:	4090                	lw	a2,0(s1)
-    4ba4:	4526                	lw	a0,72(sp)
-    4ba6:	859a                	mv	a1,t1
-    4ba8:	c43e                	sw	a5,8(sp)
-    4baa:	c21a                	sw	t1,4(sp)
-    4bac:	9702                	jalr	a4
-    4bae:	4312                	lw	t1,4(sp)
-    4bb0:	47a2                	lw	a5,8(sp)
-    4bb2:	4582                	lw	a1,0(sp)
-    4bb4:	979a                	add	a5,a5,t1
-    4bb6:	0065f363          	bgeu	a1,t1,4bbc <__v_printf+0x35c>
-    4bba:	859a                	mv	a1,t1
-    4bbc:	c03e                	sw	a5,0(sp)
-    4bbe:	47b2                	lw	a5,12(sp)
-    4bc0:	02000613          	li	a2,32
-    4bc4:	8526                	mv	a0,s1
-    4bc6:	40b785b3          	sub	a1,a5,a1
-    4bca:	391d                	jal	4800 <write_pad>
-    4bcc:	4782                	lw	a5,0(sp)
-    4bce:	97aa                	add	a5,a5,a0
-    4bd0:	bb49                	j	4962 <__v_printf+0x102>
-    4bd2:	c78d                	beqz	a5,4bfc <__v_printf+0x39c>
-    4bd4:	4662                	lw	a2,24(sp)
-    4bd6:	03000713          	li	a4,48
-    4bda:	02e61163          	bne	a2,a4,4bfc <__v_printf+0x39c>
-    4bde:	40d8                	lw	a4,4(s1)
-    4be0:	4090                	lw	a2,0(s1)
-    4be2:	85be                	mv	a1,a5
-    4be4:	8536                	mv	a0,a3
-    4be6:	ca1a                	sw	t1,20(sp)
-    4be8:	c43e                	sw	a5,8(sp)
-    4bea:	c036                	sw	a3,0(sp)
-    4bec:	9702                	jalr	a4
-    4bee:	4712                	lw	a4,4(sp)
-    4bf0:	47a2                	lw	a5,8(sp)
-    4bf2:	4352                	lw	t1,20(sp)
-    4bf4:	4682                	lw	a3,0(sp)
-    4bf6:	97ba                	add	a5,a5,a4
-    4bf8:	c23e                	sw	a5,4(sp)
-    4bfa:	4781                	li	a5,0
-    4bfc:	c43e                	sw	a5,8(sp)
-    4bfe:	47b2                	lw	a5,12(sp)
-    4c00:	4662                	lw	a2,24(sp)
-    4c02:	8526                	mv	a0,s1
-    4c04:	406785b3          	sub	a1,a5,t1
-    4c08:	c01a                	sw	t1,0(sp)
-    4c0a:	ca36                	sw	a3,20(sp)
-    4c0c:	bf5ff0ef          	jal	ra,4800 <write_pad>
-    4c10:	4792                	lw	a5,4(sp)
-    4c12:	4302                	lw	t1,0(sp)
-    4c14:	00a78733          	add	a4,a5,a0
-    4c18:	47a2                	lw	a5,8(sp)
-    4c1a:	34078e63          	beqz	a5,4f76 <__v_printf+0x716>
-    4c1e:	46d2                	lw	a3,20(sp)
-    4c20:	0044a383          	lw	t2,4(s1)
-    4c24:	4090                	lw	a2,0(s1)
-    4c26:	85be                	mv	a1,a5
-    4c28:	8536                	mv	a0,a3
-    4c2a:	c41a                	sw	t1,8(sp)
-    4c2c:	c23a                	sw	a4,4(sp)
-    4c2e:	c03e                	sw	a5,0(sp)
-    4c30:	9382                	jalr	t2
-    4c32:	4782                	lw	a5,0(sp)
-    4c34:	4712                	lw	a4,4(sp)
-    4c36:	4322                	lw	t1,8(sp)
-    4c38:	973e                	add	a4,a4,a5
-    4c3a:	ae35                	j	4f76 <__v_printf+0x716>
-    4c3c:	07800793          	li	a5,120
-    4c40:	04f103a3          	sb	a5,71(sp)
-    4c44:	4789                	li	a5,2
-    4c46:	4705                	li	a4,1
-    4c48:	c43e                	sw	a5,8(sp)
-    4c4a:	04714783          	lbu	a5,71(sp)
-    4c4e:	fa878793          	addi	a5,a5,-88
-    4c52:	0017b793          	seqz	a5,a5
-    4c56:	46a2                	lw	a3,8(sp)
-    4c58:	4301                	li	t1,0
-    4c5a:	ce81                	beqz	a3,4c72 <__v_printf+0x412>
-    4c5c:	03000693          	li	a3,48
-    4c60:	04d106a3          	sb	a3,77(sp)
-    4c64:	04714683          	lbu	a3,71(sp)
-    4c68:	4309                	li	t1,2
-    4c6a:	04d10723          	sb	a3,78(sp)
-    4c6e:	4689                	li	a3,2
-    4c70:	c436                	sw	a3,8(sp)
-    4c72:	46b2                	lw	a3,12(sp)
-    4c74:	4602                	lw	a2,0(sp)
-    4c76:	00c6f363          	bgeu	a3,a2,4c7c <__v_printf+0x41c>
-    4c7a:	c632                	sw	a2,12(sp)
-    4c7c:	4541                	li	a0,16
-    4c7e:	4281                	li	t0,0
-    4c80:	04d10693          	addi	a3,sp,77
-    4c84:	c4b6                	sw	a3,72(sp)
-    4c86:	0ae05a63          	blez	a4,4d3a <__v_printf+0x4da>
-    4c8a:	4685                	li	a3,1
-    4c8c:	08d70c63          	beq	a4,a3,4d24 <__v_printf+0x4c4>
-    4c90:	00840393          	addi	t2,s0,8
-    4c94:	4010                	lw	a2,0(s0)
-    4c96:	4054                	lw	a3,4(s0)
-    4c98:	4581                	li	a1,0
-    4c9a:	08028c63          	beqz	t0,4d32 <__v_printf+0x4d2>
-    4c9e:	0006da63          	bgez	a3,4cb2 <__v_printf+0x452>
-    4ca2:	40c00633          	neg	a2,a2
-    4ca6:	00c03733          	snez	a4,a2
-    4caa:	40d006b3          	neg	a3,a3
-    4cae:	8e99                	sub	a3,a3,a4
-    4cb0:	4289                	li	t0,2
-    4cb2:	872a                	mv	a4,a0
-    4cb4:	04d10513          	addi	a0,sp,77
-    4cb8:	951a                	add	a0,a0,t1
-    4cba:	07b00593          	li	a1,123
-    4cbe:	da1e                	sw	t2,52(sp)
-    4cc0:	d416                	sw	t0,40(sp)
-    4cc2:	d21a                	sw	t1,36(sp)
-    4cc4:	91fff0ef          	jal	ra,45e2 <__lltostr>
-    4cc8:	53d2                	lw	t2,52(sp)
-    4cca:	5312                	lw	t1,36(sp)
-    4ccc:	52a2                	lw	t0,40(sp)
-    4cce:	841e                	mv	s0,t2
-    4cd0:	4752                	lw	a4,20(sp)
-    4cd2:	47a6                	lw	a5,72(sp)
-    4cd4:	cb5d                	beqz	a4,4d8a <__v_printf+0x52a>
-    4cd6:	4705                	li	a4,1
-    4cd8:	0ae51963          	bne	a0,a4,4d8a <__v_printf+0x52a>
-    4cdc:	00678733          	add	a4,a5,t1
-    4ce0:	00074683          	lbu	a3,0(a4)
-    4ce4:	03000713          	li	a4,48
-    4ce8:	0ae69163          	bne	a3,a4,4d8a <__v_printf+0x52a>
-    4cec:	4702                	lw	a4,0(sp)
-    4cee:	c345                	beqz	a4,4d8e <__v_printf+0x52e>
-    4cf0:	4722                	lw	a4,8(sp)
-    4cf2:	c319                	beqz	a4,4cf8 <__v_printf+0x498>
-    4cf4:	c402                	sw	zero,8(sp)
-    4cf6:	4301                	li	t1,0
-    4cf8:	4709                	li	a4,2
-    4cfa:	08e29d63          	bne	t0,a4,4d94 <__v_printf+0x534>
-    4cfe:	fff78713          	addi	a4,a5,-1
-    4d02:	c4ba                	sw	a4,72(sp)
-    4d04:	02d00713          	li	a4,45
-    4d08:	fee78fa3          	sb	a4,-1(a5)
-    4d0c:	0305                	addi	t1,t1,1
-    4d0e:	bd11                	j	4b22 <__v_printf+0x2c2>
-    4d10:	4781                	li	a5,0
-    4d12:	b791                	j	4c56 <__v_printf+0x3f6>
-    4d14:	4509                	li	a0,2
-    4d16:	4781                	li	a5,0
-    4d18:	4281                	li	t0,0
-    4d1a:	b9d9                	j	49f0 <__v_printf+0x190>
-    4d1c:	4781                	li	a5,0
-    4d1e:	4281                	li	t0,0
-    4d20:	4521                	li	a0,8
-    4d22:	b1f9                	j	49f0 <__v_printf+0x190>
-    4d24:	00440393          	addi	t2,s0,4
-    4d28:	400c                	lw	a1,0(s0)
-    4d2a:	00029d63          	bnez	t0,4d44 <__v_printf+0x4e4>
-    4d2e:	4601                	li	a2,0
-    4d30:	4681                	li	a3,0
-    4d32:	4405                	li	s0,1
-    4d34:	f6e44fe3          	blt	s0,a4,4cb2 <__v_printf+0x452>
-    4d38:	a01d                	j	4d5e <__v_printf+0x4fe>
-    4d3a:	00440393          	addi	t2,s0,4
-    4d3e:	400c                	lw	a1,0(s0)
-    4d40:	00028863          	beqz	t0,4d50 <__v_printf+0x4f0>
-    4d44:	4285                	li	t0,1
-    4d46:	0005d563          	bgez	a1,4d50 <__v_printf+0x4f0>
-    4d4a:	40b005b3          	neg	a1,a1
-    4d4e:	4289                	li	t0,2
-    4d50:	fc075fe3          	bgez	a4,4d2e <__v_printf+0x4ce>
-    4d54:	56fd                	li	a3,-1
-    4d56:	02d70763          	beq	a4,a3,4d84 <__v_printf+0x524>
-    4d5a:	0ff5f593          	andi	a1,a1,255
-    4d5e:	873e                	mv	a4,a5
-    4d60:	04d10793          	addi	a5,sp,77
-    4d64:	86aa                	mv	a3,a0
-    4d66:	862e                	mv	a2,a1
-    4d68:	00678533          	add	a0,a5,t1
-    4d6c:	07b00593          	li	a1,123
-    4d70:	da1e                	sw	t2,52(sp)
-    4d72:	d416                	sw	t0,40(sp)
-    4d74:	d21a                	sw	t1,36(sp)
-    4d76:	9d3ff0ef          	jal	ra,4748 <__ltostr>
-    4d7a:	53d2                	lw	t2,52(sp)
-    4d7c:	52a2                	lw	t0,40(sp)
-    4d7e:	5312                	lw	t1,36(sp)
-    4d80:	841e                	mv	s0,t2
-    4d82:	b7b9                	j	4cd0 <__v_printf+0x470>
-    4d84:	05c2                	slli	a1,a1,0x10
-    4d86:	81c1                	srli	a1,a1,0x10
-    4d88:	bfd9                	j	4d5e <__v_printf+0x4fe>
-    4d8a:	932a                	add	t1,t1,a0
-    4d8c:	b7b5                	j	4cf8 <__v_printf+0x498>
-    4d8e:	4301                	li	t1,0
-    4d90:	c402                	sw	zero,8(sp)
-    4d92:	b79d                	j	4cf8 <__v_printf+0x498>
-    4d94:	d80287e3          	beqz	t0,4b22 <__v_printf+0x2c2>
-    4d98:	4772                	lw	a4,28(sp)
-    4d9a:	ef19                	bnez	a4,4db8 <__v_printf+0x558>
-    4d9c:	5732                	lw	a4,44(sp)
-    4d9e:	4281                	li	t0,0
-    4da0:	d80701e3          	beqz	a4,4b22 <__v_printf+0x2c2>
-    4da4:	02000713          	li	a4,32
-    4da8:	fff78693          	addi	a3,a5,-1
-    4dac:	c4b6                	sw	a3,72(sp)
-    4dae:	fee78fa3          	sb	a4,-1(a5)
-    4db2:	0305                	addi	t1,t1,1
-    4db4:	4285                	li	t0,1
-    4db6:	b3b5                	j	4b22 <__v_printf+0x2c2>
-    4db8:	02b00713          	li	a4,43
-    4dbc:	b7f5                	j	4da8 <__v_printf+0x548>
-    4dbe:	00840793          	addi	a5,s0,8
-    4dc2:	da3e                	sw	a5,52(sp)
-    4dc4:	401c                	lw	a5,0(s0)
-    4dc6:	d23e                	sw	a5,36(sp)
-    4dc8:	405c                	lw	a5,4(s0)
-    4dca:	d43e                	sw	a5,40(sp)
-    4dcc:	04d10793          	addi	a5,sp,77
-    4dd0:	c4be                	sw	a5,72(sp)
-    4dd2:	47b2                	lw	a5,12(sp)
-    4dd4:	e399                	bnez	a5,4dda <__v_printf+0x57a>
-    4dd6:	4785                	li	a5,1
-    4dd8:	c63e                	sw	a5,12(sp)
-    4dda:	47d2                	lw	a5,20(sp)
-    4ddc:	e399                	bnez	a5,4de2 <__v_printf+0x582>
-    4dde:	4799                	li	a5,6
-    4de0:	c03e                	sw	a5,0(sp)
-    4de2:	42f2                	lw	t0,28(sp)
-    4de4:	00029e63          	bnez	t0,4e00 <__v_printf+0x5a0>
-    4de8:	5712                	lw	a4,36(sp)
-    4dea:	57a2                	lw	a5,40(sp)
-    4dec:	4601                	li	a2,0
-    4dee:	4681                	li	a3,0
-    4df0:	853a                	mv	a0,a4
-    4df2:	85be                	mv	a1,a5
-    4df4:	dc1a                	sw	t1,56(sp)
-    4df6:	f78fc0ef          	jal	ra,156e <__ledf2>
-    4dfa:	5362                	lw	t1,56(sp)
-    4dfc:	01f55293          	srli	t0,a0,0x1f
-    4e00:	5412                	lw	s0,36(sp)
-    4e02:	53a2                	lw	t2,40(sp)
-    4e04:	4782                	lw	a5,0(sp)
-    4e06:	4732                	lw	a4,12(sp)
-    4e08:	07f00693          	li	a3,127
-    4e0c:	04d10613          	addi	a2,sp,77
-    4e10:	8522                	mv	a0,s0
-    4e12:	859e                	mv	a1,t2
-    4e14:	c096                	sw	t0,64(sp)
-    4e16:	dc1a                	sw	t1,56(sp)
-    4e18:	ba0ff0ef          	jal	ra,41b8 <__dtostr>
-    4e1c:	47d2                	lw	a5,20(sp)
-    4e1e:	de2a                	sw	a0,60(sp)
-    4e20:	5362                	lw	t1,56(sp)
-    4e22:	4286                	lw	t0,64(sp)
-    4e24:	cb95                	beqz	a5,4e58 <__v_printf+0x5f8>
-    4e26:	4426                	lw	s0,72(sp)
-    4e28:	02e00593          	li	a1,46
-    4e2c:	dc16                	sw	t0,56(sp)
-    4e2e:	8522                	mv	a0,s0
-    4e30:	ca1a                	sw	t1,20(sp)
-    4e32:	e28fd0ef          	jal	ra,245a <strchr>
-    4e36:	4352                	lw	t1,20(sp)
-    4e38:	52e2                	lw	t0,56(sp)
-    4e3a:	57f2                	lw	a5,60(sp)
-    4e3c:	cd49                	beqz	a0,4ed6 <__v_printf+0x676>
-    4e3e:	4782                	lw	a5,0(sp)
-    4e40:	e399                	bnez	a5,4e46 <__v_printf+0x5e6>
-    4e42:	47a2                	lw	a5,8(sp)
-    4e44:	cb81                	beqz	a5,4e54 <__v_printf+0x5f4>
-    4e46:	0505                	addi	a0,a0,1
-    4e48:	4782                	lw	a5,0(sp)
-    4e4a:	c789                	beqz	a5,4e54 <__v_printf+0x5f4>
-    4e4c:	0505                	addi	a0,a0,1
-    4e4e:	00054783          	lbu	a5,0(a0)
-    4e52:	efb5                	bnez	a5,4ece <__v_printf+0x66e>
-    4e54:	00050023          	sb	zero,0(a0)
-    4e58:	06700793          	li	a5,103
-    4e5c:	04f31a63          	bne	t1,a5,4eb0 <__v_printf+0x650>
-    4e60:	4526                	lw	a0,72(sp)
-    4e62:	02e00593          	li	a1,46
-    4e66:	c416                	sw	t0,8(sp)
-    4e68:	df2fd0ef          	jal	ra,245a <strchr>
-    4e6c:	842a                	mv	s0,a0
-    4e6e:	42a2                	lw	t0,8(sp)
-    4e70:	c121                	beqz	a0,4eb0 <__v_printf+0x650>
-    4e72:	06500593          	li	a1,101
-    4e76:	de4fd0ef          	jal	ra,245a <strchr>
-    4e7a:	42a2                	lw	t0,8(sp)
-    4e7c:	85aa                	mv	a1,a0
-    4e7e:	00044783          	lbu	a5,0(s0)
-    4e82:	e7b5                	bnez	a5,4eee <__v_printf+0x68e>
-    4e84:	c191                	beqz	a1,4e88 <__v_printf+0x628>
-    4e86:	842e                	mv	s0,a1
-    4e88:	03000693          	li	a3,48
-    4e8c:	fff44703          	lbu	a4,-1(s0)
-    4e90:	fff40513          	addi	a0,s0,-1
-    4e94:	04d70f63          	beq	a4,a3,4ef2 <__v_printf+0x692>
-    4e98:	02e00693          	li	a3,46
-    4e9c:	00d70363          	beq	a4,a3,4ea2 <__v_printf+0x642>
-    4ea0:	8522                	mv	a0,s0
-    4ea2:	00050023          	sb	zero,0(a0)
-    4ea6:	c589                	beqz	a1,4eb0 <__v_printf+0x650>
-    4ea8:	c416                	sw	t0,8(sp)
-    4eaa:	ea6fd0ef          	jal	ra,2550 <strcpy>
-    4eae:	42a2                	lw	t0,8(sp)
-    4eb0:	47f2                	lw	a5,28(sp)
-    4eb2:	10079263          	bnez	a5,4fb6 <__v_printf+0x756>
-    4eb6:	57b2                	lw	a5,44(sp)
-    4eb8:	e3e5                	bnez	a5,4f98 <__v_printf+0x738>
-    4eba:	4526                	lw	a0,72(sp)
-    4ebc:	ce16                	sw	t0,28(sp)
-    4ebe:	a8ffd0ef          	jal	ra,294c <strlen>
-    4ec2:	832a                	mv	t1,a0
-    4ec4:	5452                	lw	s0,52(sp)
-    4ec6:	ca02                	sw	zero,20(sp)
-    4ec8:	c402                	sw	zero,8(sp)
-    4eca:	42f2                	lw	t0,28(sp)
-    4ecc:	b999                	j	4b22 <__v_printf+0x2c2>
-    4ece:	4782                	lw	a5,0(sp)
-    4ed0:	17fd                	addi	a5,a5,-1
-    4ed2:	c03e                	sw	a5,0(sp)
-    4ed4:	bf95                	j	4e48 <__v_printf+0x5e8>
-    4ed6:	4722                	lw	a4,8(sp)
-    4ed8:	d341                	beqz	a4,4e58 <__v_printf+0x5f8>
-    4eda:	943e                	add	s0,s0,a5
-    4edc:	02e00713          	li	a4,46
-    4ee0:	00e40023          	sb	a4,0(s0)
-    4ee4:	4526                	lw	a0,72(sp)
-    4ee6:	953e                	add	a0,a0,a5
-    4ee8:	000500a3          	sb	zero,1(a0)
-    4eec:	b7b5                	j	4e58 <__v_printf+0x5f8>
-    4eee:	0405                	addi	s0,s0,1
-    4ef0:	b779                	j	4e7e <__v_printf+0x61e>
-    4ef2:	842a                	mv	s0,a0
-    4ef4:	bf61                	j	4e8c <__v_printf+0x62c>
-    4ef6:	57fd                	li	a5,-1
-    4ef8:	c23e                	sw	a5,4(sp)
-    4efa:	40de                	lw	ra,212(sp)
-    4efc:	444e                	lw	s0,208(sp)
-    4efe:	4512                	lw	a0,4(sp)
-    4f00:	44be                	lw	s1,204(sp)
-    4f02:	0d810113          	addi	sp,sp,216
-    4f06:	8082                	ret
-    4f08:	5782                	lw	a5,32(sp)
-    4f0a:	c80790e3          	bnez	a5,4b8a <__v_printf+0x32a>
-    4f0e:	4781                	li	a5,0
-    4f10:	4752                	lw	a4,20(sp)
-    4f12:	cc0700e3          	beqz	a4,4bd2 <__v_printf+0x372>
-    4f16:	4582                	lw	a1,0(sp)
-    4f18:	0065f363          	bgeu	a1,t1,4f1e <__v_printf+0x6be>
-    4f1c:	859a                	mv	a1,t1
-    4f1e:	ca3e                	sw	a5,20(sp)
-    4f20:	47b2                	lw	a5,12(sp)
-    4f22:	02000613          	li	a2,32
-    4f26:	8526                	mv	a0,s1
-    4f28:	40b785b3          	sub	a1,a5,a1
-    4f2c:	c41a                	sw	t1,8(sp)
-    4f2e:	cc36                	sw	a3,24(sp)
-    4f30:	8d1ff0ef          	jal	ra,4800 <write_pad>
-    4f34:	4792                	lw	a5,4(sp)
-    4f36:	4322                	lw	t1,8(sp)
-    4f38:	00f50733          	add	a4,a0,a5
-    4f3c:	47d2                	lw	a5,20(sp)
-    4f3e:	cf99                	beqz	a5,4f5c <__v_printf+0x6fc>
-    4f40:	46e2                	lw	a3,24(sp)
-    4f42:	0044a383          	lw	t2,4(s1)
-    4f46:	4090                	lw	a2,0(s1)
-    4f48:	85be                	mv	a1,a5
-    4f4a:	8536                	mv	a0,a3
-    4f4c:	c61a                	sw	t1,12(sp)
-    4f4e:	c43a                	sw	a4,8(sp)
-    4f50:	c23e                	sw	a5,4(sp)
-    4f52:	9382                	jalr	t2
-    4f54:	4792                	lw	a5,4(sp)
-    4f56:	4722                	lw	a4,8(sp)
-    4f58:	4332                	lw	t1,12(sp)
-    4f5a:	973e                	add	a4,a4,a5
-    4f5c:	4782                	lw	a5,0(sp)
-    4f5e:	03000613          	li	a2,48
-    4f62:	8526                	mv	a0,s1
-    4f64:	406785b3          	sub	a1,a5,t1
-    4f68:	c23a                	sw	a4,4(sp)
-    4f6a:	c01a                	sw	t1,0(sp)
-    4f6c:	895ff0ef          	jal	ra,4800 <write_pad>
-    4f70:	4712                	lw	a4,4(sp)
-    4f72:	4302                	lw	t1,0(sp)
-    4f74:	972a                	add	a4,a4,a0
-    4f76:	40dc                	lw	a5,4(s1)
-    4f78:	4090                	lw	a2,0(s1)
-    4f7a:	4526                	lw	a0,72(sp)
-    4f7c:	859a                	mv	a1,t1
-    4f7e:	c23a                	sw	a4,4(sp)
-    4f80:	c01a                	sw	t1,0(sp)
-    4f82:	9782                	jalr	a5
-    4f84:	4302                	lw	t1,0(sp)
-    4f86:	4712                	lw	a4,4(sp)
-    4f88:	006707b3          	add	a5,a4,t1
-    4f8c:	bad9                	j	4962 <__v_printf+0x102>
-    4f8e:	47a2                	lw	a5,8(sp)
-    4f90:	bc0795e3          	bnez	a5,4b5a <__v_printf+0x2fa>
-    4f94:	4785                	li	a5,1
-    4f96:	b6d9                	j	4b5c <__v_printf+0x2fc>
-    4f98:	57a2                	lw	a5,40(sp)
-    4f9a:	5712                	lw	a4,36(sp)
-    4f9c:	4601                	li	a2,0
-    4f9e:	85be                	mv	a1,a5
-    4fa0:	4681                	li	a3,0
-    4fa2:	853a                	mv	a0,a4
-    4fa4:	c416                	sw	t0,8(sp)
-    4fa6:	d12fc0ef          	jal	ra,14b8 <__gedf2>
-    4faa:	02000793          	li	a5,32
-    4fae:	42a2                	lw	t0,8(sp)
-    4fb0:	02055163          	bgez	a0,4fd2 <__v_printf+0x772>
-    4fb4:	b719                	j	4eba <__v_printf+0x65a>
-    4fb6:	5712                	lw	a4,36(sp)
-    4fb8:	57a2                	lw	a5,40(sp)
-    4fba:	4601                	li	a2,0
-    4fbc:	4681                	li	a3,0
-    4fbe:	853a                	mv	a0,a4
-    4fc0:	85be                	mv	a1,a5
-    4fc2:	c416                	sw	t0,8(sp)
-    4fc4:	cf4fc0ef          	jal	ra,14b8 <__gedf2>
-    4fc8:	42a2                	lw	t0,8(sp)
-    4fca:	ee0548e3          	bltz	a0,4eba <__v_printf+0x65a>
-    4fce:	02b00793          	li	a5,43
-    4fd2:	4726                	lw	a4,72(sp)
-    4fd4:	fff70693          	addi	a3,a4,-1
-    4fd8:	c4b6                	sw	a3,72(sp)
-    4fda:	fef70fa3          	sb	a5,-1(a4)
-    4fde:	bdf1                	j	4eba <__v_printf+0x65a>
-    4fe0:	8c0711e3          	bnez	a4,48a2 <__v_printf+0x42>
-    4fe4:	47c2                	lw	a5,16(sp)
-    4fe6:	c83e                	sw	a5,16(sp)
-    4fe8:	b841                	j	4878 <__v_printf+0x18>
-    4fea:	0000                	unimp
-    4fec:	0000                	unimp
+000048ce <__isinf>:
+    48ce:	e509                	bnez	a0,48d8 <__isinf+0xa>
+    48d0:	7ff007b7          	lui	a5,0x7ff00
+    48d4:	00f58b63          	beq	a1,a5,48ea <__isinf+0x1c>
+    48d8:	fff007b7          	lui	a5,0xfff00
+    48dc:	8fad                	xor	a5,a5,a1
+    48de:	8d5d                	or	a0,a0,a5
+    48e0:	00153513          	seqz	a0,a0
+    48e4:	40a00533          	neg	a0,a0
+    48e8:	8082                	ret
+    48ea:	4505                	li	a0,1
+    48ec:	8082                	ret
+
+000048ee <__lltostr>:
+    48ee:	fdc10113          	addi	sp,sp,-36
+    48f2:	15fd                	addi	a1,a1,-1
+    48f4:	ce22                	sw	s0,28(sp)
+    48f6:	d006                	sw	ra,32(sp)
+    48f8:	cc26                	sw	s1,24(sp)
+    48fa:	95aa                	add	a1,a1,a0
+    48fc:	00058023          	sb	zero,0(a1)
+    4900:	842a                	mv	s0,a0
+    4902:	82b2                	mv	t0,a2
+    4904:	8336                	mv	t1,a3
+    4906:	c709                	beqz	a4,4910 <__lltostr+0x22>
+    4908:	02400693          	li	a3,36
+    490c:	00e6d363          	bge	a3,a4,4912 <__lltostr+0x24>
+    4910:	4729                	li	a4,10
+    4912:	0062e6b3          	or	a3,t0,t1
+    4916:	4601                	li	a2,0
+    4918:	e699                	bnez	a3,4926 <__lltostr+0x38>
+    491a:	03000693          	li	a3,48
+    491e:	fed58fa3          	sb	a3,-1(a1)
+    4922:	4605                	li	a2,1
+    4924:	15fd                	addi	a1,a1,-1
+    4926:	02700693          	li	a3,39
+    492a:	c391                	beqz	a5,492e <__lltostr+0x40>
+    492c:	469d                	li	a3,7
+    492e:	0ff6f793          	andi	a5,a3,255
+    4932:	c23e                	sw	a5,4(sp)
+    4934:	00c587b3          	add	a5,a1,a2
+    4938:	c43e                	sw	a5,8(sp)
+    493a:	41f75793          	srai	a5,a4,0x1f
+    493e:	84ae                	mv	s1,a1
+    4940:	c03e                	sw	a5,0(sp)
+    4942:	47a2                	lw	a5,8(sp)
+    4944:	409786b3          	sub	a3,a5,s1
+    4948:	00947563          	bgeu	s0,s1,4952 <__lltostr+0x64>
+    494c:	0062e633          	or	a2,t0,t1
+    4950:	e205                	bnez	a2,4970 <__lltostr+0x82>
+    4952:	00168613          	addi	a2,a3,1
+    4956:	85a6                	mv	a1,s1
+    4958:	8522                	mv	a0,s0
+    495a:	c036                	sw	a3,0(sp)
+    495c:	961fd0ef          	jal	ra,22bc <memmove>
+    4960:	4682                	lw	a3,0(sp)
+    4962:	5082                	lw	ra,32(sp)
+    4964:	4472                	lw	s0,28(sp)
+    4966:	44e2                	lw	s1,24(sp)
+    4968:	8536                	mv	a0,a3
+    496a:	02410113          	addi	sp,sp,36
+    496e:	8082                	ret
+    4970:	4682                	lw	a3,0(sp)
+    4972:	863a                	mv	a2,a4
+    4974:	8516                	mv	a0,t0
+    4976:	859a                	mv	a1,t1
+    4978:	ca3a                	sw	a4,20(sp)
+    497a:	c816                	sw	t0,16(sp)
+    497c:	c61a                	sw	t1,12(sp)
+    497e:	be3fb0ef          	jal	ra,560 <__umoddi3>
+    4982:	03050513          	addi	a0,a0,48
+    4986:	0ff57513          	andi	a0,a0,255
+    498a:	03900793          	li	a5,57
+    498e:	14fd                	addi	s1,s1,-1
+    4990:	4332                	lw	t1,12(sp)
+    4992:	42c2                	lw	t0,16(sp)
+    4994:	4752                	lw	a4,20(sp)
+    4996:	00a7ef63          	bltu	a5,a0,49b4 <__lltostr+0xc6>
+    499a:	4682                	lw	a3,0(sp)
+    499c:	00a48023          	sb	a0,0(s1)
+    49a0:	863a                	mv	a2,a4
+    49a2:	8516                	mv	a0,t0
+    49a4:	859a                	mv	a1,t1
+    49a6:	c63a                	sw	a4,12(sp)
+    49a8:	84ffb0ef          	jal	ra,1f6 <__udivdi3>
+    49ac:	82aa                	mv	t0,a0
+    49ae:	832e                	mv	t1,a1
+    49b0:	4732                	lw	a4,12(sp)
+    49b2:	bf41                	j	4942 <__lltostr+0x54>
+    49b4:	4792                	lw	a5,4(sp)
+    49b6:	953e                	add	a0,a0,a5
+    49b8:	b7cd                	j	499a <__lltostr+0xac>
+
+000049ba <printf>:
+    49ba:	fdc10113          	addi	sp,sp,-36
+    49be:	c82e                	sw	a1,16(sp)
+    49c0:	080c                	addi	a1,sp,16
+    49c2:	c606                	sw	ra,12(sp)
+    49c4:	ca32                	sw	a2,20(sp)
+    49c6:	cc36                	sw	a3,24(sp)
+    49c8:	ce3a                	sw	a4,28(sp)
+    49ca:	d03e                	sw	a5,32(sp)
+    49cc:	c02e                	sw	a1,0(sp)
+    49ce:	2099                	jal	4a14 <vprintf>
+    49d0:	40b2                	lw	ra,12(sp)
+    49d2:	02410113          	addi	sp,sp,36
+    49d6:	8082                	ret
+
+000049d8 <putc>:
+    49d8:	d04ff06f          	j	3edc <fputc>
+
+000049dc <__stdio_outs>:
+    49dc:	1151                	addi	sp,sp,-12
+    49de:	c222                	sw	s0,4(sp)
+    49e0:	c026                	sw	s1,0(sp)
+    49e2:	842a                	mv	s0,a0
+    49e4:	84ae                	mv	s1,a1
+    49e6:	c406                	sw	ra,8(sp)
+    49e8:	94a2                	add	s1,s1,s0
+    49ea:	d2cff0ef          	jal	ra,3f16 <os_critical_enter>
+    49ee:	00941a63          	bne	s0,s1,4a02 <__stdio_outs+0x26>
+    49f2:	d28ff0ef          	jal	ra,3f1a <os_critical_exit>
+    49f6:	40a2                	lw	ra,8(sp)
+    49f8:	4412                	lw	s0,4(sp)
+    49fa:	4482                	lw	s1,0(sp)
+    49fc:	4505                	li	a0,1
+    49fe:	0131                	addi	sp,sp,12
+    4a00:	8082                	ret
+    4a02:	0001a703          	lw	a4,0(gp) # 200004e8 <_impure_ptr>
+    4a06:	00044503          	lbu	a0,0(s0)
+    4a0a:	0405                	addi	s0,s0,1
+    4a0c:	470c                	lw	a1,8(a4)
+    4a0e:	cceff0ef          	jal	ra,3edc <fputc>
+    4a12:	bff1                	j	49ee <__stdio_outs+0x12>
+
+00004a14 <vprintf>:
+    4a14:	1131                	addi	sp,sp,-20
+    4a16:	6795                	lui	a5,0x5
+    4a18:	9dc78793          	addi	a5,a5,-1572 # 49dc <__stdio_outs>
+    4a1c:	862e                	mv	a2,a1
+    4a1e:	85aa                	mv	a1,a0
+    4a20:	850a                	mv	a0,sp
+    4a22:	c806                	sw	ra,16(sp)
+    4a24:	c002                	sw	zero,0(sp)
+    4a26:	c23e                	sw	a5,4(sp)
+    4a28:	2291                	jal	4b6c <__v_printf>
+    4a2a:	40c2                	lw	ra,16(sp)
+    4a2c:	0151                	addi	sp,sp,20
+    4a2e:	8082                	ret
+
+00004a30 <__isnan>:
+    4a30:	fff80737          	lui	a4,0xfff80
+    4a34:	177d                	addi	a4,a4,-1
+    4a36:	8f6d                	and	a4,a4,a1
+    4a38:	e509                	bnez	a0,4a42 <__isnan+0x12>
+    4a3a:	7ff007b7          	lui	a5,0x7ff00
+    4a3e:	00f70963          	beq	a4,a5,4a50 <__isnan+0x20>
+    4a42:	fff807b7          	lui	a5,0xfff80
+    4a46:	8fad                	xor	a5,a5,a1
+    4a48:	8fc9                	or	a5,a5,a0
+    4a4a:	0017b513          	seqz	a0,a5
+    4a4e:	8082                	ret
+    4a50:	4505                	li	a0,1
+    4a52:	8082                	ret
+
+00004a54 <__ltostr>:
+    4a54:	1151                	addi	sp,sp,-12
+    4a56:	15fd                	addi	a1,a1,-1
+    4a58:	c406                	sw	ra,8(sp)
+    4a5a:	c222                	sw	s0,4(sp)
+    4a5c:	95aa                	add	a1,a1,a0
+    4a5e:	00058023          	sb	zero,0(a1)
+    4a62:	fff68313          	addi	t1,a3,-1
+    4a66:	02300793          	li	a5,35
+    4a6a:	0067f363          	bgeu	a5,t1,4a70 <__ltostr+0x1c>
+    4a6e:	46a9                	li	a3,10
+    4a70:	4781                	li	a5,0
+    4a72:	e619                	bnez	a2,4a80 <__ltostr+0x2c>
+    4a74:	03000793          	li	a5,48
+    4a78:	fef58fa3          	sb	a5,-1(a1)
+    4a7c:	15fd                	addi	a1,a1,-1
+    4a7e:	4785                	li	a5,1
+    4a80:	02700313          	li	t1,39
+    4a84:	c311                	beqz	a4,4a88 <__ltostr+0x34>
+    4a86:	431d                	li	t1,7
+    4a88:	0ff37713          	andi	a4,t1,255
+    4a8c:	03900293          	li	t0,57
+    4a90:	00f58333          	add	t1,a1,a5
+    4a94:	40b30433          	sub	s0,t1,a1
+    4a98:	00b57363          	bgeu	a0,a1,4a9e <__ltostr+0x4a>
+    4a9c:	ea11                	bnez	a2,4ab0 <__ltostr+0x5c>
+    4a9e:	00140613          	addi	a2,s0,1
+    4aa2:	81bfd0ef          	jal	ra,22bc <memmove>
+    4aa6:	8522                	mv	a0,s0
+    4aa8:	40a2                	lw	ra,8(sp)
+    4aaa:	4412                	lw	s0,4(sp)
+    4aac:	0131                	addi	sp,sp,12
+    4aae:	8082                	ret
+    4ab0:	02d677b3          	remu	a5,a2,a3
+    4ab4:	15fd                	addi	a1,a1,-1
+    4ab6:	03078793          	addi	a5,a5,48 # fff80030 <__heap_end+0xdff50030>
+    4aba:	0ff7f793          	andi	a5,a5,255
+    4abe:	00f2e763          	bltu	t0,a5,4acc <__ltostr+0x78>
+    4ac2:	00f58023          	sb	a5,0(a1)
+    4ac6:	02d65633          	divu	a2,a2,a3
+    4aca:	b7e9                	j	4a94 <__ltostr+0x40>
+    4acc:	97ba                	add	a5,a5,a4
+    4ace:	bfd5                	j	4ac2 <__ltostr+0x6e>
+
+00004ad0 <putchar>:
+    4ad0:	0001a783          	lw	a5,0(gp) # 200004e8 <_impure_ptr>
+    4ad4:	1151                	addi	sp,sp,-12
+    4ad6:	c406                	sw	ra,8(sp)
+    4ad8:	478c                	lw	a1,8(a5)
+    4ada:	3dfd                	jal	49d8 <putc>
+    4adc:	40a2                	lw	ra,8(sp)
+    4ade:	4501                	li	a0,0
+    4ae0:	0131                	addi	sp,sp,12
+    4ae2:	8082                	ret
+
+00004ae4 <puts>:
+    4ae4:	1151                	addi	sp,sp,-12
+    4ae6:	c222                	sw	s0,4(sp)
+    4ae8:	c406                	sw	ra,8(sp)
+    4aea:	842a                	mv	s0,a0
+    4aec:	00044503          	lbu	a0,0(s0)
+    4af0:	55fd                	li	a1,-1
+    4af2:	e909                	bnez	a0,4b04 <puts+0x20>
+    4af4:	4529                	li	a0,10
+    4af6:	be6ff0ef          	jal	ra,3edc <fputc>
+    4afa:	40a2                	lw	ra,8(sp)
+    4afc:	4412                	lw	s0,4(sp)
+    4afe:	4501                	li	a0,0
+    4b00:	0131                	addi	sp,sp,12
+    4b02:	8082                	ret
+    4b04:	bd8ff0ef          	jal	ra,3edc <fputc>
+    4b08:	0405                	addi	s0,s0,1
+    4b0a:	b7cd                	j	4aec <puts+0x8>
+
+00004b0c <write_pad>:
+    4b0c:	1131                	addi	sp,sp,-20
+    4b0e:	fd060613          	addi	a2,a2,-48
+    4b12:	c426                	sw	s1,8(sp)
+    4b14:	00163613          	seqz	a2,a2
+    4b18:	6499                	lui	s1,0x6
+    4b1a:	0612                	slli	a2,a2,0x4
+    4b1c:	b8048493          	addi	s1,s1,-1152 # 5b80 <pad_line>
+    4b20:	c622                	sw	s0,12(sp)
+    4b22:	c806                	sw	ra,16(sp)
+    4b24:	87aa                	mv	a5,a0
+    4b26:	872e                	mv	a4,a1
+    4b28:	94b2                	add	s1,s1,a2
+    4b2a:	842e                	mv	s0,a1
+    4b2c:	463d                	li	a2,15
+    4b2e:	408706b3          	sub	a3,a4,s0
+    4b32:	02864263          	blt	a2,s0,4b56 <write_pad+0x4a>
+    4b36:	00805a63          	blez	s0,4b4a <write_pad+0x3e>
+    4b3a:	43d8                	lw	a4,4(a5)
+    4b3c:	4390                	lw	a2,0(a5)
+    4b3e:	85a2                	mv	a1,s0
+    4b40:	8526                	mv	a0,s1
+    4b42:	c036                	sw	a3,0(sp)
+    4b44:	9702                	jalr	a4
+    4b46:	4682                	lw	a3,0(sp)
+    4b48:	96a2                	add	a3,a3,s0
+    4b4a:	40c2                	lw	ra,16(sp)
+    4b4c:	4432                	lw	s0,12(sp)
+    4b4e:	44a2                	lw	s1,8(sp)
+    4b50:	8536                	mv	a0,a3
+    4b52:	0151                	addi	sp,sp,20
+    4b54:	8082                	ret
+    4b56:	43d4                	lw	a3,4(a5)
+    4b58:	4390                	lw	a2,0(a5)
+    4b5a:	45c1                	li	a1,16
+    4b5c:	8526                	mv	a0,s1
+    4b5e:	c23a                	sw	a4,4(sp)
+    4b60:	c03e                	sw	a5,0(sp)
+    4b62:	9682                	jalr	a3
+    4b64:	1441                	addi	s0,s0,-16
+    4b66:	4712                	lw	a4,4(sp)
+    4b68:	4782                	lw	a5,0(sp)
+    4b6a:	b7c9                	j	4b2c <write_pad+0x20>
+
+00004b6c <__v_printf>:
+    4b6c:	0081a783          	lw	a5,8(gp) # 200004f0 <errno>
+    4b70:	f2810113          	addi	sp,sp,-216
+    4b74:	c9a2                	sw	s0,208(sp)
+    4b76:	c7a6                	sw	s1,204(sp)
+    4b78:	cb86                	sw	ra,212(sp)
+    4b7a:	84aa                	mv	s1,a0
+    4b7c:	c82e                	sw	a1,16(sp)
+    4b7e:	8432                	mv	s0,a2
+    4b80:	d83e                	sw	a5,48(sp)
+    4b82:	c202                	sw	zero,4(sp)
+    4b84:	47c2                	lw	a5,16(sp)
+    4b86:	0007c783          	lbu	a5,0(a5)
+    4b8a:	68078063          	beqz	a5,520a <__v_printf+0x69e>
+    4b8e:	4701                	li	a4,0
+    4b90:	02500613          	li	a2,37
+    4b94:	a011                	j	4b98 <__v_printf+0x2c>
+    4b96:	0705                	addi	a4,a4,1
+    4b98:	47c2                	lw	a5,16(sp)
+    4b9a:	97ba                	add	a5,a5,a4
+    4b9c:	0007c683          	lbu	a3,0(a5)
+    4ba0:	74068863          	beqz	a3,52f0 <__v_printf+0x784>
+    4ba4:	fec699e3          	bne	a3,a2,4b96 <__v_printf+0x2a>
+    4ba8:	e319                	bnez	a4,4bae <__v_printf+0x42>
+    4baa:	47c2                	lw	a5,16(sp)
+    4bac:	a01d                	j	4bd2 <__v_printf+0x66>
+    4bae:	40d4                	lw	a3,4(s1)
+    4bb0:	4090                	lw	a2,0(s1)
+    4bb2:	4542                	lw	a0,16(sp)
+    4bb4:	85ba                	mv	a1,a4
+    4bb6:	c43e                	sw	a5,8(sp)
+    4bb8:	c03a                	sw	a4,0(sp)
+    4bba:	9682                	jalr	a3
+    4bbc:	4792                	lw	a5,4(sp)
+    4bbe:	4702                	lw	a4,0(sp)
+    4bc0:	97ba                	add	a5,a5,a4
+    4bc2:	c23e                	sw	a5,4(sp)
+    4bc4:	47a2                	lw	a5,8(sp)
+    4bc6:	02500713          	li	a4,37
+    4bca:	0007c683          	lbu	a3,0(a5)
+    4bce:	72e69463          	bne	a3,a4,52f6 <__v_printf+0x78a>
+    4bd2:	00178513          	addi	a0,a5,1
+    4bd6:	02000793          	li	a5,32
+    4bda:	c002                	sw	zero,0(sp)
+    4bdc:	c602                	sw	zero,12(sp)
+    4bde:	4701                	li	a4,0
+    4be0:	ca02                	sw	zero,20(sp)
+    4be2:	ce02                	sw	zero,28(sp)
+    4be4:	d602                	sw	zero,44(sp)
+    4be6:	d002                	sw	zero,32(sp)
+    4be8:	c402                	sw	zero,8(sp)
+    4bea:	cc3e                	sw	a5,24(sp)
+    4bec:	00054303          	lbu	t1,0(a0)
+    4bf0:	00150793          	addi	a5,a0,1
+    4bf4:	c83e                	sw	a5,16(sp)
+    4bf6:	046103a3          	sb	t1,71(sp)
+    4bfa:	06300793          	li	a5,99
+    4bfe:	1cf30963          	beq	t1,a5,4dd0 <__v_printf+0x264>
+    4c02:	0c67e863          	bltu	a5,t1,4cd2 <__v_printf+0x166>
+    4c06:	02d00793          	li	a5,45
+    4c0a:	02f30363          	beq	t1,a5,4c30 <__v_printf+0xc4>
+    4c0e:	0667e263          	bltu	a5,t1,4c72 <__v_printf+0x106>
+    4c12:	02300793          	li	a5,35
+    4c16:	02f30163          	beq	t1,a5,4c38 <__v_printf+0xcc>
+    4c1a:	0267e663          	bltu	a5,t1,4c46 <__v_printf+0xda>
+    4c1e:	5e030463          	beqz	t1,5206 <__v_printf+0x69a>
+    4c22:	02000793          	li	a5,32
+    4c26:	f4f31fe3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4c2a:	4785                	li	a5,1
+    4c2c:	d63e                	sw	a5,44(sp)
+    4c2e:	a019                	j	4c34 <__v_printf+0xc8>
+    4c30:	4785                	li	a5,1
+    4c32:	d03e                	sw	a5,32(sp)
+    4c34:	4542                	lw	a0,16(sp)
+    4c36:	bf5d                	j	4bec <__v_printf+0x80>
+    4c38:	0ff00793          	li	a5,255
+    4c3c:	c43e                	sw	a5,8(sp)
+    4c3e:	bfdd                	j	4c34 <__v_printf+0xc8>
+    4c40:	4785                	li	a5,1
+    4c42:	ce3e                	sw	a5,28(sp)
+    4c44:	bfc5                	j	4c34 <__v_printf+0xc8>
+    4c46:	02a00793          	li	a5,42
+    4c4a:	16f30163          	beq	t1,a5,4dac <__v_printf+0x240>
+    4c4e:	02b00793          	li	a5,43
+    4c52:	fef307e3          	beq	t1,a5,4c40 <__v_printf+0xd4>
+    4c56:	02500793          	li	a5,37
+    4c5a:	f2f315e3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4c5e:	40dc                	lw	a5,4(s1)
+    4c60:	4090                	lw	a2,0(s1)
+    4c62:	4585                	li	a1,1
+    4c64:	04710513          	addi	a0,sp,71
+    4c68:	9782                	jalr	a5
+    4c6a:	4792                	lw	a5,4(sp)
+    4c6c:	0785                	addi	a5,a5,1
+    4c6e:	c23e                	sw	a5,4(sp)
+    4c70:	bf11                	j	4b84 <__v_printf+0x18>
+    4c72:	03900793          	li	a5,57
+    4c76:	0267ee63          	bltu	a5,t1,4cb2 <__v_printf+0x146>
+    4c7a:	03000793          	li	a5,48
+    4c7e:	0ef37f63          	bgeu	t1,a5,4d7c <__v_printf+0x210>
+    4c82:	02e00793          	li	a5,46
+    4c86:	eef31fe3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4c8a:	00154683          	lbu	a3,1(a0)
+    4c8e:	02a00793          	li	a5,42
+    4c92:	12f69163          	bne	a3,a5,4db4 <__v_printf+0x248>
+    4c96:	4014                	lw	a3,0(s0)
+    4c98:	00440793          	addi	a5,s0,4
+    4c9c:	c036                	sw	a3,0(sp)
+    4c9e:	0006d363          	bgez	a3,4ca4 <__v_printf+0x138>
+    4ca2:	c002                	sw	zero,0(sp)
+    4ca4:	00250693          	addi	a3,a0,2
+    4ca8:	c836                	sw	a3,16(sp)
+    4caa:	843e                	mv	s0,a5
+    4cac:	4785                	li	a5,1
+    4cae:	ca3e                	sw	a5,20(sp)
+    4cb0:	b751                	j	4c34 <__v_printf+0xc8>
+    4cb2:	05800793          	li	a5,88
+    4cb6:	2af30263          	beq	t1,a5,4f5a <__v_printf+0x3ee>
+    4cba:	06200793          	li	a5,98
+    4cbe:	36f30363          	beq	t1,a5,5024 <__v_printf+0x4b8>
+    4cc2:	04c00793          	li	a5,76
+    4cc6:	eaf31fe3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4cca:	0705                	addi	a4,a4,1
+    4ccc:	0762                	slli	a4,a4,0x18
+    4cce:	8761                	srai	a4,a4,0x18
+    4cd0:	a091                	j	4d14 <__v_printf+0x1a8>
+    4cd2:	06d00793          	li	a5,109
+    4cd6:	10f30263          	beq	t1,a5,4dda <__v_printf+0x26e>
+    4cda:	0267ef63          	bltu	a5,t1,4d18 <__v_printf+0x1ac>
+    4cde:	06700793          	li	a5,103
+    4ce2:	0067ef63          	bltu	a5,t1,4d00 <__v_printf+0x194>
+    4ce6:	06600793          	li	a5,102
+    4cea:	3ef37263          	bgeu	t1,a5,50ce <__v_printf+0x562>
+    4cee:	06400793          	li	a5,100
+    4cf2:	e8f319e3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4cf6:	4529                	li	a0,10
+    4cf8:	4781                	li	a5,0
+    4cfa:	4285                	li	t0,1
+    4cfc:	4301                	li	t1,0
+    4cfe:	ac49                	j	4f90 <__v_printf+0x424>
+    4d00:	06900793          	li	a5,105
+    4d04:	fef309e3          	beq	t1,a5,4cf6 <__v_printf+0x18a>
+    4d08:	06f36663          	bltu	t1,a5,4d74 <__v_printf+0x208>
+    4d0c:	06c00793          	li	a5,108
+    4d10:	e6f31ae3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4d14:	0705                	addi	a4,a4,1
+    4d16:	a085                	j	4d76 <__v_printf+0x20a>
+    4d18:	07300793          	li	a5,115
+    4d1c:	0ef30163          	beq	t1,a5,4dfe <__v_printf+0x292>
+    4d20:	0267ec63          	bltu	a5,t1,4d58 <__v_printf+0x1ec>
+    4d24:	07000793          	li	a5,112
+    4d28:	22f30263          	beq	t1,a5,4f4c <__v_printf+0x3e0>
+    4d2c:	07100793          	li	a5,113
+    4d30:	f8f30de3          	beq	t1,a5,4cca <__v_printf+0x15e>
+    4d34:	06f00793          	li	a5,111
+    4d38:	e4f316e3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4d3c:	47a2                	lw	a5,8(sp)
+    4d3e:	2e078763          	beqz	a5,502c <__v_printf+0x4c0>
+    4d42:	03000793          	li	a5,48
+    4d46:	04f106a3          	sb	a5,77(sp)
+    4d4a:	4785                	li	a5,1
+    4d4c:	c43e                	sw	a5,8(sp)
+    4d4e:	4521                	li	a0,8
+    4d50:	4781                	li	a5,0
+    4d52:	4281                	li	t0,0
+    4d54:	4305                	li	t1,1
+    4d56:	ac2d                	j	4f90 <__v_printf+0x424>
+    4d58:	07800793          	li	a5,120
+    4d5c:	2cf30263          	beq	t1,a5,5020 <__v_printf+0x4b4>
+    4d60:	07a00793          	li	a5,122
+    4d64:	ecf308e3          	beq	t1,a5,4c34 <__v_printf+0xc8>
+    4d68:	07500793          	li	a5,117
+    4d6c:	e0f31ce3          	bne	t1,a5,4b84 <__v_printf+0x18>
+    4d70:	4529                	li	a0,10
+    4d72:	ac55                	j	5026 <__v_printf+0x4ba>
+    4d74:	177d                	addi	a4,a4,-1
+    4d76:	0762                	slli	a4,a4,0x18
+    4d78:	8761                	srai	a4,a4,0x18
+    4d7a:	bd6d                	j	4c34 <__v_printf+0xc8>
+    4d7c:	47d2                	lw	a5,20(sp)
+    4d7e:	c83a                	sw	a4,16(sp)
+    4d80:	48079363          	bnez	a5,5206 <__v_printf+0x69a>
+    4d84:	4629                	li	a2,10
+    4d86:	00ac                	addi	a1,sp,72
+    4d88:	f97fd0ef          	jal	ra,2d1e <strtoul>
+    4d8c:	04714683          	lbu	a3,71(sp)
+    4d90:	c62a                	sw	a0,12(sp)
+    4d92:	03000793          	li	a5,48
+    4d96:	4742                	lw	a4,16(sp)
+    4d98:	00f69763          	bne	a3,a5,4da6 <__v_printf+0x23a>
+    4d9c:	5782                	lw	a5,32(sp)
+    4d9e:	e781                	bnez	a5,4da6 <__v_printf+0x23a>
+    4da0:	03000793          	li	a5,48
+    4da4:	cc3e                	sw	a5,24(sp)
+    4da6:	47a6                	lw	a5,72(sp)
+    4da8:	c83e                	sw	a5,16(sp)
+    4daa:	b569                	j	4c34 <__v_printf+0xc8>
+    4dac:	401c                	lw	a5,0(s0)
+    4dae:	0411                	addi	s0,s0,4
+    4db0:	c63e                	sw	a5,12(sp)
+    4db2:	b549                	j	4c34 <__v_printf+0xc8>
+    4db4:	4542                	lw	a0,16(sp)
+    4db6:	4629                	li	a2,10
+    4db8:	00ac                	addi	a1,sp,72
+    4dba:	ca3a                	sw	a4,20(sp)
+    4dbc:	da9fd0ef          	jal	ra,2b64 <strtol>
+    4dc0:	c02a                	sw	a0,0(sp)
+    4dc2:	4752                	lw	a4,20(sp)
+    4dc4:	00055363          	bgez	a0,4dca <__v_printf+0x25e>
+    4dc8:	c002                	sw	zero,0(sp)
+    4dca:	47a6                	lw	a5,72(sp)
+    4dcc:	c83e                	sw	a5,16(sp)
+    4dce:	bdf9                	j	4cac <__v_printf+0x140>
+    4dd0:	401c                	lw	a5,0(s0)
+    4dd2:	0411                	addi	s0,s0,4
+    4dd4:	04f103a3          	sb	a5,71(sp)
+    4dd8:	b559                	j	4c5e <__v_printf+0xf2>
+    4dda:	5542                	lw	a0,48(sp)
+    4ddc:	b57fd0ef          	jal	ra,2932 <strerror>
+    4de0:	c4aa                	sw	a0,72(sp)
+    4de2:	c42a                	sw	a0,8(sp)
+    4de4:	b69fd0ef          	jal	ra,294c <strlen>
+    4de8:	4722                	lw	a4,8(sp)
+    4dea:	40d4                	lw	a3,4(s1)
+    4dec:	4090                	lw	a2,0(s1)
+    4dee:	85aa                	mv	a1,a0
+    4df0:	c02a                	sw	a0,0(sp)
+    4df2:	853a                	mv	a0,a4
+    4df4:	9682                	jalr	a3
+    4df6:	4712                	lw	a4,4(sp)
+    4df8:	4782                	lw	a5,0(sp)
+    4dfa:	97ba                	add	a5,a5,a4
+    4dfc:	bd8d                	j	4c6e <__v_printf+0x102>
+    4dfe:	4018                	lw	a4,0(s0)
+    4e00:	00440793          	addi	a5,s0,4
+    4e04:	c721                	beqz	a4,4e4c <__v_printf+0x2e0>
+    4e06:	c4ba                	sw	a4,72(sp)
+    4e08:	4526                	lw	a0,72(sp)
+    4e0a:	cc3e                	sw	a5,24(sp)
+    4e0c:	b41fd0ef          	jal	ra,294c <strlen>
+    4e10:	4752                	lw	a4,20(sp)
+    4e12:	832a                	mv	t1,a0
+    4e14:	47e2                	lw	a5,24(sp)
+    4e16:	cf1d                	beqz	a4,4e54 <__v_printf+0x2e8>
+    4e18:	4702                	lw	a4,0(sp)
+    4e1a:	00a77363          	bgeu	a4,a0,4e20 <__v_printf+0x2b4>
+    4e1e:	833a                	mv	t1,a4
+    4e20:	843e                	mv	s0,a5
+    4e22:	c002                	sw	zero,0(sp)
+    4e24:	ca02                	sw	zero,20(sp)
+    4e26:	4281                	li	t0,0
+    4e28:	02000793          	li	a5,32
+    4e2c:	cc3e                	sw	a5,24(sp)
+    4e2e:	47b2                	lw	a5,12(sp)
+    4e30:	4702                	lw	a4,0(sp)
+    4e32:	46a6                	lw	a3,72(sp)
+    4e34:	8fd9                	or	a5,a5,a4
+    4e36:	e39d                	bnez	a5,4e5c <__v_printf+0x2f0>
+    4e38:	40dc                	lw	a5,4(s1)
+    4e3a:	4090                	lw	a2,0(s1)
+    4e3c:	859a                	mv	a1,t1
+    4e3e:	8536                	mv	a0,a3
+    4e40:	c01a                	sw	t1,0(sp)
+    4e42:	9782                	jalr	a5
+    4e44:	4792                	lw	a5,4(sp)
+    4e46:	4302                	lw	t1,0(sp)
+    4e48:	979a                	add	a5,a5,t1
+    4e4a:	b515                	j	4c6e <__v_printf+0x102>
+    4e4c:	6719                	lui	a4,0x6
+    4e4e:	b7870713          	addi	a4,a4,-1160 # 5b78 <sbox+0x144>
+    4e52:	bf55                	j	4e06 <__v_printf+0x29a>
+    4e54:	843e                	mv	s0,a5
+    4e56:	4281                	li	t0,0
+    4e58:	c002                	sw	zero,0(sp)
+    4e5a:	b7f9                	j	4e28 <__v_printf+0x2bc>
+    4e5c:	44029163          	bnez	t0,529e <__v_printf+0x732>
+    4e60:	47a2                	lw	a5,8(sp)
+    4e62:	3a078b63          	beqz	a5,5218 <__v_printf+0x6ac>
+    4e66:	47a2                	lw	a5,8(sp)
+    4e68:	00f68733          	add	a4,a3,a5
+    4e6c:	c4ba                	sw	a4,72(sp)
+    4e6e:	4732                	lw	a4,12(sp)
+    4e70:	40f30333          	sub	t1,t1,a5
+    4e74:	8f1d                	sub	a4,a4,a5
+    4e76:	c63a                	sw	a4,12(sp)
+    4e78:	5702                	lw	a4,32(sp)
+    4e7a:	3a070363          	beqz	a4,5220 <__v_printf+0x6b4>
+    4e7e:	40d8                	lw	a4,4(s1)
+    4e80:	4090                	lw	a2,0(s1)
+    4e82:	85be                	mv	a1,a5
+    4e84:	8536                	mv	a0,a3
+    4e86:	ca1a                	sw	t1,20(sp)
+    4e88:	c43e                	sw	a5,8(sp)
+    4e8a:	9702                	jalr	a4
+    4e8c:	4712                	lw	a4,4(sp)
+    4e8e:	47a2                	lw	a5,8(sp)
+    4e90:	4352                	lw	t1,20(sp)
+    4e92:	97ba                	add	a5,a5,a4
+    4e94:	c23e                	sw	a5,4(sp)
+    4e96:	4782                	lw	a5,0(sp)
+    4e98:	03000613          	li	a2,48
+    4e9c:	8526                	mv	a0,s1
+    4e9e:	406785b3          	sub	a1,a5,t1
+    4ea2:	ca1a                	sw	t1,20(sp)
+    4ea4:	c69ff0ef          	jal	ra,4b0c <write_pad>
+    4ea8:	4792                	lw	a5,4(sp)
+    4eaa:	4352                	lw	t1,20(sp)
+    4eac:	40d8                	lw	a4,4(s1)
+    4eae:	97aa                	add	a5,a5,a0
+    4eb0:	4090                	lw	a2,0(s1)
+    4eb2:	4526                	lw	a0,72(sp)
+    4eb4:	859a                	mv	a1,t1
+    4eb6:	c43e                	sw	a5,8(sp)
+    4eb8:	c21a                	sw	t1,4(sp)
+    4eba:	9702                	jalr	a4
+    4ebc:	4312                	lw	t1,4(sp)
+    4ebe:	47a2                	lw	a5,8(sp)
+    4ec0:	4582                	lw	a1,0(sp)
+    4ec2:	979a                	add	a5,a5,t1
+    4ec4:	0065f363          	bgeu	a1,t1,4eca <__v_printf+0x35e>
+    4ec8:	859a                	mv	a1,t1
+    4eca:	c03e                	sw	a5,0(sp)
+    4ecc:	47b2                	lw	a5,12(sp)
+    4ece:	02000613          	li	a2,32
+    4ed2:	8526                	mv	a0,s1
+    4ed4:	40b785b3          	sub	a1,a5,a1
+    4ed8:	c35ff0ef          	jal	ra,4b0c <write_pad>
+    4edc:	4782                	lw	a5,0(sp)
+    4ede:	97aa                	add	a5,a5,a0
+    4ee0:	b379                	j	4c6e <__v_printf+0x102>
+    4ee2:	c78d                	beqz	a5,4f0c <__v_printf+0x3a0>
+    4ee4:	4662                	lw	a2,24(sp)
+    4ee6:	03000713          	li	a4,48
+    4eea:	02e61163          	bne	a2,a4,4f0c <__v_printf+0x3a0>
+    4eee:	40d8                	lw	a4,4(s1)
+    4ef0:	4090                	lw	a2,0(s1)
+    4ef2:	85be                	mv	a1,a5
+    4ef4:	8536                	mv	a0,a3
+    4ef6:	ca1a                	sw	t1,20(sp)
+    4ef8:	c43e                	sw	a5,8(sp)
+    4efa:	c036                	sw	a3,0(sp)
+    4efc:	9702                	jalr	a4
+    4efe:	4712                	lw	a4,4(sp)
+    4f00:	47a2                	lw	a5,8(sp)
+    4f02:	4352                	lw	t1,20(sp)
+    4f04:	4682                	lw	a3,0(sp)
+    4f06:	97ba                	add	a5,a5,a4
+    4f08:	c23e                	sw	a5,4(sp)
+    4f0a:	4781                	li	a5,0
+    4f0c:	c43e                	sw	a5,8(sp)
+    4f0e:	47b2                	lw	a5,12(sp)
+    4f10:	4662                	lw	a2,24(sp)
+    4f12:	8526                	mv	a0,s1
+    4f14:	406785b3          	sub	a1,a5,t1
+    4f18:	c01a                	sw	t1,0(sp)
+    4f1a:	ca36                	sw	a3,20(sp)
+    4f1c:	bf1ff0ef          	jal	ra,4b0c <write_pad>
+    4f20:	4792                	lw	a5,4(sp)
+    4f22:	4302                	lw	t1,0(sp)
+    4f24:	00a78733          	add	a4,a5,a0
+    4f28:	47a2                	lw	a5,8(sp)
+    4f2a:	34078e63          	beqz	a5,5286 <__v_printf+0x71a>
+    4f2e:	46d2                	lw	a3,20(sp)
+    4f30:	0044a383          	lw	t2,4(s1)
+    4f34:	4090                	lw	a2,0(s1)
+    4f36:	85be                	mv	a1,a5
+    4f38:	8536                	mv	a0,a3
+    4f3a:	c41a                	sw	t1,8(sp)
+    4f3c:	c23a                	sw	a4,4(sp)
+    4f3e:	c03e                	sw	a5,0(sp)
+    4f40:	9382                	jalr	t2
+    4f42:	4782                	lw	a5,0(sp)
+    4f44:	4712                	lw	a4,4(sp)
+    4f46:	4322                	lw	t1,8(sp)
+    4f48:	973e                	add	a4,a4,a5
+    4f4a:	ae35                	j	5286 <__v_printf+0x71a>
+    4f4c:	07800793          	li	a5,120
+    4f50:	04f103a3          	sb	a5,71(sp)
+    4f54:	4789                	li	a5,2
+    4f56:	4705                	li	a4,1
+    4f58:	c43e                	sw	a5,8(sp)
+    4f5a:	04714783          	lbu	a5,71(sp)
+    4f5e:	fa878793          	addi	a5,a5,-88
+    4f62:	0017b793          	seqz	a5,a5
+    4f66:	46a2                	lw	a3,8(sp)
+    4f68:	4301                	li	t1,0
+    4f6a:	ce81                	beqz	a3,4f82 <__v_printf+0x416>
+    4f6c:	03000693          	li	a3,48
+    4f70:	04d106a3          	sb	a3,77(sp)
+    4f74:	04714683          	lbu	a3,71(sp)
+    4f78:	4309                	li	t1,2
+    4f7a:	04d10723          	sb	a3,78(sp)
+    4f7e:	4689                	li	a3,2
+    4f80:	c436                	sw	a3,8(sp)
+    4f82:	46b2                	lw	a3,12(sp)
+    4f84:	4602                	lw	a2,0(sp)
+    4f86:	00c6f363          	bgeu	a3,a2,4f8c <__v_printf+0x420>
+    4f8a:	c632                	sw	a2,12(sp)
+    4f8c:	4541                	li	a0,16
+    4f8e:	4281                	li	t0,0
+    4f90:	04d10693          	addi	a3,sp,77
+    4f94:	c4b6                	sw	a3,72(sp)
+    4f96:	0ae05a63          	blez	a4,504a <__v_printf+0x4de>
+    4f9a:	4685                	li	a3,1
+    4f9c:	08d70c63          	beq	a4,a3,5034 <__v_printf+0x4c8>
+    4fa0:	00840393          	addi	t2,s0,8
+    4fa4:	4010                	lw	a2,0(s0)
+    4fa6:	4054                	lw	a3,4(s0)
+    4fa8:	4581                	li	a1,0
+    4faa:	08028c63          	beqz	t0,5042 <__v_printf+0x4d6>
+    4fae:	0006da63          	bgez	a3,4fc2 <__v_printf+0x456>
+    4fb2:	40c00633          	neg	a2,a2
+    4fb6:	00c03733          	snez	a4,a2
+    4fba:	40d006b3          	neg	a3,a3
+    4fbe:	8e99                	sub	a3,a3,a4
+    4fc0:	4289                	li	t0,2
+    4fc2:	872a                	mv	a4,a0
+    4fc4:	04d10513          	addi	a0,sp,77
+    4fc8:	951a                	add	a0,a0,t1
+    4fca:	07b00593          	li	a1,123
+    4fce:	da1e                	sw	t2,52(sp)
+    4fd0:	d416                	sw	t0,40(sp)
+    4fd2:	d21a                	sw	t1,36(sp)
+    4fd4:	91bff0ef          	jal	ra,48ee <__lltostr>
+    4fd8:	53d2                	lw	t2,52(sp)
+    4fda:	5312                	lw	t1,36(sp)
+    4fdc:	52a2                	lw	t0,40(sp)
+    4fde:	841e                	mv	s0,t2
+    4fe0:	4752                	lw	a4,20(sp)
+    4fe2:	47a6                	lw	a5,72(sp)
+    4fe4:	cb5d                	beqz	a4,509a <__v_printf+0x52e>
+    4fe6:	4705                	li	a4,1
+    4fe8:	0ae51963          	bne	a0,a4,509a <__v_printf+0x52e>
+    4fec:	00678733          	add	a4,a5,t1
+    4ff0:	00074683          	lbu	a3,0(a4)
+    4ff4:	03000713          	li	a4,48
+    4ff8:	0ae69163          	bne	a3,a4,509a <__v_printf+0x52e>
+    4ffc:	4702                	lw	a4,0(sp)
+    4ffe:	c345                	beqz	a4,509e <__v_printf+0x532>
+    5000:	4722                	lw	a4,8(sp)
+    5002:	c319                	beqz	a4,5008 <__v_printf+0x49c>
+    5004:	c402                	sw	zero,8(sp)
+    5006:	4301                	li	t1,0
+    5008:	4709                	li	a4,2
+    500a:	08e29d63          	bne	t0,a4,50a4 <__v_printf+0x538>
+    500e:	fff78713          	addi	a4,a5,-1
+    5012:	c4ba                	sw	a4,72(sp)
+    5014:	02d00713          	li	a4,45
+    5018:	fee78fa3          	sb	a4,-1(a5)
+    501c:	0305                	addi	t1,t1,1
+    501e:	bd01                	j	4e2e <__v_printf+0x2c2>
+    5020:	4781                	li	a5,0
+    5022:	b791                	j	4f66 <__v_printf+0x3fa>
+    5024:	4509                	li	a0,2
+    5026:	4781                	li	a5,0
+    5028:	4281                	li	t0,0
+    502a:	b9c9                	j	4cfc <__v_printf+0x190>
+    502c:	4781                	li	a5,0
+    502e:	4281                	li	t0,0
+    5030:	4521                	li	a0,8
+    5032:	b1e9                	j	4cfc <__v_printf+0x190>
+    5034:	00440393          	addi	t2,s0,4
+    5038:	400c                	lw	a1,0(s0)
+    503a:	00029d63          	bnez	t0,5054 <__v_printf+0x4e8>
+    503e:	4601                	li	a2,0
+    5040:	4681                	li	a3,0
+    5042:	4405                	li	s0,1
+    5044:	f6e44fe3          	blt	s0,a4,4fc2 <__v_printf+0x456>
+    5048:	a01d                	j	506e <__v_printf+0x502>
+    504a:	00440393          	addi	t2,s0,4
+    504e:	400c                	lw	a1,0(s0)
+    5050:	00028863          	beqz	t0,5060 <__v_printf+0x4f4>
+    5054:	4285                	li	t0,1
+    5056:	0005d563          	bgez	a1,5060 <__v_printf+0x4f4>
+    505a:	40b005b3          	neg	a1,a1
+    505e:	4289                	li	t0,2
+    5060:	fc075fe3          	bgez	a4,503e <__v_printf+0x4d2>
+    5064:	56fd                	li	a3,-1
+    5066:	02d70763          	beq	a4,a3,5094 <__v_printf+0x528>
+    506a:	0ff5f593          	andi	a1,a1,255
+    506e:	873e                	mv	a4,a5
+    5070:	04d10793          	addi	a5,sp,77
+    5074:	86aa                	mv	a3,a0
+    5076:	862e                	mv	a2,a1
+    5078:	00678533          	add	a0,a5,t1
+    507c:	07b00593          	li	a1,123
+    5080:	da1e                	sw	t2,52(sp)
+    5082:	d416                	sw	t0,40(sp)
+    5084:	d21a                	sw	t1,36(sp)
+    5086:	9cfff0ef          	jal	ra,4a54 <__ltostr>
+    508a:	53d2                	lw	t2,52(sp)
+    508c:	52a2                	lw	t0,40(sp)
+    508e:	5312                	lw	t1,36(sp)
+    5090:	841e                	mv	s0,t2
+    5092:	b7b9                	j	4fe0 <__v_printf+0x474>
+    5094:	05c2                	slli	a1,a1,0x10
+    5096:	81c1                	srli	a1,a1,0x10
+    5098:	bfd9                	j	506e <__v_printf+0x502>
+    509a:	932a                	add	t1,t1,a0
+    509c:	b7b5                	j	5008 <__v_printf+0x49c>
+    509e:	4301                	li	t1,0
+    50a0:	c402                	sw	zero,8(sp)
+    50a2:	b79d                	j	5008 <__v_printf+0x49c>
+    50a4:	d80285e3          	beqz	t0,4e2e <__v_printf+0x2c2>
+    50a8:	4772                	lw	a4,28(sp)
+    50aa:	ef19                	bnez	a4,50c8 <__v_printf+0x55c>
+    50ac:	5732                	lw	a4,44(sp)
+    50ae:	4281                	li	t0,0
+    50b0:	d6070fe3          	beqz	a4,4e2e <__v_printf+0x2c2>
+    50b4:	02000713          	li	a4,32
+    50b8:	fff78693          	addi	a3,a5,-1
+    50bc:	c4b6                	sw	a3,72(sp)
+    50be:	fee78fa3          	sb	a4,-1(a5)
+    50c2:	0305                	addi	t1,t1,1
+    50c4:	4285                	li	t0,1
+    50c6:	b3a5                	j	4e2e <__v_printf+0x2c2>
+    50c8:	02b00713          	li	a4,43
+    50cc:	b7f5                	j	50b8 <__v_printf+0x54c>
+    50ce:	00840793          	addi	a5,s0,8
+    50d2:	da3e                	sw	a5,52(sp)
+    50d4:	401c                	lw	a5,0(s0)
+    50d6:	d23e                	sw	a5,36(sp)
+    50d8:	405c                	lw	a5,4(s0)
+    50da:	d43e                	sw	a5,40(sp)
+    50dc:	04d10793          	addi	a5,sp,77
+    50e0:	c4be                	sw	a5,72(sp)
+    50e2:	47b2                	lw	a5,12(sp)
+    50e4:	e399                	bnez	a5,50ea <__v_printf+0x57e>
+    50e6:	4785                	li	a5,1
+    50e8:	c63e                	sw	a5,12(sp)
+    50ea:	47d2                	lw	a5,20(sp)
+    50ec:	e399                	bnez	a5,50f2 <__v_printf+0x586>
+    50ee:	4799                	li	a5,6
+    50f0:	c03e                	sw	a5,0(sp)
+    50f2:	42f2                	lw	t0,28(sp)
+    50f4:	00029e63          	bnez	t0,5110 <__v_printf+0x5a4>
+    50f8:	5712                	lw	a4,36(sp)
+    50fa:	57a2                	lw	a5,40(sp)
+    50fc:	4601                	li	a2,0
+    50fe:	4681                	li	a3,0
+    5100:	853a                	mv	a0,a4
+    5102:	85be                	mv	a1,a5
+    5104:	dc1a                	sw	t1,56(sp)
+    5106:	c68fc0ef          	jal	ra,156e <__ledf2>
+    510a:	5362                	lw	t1,56(sp)
+    510c:	01f55293          	srli	t0,a0,0x1f
+    5110:	5412                	lw	s0,36(sp)
+    5112:	53a2                	lw	t2,40(sp)
+    5114:	4782                	lw	a5,0(sp)
+    5116:	4732                	lw	a4,12(sp)
+    5118:	07f00693          	li	a3,127
+    511c:	04d10613          	addi	a2,sp,77
+    5120:	8522                	mv	a0,s0
+    5122:	859e                	mv	a1,t2
+    5124:	c096                	sw	t0,64(sp)
+    5126:	dc1a                	sw	t1,56(sp)
+    5128:	b9cff0ef          	jal	ra,44c4 <__dtostr>
+    512c:	47d2                	lw	a5,20(sp)
+    512e:	de2a                	sw	a0,60(sp)
+    5130:	5362                	lw	t1,56(sp)
+    5132:	4286                	lw	t0,64(sp)
+    5134:	cb95                	beqz	a5,5168 <__v_printf+0x5fc>
+    5136:	4426                	lw	s0,72(sp)
+    5138:	02e00593          	li	a1,46
+    513c:	dc16                	sw	t0,56(sp)
+    513e:	8522                	mv	a0,s0
+    5140:	ca1a                	sw	t1,20(sp)
+    5142:	b18fd0ef          	jal	ra,245a <strchr>
+    5146:	4352                	lw	t1,20(sp)
+    5148:	52e2                	lw	t0,56(sp)
+    514a:	57f2                	lw	a5,60(sp)
+    514c:	cd49                	beqz	a0,51e6 <__v_printf+0x67a>
+    514e:	4782                	lw	a5,0(sp)
+    5150:	e399                	bnez	a5,5156 <__v_printf+0x5ea>
+    5152:	47a2                	lw	a5,8(sp)
+    5154:	cb81                	beqz	a5,5164 <__v_printf+0x5f8>
+    5156:	0505                	addi	a0,a0,1
+    5158:	4782                	lw	a5,0(sp)
+    515a:	c789                	beqz	a5,5164 <__v_printf+0x5f8>
+    515c:	0505                	addi	a0,a0,1
+    515e:	00054783          	lbu	a5,0(a0)
+    5162:	efb5                	bnez	a5,51de <__v_printf+0x672>
+    5164:	00050023          	sb	zero,0(a0)
+    5168:	06700793          	li	a5,103
+    516c:	04f31a63          	bne	t1,a5,51c0 <__v_printf+0x654>
+    5170:	4526                	lw	a0,72(sp)
+    5172:	02e00593          	li	a1,46
+    5176:	c416                	sw	t0,8(sp)
+    5178:	ae2fd0ef          	jal	ra,245a <strchr>
+    517c:	842a                	mv	s0,a0
+    517e:	42a2                	lw	t0,8(sp)
+    5180:	c121                	beqz	a0,51c0 <__v_printf+0x654>
+    5182:	06500593          	li	a1,101
+    5186:	ad4fd0ef          	jal	ra,245a <strchr>
+    518a:	42a2                	lw	t0,8(sp)
+    518c:	85aa                	mv	a1,a0
+    518e:	00044783          	lbu	a5,0(s0)
+    5192:	e7b5                	bnez	a5,51fe <__v_printf+0x692>
+    5194:	c191                	beqz	a1,5198 <__v_printf+0x62c>
+    5196:	842e                	mv	s0,a1
+    5198:	03000693          	li	a3,48
+    519c:	fff44703          	lbu	a4,-1(s0)
+    51a0:	fff40513          	addi	a0,s0,-1
+    51a4:	04d70f63          	beq	a4,a3,5202 <__v_printf+0x696>
+    51a8:	02e00693          	li	a3,46
+    51ac:	00d70363          	beq	a4,a3,51b2 <__v_printf+0x646>
+    51b0:	8522                	mv	a0,s0
+    51b2:	00050023          	sb	zero,0(a0)
+    51b6:	c589                	beqz	a1,51c0 <__v_printf+0x654>
+    51b8:	c416                	sw	t0,8(sp)
+    51ba:	b96fd0ef          	jal	ra,2550 <strcpy>
+    51be:	42a2                	lw	t0,8(sp)
+    51c0:	47f2                	lw	a5,28(sp)
+    51c2:	10079263          	bnez	a5,52c6 <__v_printf+0x75a>
+    51c6:	57b2                	lw	a5,44(sp)
+    51c8:	e3e5                	bnez	a5,52a8 <__v_printf+0x73c>
+    51ca:	4526                	lw	a0,72(sp)
+    51cc:	ce16                	sw	t0,28(sp)
+    51ce:	f7efd0ef          	jal	ra,294c <strlen>
+    51d2:	832a                	mv	t1,a0
+    51d4:	5452                	lw	s0,52(sp)
+    51d6:	ca02                	sw	zero,20(sp)
+    51d8:	c402                	sw	zero,8(sp)
+    51da:	42f2                	lw	t0,28(sp)
+    51dc:	b989                	j	4e2e <__v_printf+0x2c2>
+    51de:	4782                	lw	a5,0(sp)
+    51e0:	17fd                	addi	a5,a5,-1
+    51e2:	c03e                	sw	a5,0(sp)
+    51e4:	bf95                	j	5158 <__v_printf+0x5ec>
+    51e6:	4722                	lw	a4,8(sp)
+    51e8:	d341                	beqz	a4,5168 <__v_printf+0x5fc>
+    51ea:	943e                	add	s0,s0,a5
+    51ec:	02e00713          	li	a4,46
+    51f0:	00e40023          	sb	a4,0(s0)
+    51f4:	4526                	lw	a0,72(sp)
+    51f6:	953e                	add	a0,a0,a5
+    51f8:	000500a3          	sb	zero,1(a0)
+    51fc:	b7b5                	j	5168 <__v_printf+0x5fc>
+    51fe:	0405                	addi	s0,s0,1
+    5200:	b779                	j	518e <__v_printf+0x622>
+    5202:	842a                	mv	s0,a0
+    5204:	bf61                	j	519c <__v_printf+0x630>
+    5206:	57fd                	li	a5,-1
+    5208:	c23e                	sw	a5,4(sp)
+    520a:	40de                	lw	ra,212(sp)
+    520c:	444e                	lw	s0,208(sp)
+    520e:	4512                	lw	a0,4(sp)
+    5210:	44be                	lw	s1,204(sp)
+    5212:	0d810113          	addi	sp,sp,216
+    5216:	8082                	ret
+    5218:	5782                	lw	a5,32(sp)
+    521a:	c6079ee3          	bnez	a5,4e96 <__v_printf+0x32a>
+    521e:	4781                	li	a5,0
+    5220:	4752                	lw	a4,20(sp)
+    5222:	cc0700e3          	beqz	a4,4ee2 <__v_printf+0x376>
+    5226:	4582                	lw	a1,0(sp)
+    5228:	0065f363          	bgeu	a1,t1,522e <__v_printf+0x6c2>
+    522c:	859a                	mv	a1,t1
+    522e:	ca3e                	sw	a5,20(sp)
+    5230:	47b2                	lw	a5,12(sp)
+    5232:	02000613          	li	a2,32
+    5236:	8526                	mv	a0,s1
+    5238:	40b785b3          	sub	a1,a5,a1
+    523c:	c41a                	sw	t1,8(sp)
+    523e:	cc36                	sw	a3,24(sp)
+    5240:	8cdff0ef          	jal	ra,4b0c <write_pad>
+    5244:	4792                	lw	a5,4(sp)
+    5246:	4322                	lw	t1,8(sp)
+    5248:	00f50733          	add	a4,a0,a5
+    524c:	47d2                	lw	a5,20(sp)
+    524e:	cf99                	beqz	a5,526c <__v_printf+0x700>
+    5250:	46e2                	lw	a3,24(sp)
+    5252:	0044a383          	lw	t2,4(s1)
+    5256:	4090                	lw	a2,0(s1)
+    5258:	85be                	mv	a1,a5
+    525a:	8536                	mv	a0,a3
+    525c:	c61a                	sw	t1,12(sp)
+    525e:	c43a                	sw	a4,8(sp)
+    5260:	c23e                	sw	a5,4(sp)
+    5262:	9382                	jalr	t2
+    5264:	4792                	lw	a5,4(sp)
+    5266:	4722                	lw	a4,8(sp)
+    5268:	4332                	lw	t1,12(sp)
+    526a:	973e                	add	a4,a4,a5
+    526c:	4782                	lw	a5,0(sp)
+    526e:	03000613          	li	a2,48
+    5272:	8526                	mv	a0,s1
+    5274:	406785b3          	sub	a1,a5,t1
+    5278:	c23a                	sw	a4,4(sp)
+    527a:	c01a                	sw	t1,0(sp)
+    527c:	891ff0ef          	jal	ra,4b0c <write_pad>
+    5280:	4712                	lw	a4,4(sp)
+    5282:	4302                	lw	t1,0(sp)
+    5284:	972a                	add	a4,a4,a0
+    5286:	40dc                	lw	a5,4(s1)
+    5288:	4090                	lw	a2,0(s1)
+    528a:	4526                	lw	a0,72(sp)
+    528c:	859a                	mv	a1,t1
+    528e:	c23a                	sw	a4,4(sp)
+    5290:	c01a                	sw	t1,0(sp)
+    5292:	9782                	jalr	a5
+    5294:	4302                	lw	t1,0(sp)
+    5296:	4712                	lw	a4,4(sp)
+    5298:	006707b3          	add	a5,a4,t1
+    529c:	bac9                	j	4c6e <__v_printf+0x102>
+    529e:	47a2                	lw	a5,8(sp)
+    52a0:	bc0793e3          	bnez	a5,4e66 <__v_printf+0x2fa>
+    52a4:	4785                	li	a5,1
+    52a6:	b6c9                	j	4e68 <__v_printf+0x2fc>
+    52a8:	57a2                	lw	a5,40(sp)
+    52aa:	5712                	lw	a4,36(sp)
+    52ac:	4601                	li	a2,0
+    52ae:	85be                	mv	a1,a5
+    52b0:	4681                	li	a3,0
+    52b2:	853a                	mv	a0,a4
+    52b4:	c416                	sw	t0,8(sp)
+    52b6:	a02fc0ef          	jal	ra,14b8 <__gedf2>
+    52ba:	02000793          	li	a5,32
+    52be:	42a2                	lw	t0,8(sp)
+    52c0:	02055163          	bgez	a0,52e2 <__v_printf+0x776>
+    52c4:	b719                	j	51ca <__v_printf+0x65e>
+    52c6:	5712                	lw	a4,36(sp)
+    52c8:	57a2                	lw	a5,40(sp)
+    52ca:	4601                	li	a2,0
+    52cc:	4681                	li	a3,0
+    52ce:	853a                	mv	a0,a4
+    52d0:	85be                	mv	a1,a5
+    52d2:	c416                	sw	t0,8(sp)
+    52d4:	9e4fc0ef          	jal	ra,14b8 <__gedf2>
+    52d8:	42a2                	lw	t0,8(sp)
+    52da:	ee0548e3          	bltz	a0,51ca <__v_printf+0x65e>
+    52de:	02b00793          	li	a5,43
+    52e2:	4726                	lw	a4,72(sp)
+    52e4:	fff70693          	addi	a3,a4,-1
+    52e8:	c4b6                	sw	a3,72(sp)
+    52ea:	fef70fa3          	sb	a5,-1(a4)
+    52ee:	bdf1                	j	51ca <__v_printf+0x65e>
+    52f0:	8a071fe3          	bnez	a4,4bae <__v_printf+0x42>
+    52f4:	47c2                	lw	a5,16(sp)
+    52f6:	c83e                	sw	a5,16(sp)
+    52f8:	b071                	j	4b84 <__v_printf+0x18>
+    52fa:	0000                	unimp
+    52fc:	0000                	unimp
 	...

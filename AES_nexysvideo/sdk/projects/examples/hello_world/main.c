@@ -21,21 +21,24 @@ static int test_decrypt_ecb(void);
 static void test_encrypt_ecb_verbose(void);
 
 
-struct AES_ctx
-{
-//  uint8_t RoundKey[AES_keyEvxpSize];
-//#if (defined(CBC) && (CBC == 1)) || (defined(CTR) && (CTR == 1))
-//  uint8_t Iv[AES_BLOCKLEN];
-//#endif
-  uint8_t RoundKey[176];
-  uint8_t Iv[16];
+//struct AES_ctx
+//{
+////  uint8_t RoundKey[AES_keyEvxpSize];
+////#if (defined(CBC) && (CBC == 1)) || (defined(CTR) && (CTR == 1))
+////  uint8_t Iv[AES_BLOCKLEN];
+////#endif
+//  uint8_t RoundKey[176];
+//  uint8_t Iv[16];
+//
+//};
 
-};
+extern void mdelay(uint32_t ms);
 
 int main(void)
 {
     int exit;
 
+	LED_Init();
 #if defined(AES256)
     printf("\nTesting AES256\n\n");
 #elif defined(AES192)
@@ -48,7 +51,12 @@ int main(void)
 #endif
 while(1)
 {
+	LED_ON();
+	mdelay(100);
 	test_encrypt_cbc() ;
+	LED_OFF();
+	mdelay(100);
+
 }
     exit = test_encrypt_cbc() ;
 //	+ test_decrypt_cbc(); 

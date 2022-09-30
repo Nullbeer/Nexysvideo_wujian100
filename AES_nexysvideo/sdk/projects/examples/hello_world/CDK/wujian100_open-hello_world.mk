@@ -10,7 +10,7 @@ ProjectPath            :=./
 IntermediateDirectory  :=Obj
 OutDir                 :=$(IntermediateDirectory)
 User                   :=11056
-Date                   :=29/09/2022
+Date                   :=30/09/2022
 CDKPath                :=D:/C-Sky/CDK
 ToolchainPath          :=D:/C-Sky/CDKRepo/Toolchain/XTGccElfNewlib/V2.6.0/R/
 LinkerName             :=riscv64-unknown-elf-gcc
@@ -76,9 +76,11 @@ Objects0=$(IntermediateDirectory)/wujian100_open_evb_board_init$(ObjectSuffix) $
 	$(IntermediateDirectory)/mm_mm_addfreechunk$(ObjectSuffix) $(IntermediateDirectory)/mm_mm_free$(ObjectSuffix) $(IntermediateDirectory)/mm_mm_initialize$(ObjectSuffix) $(IntermediateDirectory)/mm_mm_leak$(ObjectSuffix) $(IntermediateDirectory)/mm_mm_mallinfo$(ObjectSuffix) $(IntermediateDirectory)/mm_mm_malloc$(ObjectSuffix) $(IntermediateDirectory)/mm_mm_size2ndx$(ObjectSuffix) $(IntermediateDirectory)/ringbuffer_ringbuffer$(ObjectSuffix) $(IntermediateDirectory)/syslog_syslog$(ObjectSuffix) $(IntermediateDirectory)/hello_world_main$(ObjectSuffix) \
 	$(IntermediateDirectory)/tiny-AES-c_aes$(ObjectSuffix) 
 
+Objects1=$(IntermediateDirectory)/LED_led$(ObjectSuffix) 
 
 
-Objects=$(Objects0) 
+
+Objects=$(Objects0) $(Objects1) 
 
 ##
 ## Main Build Targets 
@@ -305,6 +307,11 @@ $(IntermediateDirectory)/tiny-AES-c_aes$(ObjectSuffix): ../tiny-AES-c/aes.c
 	$(CC) $(SourceSwitch) ../tiny-AES-c/aes.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/tiny-AES-c_aes$(ObjectSuffix) -MF$(IntermediateDirectory)/tiny-AES-c_aes$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/tiny-AES-c_aes$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
 Lst/tiny-AES-c_aes$(PreprocessSuffix): ../tiny-AES-c/aes.c
 	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/tiny-AES-c_aes$(PreprocessSuffix) ../tiny-AES-c/aes.c
+
+$(IntermediateDirectory)/LED_led$(ObjectSuffix): ../LED/led.c  
+	$(CC) $(SourceSwitch) ../LED/led.c $(CFLAGS) -MMD -MP -MT$(IntermediateDirectory)/LED_led$(ObjectSuffix) -MF$(IntermediateDirectory)/LED_led$(DependSuffix) $(ObjectSwitch)$(IntermediateDirectory)/LED_led$(ObjectSuffix) $(IncludeCPath) $(IncludePackagePath)
+Lst/LED_led$(PreprocessSuffix): ../LED/led.c
+	$(CC) $(CFLAGS)$(IncludeCPath) $(PreprocessOnlySwitch) $(OutputSwitch) Lst/LED_led$(PreprocessSuffix) ../LED/led.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
