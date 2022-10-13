@@ -6,8 +6,8 @@
     <TabInfo>
       <wxString Value="F:\Nexysvideo_wujian100\IO_LAB_nexysvideo\sdk\projects\examples\hello_world\main.c" Name="FileName"/>
       <wxString Value="wujian100_open-hello_world" Name="ProjectName"/>
-      <int Value="18" Name="FirstVisibleLine"/>
-      <int Value="26" Name="CurrentLine"/>
+      <int Value="21" Name="FirstVisibleLine"/>
+      <int Value="33" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -30,7 +30,7 @@
     <TabInfo>
       <wxString Value="F:\Nexysvideo_wujian100\IO_LAB_nexysvideo\sdk\projects\examples\hello_world\key_gpio_intr\key.c" Name="FileName"/>
       <wxString Value="wujian100_open-hello_world" Name="ProjectName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="15" Name="FirstVisibleLine"/>
       <int Value="53" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
