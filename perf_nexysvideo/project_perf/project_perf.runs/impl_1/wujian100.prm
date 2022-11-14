@@ -1,0 +1,11 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX1
+Size               8M
+Start Address      0x00000000
+End Address        0x007FFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x003A607B    Nov 12 15:11:06 2022    F:/Nexysvideo_wujian100/perf_nexysvideo/project_perf/project_perf.runs/impl_1/wujian100_open_top.bit

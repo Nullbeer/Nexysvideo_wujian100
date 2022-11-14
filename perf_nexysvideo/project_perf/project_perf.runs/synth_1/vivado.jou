@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Sat Nov 12 13:13:28 2022
+# Process ID: 9304
+# Current directory: F:/Nexysvideo_wujian100/perf_nexysvideo/project_perf/project_perf.runs/synth_1
+# Command line: vivado.exe -log wujian100_open_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source wujian100_open_top.tcl
+# Log file: F:/Nexysvideo_wujian100/perf_nexysvideo/project_perf/project_perf.runs/synth_1/wujian100_open_top.vds
+# Journal file: F:/Nexysvideo_wujian100/perf_nexysvideo/project_perf/project_perf.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source wujian100_open_top.tcl -notrace

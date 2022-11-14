@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tftg256-1" LaunchTime="1668236165">
+  <File Type="BITSTR-BMM" Name="wujian100_open_top_bd.bmm"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="wujian100_open_top_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="wujian100_open_top_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR" Name="wujian100_open_top_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="wujian100_open_top.tcl"/>
+  <File Type="OPT-TIMING" Name="wujian100_open_top_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="wujian100_open_top_opt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="wujian100_open_top_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="wujian100_open_top_reports.tcl"/>
+  <File Type="OPT-DRC" Name="wujian100_open_top_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="wujian100_open_top.hwdef"/>
+  <File Type="PWROPT-DCP" Name="wujian100_open_top_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="wujian100_open_top_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="wujian100_open_top_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="wujian100_open_top_placed.dcp"/>
+  <File Type="PLACE-IO" Name="wujian100_open_top_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="wujian100_open_top_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="wujian100_open_top_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="wujian100_open_top_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="wujian100_open_top_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="wujian100_open_top_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="wujian100_open_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="wujian100_open_top_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="wujian100_open_top_postplace_pwropt.dcp"/>
+  <File Type="BG-BIN" Name="wujian100_open_top.bin"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="wujian100_open_top_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="wujian100_open_top_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="wujian100_open_top_drc_physopted.rpt"/>
+  <File Type="BITSTR-MSK" Name="wujian100_open_top.msk"/>
+  <File Type="PHYSOPT-TIMING" Name="wujian100_open_top_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="wujian100_open_top_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="wujian100_open_top_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="wujian100_open_top_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="wujian100_open_top_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="wujian100_open_top_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="wujian100_open_top_drc_routed.rpx"/>
+  <File Type="BITSTR-MMI" Name="wujian100_open_top.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="wujian100_open_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="wujian100_open_top_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="wujian100_open_top_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="wujian100_open_top_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="wujian100_open_top_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="wujian100_open_top_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="wujian100_open_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="wujian100_open_top_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="wujian100_open_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="wujian100_open_top_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="wujian100_open_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="wujian100_open_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="wujian100_open_top_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="wujian100_open_top_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="wujian100_open_top_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="wujian100_open_top_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="wujian100_open_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="wujian100_open_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="wujian100_open_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="wujian100_open_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="wujian100_open_top_bus_skew_postroute_physopted.pb"/>
+  <File Type="BG-BIT" Name="wujian100_open_top.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="wujian100_open_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-RBT" Name="wujian100_open_top.rbt"/>
+  <File Type="BITSTR-NKY" Name="wujian100_open_top.nky"/>
+  <File Type="PDI-FILE" Name="wujian100_open_top.pdi"/>
+  <File Type="RCFI_FILE" Name="wujian100_open_top.rcfi"/>
+  <File Type="CFI_FILE" Name="wujian100_open_top.cfi"/>
+  <File Type="RNPI_FILE" Name="wujian100_open_top.rnpi"/>
+  <File Type="NPI_FILE" Name="wujian100_open_top.npi"/>
+  <File Type="RBD_FILE" Name="wujian100_open_top.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="wujian100_open_top.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="wujian100_open_top.sysdef"/>
+  <File Type="BG-BGN" Name="wujian100_open_top.bgn"/>
+  <File Type="BG-DRC" Name="wujian100_open_top.drc"/>
+  <File Type="RDI-RDI" Name="wujian100_open_top.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/E902_20191018.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/E902_20191018.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/PAD_DIG_IO.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/PAD_DIG_IO.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/PAD_OSC_IO.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/PAD_OSC_IO.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/ahb_matrix_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/ahb_matrix_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/aou_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/aou_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/head_file/apb0_params.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/head_file/apb0_params.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/apb0.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/apb0.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/apb0_sub_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/apb0_sub_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/head_file/apb1_params.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/head_file/apb1_params.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/apb1.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/apb1.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/apb1_sub_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/apb1_sub_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/clkgen.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/clkgen.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/common.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/common.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/core_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/core_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/dmac.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/dmac.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/dummy.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/dummy.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/fpga_byte_spram.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/fpga_byte_spram.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/fpga_spram.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/fpga_spram.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/gpio0.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/gpio0.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/ls_sub_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/ls_sub_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/matrix.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/matrix.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/pdu_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/pdu_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/pwm.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/pwm.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/retu_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/retu_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/rtc.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/rtc.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/sms.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/sms.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/smu_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/smu_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/head_file/timers_params.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/head_file/timers_params.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim1.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim1.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim2.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim2.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim3.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim3.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim4.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim4.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim5.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim5.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim6.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim6.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/tim7.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/tim7.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/usi0.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/usi0.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/usi1.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/usi1.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/head_file/wdt_params.v">
+      <FileInfo SFType="VHeader">
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/head_file/wdt_params.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/wdt.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/wdt.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/wujian_src/soc_file/wujian100_open_fpga_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/soc_file/wujian100_open_fpga_top.v"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="wujian100_open_top"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/xdc/NexysVideo.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../wujian100_nexysvideo/wujian_src/xdc/NexysVideo.xdc"/>
+        <Attr Name="ImportTime" Val="1663833353"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream" PreStepTclHook="$PPRDIR/perftcl.tcl">
+      <Option Id="BinFile">1</Option>
+    </Step>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
+</GenRun>
