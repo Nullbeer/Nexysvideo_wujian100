@@ -34,3 +34,5 @@ set_property src_info {type:XDC file:2 line:343 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN H16 [get_ports { PAD_GPIO_7 }]; #Sch=sd_d[0]         miso        PAD_GPIO_7
 set_property src_info {type:XDC file:2 line:344 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN R2 [get_ports { PAD_GPIO_19 }]; #Sch=sd_d[3]        cs          PAD_GPIO_19
+set_property src_info {type:XDC file:2 line:347 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN D14 IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_12 }]; #IO_0_16 Sch=btnu

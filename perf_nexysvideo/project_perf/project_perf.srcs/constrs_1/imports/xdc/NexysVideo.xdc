@@ -344,6 +344,30 @@ set_property PACKAGE_PIN H16 [get_ports { PAD_GPIO_7 }]; #Sch=sd_d[0]         mi
 set_property PACKAGE_PIN R2 [get_ports { PAD_GPIO_19 }]; #Sch=sd_d[3]        cs          PAD_GPIO_19
 # set_property PACKAGE_PIN F12 [get_ports { PAD_GPIO_20 }]; #Sch=sd_reset       rst         PAD_GPIO_20
 
+set_property -dict { PACKAGE_PIN D14 IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_12 }]; #IO_0_16 Sch=btnu
+
+### Pmod header 7JA      SOFT SPI TEST
+#set_property -dict { PACKAGE_PIN AB22  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_28 }]; #IO_L10N_T1_D15_14 Sch=ja[1]          rst
+#set_property -dict { PACKAGE_PIN AB21  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_27 }]; #IO_L10P_T1_D14_14 Sch=ja[2]          cs  
+#set_property -dict { PACKAGE_PIN D14  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_3  }]; #IO_L15N_T2_DQS_DOUT_CSO_B_14 Sch=ja[3] mosi
+#set_property -dict { PACKAGE_PIN AB18  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_13 }]; #IO_L17N_T2_A13_D29_14 Sch=ja[4]        clk 
+#set_property -dict { PACKAGE_PIN Y21   IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_14 }]; #IO_L9P_T1_DQS_14 Sch=ja[7]             miso
+#set_property -dict { PACKAGE_PIN AA21  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_15 }]; #IO_L8N_T1_D12_14 Sch=ja[8]
+#set_property -dict { PACKAGE_PIN AA20  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_16 }]; #IO_L8P_T1_D11_14 Sch=ja[9]
+#set_property -dict { PACKAGE_PIN AA18  IOSTANDARD LVCMOS33 } [get_ports { PAD_GPIO_17 }]; #IO_L17P_T2_A14_D30_14 Sch=ja[10]
+
+
+### Pmod header JB
+#set_property -dict { PACKAGE_PIN V9    IOSTANDARD LVCMOS33 } [get_ports { PAD_PWM_CH3 }]; #IO_L21P_T3_DQS_34 Sch=jb_p[1]
+#set_property -dict { PACKAGE_PIN V8    IOSTANDARD LVCMOS33 } [get_ports { PAD_PWM_CH4 }]; #IO_L21N_T3_DQS_34 Sch=jb_n[1]
+#set_property -dict { PACKAGE_PIN V7    IOSTANDARD LVCMOS33 } [get_ports { PAD_PWM_CH5 }]; #IO_L19P_T3_34 Sch=jb_p[2]
+#set_property -dict { PACKAGE_PIN W7    IOSTANDARD LVCMOS33 } [get_ports { PAD_PWM_CH6 }]; #IO_L19N_T3_VREF_34 Sch=jb_n[2]
+#set_property -dict { PACKAGE_PIN W9    IOSTANDARD LVCMOS33 } [get_ports { PAD_PWM_CH7 }]; #IO_L24P_T3_34 Sch=jb_p[3]
+#set_property -dict { PACKAGE_PIN Y9    IOSTANDARD LVCMOS33 } [get_ports { PAD_PWM_CH8 }]; #IO_L24N_T3_34 Sch=jb_n[3]
+#set_property -dict { PACKAGE_PIN Y8    IOSTANDARD LVCMOS33 } [get_ports { PAD_JTAG_TMS }]; #IO_L23P_T3_34 Sch=jb_p[4]
+#set_property -dict { PACKAGE_PIN Y7    IOSTANDARD LVCMOS33 } [get_ports { PAD_JTAG_TCLK }]; #IO_L23N_T3_34 Sch=jb_n[4
+
+
 set_property CFGBVS VCCO [current_design]
 
 #create_clock -period 50.00 -name MAIN_CLK [get_ports PIN_EHS]

@@ -6,8 +6,16 @@
     <TabInfo>
       <wxString Value="F:\Nexysvideo_wujian100\USER_project\AES\smartl_e902m-gpio\projects\examples\driver\gpio\example_gpio.c" Name="FileName"/>
       <wxString Value="smartl_e902m-gpio" Name="ProjectName"/>
-      <int Value="36" Name="FirstVisibleLine"/>
-      <int Value="60" Name="CurrentLine"/>
+      <int Value="39" Name="FirstVisibleLine"/>
+      <int Value="57" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="F:\Nexysvideo_wujian100\USER_project\AES\smartl_e902m-gpio\projects\examples\driver\gpio\configs\csi_config.h" Name="FileName"/>
+      <wxString Value="smartl_e902m-gpio" Name="ProjectName"/>
+      <int Value="1" Name="FirstVisibleLine"/>
+      <int Value="1" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

@@ -9,6 +9,8 @@
 gpio_pin_handle_t led1_pin_handle_t = NULL;		//led1_pin_handle_t			PA0
 gpio_pin_handle_t led2_pin_handle_t = NULL;		//led2_pin_handle_t			PA1
 gpio_pin_handle_t led3_pin_handle_t = NULL;		//led3_pin_handle_t	        PA2
+gpio_pin_handle_t aes_trigger_t = NULL;
+
 
 extern void mdelay(uint32_t ms);
 
@@ -32,6 +34,10 @@ void LED_Init()
     led3_pin_handle_t = csi_gpio_pin_initialize(PA2, gpio_interrupt_handler);       
     csi_gpio_pin_config_mode(led3_pin_handle_t, GPIO_MODE_PULLNONE);
     csi_gpio_pin_config_direction(led3_pin_handle_t, GPIO_DIRECTION_OUTPUT);
+	
+//	aes_trigger_t = csi_gpio_pin_initialize(PA, gpio_interrupt_handler);       
+//    csi_gpio_pin_config_mode(led3_pin_handle_t, GPIO_MODE_PULLNONE);
+//    csi_gpio_pin_config_direction(led3_pin_handle_t, GPIO_DIRECTION_OUTPUT);
 }
 
 void LED_ON()
@@ -46,4 +52,14 @@ void LED_OFF()
     csi_gpio_pin_write(led1_pin_handle_t,0);	
     csi_gpio_pin_write(led2_pin_handle_t,0);	
     csi_gpio_pin_write(led3_pin_handle_t,0);	
+}
+
+void AES_ON()
+{
+	csi_gpio_pin_write(aes_trigger_t,1);
+}
+
+void AES_OFF()
+{
+	csi_gpio_pin_write(aes_trigger_t,0);
 }
