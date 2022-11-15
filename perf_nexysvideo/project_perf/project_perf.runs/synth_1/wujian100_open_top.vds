@@ -1269,3 +1269,1117 @@ Applied set_property DONT_TOUCH = true for u_clk_wiz_0. (constraint file  auto g
 ---------------------------------------------------------------------------------
 Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:00:52 . Memory (MB): peak = 1706.520 ; gain = 631.840
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'hbus_stt_reg' in module 'fsmc'
+INFO: [Synth 8-802] inferred FSM for state register 'cstate_reg' in module 'apb0_state_ctrl'
+INFO: [Synth 8-802] inferred FSM for state register 'uart_fsm_reg' in module 'uart'
+INFO: [Synth 8-802] inferred FSM for state register 'i2cm_fsm_reg' in module 'i2cm'
+INFO: [Synth 8-802] inferred FSM for state register 'spim_fsm_reg' in module 'spi'
+INFO: [Synth 8-802] inferred FSM for state register 'cstate_reg' in module 'apb1_state_ctrl'
+INFO: [Synth 8-802] inferred FSM for state register 'cur_st_reg' in module 'cr_ifu_ibusif'
+INFO: [Synth 8-802] inferred FSM for state register 'cur_st_reg' in module 'cr_iu_mad'
+INFO: [Synth 8-802] inferred FSM for state register 'br_cur_state_reg' in module 'cr_iu_retire'
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'cr_iu_vector'
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'cr_cp0_lpmd'
+INFO: [Synth 8-802] inferred FSM for state register 'cross_cur_st_reg' in module 'cr_bmu_dbus_if'
+INFO: [Synth 8-802] inferred FSM for state register 'cur_state_reg' in module 'cr_bmu_dbus_if'
+INFO: [Synth 8-802] inferred FSM for state register 'ahbLif_cur_state_reg' in module 'cr_ahbl_if'
+INFO: [Synth 8-802] inferred FSM for state register 'A1865c_reg' in module 'A45'
+INFO: [Synth 8-802] inferred FSM for state register 'A1864b_reg' in module 'A1864d'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                IDLE_BUS |                              000 |                            00001
+     WAIT_RRDY_DRADR_BUS |                              001 |                            00010
+     WAIT_RRDY_DWADR_BUS |                              010 |                            10000
+     WAIT_WRDY_DWADR_BUS |                              011 |                            11000
+     WAIT_WRDY_DRADR_BUS |                              100 |                            00100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'hbus_stt_reg' using encoding 'sequential' in module 'fsmc'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                          0000001 |                          0000001
+                     WTW |                          0000010 |                          0000010
+                     SPW |                          0000100 |                          0000100
+                     ASW |                          0001000 |                          0001000
+                     WTR |                          0010000 |                          0010000
+                     SPR |                          0100000 |                          0100000
+                     ASR |                          1000000 |                          1000000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'cstate_reg' in module 'apb0_state_ctrl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               UART_IDLE |                            00001 |                              000
+              UART_START |                            00010 |                              011
+               UART_DATA |                            00100 |                              010
+             UART_PARITY |                            01000 |                              110
+               UART_STOP |                            10000 |                              001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'uart_fsm_reg' using encoding 'one-hot' in module 'uart'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               I2CM_IDLE |                              000 |                              000
+              I2CM_START |                              001 |                              001
+            I2CM_SPECIAL |                              010 |                              011
+              I2CM_ADDR0 |                              011 |                              110
+              I2CM_ADDR1 |                              100 |                              111
+               I2CM_DATA |                              101 |                              101
+            I2CM_RESTART |                              110 |                              010
+               I2CM_STOP |                              111 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'i2cm_fsm_reg' using encoding 'sequential' in module 'i2cm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               SPIM_IDLE |                               00 |                               00
+              SPIM_START |                               01 |                               01
+               SPIM_DATA |                               10 |                               11
+               SPIM_STOP |                               11 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'spim_fsm_reg' using encoding 'sequential' in module 'spi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                          0000001 |                          0000001
+                     WTW |                          0000010 |                          0000010
+                     SPW |                          0000100 |                          0000100
+                     ASW |                          0001000 |                          0001000
+                     WTR |                          0010000 |                          0010000
+                     SPR |                          0100000 |                          0100000
+                     ASR |                          1000000 |                          1000000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'cstate_reg' in module 'apb1_state_ctrl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                              001
+                    WFG1 |                              100 |                              010
+                    WFD1 |                              010 |                              011
+                WFD1WFG2 |                              011 |                              000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_st_reg' using encoding 'sequential' in module 'cr_ifu_ibusif'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                              000
+                    WFI2 |                              001 |                              011
+                   SPLIT |                              011 |                              010
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_st_reg' using encoding 'sequential' in module 'cr_iu_mad'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+             BR_DBG_IDLE |                                0 |                               00
+              BR_DBG_ACK |                                1 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'br_cur_state_reg' using encoding 'sequential' in module 'cr_iu_retire'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                             0000
+             NONVEC_WAIT |                              111 |                             0101
+        NONVEC_WAIT_IDLE |                              110 |                             0110
+                 BUF_VBR |                              101 |                             0001
+               WAIT_IDLE |                              100 |                             0010
+              WAIT_GRANT |                              011 |                             0011
+               WAIT_DATA |                              010 |                             0100
+                 VEC_ERR |                              001 |                             0111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encoding 'sequential' in module 'cr_iu_vector'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+                   WFACK |                               01 |                               01
+                  WFCPLT |                               10 |                               11
+                    CPLT |                               11 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encoding 'sequential' in module 'cr_cp0_lpmd'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   CIDLE |                              000 |                              000
+                   DAHBL |                              001 |                              100
+                   IAHBL |                              100 |                              011
+                   CTCIP |                              011 |                              010
+                   SAHBL |                              010 |                              001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cross_cur_st_reg' using encoding 'sequential' in module 'cr_bmu_dbus_if'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+             BSTACK_FAIL |                               01 |                               01
+                    DENY |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'cur_state_reg' using encoding 'sequential' in module 'cr_bmu_dbus_if'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                            00001 |                              000
+                     WFG |                            00010 |                              010
+                     WFD |                            00100 |                              001
+                  ERROR1 |                            01000 |                              110
+                  ERROR2 |                            10000 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'ahbLif_cur_state_reg' using encoding 'one-hot' in module 'cr_ahbl_if'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                     A50 |                        000000001 |                             0000
+                  A18651 |                        000000010 |                             0001
+                     A51 |                        000000100 |                             0010
+                  A18650 |                        000001000 |                             0011
+                     A52 |                        000010000 |                             0100
+                  A1864f |                        000100000 |                             0101
+                     A53 |                        001000000 |                             0110
+                  A1864e |                        010000000 |                             0111
+                     A54 |                        100000000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'A1865c_reg' using encoding 'one-hot' in module 'A45'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  A18632 |                        000000001 |                             0000
+                     A70 |                        000000010 |                             0001
+                  A18631 |                        000000100 |                             0011
+                     A71 |                        000001000 |                             0010
+                  A18630 |                        000010000 |                             0110
+                  A1862f |                        000100000 |                             0101
+                     A72 |                        001000000 |                             0111
+                     A73 |                        010000000 |                             0100
+                  A1862e |                        100000000 |                             1100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'A1864b_reg' using encoding 'one-hot' in module 'A1864d'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 1     
+	   3 Input   33 Bit       Adders := 2     
+	   3 Input   32 Bit       Adders := 32    
+	   2 Input   32 Bit       Adders := 42    
+	   3 Input   31 Bit       Adders := 1     
+	   2 Input   30 Bit       Adders := 2     
+	   2 Input   24 Bit       Adders := 9     
+	   2 Input   23 Bit       Adders := 3     
+	   2 Input   13 Bit       Adders := 16    
+	   3 Input   13 Bit       Adders := 16    
+	   2 Input   12 Bit       Adders := 12    
+	   2 Input    8 Bit       Adders := 10    
+	   2 Input    7 Bit       Adders := 2     
+	   3 Input    6 Bit       Adders := 32    
+	   2 Input    5 Bit       Adders := 14    
+	   3 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 39    
+	   3 Input    3 Bit       Adders := 80    
+	   2 Input    3 Bit       Adders := 19    
+	   6 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 12    
+	   3 Input    2 Bit       Adders := 8     
++---XORs : 
+	   2 Input     32 Bit         XORs := 6     
+	   2 Input      1 Bit         XORs := 101   
++---XORs : 
+	                8 Bit    Wide XORs := 6     
+	                7 Bit    Wide XORs := 6     
+	                6 Bit    Wide XORs := 6     
+	                5 Bit    Wide XORs := 6     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               49 Bit    Registers := 7     
+	               45 Bit    Registers := 7     
+	               43 Bit    Registers := 1     
+	               32 Bit    Registers := 248   
+	               31 Bit    Registers := 2     
+	               30 Bit    Registers := 1     
+	               28 Bit    Registers := 1     
+	               26 Bit    Registers := 4     
+	               25 Bit    Registers := 1     
+	               24 Bit    Registers := 16    
+	               23 Bit    Registers := 3     
+	               20 Bit    Registers := 3     
+	               18 Bit    Registers := 8     
+	               16 Bit    Registers := 26    
+	               13 Bit    Registers := 17    
+	               12 Bit    Registers := 30    
+	               11 Bit    Registers := 1     
+	               10 Bit    Registers := 6     
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 51    
+	                7 Bit    Registers := 2     
+	                6 Bit    Registers := 37    
+	                5 Bit    Registers := 38    
+	                4 Bit    Registers := 82    
+	                3 Bit    Registers := 172   
+	                2 Bit    Registers := 175   
+	                1 Bit    Registers := 1822  
++---RAMs : 
+	             128K Bit	(16384 X 8 bit)          RAMs := 16    
+	              256 Bit	(16 X 16 bit)          RAMs := 6     
++---Muxes : 
+	   3 Input   64 Bit        Muxes := 1     
+	   2 Input   64 Bit        Muxes := 2     
+	   2 Input   49 Bit        Muxes := 113   
+	   2 Input   45 Bit        Muxes := 197   
+	   2 Input   43 Bit        Muxes := 7     
+	   2 Input   41 Bit        Muxes := 29    
+	   2 Input   37 Bit        Muxes := 29    
+	   2 Input   33 Bit        Muxes := 29    
+	   2 Input   32 Bit        Muxes := 654   
+	   3 Input   32 Bit        Muxes := 88    
+	   5 Input   32 Bit        Muxes := 16    
+	   7 Input   32 Bit        Muxes := 16    
+	  11 Input   32 Bit        Muxes := 9     
+	  27 Input   32 Bit        Muxes := 3     
+	   4 Input   32 Bit        Muxes := 10    
+	  44 Input   32 Bit        Muxes := 1     
+	  32 Input   31 Bit        Muxes := 1     
+	   2 Input   31 Bit        Muxes := 8     
+	   2 Input   30 Bit        Muxes := 3     
+	   3 Input   30 Bit        Muxes := 1     
+	   2 Input   29 Bit        Muxes := 29    
+	   2 Input   25 Bit        Muxes := 29    
+	   2 Input   24 Bit        Muxes := 55    
+	   8 Input   24 Bit        Muxes := 6     
+	   2 Input   23 Bit        Muxes := 3     
+	   4 Input   23 Bit        Muxes := 1     
+	   2 Input   21 Bit        Muxes := 29    
+	   2 Input   17 Bit        Muxes := 29    
+	   3 Input   16 Bit        Muxes := 16    
+	   2 Input   16 Bit        Muxes := 98    
+	  16 Input   16 Bit        Muxes := 3     
+	  18 Input   16 Bit        Muxes := 3     
+	   2 Input   13 Bit        Muxes := 69    
+	   2 Input   12 Bit        Muxes := 37    
+	   2 Input   11 Bit        Muxes := 2     
+	   2 Input   10 Bit        Muxes := 9     
+	  65 Input   10 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 38    
+	   9 Input    9 Bit        Muxes := 1     
+	  17 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 103   
+	   4 Input    8 Bit        Muxes := 33    
+	  10 Input    8 Bit        Muxes := 9     
+	   8 Input    8 Bit        Muxes := 3     
+	  14 Input    8 Bit        Muxes := 5     
+	  26 Input    8 Bit        Muxes := 1     
+	   9 Input    8 Bit        Muxes := 1     
+	   8 Input    7 Bit        Muxes := 13    
+	   2 Input    7 Bit        Muxes := 7     
+	   7 Input    7 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 34    
+	   2 Input    5 Bit        Muxes := 107   
+	   5 Input    5 Bit        Muxes := 19    
+	  14 Input    5 Bit        Muxes := 3     
+	   6 Input    5 Bit        Muxes := 1     
+	   4 Input    5 Bit        Muxes := 2     
+	  33 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 114   
+	   3 Input    4 Bit        Muxes := 3     
+	   4 Input    4 Bit        Muxes := 5     
+	   8 Input    4 Bit        Muxes := 11    
+	  16 Input    4 Bit        Muxes := 3     
+	   5 Input    4 Bit        Muxes := 2     
+	  41 Input    4 Bit        Muxes := 1     
+	  13 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 188   
+	  20 Input    3 Bit        Muxes := 16    
+	  31 Input    3 Bit        Muxes := 3     
+	   4 Input    3 Bit        Muxes := 3     
+	  41 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 7     
+	  12 Input    3 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 3     
+	   5 Input    3 Bit        Muxes := 9     
+	   2 Input    2 Bit        Muxes := 80    
+	   4 Input    2 Bit        Muxes := 8     
+	   7 Input    2 Bit        Muxes := 6     
+	   8 Input    2 Bit        Muxes := 21    
+	   3 Input    2 Bit        Muxes := 13    
+	   6 Input    2 Bit        Muxes := 4     
+	  50 Input    1 Bit        Muxes := 266   
+	   2 Input    1 Bit        Muxes := 1972  
+	  25 Input    1 Bit        Muxes := 161   
+	   4 Input    1 Bit        Muxes := 36    
+	   5 Input    1 Bit        Muxes := 13    
+	  10 Input    1 Bit        Muxes := 7     
+	   3 Input    1 Bit        Muxes := 4     
+	   8 Input    1 Bit        Muxes := 12    
+	  16 Input    1 Bit        Muxes := 3     
+	   7 Input    1 Bit        Muxes := 23    
+	  14 Input    1 Bit        Muxes := 9     
+	  41 Input    1 Bit        Muxes := 2     
+	   6 Input    1 Bit        Muxes := 9     
+	  22 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5545] ROM "m6_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m6_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m5_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m2_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m4_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m3_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s4_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s3_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m1_s0_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s9_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s8_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s7_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s6_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s5_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s2_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s1_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s11_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "m0_s10_data" won't be mapped to RAM because address size (49) is larger than maximum supported(25)
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m0_hgrant driven by constant 1
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m1_hgrant driven by constant 1
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m2_hgrant driven by constant 1
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m3_hgrant driven by constant 1
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m4_hgrant driven by constant 1
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m5_hgrant driven by constant 1
+WARNING: [Synth 8-3917] design ahb_matrix_7_12_dec has port m6_hgrant driven by constant 1
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc9/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc8/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc7/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc6/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc5/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc4/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc3/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc2/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc1/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc15/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc14/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc13/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc12/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc11/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc10/we_prot_reg)
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (x_reg_ctrl/x_chregc0/we_prot_reg)
+WARNING: [Synth 8-7129] Port paddr[31] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[30] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[29] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[28] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[27] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[26] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[25] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[24] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[23] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[22] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[21] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[20] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[19] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[18] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[17] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[16] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[15] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[14] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[13] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[12] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[1] in module pwm_apbif is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[0] in module pwm_apbif is either unconnected or has no load
+INFO: [Synth 8-5544] ROM "p_0_out" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy1_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy2_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy3_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy4_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy5_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_lsbus_s2_hresp[1] driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy7_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy8_intr driven by constant 0
+WARNING: [Synth 8-3917] design apb0_sub_top__GB2 has port apb0_dummy9_intr driven by constant 0
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[24]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[25]'
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[25]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[26]'
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[26]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[27]'
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[27]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[28]'
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[28]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[29]'
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[29]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[30]'
+INFO: [Synth 8-3886] merging instance 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[30]' (FDCE) to 'x_usi2_sec_top/x_usi2/x_apb_if/prdata_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_usi2_sec_top/x_usi2 /\x_apb_if/prdata_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_apb0_sub_top/U_APB0_STATE_CTRL/o_root_pprot_reg[1] )
+INFO: [Synth 8-5546] ROM "s0_last_cmd" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s1_last_cmd" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s2_last_cmd" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s3_last_cmd" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s4_last_cmd" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "s5_last_cmd" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "p_0_out" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+WARNING: [Synth 8-3917] design pdu_top__GC0 has port lsbus_dummy0_intr driven by constant 0
+WARNING: [Synth 8-3917] design pdu_top__GC0 has port lsbus_dummy1_intr driven by constant 0
+WARNING: [Synth 8-3917] design pdu_top__GC0 has port lsbus_dummy2_intr driven by constant 0
+WARNING: [Synth 8-3917] design pdu_top__GC0 has port lsbus_dummy3_intr driven by constant 0
+WARNING: [Synth 8-7129] Port paddr[31] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[30] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[29] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[28] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[27] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[26] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[25] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[24] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[23] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[22] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[21] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[20] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[19] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[18] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[17] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[16] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[15] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[14] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[13] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[12] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[31] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[30] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[29] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[28] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[27] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[26] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[25] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pwdata[24] in module apb_if is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i2c_intr_en[2] in module i2cs is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i2c_intr_en[3] in module i2cm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[31] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[30] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[29] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[28] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[27] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[26] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[25] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[24] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[23] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[22] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[21] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[20] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[19] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[18] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[17] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[16] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[15] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[14] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[13] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[12] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[11] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[10] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[9] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[8] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pprot[2] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pprot[1] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pprot[0] in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port scan_mode in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tipc_tim7_trust in module tim7_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[31] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[30] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[29] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[28] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[27] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[26] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[25] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[24] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[23] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[22] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[21] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[20] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[19] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[18] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[17] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[16] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[15] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[14] in module tim5_sec_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port paddr[13] in module tim5_sec_top is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/grey_rd_ptr_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/grey_rd_ptr_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/grey_wr_ptr_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/grey_wr_ptr_reg[1] )
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/sync_rd_ptr_0_reg[0]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_0_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/sync_rd_ptr_0_reg[1]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_0_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_0_reg[0]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_0_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_0_reg[1]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/wfifo_wr_en_reg'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/wr_ptr_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/wr_ptr_reg[1] )
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/sync_rd_ptr_1_reg[0]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_1_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/sync_rd_ptr_1_reg[1]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_1_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[24]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[25]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[25]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[26]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[26]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[27]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[27]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[28]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[28]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[29]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[29]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[30]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[30]' (FDCE) to 'x_sub_apb1_top/x_usi1_sec_top/x_usi1/x_apb_if/prdata_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (x_sub_apb1_top/\x_usi1_sec_top/x_usi1 /\x_apb_if/prdata_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/wfifo_wr_en_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (x_sub_apb1_top/x_apb1_sub_top/\U_APB1_STATE_CTRL/o_root_pprot_reg[1] )
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_1_reg[0]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/wfifo_wr_en_reg'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_sub_rd_afifo/sync_wr_ptr_1_reg[1]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/wfifo_wr_en_reg'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[11]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[9]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[9]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[3]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[3]' (FDC) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_cur_st_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/rd_ptr_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_sub_wr_afifo/rd_ptr_reg[1] )
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[30]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[31]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[32]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[33]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[34]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[35]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[36]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[37]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3886] merging instance 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[38]' (FDCE) to 'x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_sub_ls_top/x_sub_ls_top/x_matrix_sub_dec/m_ctrl_bus_d_reg[42] )
+INFO: [Synth 8-5546] ROM "imm_inv" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[31] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[30] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[29] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[28] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[27] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[26] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[25] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[24] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[23] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[22] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[21] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[20] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[19] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[18] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[17] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[16] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[15] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[14] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[13] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[12] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[11] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[10] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[9] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[8] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[7] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[6] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[5] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[4] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[3] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[2] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[1] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_haddr[0] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hburst[2] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hburst[1] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hburst[0] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hprot[3] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hprot[2] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hprot[1] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hprot[0] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hsize[2] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hsize[1] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hsize[0] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_htrans[1] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_htrans[0] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[31] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[30] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[29] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[28] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[27] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[26] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[25] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[24] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[23] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[22] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[21] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[20] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[19] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[18] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[17] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[16] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[15] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[14] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[13] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[12] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[11] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[10] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[9] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[8] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[7] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[6] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[5] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[4] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[3] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[2] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[1] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwdata[0] driven by constant 0
+WARNING: [Synth 8-3917] design wujian100_open_top__GCB0 has port cpu_hmain0_m1_hwrite driven by constant 0
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[0].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[12].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[8].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[4].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[3].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[15].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[11].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[2].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[14].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[10].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[6].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[1].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[13].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[9].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[5].x_cr_clic_kid /int_vld_ff_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /x_cr_core/\x_cr_cp0_top/x_cr_cp0_status/mprv_reg )
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_iu_top/x_cr_iu_wb/wb_int_spcu_inst_reg' (FDCE) to 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_iu_top/x_cr_iu_wb/wb_int_spcu_mask_reg'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_id_reg[6]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_id_reg[9]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_id_reg[7]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_id_reg[9]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_id_reg[8]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_id_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /x_cr_clic_arb/\clic_pad_int_id_reg[9] )
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_priv_reg[0]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_priv_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /\x_cr_bmu_top/x_cr_bmu_ibus_if/acc_err_for_deny_reg )
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[0]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[1]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[2]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[2]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[3]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[3]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/clic_pad_int_il_reg[4]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\x_cpu_top/CPU/x_cr_core_top /x_cr_core/x_cr_iu_top/x_cr_iu_retire/cpu_ext_int_b_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /x_cr_core/x_cr_iu_top/x_cr_iu_wb/wb_int_spcu_mask_reg)
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_cp0_top/x_cr_cp0_lpmd/lpmd_b_reg[1]' (FDPE) to 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_cp0_top/x_cr_cp0_lpmd/lpmd_b_reg[0]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nmbits_reg[1]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[2]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[4]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[2]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[5]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[2]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[3]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[2]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nmbits_reg[0]' (FDCE) to 'x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top/x_cr_clic_arb/nlbits_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[0].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[12].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[8].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[4].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[3].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[15].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[11].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[2].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[14].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[10].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[6].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[1].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[13].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[9].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /\INT_KID[5].x_cr_clic_kid /int_pending_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_clic_top /x_cr_clic_arb/\nlbits_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /x_cr_core/x_cr_iu_top/x_cr_iu_mad/\FSM_sequential_cur_st_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /\x_cr_iahbl_top/x_cr_ahbl_req_arb/cpu_req_bus_grnt_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /\x_cr_sahbl_top/x_cr_ahbl_req_arb/cpu_req_bus_grnt_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_tcipif_top/x_cr_tcipif_dbus/xx_tcip_grant_reg )
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_ifu_top/x_ibusif/ibus_prot_reg_reg[0]' (FDE) to 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_ifu_top/x_ibusif/ibus_prot_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_ifu_top/x_ibusif/ibus_prot_reg_reg[2]' (FDE) to 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_ifu_top/x_ibusif/ibus_prot_reg_reg[3]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /x_cr_core/\x_cr_ifu_top/x_ibusif/ibus_prot_reg_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\x_cpu_top/CPU/x_cr_core_top /\x_cr_bmu_top/x_cr_bmu_dbus_if/iahbl_lrw_hit_ff_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\x_cpu_top/CPU/x_cr_core_top /x_cr_core/x_cr_iu_top/x_cr_iu_wb/\wb_idx_buffer_reg[4] )
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_cp0_top/x_cr_cp0_status/pm_reg[0]' (FDPE) to 'x_cpu_top/CPU/x_cr_core_top/x_cr_core/x_cr_cp0_top/x_cr_cp0_status/pm_reg[1]'
+INFO: [Synth 8-3886] merging instance 'x_cpu_top/CPU/x_cr_core_top/x_cr_sys_io/sysio_pad_lpmd_b_reg[1]' (FDPE) to 'x_cpu_top/CPU/x_cr_core_top/x_cr_sys_io/sysio_pad_lpmd_b_reg[0]'
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_cur_st_reg[2]) is unused and will be removed from module cr_iu_mad.
+WARNING: [Synth 8-3332] Sequential element (FSM_sequential_br_cur_state_reg) is unused and will be removed from module cr_iu_retire.
+WARNING: [Synth 8-3332] Sequential element (x_cr_bmu_top/x_cr_bmu_dbus_if/FSM_sequential_cur_state_reg[1]) is unused and will be removed from module cr_core_top.
+WARNING: [Synth 8-3332] Sequential element (x_cr_bmu_top/x_cr_bmu_dbus_if/FSM_sequential_cur_state_reg[0]) is unused and will be removed from module cr_core_top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:04:09 ; elapsed = 00:04:11 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping	Report (see note below)
++-------------------------------------+----------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                          | RTL Object                                                     | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-------------------------------------+----------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
++-------------------------------------+----------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping	Report (see note below)
++------------------------------------------+-----------------------------------+-----------+----------------------+-------------+
+|Module Name                               | RTL Object                        | Inference | Size (Depth x Width) | Primitives  | 
++------------------------------------------+-----------------------------------+-----------+----------------------+-------------+
+|x_sub_apb0_topi_9/\x_usi0_sec_top/x_usi0  | x_rx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|x_sub_apb0_topi_9/\x_usi0_sec_top/x_usi0  | x_tx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|\x_usi2_sec_top/x_usi2                    | x_rx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|\x_usi2_sec_top/x_usi2                    | x_tx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|x_sub_apb1_top/\x_usi1_sec_top/x_usi1     | x_rx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|x_sub_apb1_top/\x_usi1_sec_top/x_usi1     | x_tx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
++------------------------------------------+-----------------------------------+-----------+----------------------+-------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:04:18 ; elapsed = 00:04:20 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:04:45 ; elapsed = 00:04:47 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping	Report
++-------------------------------------+----------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                          | RTL Object                                                     | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-------------------------------------+----------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg  | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
+|i_1/\x_retu_top/x_smu_top/x_sms_top  | x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg | 16 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 4      | 
++-------------------------------------+----------------------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping	Report
++------------------------------------------+-----------------------------------+-----------+----------------------+-------------+
+|Module Name                               | RTL Object                        | Inference | Size (Depth x Width) | Primitives  | 
++------------------------------------------+-----------------------------------+-----------+----------------------+-------------+
+|x_sub_apb0_topi_9/\x_usi0_sec_top/x_usi0  | x_rx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|x_sub_apb0_topi_9/\x_usi0_sec_top/x_usi0  | x_tx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|\x_usi2_sec_top/x_usi2                    | x_rx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|\x_usi2_sec_top/x_usi2                    | x_tx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|x_sub_apb1_top/\x_usi1_sec_top/x_usi1     | x_rx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
+|x_sub_apb1_top/\x_usi1_sec_top/x_usi1     | x_tx_sync_fifo_16x16/mem_fifo_reg | Implied   | 16 x 16              | RAM32M x 3	 | 
++------------------------------------------+-----------------------------------+-----------+----------------------+-------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_1/x_retu_top/x_smu_top/x_sms_top/x_isram_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-3886] merging instance 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/etb_pwmcfg18_reg' (FDCE) to 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/int_pwmcfg_reg[18]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/etb_pwmcfg19_reg' (FDCE) to 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/int_pwmcfg_reg[19]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/etb_pwmcfg20_reg' (FDCE) to 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/int_pwmcfg_reg[20]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/etb_pwmcfg21_reg' (FDCE) to 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/int_pwmcfg_reg[21]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/etb_pwmcfg22_reg' (FDCE) to 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/int_pwmcfg_reg[22]'
+INFO: [Synth 8-3886] merging instance 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/etb_pwmcfg23_reg' (FDCE) to 'x_sub_apb0_topi_8/x_pdu_top/x_sub_apb0_top/x_pwm_sec_top/x_pwm/x_pwm_apbif/int_pwmcfg_reg[23]'
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:04:57 ; elapsed = 00:05:05 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms0_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte1_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte2_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms1_top/x_sms_sram/x_fpga_spram/x_fpga_byte3_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance x_retu_top/x_smu_top/x_sms_top/x_sms2_top/x_sms_sram/x_fpga_spram/x_fpga_byte0_spram/mem_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Common 17-14] Message 'Synth 8-7052' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:05:06 ; elapsed = 00:05:15 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:05:06 ; elapsed = 00:05:15 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:05:14 ; elapsed = 00:05:22 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:05:14 ; elapsed = 00:05:23 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:05:16 ; elapsed = 00:05:24 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:05:16 ; elapsed = 00:05:25 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |clk_wiz  |     1|
+|2     |BUFG     |     1|
+|3     |CARRY4   |  1260|
+|4     |LUT1     |  1200|
+|5     |LUT2     |  3022|
+|6     |LUT3     |  3376|
+|7     |LUT4     |  5182|
+|8     |LUT5     |  4663|
+|9     |LUT6     | 12123|
+|10    |MUXF7    |   336|
+|11    |MUXF8    |    32|
+|12    |RAM32M   |    18|
+|13    |RAMB36E1 |    64|
+|14    |FDCE     | 11297|
+|15    |FDPE     |  1169|
+|16    |FDRE     |   968|
+|17    |IBUF     |     3|
+|18    |IOBUF    |    51|
+|19    |OBUF     |     4|
+|20    |OBUFT    |     6|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:05:16 ; elapsed = 00:05:25 . Memory (MB): peak = 1706.520 ; gain = 631.840
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 301 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:04:29 ; elapsed = 00:05:15 . Memory (MB): peak = 1706.520 ; gain = 475.008
+Synthesis Optimization Complete : Time (s): cpu = 00:05:16 ; elapsed = 00:05:31 . Memory (MB): peak = 1706.520 ; gain = 631.840
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1706.520 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1761 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1706.520 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 69 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 51 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 18 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+610 Infos, 208 Warnings, 2 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:05:31 ; elapsed = 00:05:48 . Memory (MB): peak = 1706.520 ; gain = 631.840
+INFO: [Common 17-1381] The checkpoint 'F:/Nexysvideo_wujian100/perf_nexysvideo/project_perf/project_perf.runs/synth_1/wujian100_open_top.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1706.520 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_utilization -file wujian100_open_top_utilization_synth.rpt -pb wujian100_open_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 15 15:52:09 2022...
